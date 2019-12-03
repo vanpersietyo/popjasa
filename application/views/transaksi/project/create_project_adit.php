@@ -78,7 +78,20 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3 class="content-header-title danger">Note Project</h3>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Nama Project</label>
+                                    <input name="nm_project" value="DEFF PROJECT" placeholder="Nama Project .." class="form-control" type="text" required="">
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Note Project</label>
+                                    <textarea name="note_project" placeholder="Note Project .." maxlength="255" class="form-control" type="textarea"></textarea>
+                                </div>
+                            </div>
+                            
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
