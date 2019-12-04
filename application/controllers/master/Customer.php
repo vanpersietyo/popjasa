@@ -62,6 +62,29 @@ class Customer extends CI_Controller{
 		echo json_encode($output);
 	}
 
+	public function tabel_customer(){
+		$list   = $this->M_Customer->find();
+		$data   = [];
+		/** @var M_Customer $detail */
+		if($list){
+			foreach ($list as $i => $detail) {
+				$no     	= $i+1;
+				$row    	= [];
+
+				$row[] = $no;
+				$row[] = $detail->id_customer;				
+				$row[] = $detail->nm_customer;
+				$row[] = '<a class="btn btn-sm btn-success" href="javascript:void(0)" title="Tambah Customer" onclick="pilih_customer('."'".$detail->id_customer."','".$detail->nm_customer."'".')"><i class="ft-plus-square"></i></a>';
+
+				$data[] = $row;
+			}
+		}
+		$output = array(
+			"data"              => $data,
+		);
+		echo json_encode($output);
+	}
+
 	public function ajax_edit($id)
 	{
 		$data = $this->M_Customer->get_by_id($id);

@@ -5,6 +5,7 @@ class Project extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('M_Customer');
+		$this->load->model('M_layanan');
 		$this->load->model('M_project');
 		$this->load->model('M_login');
 		$this->load->model('M_master_agen');
@@ -250,8 +251,8 @@ class Project extends CI_Controller {
 				$row[] = '<button type="button" class="btn btn-danger dropdown-toggle btn-sm" data-toggle="dropdown"
 															aria-haspopup="true" aria-expanded="false" disabled><i class="ft-menu" ></i></button>
 															<div class="dropdown-menu">
-																<a class="dropdown-item" ><i class="ft-edit"></i>Update</a>
-																<a class="dropdown-item" "><i class="ft-trash"></i>Delete</a>
+																<a class="dropdown-item"><i class="ft-edit"></i>Update</a>
+																<a class="dropdown-item"><i class="ft-trash"></i>Delete</a>
 															</div>';
 			} else
 			{
@@ -424,7 +425,8 @@ class Project extends CI_Controller {
 	public function create_project_adit(){
 		$data = [
 			'pages'		=> 'transaksi/project/create_project_adit',
-			'customer'	=> $this->M_Customer->find()
+			'customer'	=> $this->M_Customer->find(),
+			'layanan'   => $this->M_layanan->find()
 		];
 		$this->load->view('layout', $data);
 	}
