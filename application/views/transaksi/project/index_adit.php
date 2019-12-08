@@ -86,7 +86,7 @@
     });
 
     function add() {
-		window.location.href = "<?php echo site_url('transaksi/project/create_project_adit')?>";
+		window.location.href = "<?php echo site_url('transaksi/project/create_project')?>";
     }
 
 </script>

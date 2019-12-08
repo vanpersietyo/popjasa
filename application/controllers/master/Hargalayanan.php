@@ -118,6 +118,25 @@ class Hargalayanan extends CI_Controller{
 		}
 	}
 
+    /**
+     * created_at: 2019-12-04
+     * created_by: Afes Oktavianus
+     * function: show filter with layanan in form create project
+     */
+    public function find_by_layanan($id){
+        $list   = $this->M_harga->get_by_layanan_id($id);
+        if ($list) {
+            $data = [
+                'status'=> true,
+                'harga'=> $list->harga,
+            ];
+        }else {
+            $data['status'] = FALSE;
+        }
+
+        echo json_encode($data);
+    }
+
 
 
 

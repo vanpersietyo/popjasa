@@ -92,8 +92,8 @@
  * @property M_login            				$M_login
  * @property M_user             				$M_user
  * @property M_Customer         				$M_Customer
- * @property M_layanan         				  $M_layanan
- *
+ * @property M_layanan         				    $M_layanan
+ * @property M_harga                            $M_harga
  *
 
  * Transaksi

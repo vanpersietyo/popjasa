@@ -422,13 +422,42 @@ class Project extends CI_Controller {
 		$this->load->view('layout', $data);
 	}
 
-	public function create_project_adit(){
+	public function create_project(){
 		$data = [
-			'pages'		=> 'transaksi/project/create_project_adit',
+			'pages'		=> 'transaksi/project/create_project',
 			'customer'	=> $this->M_Customer->find(),
 			'layanan'   => $this->M_layanan->find()
 		];
 		$this->load->view('layout', $data);
 	}
 
+    /**
+     * created_at: 2019-12-08
+     * created_by: Afes Oktavianus
+     * function create project (tbl_project)
+     */
+	public function simpan_project() {
+	    $id = $this->M_project->get_ID();
+        $input = array(
+            'id_project' => $id,
+            'id_hdr_project' => $this->input->post('layanan'),
+            'kd_cabang' => $this->session->userdata('cabang'),
+            'id_customer' => $this->input->post('id_customer'),
+            'id_layanan' => $this->input->post('layanan'),
+            'harga' => str_replace(".", "", $this->input->post('harga')),
+            'nm_project' => $this->input->post('nm_project'),
+            'keterangan' => $this->input->post('note_project'),
+            'tgl_input' => date('Y-m-d H:i:s'),
+            'input_by' => $this->session->userdata('yangLogin'),
+            'st_data' => 0,
+        );
+        echo var_dump($this->M_project->save($input));
+        $this->M_project->save($input);
+
+        $data = [
+            'status' => true,
+            'id_project' => $id,
+        ];
+        echo json_encode($data);
+    }
 }

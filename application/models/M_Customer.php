@@ -230,6 +230,7 @@ class M_Customer extends CI_Model {
 		}
 		//cek where
 		$data = $where ? $this->db->get_where($this->table, $where) : $this->db->get($this->table);
+
 		$result = $data->num_rows();
 		//return
 		return empty($result) ? FALSE : $data->result();

@@ -2,7 +2,28 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_harga extends CI_Model {
-	public function __construct()
+
+    //Models
+    const id_hrg_layanan = "id_hrg_layanan";
+    const id_layanan = "id_layanan";
+    const harga = "harga";
+    const keterangan = "keterangan";
+    const tgl_input = "tgl_input";
+    const inputby = "inputby";
+    const TABLE = "m_harga_layanan";
+
+//for inisialisasi.
+    public $id_hrg_layanan;
+    public $id_layanan;
+    public $harga;
+    public $keterangan;
+    public $tgl_input;
+    public $inputby;
+
+    var $table = 'm_harga_layanan';
+    var $primary_key = 'id_hrg_layanan';
+
+    public function __construct()
 	{
 		parent::__construct();
 		$this->load->database();
@@ -65,6 +86,20 @@ class M_harga extends CI_Model {
 
 		return $query->row();
 	}
+
+    /**
+     * created_at: 2019-12-07
+     * created_by: Afes Oktavianus
+     * @param $id
+     * @return mixed
+     */
+    public function get_by_layanan_id($id)
+    {
+        $this->db->from('m_harga_layanan');
+        $this->db->where('id_layanan',$id);
+        $query = $this->db->get();
+        return $query->row();
+    }
 
 	public function save($data)
 	{

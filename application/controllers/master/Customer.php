@@ -62,6 +62,11 @@ class Customer extends CI_Controller{
 		echo json_encode($output);
 	}
 
+    /**
+     * created_at: 2019-12-04
+     * created_by: Afes Oktavianus
+     * function: show table_customer in form create project
+     */
 	public function tabel_customer(){
 		$list   = $this->M_Customer->find();
 		$data   = [];
@@ -85,10 +90,24 @@ class Customer extends CI_Controller{
 		echo json_encode($output);
 	}
 
-	public function ajax_edit($id)
+    public function ajax_edit($id)
+    {
+        $data = $this->M_Customer->get_by_id($id);
+        //$data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
+        echo json_encode($data);
+    }
+
+	public function find_customer_by_name($name)
 	{
-		$data = $this->M_Customer->get_by_id($id);
-		//$data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
+		$customer = $this->M_Customer->find_first(['nm_customer'=>$name]);
+		if ($customer) {
+            $data = [
+                'status'=> true,
+                'customer_id' => $customer->id_customer,
+            ];
+        }else{
+            $data['status']= false;
+        }
 		echo json_encode($data);
 	}
 

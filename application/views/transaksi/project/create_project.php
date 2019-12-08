@@ -9,7 +9,7 @@
 /** @var M_Customer $customer */
 /** @var CI_Controller $this */
     $this->load->view('template/head');
-    
+
 
 ?>
 <div class="content-header row">
@@ -65,16 +65,6 @@
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <label class="control-label">Customer</label>
-                                        <!-- <select class="form-control" id="select2" name="customer" style="width: 100%">
-                                            <option value="">Pilih Customer</option>
-                                            <?php
-                                            /** @var M_Customer $cust */
-                                            foreach ($customer as $i => $cust)
-                                            {
-                                                echo "<option value='{$cust->id_customer}'>$cust->nm_customer</option>";
-                                            }
-                                            ?>
-                                        </select> -->
                                         <div class="input-group">
                                             <input type="text" name="customer" class="form-control"
                                                 placeholder="Masukan kode customer atau tekan button cari customer"
@@ -91,32 +81,39 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="control-label">Kasir</label>
-                                        <input type="text" class="form-control" value="VANPERSIETYO"
+                                        <label class="control-label">Entry By</label>
+                                        <input type="text" class="form-control" value="<?= $this->session->userdata('yangLogin'); ?>"
                                             disabled="disabled">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="col-md-9">
+                                <div class="col-md-8">
                                     <div class="form-group">
                                         <label class="control-label">Layanan</label>
-                                        <select class="form-control" id="select2" name="layanan" style="width: 100%">
+                                        <select class="form-control" id="layanan" name="layanan" style="width: 100%">
                                             <option value="">Pilih Layanan</option>
                                             <?php
                                             /** @var M_Customer $cust */
+                                            $layanan ="";
                                             foreach ($layanan as $i => $lyn)
                                             {
                                                 echo "<option value='{$lyn->id_layanan}'>$lyn->nama_layanan</option>";
                                             }
                                             ?>
-                                        </select>                                        
+                                        </select>
                                     </div>
-                                </div>                                
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="control-label">Harga Pokok</label>
+                                    <div class="input-group">
+                                        <input type="numeric" class="form-control" name="hrg_pokok" id="hrg_pokok" placeholder="Harga Pokok..."/>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <label>Nama Project</label>
                                     <input name="nm_project" value="DEFF PROJECT" placeholder="Nama Project .."
                                         class="form-control" type="text" required="">
@@ -191,16 +188,157 @@
 
 <script type="text/javascript">
 let tabel_list_customer;
+let customer = $('[name="customer"]');
 $(document).ready(function() {
-    $('#select2').select2();
+
+    $('#layanan').select2();
     tabel_list_customer = $('#tabel_list_customer').DataTable({
         'ajax' : {
             'url':"<?php echo site_url('/master/customer/tabel_customer/');?>"}
     });
+
+    // onHidden event
+    let layanan = $('[name="layanan"]');
+    layanan.on('change', function() {
+        let value = layanan.val();
+        loading('Sedang Mengambil Data...');
+        $.ajax({
+            url     : "<?php echo site_url('/master/hargalayanan/find_by_layanan/');?>" + value,
+            type    : "GET",
+            dataType: "JSON",
+            success : function(data)
+            {
+                swal.close();
+                if (data.status) {
+                    $('[name="hrg_pokok"]').val(formatRupiah(data.harga));
+                }
+            },
+            error   : function (jqXHR, textStatus, errorThrown)
+            {
+                error_swal('Error get data from ajax');
+            }
+        });
+        $('[name="hrg_pokok"]').focus();
+    });
+
+    customer.on('change',function () {
+        let value = customer.val();
+        loading('Sedang Mengecek Customer..');
+        $.ajax({
+            url     : "<?php echo site_url('master/customer/find_customer_by_name/'); ?>" +value,
+            "data"  :  new FormData($('#form_return')[0]),
+            "type"	: "POST",
+            "contentType"	: false,
+            "processData"	: false,
+            "dataType"		: "JSON",
+            success : function(data)
+            {
+                swal.close();
+                if(data.status){
+                    $('[name="id_customer"]').val(data.customer_id);
+                    clear_all_error();
+                }else{
+                    $('[class="NOTIF_ERROR_KD_TRANS_PENJUALAN"]').html(data.message);
+                    customer.addClass('border-danger');
+                    customer.val('').focus();
+                }
+            },
+            error   : function (jqXHR, textStatus, errorThrown)
+            {
+                error_swal();
+            }
+        });
+    });
+
 });
 
+/**
+ * created_at: 2019-12-07
+ * created_by: Afes Oktavianus
+ * @param messages
+ */
+function loading(messages = 'Please Wait') {
+    swal({
+        text: messages,
+        icon: "<?php echo site_url('/assets/app-assets/images/icons/loading.gif');?>",
+        closeOnClickOutside: false,
+        closeOnEsc: false,
+        buttons: {
+            confirm: {
+                visible: false,
+            }
+        }
+    });
+}
+
+//fungsi untuk menampilkan alert error
+function error_swal(message = 'Silahkan Hubungi Administrator!') {
+    swal({
+        title	: "Oops, Gagal!",
+        text	: message,
+        icon	: "error",
+    });
+}
+
+//fungsi untuk menampilkan alert success
+function success_swal(message = 'Berhasil!') {
+    swal({
+        title   : "Berhasil",
+        text	: message,
+        icon	: "success",
+    });
+}
+
+//fungsi untuk membersihakn semua error
+function clear_all_error(){
+    $(".form-control").removeClass('border-danger');
+    $('[id="error_messages"]').html('');
+}
+
+//fungsi untuk membersihakn semua error
+function clear_all_error()
+{
+    $(".form-control").removeClass('border-danger');
+    $('[id="error_messages"]').html('');
+}
+
 function simpan_create_project() {
-    alert('nanti ya');
+    clear_all_error();
+    loading('Sedang Menyimpan Data Project..');
+    var formData = new FormData($('#form_project')[0]);
+    $.ajax({
+        url     : "<?php echo site_url('/transaksi/project/simpan_project/');?>",
+        data  	: formData,
+        type    : "POST",
+        dataType: "JSON",
+        contentType	: false,
+        processData	: false,
+        success : function(data)
+        {
+            console.log(data.status);
+            swal.close();
+            if(data.status){
+                window.location.href="<?php echo site_url('/transaksi/project/edit_project/'); ?>" + data.id_project;
+            }else{
+                swal.close();
+                if(data.sw_alert){
+                    error_swal(data.message);
+                }else{
+                    for (let i = 0; i < data.inputerror.length; i++)
+                    {
+                        let inputerror = $('[name="'+data.inputerror[i]+'"]');
+                        $('[class="NOTIF_ERROR_'+data.inputerror[i]+'"]').html(data.notiferror[i]);
+                        inputerror.addClass('border-danger');
+                    }
+                    $('[name="'+data.inputerror[0]+'"]').focus();
+                }
+            }
+        },
+        error   : function (jqXHR, textStatus, errorThrown)
+        {
+            error_swal();
+        }
+    });
 }
 
 function cari_customer() {
@@ -221,27 +359,32 @@ function reload_customer() {
     tabel_list_customer.ajax.url("<?php echo site_url('/master/customer/tabel_customer/');?>");
 }
 
-//function untuk simpan detail
-function save(){
-        var url = "https://prototype.nuhapos.com/pos/transaksi/stok/opname/ajax_add_detail";
-        var formData = new FormData($('#form')[0]);
-        $.ajax({
-            url 		: url,
-            type		: "POST",
-            data		: formData,
-            contentType	: false,
-            processData	: false,
-            dataType	: "JSON",
-            success: function(data)
-            {
-                data.status
-                data.harga
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-            }
-        });
+
+/* Tanpa Rupiah */
+var hrg_pokok = document.getElementById('hrg_pokok');
+hrg_pokok.addEventListener('keyup', function(e)
+{
+    hrg_pokok.value = formatRupiah(this.value);
+});
+
+/* Fungsi */
+function formatRupiah(angka, prefix)
+{
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+        split = number_string.split(','),
+        sisa  = split[0].length % 3,
+        rupiah  = split[0].substr(0, sisa),
+        ribuan  = split[0].substr(sisa).match(/\d{3}/gi);
+
+    if (ribuan) {
+        separator = sisa ? '.' : '';
+        rupiah += separator + ribuan.join('.');
     }
+
+    rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+    return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+}
+
 
 </script>
 
