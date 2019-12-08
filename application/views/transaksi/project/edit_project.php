@@ -62,6 +62,7 @@
                     <div class="card-content collapse show" id="content-header">
                         <div class="card-body" style="padding-top: 0 !important">
                             <div class="row">
+
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <label class="control-label">Customer</label>
