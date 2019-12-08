@@ -426,7 +426,7 @@ class Project extends CI_Controller {
 		$data = [
 			'pages'		=> 'transaksi/project/create_project',
 			'customer'	=> $this->M_Customer->find(),
-			'layanan'   => $this->M_layanan->find()
+			'layanan'   => $this->M_layanan->find(),
 		];
 		$this->load->view('layout', $data);
 	}
@@ -444,14 +444,13 @@ class Project extends CI_Controller {
             'kd_cabang' => $this->session->userdata('cabang'),
             'id_customer' => $this->input->post('id_customer'),
             'id_layanan' => $this->input->post('layanan'),
-            'harga' => str_replace(".", "", $this->input->post('harga')),
+            'harga_jual' => str_replace(".", "", $this->input->post('hrg_pokok')),
             'nm_project' => $this->input->post('nm_project'),
             'keterangan' => $this->input->post('note_project'),
             'tgl_input' => date('Y-m-d H:i:s'),
             'input_by' => $this->session->userdata('yangLogin'),
             'st_data' => 0,
         );
-        echo var_dump($this->M_project->save($input));
         $this->M_project->save($input);
 
         $data = [
@@ -459,5 +458,28 @@ class Project extends CI_Controller {
             'id_project' => $id,
         ];
         echo json_encode($data);
+    }
+
+    /**
+     * created_at: 2019-12-08
+     * created_by: Afes Oktavianus
+     * return edit projects for input detail from document
+     */
+    public function edit_project($id) {
+        $project = $this->M_project->find_first(['id_project',$id]);
+        if ($project) {
+            $customer = $this->M_Customer->find_first(['id_customer',$project->id_customer]);
+            $layanan = $this->M_layanan->find_first(['id_layanan',$project->id_layanan]);
+            $data = [
+                'pages'		=> 'transaksi/project/edit_project',
+                'customer'  => $customer,
+                'layanan'   => $layanan,
+            ];
+            $this->load->view('layout', $data);
+        }else {
+            $data =
+            ['pages' => 'transaksi/project/index_adit'];
+            $this->load->view('layout', $data);
+        }
     }
 }

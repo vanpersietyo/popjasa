@@ -238,4 +238,45 @@ class M_project extends CI_Model {
 		return $query->result();
 	}
 
+
+
+    /**
+     * @param null|array|string $where
+     * @param array $order
+     * @return array|bool|M_project
+     */
+    public function find_first($where = null, $order = [])
+    {
+        //cek order
+        if ($order) {
+            foreach ($order as $key => $value) {
+                $this->db->order_by($key, $value);
+            }
+        }
+        //cek where
+        $data = $where ? $this->db->get_where($this->table, $where) : $this->db->get($this->table);
+        $result = $data->num_rows();
+        return empty($result) ? FALSE : $data->row();
+    }
+
+    /**
+     * @param null|array|string $where
+     * @param array $order
+     * @return array|bool|M_project
+     */
+    public function find($where = null, $order = [])
+    {
+        //cek order
+        if ($order) {
+            foreach ($order as $key => $value) {
+                $this->db->order_by($key, $value);
+            }
+        }
+        //cek where
+        $data = $where ? $this->db->get_where($this->table, $where) : $this->db->get($this->table);
+
+        $result = $data->num_rows();
+        //return
+        return empty($result) ? FALSE : $data->result();
+    }
 }

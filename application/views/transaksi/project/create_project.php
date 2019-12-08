@@ -320,8 +320,7 @@ function simpan_create_project() {
         {
             swal.close();
             if(data.status){
-                //window.location.href="<?php echo site_url('/transaksi/project/edit_project/'); ?>" + data.id_project;
-                success_swal();
+                window.location.href="<?php echo site_url('/transaksi/project/edit_project/'); ?>" + data.id_project;
             }else{
                 swal.close();
                 if(data.sw_alert){
