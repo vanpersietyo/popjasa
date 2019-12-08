@@ -96,7 +96,6 @@
                                             <option value="">Pilih Layanan</option>
                                             <?php
                                             /** @var M_Customer $cust */
-                                            $layanan ="";
                                             foreach ($layanan as $i => $lyn)
                                             {
                                                 echo "<option value='{$lyn->id_layanan}'>$lyn->nama_layanan</option>";
@@ -186,6 +185,10 @@
     </div>
 </form>
 
+
+    <!-- Bootstrap modal insert-->
+<script src="<?php echo site_url('/assets/app-assets/vendors/js/forms/select/select2.full.min.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo site_url('assets/app-assets/js/scripts/forms/select/form-select2.js'); ?>" type="text/javascript"></script>
 <script type="text/javascript">
 let tabel_list_customer;
 let customer = $('[name="customer"]');
@@ -315,10 +318,10 @@ function simpan_create_project() {
         processData	: false,
         success : function(data)
         {
-            console.log(data.status);
             swal.close();
             if(data.status){
-                window.location.href="<?php echo site_url('/transaksi/project/edit_project/'); ?>" + data.id_project;
+                //window.location.href="<?php echo site_url('/transaksi/project/edit_project/'); ?>" + data.id_project;
+                success_swal();
             }else{
                 swal.close();
                 if(data.sw_alert){
