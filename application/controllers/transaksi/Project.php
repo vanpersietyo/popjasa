@@ -466,13 +466,13 @@ class Project extends CI_Controller {
      * return edit projects for input detail from document
      */
     public function edit_project($id) {
-        $project = $this->M_project->find_first(['id_project',$id]);
-        if ($project) {
-            $customer = $this->M_Customer->find_first(['id_customer',$project->id_customer]);
-            $layanan = $this->M_layanan->find_first(['id_layanan',$project->id_layanan]);
+        $project = $this->M_project->find_first(['id_project'=>$id]);
+        if (!empty($project)) {
+            $pjr_customer = $this->M_Customer->find_first(['id_customer'=>$project->id_customer]);
+            $layanan = $this->M_layanan->find_first(['id_layanan'=>$project->id_layanan]);
             $data = [
                 'pages'		=> 'transaksi/project/edit_project',
-                'customer'  => $customer,
+                'customer'  => $pjr_customer,
                 'layanan'   => $layanan,
             ];
             $this->load->view('layout', $data);
