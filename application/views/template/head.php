@@ -6,6 +6,7 @@
  * Time: 15:08
  */
 ?>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/app-assets/vendors/login18/vendor/bootstrap/css/bootstrap.min.css'); ?>">
 
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/app-assets/css/vendors.css') ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css') ?>">

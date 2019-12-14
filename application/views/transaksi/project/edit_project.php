@@ -10,21 +10,13 @@
 /** @var CI_Controller $this */
 $this->load->view('template/head');
 
+$status = $project->st_data;
 
 ?>
     <div class="content-header row">
         <div class="content-header-left col-md-6 col-12 mb-2"
              style="padding-bottom: 0 !important;  margin-bottom: 0 !important;">
-            <h3 class="content-header-title">Create Project</h3>
-            <div class="row breadcrumbs-top">
-                <div class="breadcrumb-wrapper col-12">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <p class="danger">silahkan create project</p>
-                        </li>
-                    </ol>
-                </div>
-            </div>
+            <h3 class="content-header-title">Edit Project</h3>
         </div>
 
         <div class="content-header-right col-md-6 col-12">
@@ -40,7 +32,7 @@ $this->load->view('template/head');
     </div>
 
     <form method="post" class="form-horizontal" id="form_project" action="javascript:void(0)"
-          onsubmit="simpan_create_project()" autocomplete="off">
+          autocomplete="off">
 
         <div class="content-body">
             <section class="row">
@@ -62,77 +54,59 @@ $this->load->view('template/head');
                         <div class="card-content collapse show" id="content-header">
                             <div class="card-body" style="padding-top: 0 !important">
                                 <div class="row">
-                                    <div class="col-md-3 right">
-                                        <div class="form-group">
-                                            <label class="control-label">Entry By</label>
-                                            <input type="text" class="form-control"
-                                                   value="<?= $this->session->userdata('yangLogin'); ?>"
-                                                   disabled="disabled">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label class="control-label">Customer</label>
-                                            <div class="input-group">
-
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <label>Nama Customer</label>
-                                                            <input name="nm_customer"
-                                                                   value="<?php echo $customer->nm_customer; ?>"
-                                                                   placeholder="Nama Customer .."
-                                                                   class="form-control" type="text" disabled>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label>Telp Customer</label>
-                                                            <input name="tlp_customer"
-                                                                   value="<?php echo $customer->tlp_customer; ?>"
-                                                                   placeholder="Telp Customer .."
-                                                                   class="form-control" type="number" disabled>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label>Hp Customer</label>
-                                                            <input name="telp2_customer"
-                                                                   value="<?php echo $customer->telp2_customer; ?>"
-                                                                   placeholder="No Hp Customer .."
-                                                                   class="form-control" type="number" disabled>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <label>Email Customer</label>
-                                                            <input name="email_customer"
-                                                                   value="<?php echo $customer->email_customer; ?>"
-                                                                   placeholder="Email Customer .."
-                                                                   class="form-control" type="email" disabled>
-                                                        </div>
-
-                                                        <div class="col-md-12">
-                                                            <label>Kota Customer</label>
-                                                            <input name="kota_customer"
-                                                                   value="<?php echo $customer->kota_customer; ?>"
-                                                                   placeholder="Kota Customer .."
-                                                                   class="form-control" type="text" disabled>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <label>Note Contacted</label>
-                                                            <textarea name="keterangan"
-                                                                      value="<?php echo $customer->keterangan; ?>"
-                                                                      placeholder="Keterangan .." maxlength="255"
-                                                                      class="form-control" type="textarea"
-                                                                      disabled></textarea>
-                                                        </div>
-                                                    </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>Nama Customer</label>
+                                                    <input name="nm_customer"
+                                                           value="<?php echo $customer->nm_customer; ?>"
+                                                           placeholder="Nama Customer .."
+                                                           class="form-control" type="text" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Telp Customer</label>
+                                                    <input name="tlp_customer"
+                                                           value="<?php echo $customer->tlp_customer; ?>"
+                                                           placeholder="Telp Customer .."
+                                                           class="form-control" type="number" disabled>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>Hp Customer</label>
+                                                    <input name="telp2_customer"
+                                                           value="<?php echo $customer->telp2_customer; ?>"
+                                                           placeholder="No Hp Customer .."
+                                                           class="form-control" type="number" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>Email Customer</label>
+                                                    <input name="email_customer"
+                                                           value="<?php echo $customer->email_customer; ?>"
+                                                           placeholder="Email Customer .."
+                                                           class="form-control" type="email" disabled>
                                                 </div>
 
+                                                <div class="col-md-12">
+                                                    <label>Kota Customer</label>
+                                                    <input name="kota_customer"
+                                                           value="<?php echo $customer->kota_customer; ?>"
+                                                           placeholder="Kota Customer .."
+                                                           class="form-control" type="text" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>Note Contacted</label>
+                                                    <textarea name="keterangan"
+                                                              value="<?php echo $customer->keterangan; ?>"
+                                                              placeholder="Keterangan .." maxlength="255"
+                                                              class="form-control" type="textarea"
+                                                              disabled></textarea>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -142,31 +116,43 @@ $this->load->view('template/head');
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <label class="control-label">Layanan</label>
-                                            <select class="form-control" id="layanan" name="layanan"
-                                                    style="width: 100%">
-                                                <option value="">Pilih Layanan</option>
-                                                <?php
-                                                /** @var M_Customer $cust */
-                                                foreach ($layanan as $i => $lyn) {
-                                                    echo "<option value='{$lyn->id_layanan}'>$lyn->nama_layanan</option>";
-                                                }
-                                                ?>
-                                            </select>
+                                            <input name="nm_layanan" value="<?php echo $layanan->nama_layanan; ?>"
+                                                   placeholder="Nama Project .."
+                                                   class="form-control" type="text" disabled>
+                                            <input type="hidden" name="layanan"
+                                                   value="<?php echo $project->id_layanan; ?>"/>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <label class="control-label">Harga Pokok</label>
                                         <div class="input-group">
-                                            <input type="numeric" class="form-control" name="hrg_pokok" id="hrg_pokok"
-                                                   placeholder="Harga Pokok..."/>
+                                            <?php
+                                            if ($status == 1) { ?>
+                                                <input type="numeric" class="form-control" name="hrg_pokok"
+                                                       id="hrg_pokok"
+                                                       placeholder="Harga Pokok..."
+                                                       value="<?php echo $project->harga_jual ?>"
+                                                       onblur="this.value=formatRupiah(this.value);" disabled/>
+                                            <?php } else { ?>
+                                                <input type="numeric" class="form-control" name="hrg_pokok"
+                                                       id="hrg_pokok"
+                                                       placeholder="Harga Pokok..."
+                                                       value="<?php echo $project->harga_jual ?>"
+                                                       onblur="this.value=formatRupiah(this.value);"/>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Nama Project</label>
-                                        <input name="nm_project" value="DEFF PROJECT" placeholder="Nama Project .."
-                                               class="form-control" type="text" required="">
+                                        <?php if ($status == 1) { ?>
+                                            <input name="nm_project" value="DEFF PROJECT" placeholder="Nama Project .."
+                                                   class="form-control" type="text" disabled>
+                                        <?php } else { ?>
+                                            <input name="nm_project" value="DEFF PROJECT" placeholder="Nama Project .."
+                                                   class="form-control" type="text" required="">
+                                        <?php } ?>
                                     </div>
                                     <div class="col-md-12">
                                         <label>Note Project</label>
@@ -179,10 +165,9 @@ $this->load->view('template/head');
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <button style="margin-top: 1.25rem !important;" type="submit"
-                                                    href="javascript:void(0)"
+                                                    onclick="javascript:entry_document();"
                                                     class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up">
-                                                Create
-                                                Project
+                                                Lanjutkan
                                             </button>
                                         </div>
                                     </div>
@@ -213,103 +198,479 @@ $this->load->view('template/head');
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <div class="table-responsive">
-                            <table id="tabel_list_customer" class="table table-striped table-bordered"
-                                   style="width: 100%;">
-                                <thead>
-                                <tr>
-                                    <th style="min-width: 5%">No.</th>
-                                    <th style="min-width: 10%">Kode Customer</th>
-                                    <th style="min-width: 15%">Nama Customer</th>
-                                    <th style="min-width: 5%">Aksi</th>
-                                </tr>
-                                </thead>
-                            </table>
+
+                    <div class="tab-content">
+                        <div class="container tab-pane active" id="keterangan" style="padding-top: 5px">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Email UNTUK NIB</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="email"
+                                                               id="email"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>Password</label>
+                                                    <div class="input-group">
+                                                        <input type="password" class="form-control" name="password"
+                                                               id="password"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Email dan No. Telp Masing-masing pengurus:</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="notelp"
+                                                               id="notelp"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>LUASAN TEMPAT USAHA:</label>
+                                                    <div class="input-group">
+                                                        <input type="number" class="form-control" name="luas"
+                                                               id="luas"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>BIDANG USAHA:</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="usaha"
+                                                               id="usaha"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>MENGETAHUI POPJASA dari:</label>
+                                                    <div class="input-group">
+                                                        <select class="form-control" id="tahu" name="tahu">
+                                                            <option value="">---SILAHKAN PILIH---</option>
+                                                            <option value="pernah_order">PERNAH ORDER</option>
+                                                            <option value="website">WEBSITE</option>
+                                                            <option value="facebook">FACEBOOK</option>
+                                                            <option value="instagram">INSTAGRAM</option>
+                                                            <option value="olx">OLX</option>
+                                                            <option value="spanduk">SPANDUK</option>
+                                                            <option value="teman">TEMAN</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                     <div class="modal-footer">
                         <button class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up"
-                                onclick="reload_tabel_list_penjualan()"><i class="fa fa-refresh"></i> Refresh
+                                onclick="entry_document2()"><i class="fa fa-refresh"></i> Next
                         </button>
-                        <button class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up" data-dismiss="modal"
+                        <button class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up"
+                                data-dismiss="modal"
                                 aria-label="Close"><i class="fa fa-times"></i> Tutup
                         </button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="modal animated pulse text-left" id="modal_form2" role="dialog" aria-labelledby="myModalLabel17"
+             aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-info">
+                        <h4 class="modal-title text-bold-500 white"><i class="la la-pencil-square"></i></h4>
+                        <button type="button" class="close white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="tab-content">
+                        <div class="container tab-pane active" id="izin">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>AKTA NOTARIS</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="email"
+                                                           id="email"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>PENGESAHAN</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="pengesahan"
+                                                           id="pengesahan"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                &nbsp;
+                                                <input type="checkbox" class="custom-control-input" id="npwp_pribadi"
+                                                       name="npwp_pribadi">
+                                                &nbsp;
+                                                <label class="custom-control-label" for="npwp_pribadi">NPWP
+                                                    PRIBADI</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                &nbsp;
+                                                <input type="checkbox" class="custom-control-input" id="npwp"
+                                                       name="npwp">
+                                                &nbsp;
+                                                <label class="custom-control-label" for="npwp">NPWP (dikirim)
+                                                    PERUSAHAAN</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                &nbsp;
+                                                <input type="checkbox" class="custom-control-input" id="skt_npwp"
+                                                       name="skt_npwp">
+                                                &nbsp;
+                                                <label class="custom-control-label" for="skt_npwp">SKT NPWP
+                                                    (dikirim)</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                &nbsp;
+                                                <input type="checkbox" class="custom-control-input" id="siup_tdp"
+                                                       name="siup_tdp">
+                                                &nbsp;
+                                                <label class="custom-control-label" for="siup_tdp">SIUP & TDP
+                                                    (NIB)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                &nbsp;
+                                                <input type="checkbox" class="custom-control-input" id="registrasi"
+                                                       name="registrasi">
+                                                &nbsp;
+                                                <label class="custom-control-label" for="registrasi">REGISTRASI</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                &nbsp;
+                                                <input type="checkbox" class="custom-control-input" id="pkp" name="pkp">
+                                                &nbsp;
+                                                <label class="custom-control-label" for="pkp">PKP</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                &nbsp;
+                                                <input type="checkbox" class="custom-control-input" id="domisili"
+                                                       name="domisili">
+                                                &nbsp;
+                                                <label class="custom-control-label" for="pkp">S.K. DOMISILI</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                &nbsp;
+                                                <input type="checkbox" class="custom-control-input" id="lain2"
+                                                       name="lain2">
+                                                &nbsp;
+                                                <label class="custom-control-label" for="lain2">IJIN LAINNYA</label>
+                                                &nbsp;
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="lain_text"
+                                                           id="lain_text"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up"
+                                onclick="entry_document3()"><i class="fa fa-refresh"></i> NEXT
+                        </button>
+                        <button class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up"
+                                data-dismiss="modal"
+                                aria-label="Close"><i class="fa fa-times"></i> Tutup
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal animated pulse text-left" id="modal_form3" role="dialog" aria-labelledby="myModalLabel17"
+             aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-info">
+                        <h4 class="modal-title text-bold-500 white"><i class="la la-pencil-square"></i></h4>
+                        <button type="button" class="close white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="tab-content">
+                        <div class="tab-pane container active" id="uraian">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label>NAMA PERUSAHAAN</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="nm_perusahaan"
+                                                           id="nm_perusahaan"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label>MODAL DASAR : Rp.</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="nm_perusahaan"
+                                                           id="nm_perusahaan"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>MODAL DISETOR : Rp.</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="nm_perusahaan"
+                                                           id="nm_perusahaan"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>PRESENTASE PEMBAGIAN SAHAM :</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="nm_perusahaan"
+                                                           id="nm_perusahaan"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>HARGA TIAP SAHAM : RP.</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="nm_perusahaan"
+                                                           id="nm_perusahaan"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>NO TELP :</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="nm_perusahaan"
+                                                           id="nm_perusahaan"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>NO FAX :</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="nm_perusahaan"
+                                                           id="nm_perusahaan"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>KEL :</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="nm_perusahaan"
+                                                           id="nm_perusahaan"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>KOTA/KABUPATEN :</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="nm_perusahaan"
+                                                           id="nm_perusahaan"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up"
+                                onclick="entry_document4()"><i class="fa fa-refresh"></i> NEXT
+                        </button>
+                        <button class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up"
+                                data-dismiss="modal"
+                                aria-label="Close"><i class="fa fa-times"></i> Tutup
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal animated pulse text-left" id="modal_form4" role="dialog" aria-labelledby="myModalLabel17"
+             aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-info">
+                        <h4 class="modal-title text-bold-500 white"><i class="la la-pencil-square"></i></h4>
+                        <button type="button" class="close white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#terima">Telah Diterima</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane container active" id="terima">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>KTP</label>
+                                                <div class="input-group">
+                                                    <input type="numeric" class="form-control" name="terima_ktp"
+                                                           id="terima_ktp"/>
+                                                    <select class="form-control" id="jns_ktp" name="jns_ktp">
+                                                        <option value="">---SILAHKAN PILIH---</option>
+                                                        <option value="ftkopi">FOTOKOPI</option>
+                                                        <option value="asli">ASLI</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>NPWP PRIBADI (SEMU PENGURUS)</label>
+                                                <div class="input-group">
+                                                    <select class="form-control" id="jns_npwp" name="jns_npwp">
+                                                        <option value="">---SILAHKAN PILIH---</option>
+                                                        <option value="ftkopi">FOTOKOPI</option>
+                                                        <option value="asli">ASLI</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>SERTIFIKAT T. USAHA</label>
+                                                <div class="input-group">
+                                                    <select class="form-control" id="jns_sertificat"
+                                                            name="jns_sertifikat">
+                                                        <option value="">---SILAHKAN PILIH---</option>
+                                                        <option value="ftkopi">FOTOKOPI</option>
+                                                        <option value="asli">ASLI</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>IMB (IJIN MENDIRIKAN BANGUNAN)</label>
+                                                <div class="input-group">
+                                                    <select class="form-control" id="jns_imb" name="jns_imb">
+                                                        <option value="">---SILAHKAN PILIH---</option>
+                                                        <option value="ftkopi">FOTOKOPI</option>
+                                                        <option value="asli">ASLI</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                &nbsp;
+                                                <input type="checkbox" class="custom-control-input" id="stempel"
+                                                       name="stempel">
+                                                &nbsp;
+                                                <label class="custom-control-label" for="stempel">STEMPEL</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>MATERAI</label>
+                                                <div class="input-group">
+                                                    <input type="text" name="jml_materai" id="jml_materai"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>S.K. DOMISILI</label>
+                                                <div class="input-group">
+                                                    <select class="form-control" id="jns_domisili" name="jns_domisili">
+                                                        <option value="">---SILAHKAN PILIH---</option>
+                                                        <option value="ftkopi">FOTOKOPI</option>
+                                                        <option value="asli">ASLI</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>SURAT SEWA</label>
+                                                <div class="input-group">
+                                                    <select class="form-control" id="jns_sewa" name="jns_sewa">
+                                                        <option value="">---SILAHKAN PILIH---</option>
+                                                        <option value="ftkopi">FOTOKOPI</option>
+                                                        <option value="asli">ASLI</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up"
+                                    onclick="save()"><i class="fa fa-refresh"></i> SIMPAN
+                            </button>
+                            <button class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up"
+                                    data-dismiss="modal"
+                                    aria-label="Close"><i class="fa fa-times"></i> Tutup
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </form>
 
 
     <!-- Bootstrap modal insert-->
-    <script src="<?php echo site_url('/assets/app-assets/vendors/js/forms/select/select2.full.min.js'); ?>"
-            type="text/javascript"></script>
-    <script src="<?php echo site_url('assets/app-assets/js/scripts/forms/select/form-select2.js'); ?>"
-            type="text/javascript"></script>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <script src="<?php echo site_url('assets/app-assets/vendors/login18/vendor/jquery/jquery-3.2.1.min.js'); ?>"></script>
+    <script src="<?php echo site_url('assets/app-assets/vendors/login18/vendor/bootstrap/js/bootstrap.min.js'); ?>"></script>
+
+
     <script type="text/javascript">
-        let tabel_list_customer;
-        let customer = $('[name="customer"]');
-        $(document).ready(function () {
-
-            $('#layanan').select2();
-            tabel_list_customer = $('#tabel_list_customer').DataTable({
-                'ajax': {
-                    'url': "<?php echo site_url('/master/customer/tabel_customer/');?>"
-                }
-            });
-
-            // onHidden event
-            let layanan = $('[name="layanan"]');
-            layanan.on('change', function () {
-                let value = layanan.val();
-                loading('Sedang Mengambil Data...');
-                $.ajax({
-                    url: "<?php echo site_url('/master/hargalayanan/find_by_layanan/');?>" + value,
-                    type: "GET",
-                    dataType: "JSON",
-                    success: function (data) {
-                        swal.close();
-                        if (data.status) {
-                            $('[name="hrg_pokok"]').val(formatRupiah(data.harga));
-                        }
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        error_swal('Error get data from ajax');
-                    }
-                });
-                $('[name="hrg_pokok"]').focus();
-            });
-
-            customer.on('change', function () {
-                let value = customer.val();
-                loading('Sedang Mengecek Customer..');
-                $.ajax({
-                    url: "<?php echo site_url('master/customer/find_customer_by_name/'); ?>" + value,
-                    "data": new FormData($('#form_return')[0]),
-                    "type": "POST",
-                    "contentType": false,
-                    "processData": false,
-                    "dataType": "JSON",
-                    success: function (data) {
-                        swal.close();
-                        if (data.status) {
-                            $('[name="id_customer"]').val(data.customer_id);
-                            clear_all_error();
-                        } else {
-                            $('[class="NOTIF_ERROR_KD_TRANS_PENJUALAN"]').html(data.message);
-                            customer.addClass('border-danger');
-                            customer.val('').focus();
-                        }
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        error_swal();
-                    }
-                });
-            });
-
-        });
-
         /**
          * created_at: 2019-12-07
          * created_by: Afes Oktavianus
@@ -394,30 +755,38 @@ $this->load->view('template/head');
             });
         }
 
-        function cari_customer() {
-            reload_customer();
-            $('.modal-title').text('Cari Customer'); // Set Title to Bootstrap modal title
+        function entry_document() {
+            // reload_customer();
+            $('.modal-title').text('ENRTY DATA PENDUKUNG KETERANGAN'); // Set Title to Bootstrap modal title
             $('#modal_form').modal('show'); // show bootstrap modal
         }
 
-        function pilih_customer(customer, nama_customer) {
+        function entry_document2() {
             $('#modal_form').modal('hide'); // show bootstrap modal
-            $('[name="customer"]').val(nama_customer);
-            $('[name="id_customer"]').val(customer);
-            // form_project.val().trigger('change');
-            // alert(customer);
+            $('.modal-title').text('ENRTY DATA PENDUKUNG JENIS IZIN'); // Set Title to Bootstrap modal title
+            $('#modal_form2').modal('show'); // show bootstrap modal
         }
 
-        function reload_customer() {
-            tabel_list_customer.ajax.url("<?php echo site_url('/master/customer/tabel_customer/');?>");
+        function entry_document3() {
+            $('#modal_form2').modal('hide'); // show bootstrap modal
+            $('.modal-title').text('ENRTY DATA PENDUKUNG URAIAN'); // Set Title to Bootstrap modal title
+            $('#modal_form3').modal('show'); // show bootstrap modal
         }
 
+        function entry_document4() {
+            $('#modal_form3').modal('hide'); // show bootstrap modal
+            $('.modal-title').text('ENRTY DATA PENDUKUNG TELAH DITERIMA'); // Set Title to Bootstrap modal title
+            $('#modal_form4').modal('show'); // show bootstrap modal
+        }
 
         /* Tanpa Rupiah */
         var hrg_pokok = document.getElementById('hrg_pokok');
         hrg_pokok.addEventListener('keyup', function (e) {
             hrg_pokok.value = formatRupiah(this.value);
         });
+        hrg_pokok.addEventListener('blur', function (e) {
+            hrg_pokok.value = formatRupiah(this.value);
+        })
 
         /* Fungsi */
         function formatRupiah(angka, prefix) {

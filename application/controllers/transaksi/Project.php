@@ -47,7 +47,7 @@ class Project extends CI_Controller {
 															</div>';
 			}
 
-			$row[] = '<h5 class="text-bold-500">' . $d->id_hdr_project;
+			$row[] = '<h5 class="text-bold-500">' . $d->id_project;
 			$row[] = '<h5 class="text-bold-500">' . $d->nm_project;
 			$row[] = '<h5 class="text-bold-500">' . $d->nm_customer;
 			$row[] = '<h5 class="text-bold-500">' . number_format($d->jml_penjualan);
@@ -474,6 +474,7 @@ class Project extends CI_Controller {
                 'pages'		=> 'transaksi/project/edit_project',
                 'customer'  => $pjr_customer,
                 'layanan'   => $layanan,
+                'project'   => $project,
             ];
             $this->load->view('layout', $data);
         }else {
@@ -481,5 +482,58 @@ class Project extends CI_Controller {
             ['pages' => 'transaksi/project/index_adit'];
             $this->load->view('layout', $data);
         }
+    }
+
+    /**
+     * created_at: 2019-12-14
+     * created_by: Afes Oktavianus
+     * return Ajax list to page index_adit.php
+     */
+    public function ajax_list2()
+    {
+        $list = $this->M_project->get_trs_project();
+        $data = array();
+
+        foreach ($list as $d)
+        {
+            $row = array();
+            if ($d->st_data == 1)
+            {
+                $status = '<h5 class="text-bold-500 text-info">Confirmed';
+                $row[] = '<button type="button" class="btn btn-dark dropdown-toggle btn-sm" data-toggle="dropdown"
+															aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
+															<div class="dropdown-menu">
+															<a class="dropdown-item"  href="javascript:void(0)" onclick="create(' . "'" . $d->id_project . "'" . ')"><i class="ft-file"></i> Lihat Project</a>
+															<a class="dropdown-item"  href="javascript:void(0)" onclick="invoice(' . "'" . $d->id_project . "'" . ')"><i class="ft-printer"></i> Cetak Invoice</a>
+															</div>';
+            } else
+            {
+                $status = '<h5 class="text-bold-500 text-red">Not Confirmed';
+                $row[] = '<button type="button" class="btn btn-dark dropdown-toggle btn-sm" data-toggle="dropdown"
+															aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
+															<div class="dropdown-menu">
+															<a class="dropdown-item"  href="javascript:void(0)" onclick="create(' . "'" . $d->id_project . "'" . ')"><i class="ft-file"></i> Lihat Project</a>
+															<a class="dropdown-item" href="javascript:void(0)" onclick="delete_project(' . "'" . $d->id_project . "'" . ')"><i class="ft-trash"></i> Delete Project</a>
+															</div>';
+            }
+
+            $row[] = '<h5 class="text-bold-500">' . $d->id_hdr_project;
+            $row[] = '<h5 class="text-bold-500">' . $d->nm_project;
+            $row[] = '<h5 class="text-bold-500">' . $d->nm_customer;
+            $row[] = '<h5 class="text-bold-500">' . number_format($d->harga_jual);
+            $date = date("d/m/Y", strtotime($d->tgl_input));
+            $row[] = $status;
+            $row[] = '<h5 class="text-bold-500">' . $date;
+            $row[] = '<h5 class="text-bold-500">' . $d->input_by;
+
+            //add html for action
+            $data[] = $row;
+        }
+
+        $output = [
+            "data" => $data
+        ];
+        //output to json format
+        echo json_encode($output);
     }
 }

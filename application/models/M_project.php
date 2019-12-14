@@ -310,4 +310,13 @@ class M_project extends CI_Model {
         //return
         return empty($result) ? FALSE : $data->result();
     }
+
+    public function get_trs_project(){
+        $query=$this->db->query("
+				select a.id_project,a.id_hdr_project,a.nm_project,a.kd_cabang,a.id_customer,b.nm_customer,a.harga_jual,a.keterangan,a.input_by,a.tgl_input,a.st_data
+				from trs_project a
+				JOIN m_customer b ON a.id_customer=b.id_customer
+			");
+        return $query->result();
+    }
 }

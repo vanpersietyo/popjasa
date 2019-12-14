@@ -76,11 +76,18 @@
     </div>
 
 <script type="text/javascript">
+    function create(ID){
+        location.replace("<?php echo base_url('transaksi/project/edit_project/')?>"+ID);
+    }
+
+</script>
+
+<script type="text/javascript">
 
     $(document).ready(function() {
         table = $('#table').DataTable({
             "ajax": {
-                "url": "<?php echo site_url('transaksi/project/ajax_list')?>",
+                "url": "<?php echo site_url('transaksi/project/ajax_list2')?>",
             }
         });
     });
