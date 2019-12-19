@@ -10,6 +10,10 @@ class Project extends CI_Controller {
 		$this->load->model('M_login');
 		$this->load->model('M_master_agen');
 		$this->load->model('sales/M_area', 'M_area');
+                $this->load->model('M_project_ket');
+                $this->load->model('M_project_izin');
+                $this->load->model('M_project_uraian');
+                $this->load->model('M_project_terima');
 		$this->M_login->isLogin();
 	}
 
@@ -535,5 +539,61 @@ class Project extends CI_Controller {
         ];
         //output to json format
         echo json_encode($output);
+    }
+    
+    /**
+     * function to save records
+     * @param type $comp
+     * @param type $data
+     */
+    private function save_edit($comp, $data) {        
+        $project = $data['id_project'];
+        if ($comp == 1) {
+            $keterangan_values = $this->M_project_ket->find(['id_project'=>$project]);
+            if (empty($keterangan_values)) {
+                $this->M_project_ket->save($data);
+            }else {
+                $this->M_project_ket->update(['id_project' => $keterangan_values->id_project], $data);
+            }
+        }elseif ($comp == 2) {
+            $izin_values = $this->M_project_izin->find(['id_project'=>$project]);
+            if (empty($izin_values)) {
+                $this->M_project_izin->save($data);
+            }else {
+                $this->M_project_izin->update(['id_project' => $izin_values->id_project], $data);
+            }        
+        }elseif ($comp == 3) {
+            $izin_values = $this->M_project_uraian->find(['id_project'=>$project]);
+            if (empty($izin_values)) {
+                $this->M_project_uraian->save($data);
+            }else {
+                $this->M_project_uraian->update(['id_project' => $izin_values->id_project], $data);
+            }
+        }else {
+            $izin_values = $this->M_project_terima->find(['id_project'=>$project]);
+            if (empty($izin_values)) {
+                $this->M_project_terima->save($data);
+            }else {
+                $this->M_project_terima->update(['id_project' => $izin_values->id_project], $data);
+            }
+        }        
+    }
+    
+    public function save_keterangan() {
+        $id = $this->M_project->get_ID();
+        $input = array(
+            'id_project' => $id,
+            'id_hdr_project' => $this->input->post('layanan'),
+            'kd_cabang' => $this->session->userdata('cabang'),
+            'id_customer' => $this->input->post('id_customer'),
+            'id_layanan' => $this->input->post('layanan'),
+            'harga_jual' => str_replace(".", "", $this->input->post('hrg_pokok')),
+            'nm_project' => $this->input->post('nm_project'),
+            'keterangan' => $this->input->post('note_project'),
+            'tgl_input' => date('Y-m-d H:i:s'),
+            'input_by' => $this->session->userdata('yangLogin'),
+            'st_data' => 0,
+        );
+        return save_edit(1,$input);
     }
 }
