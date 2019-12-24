@@ -207,8 +207,6 @@ data-menu="horizontal-menu" data-col="2-columns">
                 <span class="mr-1">Hello,
                   <span class="user-name text-bold-700"><?php echo $this->session->userdata('yangLogin')?></span>
                 </span>
-                <!-- <span class="avatar avatar-online">
-                  <img src="<?php// echo site_url('assets/app-assets/vendors/login/images/Icon.png')?>" alt=""><i></i></span> -->
               </a>
               <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item" href="<?php echo site_url('setup/changepassword')?>"><i class="icon-settings"></i> Change Password</a>
