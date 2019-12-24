@@ -51,9 +51,9 @@ role="navigation" data-menu="menu-wrapper">
             <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/project')?>"
              data-toggle="dropdown"><i class="la la-file-archive-o"></i>Buat Project</a>
             </li>
-            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/project/index_adit')?>"
-             data-toggle="dropdown"><i class="la la-file-archive-o"></i>Buat Project Adit</a>
-            </li>
+<!--            <li data-menu=""><a class="dropdown-item" href="--><?php //echo site_url('transaksi/project/index_adit')?><!--"-->
+<!--             data-toggle="dropdown"><i class="la la-file-archive-o"></i>Buat Project Adit</a>-->
+<!--            </li>-->
             <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/pembayaran')?>"
               data-toggle="dropdown"><i class="la la-money"></i>Pembayaran Project</a>
             </li>

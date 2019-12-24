@@ -97,11 +97,11 @@
  *
 
  * Transaksi
- * @property M_project		$M_project
- * @property M_project_ket      $M_project_ket 
- * @property M_project_izin     $M_project_izin 
- * @property M_project_uraian   $M_project_uraian
- * @property M_project_terima   $M_project_terima
+ * @property M_project		    $M_project
+ * @property M_Project_ket      $M_Project_ket
+ * @property M_Project_izin     $M_Project_izin
+ * @property M_Project_uraian   $M_Project_uraian
+ * @property M_Project_terima   $M_Project_terima
  * Custom  Libraries
  * @property Unirest        	$unirest
  * @property Conversion         $conversion

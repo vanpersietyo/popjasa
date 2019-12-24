@@ -134,7 +134,7 @@ $status = $project->st_data;
                                             <input type="numeric" class="form-control" name="hrg_pokok"
                                                    id="hrg_pokok"
                                                    placeholder="Harga Pokok..."
-                                                   value="<?php echo $project->harga_jual ?>"
+                                                   value="<?php echo number_format($project->harga_jual); ?>"
                                                    onblur="this.value = formatRupiah(this.value);"/>
                                                <?php } ?>
                                     </div>
@@ -162,7 +162,7 @@ $status = $project->st_data;
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <button style="margin-top: 1.25rem !important;" type="submit"
-                                                onclick="javascript:entry_document();"
+                                                onclick="javascript:simpan_create_project();"
                                                 class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up">
                                             Lanjutkan
                                         </button>
@@ -185,287 +185,7 @@ $status = $project->st_data;
         </section>
     </div>
 
-    <div class="modal animated pulse text-left" id="modal_form" role="dialog" aria-labelledby="myModalLabel17"
-         aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-info">
-                    <h4 class="modal-title text-bold-500 white"><i class="la la-pencil-square"></i></h4>
-                    <button type="button" class="close white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
 
-
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <label for="email" class="col-form-label">Email UNTUK NIB:</label>
-                                    <input type="text" class="form-control" id="email" name="email">
-                                </div>                            
-                                <div class="col-md-4">
-                                    <label for="password" class="col-form-label">Password:</label>
-                                    <input type="password" class="form-control" name="password" id="password"/>                                    
-                                </div>
-                            </div>                            
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <label for="notelp" class="col-form-label">Email dan No. Telp Masing-masing pengurus:</label>
-                                    <input type="text" class="form-control" id="notelp" name="notelp">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="luas" class="col-form-label">Luas Tempat Usaha:</label>
-                                    <input type="number" class="form-control" id="luas" name="luas">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="usaha" class="col-form-label">Bidang Usaha:</label>
-                                    <input type="number" class="form-control" id="usaha" name="usaha">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="order_tahu" class="col-form-label">Mengetahui POPJASA dari:</label>
-                            <select class="form-control" id="order_tahu" name="order_tahu">
-                                <option value="">---SILAHKAN PILIH---</option>
-                                <option value="pernah_order">PERNAH ORDER</option>
-                                <option value="website">WEBSITE</option>
-                                <option value="facebook">FACEBOOK</option>
-                                <option value="instagram">INSTAGRAM</option>
-                                <option value="olx">OLX</option>
-                                <option value="spanduk">SPANDUK</option>
-                                <option value="teman">TEMAN</option>
-                            </select>
-                        </div>
-                    </form>
-                </div>
-
-
-
-                <div class="modal-footer">
-                    <button class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up"
-                            onclick="entry_document2()"><i class="fa fa-refresh"></i> Next
-                    </button>
-                    <button class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up"
-                            data-dismiss="modal"
-                            aria-label="Close"><i class="fa fa-times"></i> Tutup
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-
-<div class="modal animated pulse text-left" id="modal_form2" role="dialog" aria-labelledby="myModalLabel17"
-     aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-info">
-                <h4 class="modal-title text-bold-500 white"><i class="la la-pencil-square"></i></h4>
-                <button type="button" class="close white" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <label for="akta_notaris" class="col-form-label">Akta Notaris:</label>
-                                <input type="text" class="form-control" id="akta_notaris" name="akta_notaris">
-                            </div>                            
-                            <div class="col-md-4">
-                                <label for="pengesahan" class="col-form-label">Pengesahan:</label>
-                                <input type="text" class="form-control" name="pengesahan" id="pengesahan"/>                                    
-                            </div>
-                        </div>                            
-                    </div>
-                    <div class="form-check">
-                        <div class="row">
-                            <div class="col-md-8"> 
-                                <div class="form-group">
-                                    <input type="checkbox" class="custom-control-input" id="npwp_pribadi" name="npwp_pribadi">   
-                                    &nbsp;
-                                    <label class="custom-control-label" for="npwp_pribadi">NPWP PRIBADI</label>                                
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-8">
-                                <div class="form-group">
-                                    <input type="checkbox" class="custom-control-input" id="npwp" name="npwp">
-                                    &nbsp;
-                                    <label class="custom-control-label" for="npwp">NPWP (dikirim) PERUSAHAAN</label>
-                                </div>
-                            </div>
-                        </div>                            
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="checkbox" class="custom-control-input" id="skt_npwp" name="skt_npwp">
-                                    &nbsp;
-                                    <label class="custom-control-label" for="skt_npwp">SKT NPWP (dikirim)</label>
-                                </div>
-                            </div>
-                        </div>                   
-                        <div class="row">
-                            <div class="col-md-8">
-                                <div class="form-group">
-                                    <input type="checkbox" class="custom-control-input" id="siup_tdp" name="siup_tdp">
-                                    &nbsp;
-                                    <label class="custom-control-label" for="siup_tdp">SIUP & TDP (NIB)</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-8">
-                                <div class="form-group">
-                                    <input type="checkbox" class="custom-control-input" id="registrasi" name="registrasi">
-                                    &nbsp;
-                                    <label class="custom-control-label" for="registrasi">REGISTRASI</label>
-                                </div>
-                            </div>
-                        </div>                            
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="checkbox" class="custom-control-input" id="pkp" name="pkp">       
-                                    &nbsp;
-                                    <label class="custom-control-label" for="pkp">PKP</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="checkbox" class="custom-control-input" id="domisili" name="domisili"> 
-                                    &nbsp;
-                                    <label class="custom-control-label" for="pkp">S.K. DOMISILI</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="checkbox" class="custom-control-input" id="lain2" name="lain2">
-                                    &nbsp;
-                                    <label class="custom-control-label" for="lain2">IJIN LAINNYA</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <input type="text" class="form-control" name="lain_text" id="lain_text"/>
-                            </div>
-                        </div>
-                    </div>                    
-                </form>
-            </div>            
-
-            <div class="modal-footer">
-                <button class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up"
-                        onclick="entry_document3()"><i class="fa fa-refresh"></i> NEXT
-                </button>
-                <button class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up"
-                        data-dismiss="modal"
-                        aria-label="Close"><i class="fa fa-times"></i> Tutup
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal animated pulse text-left" id="modal_form3" role="dialog" aria-labelledby="myModalLabel17"
-     aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-info">
-                <h4 class="modal-title text-bold-500 white"><i class="la la-pencil-square"></i></h4>
-                <button type="button" class="close white" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label for="nm_perusahaan" class="col-form-label">NAMA PERUSAHAAN:</label>
-                                <input type="text" class="form-control" id="nm_perusahaan" name="nm_perusahaan">
-                            </div>    
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="modal_dasar" class="col-form-label">MODAL DASAR : Rp.</label>
-                                <input type="text" class="form-control" name="modal_dasar" id="modal_dasar"/>                                    
-                            </div>
-                            <div class="col-md-6">
-                                <label for="modal_setor" class="col-form-label">MODAL DISETOR : Rp.</label>
-                                <input type="text" class="form-control" name="modal_setor" id="modal_setor"/>                                    
-                            </div>
-                        </div>                            
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="persentase" class="col-form-label">PRESENTASE PEMBAGIAN SAHAM :</label>
-                                <input type="text" class="form-control" name="persentase" id="persentase"/>                                    
-                            </div>
-                            <div class="col-md-6">
-                                <label for="hrg_saham" class="col-form-label">HARGA TIAP SAHAM : RP.</label>
-                                <input type="text" class="form-control" name="hrg_saham" id="hrg_saham"/>                                    
-                            </div>
-                        </div>                            
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="notelp" class="col-form-label">NO TELP :</label>
-                                <input type="text" class="form-control" name="notelp" id="notelp"/>                                    
-                            </div>
-                            <div class="col-md-6">
-                                <label for="nofax" class="col-form-label">NO FAX :</label>
-                                <input type="text" class="form-control" name="nofax" id="nofax"/>                                    
-                            </div>
-                        </div>                            
-                    </div> 
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="kel" class="col-form-label">KEL :</label>
-                                <input type="text" class="form-control" name="kel" id="notelp"/>                                    
-                            </div>
-                            <div class="col-md-6">
-                                <label for="kabupaten" class="col-form-label">KOTA/KABUPATEN :</label>
-                                <input type="text" class="form-control" name="kabupaten" id="kabupaten"/>                                    
-                            </div>
-                        </div>                            
-                    </div>                    
-                </form>
-            </div>   
-
-            <div class="modal-footer">
-                <button class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up"
-                        onclick="entry_document4()"><i class="fa fa-refresh"></i> NEXT
-                </button>
-                <button class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up"
-                        data-dismiss="modal"
-                        aria-label="Close"><i class="fa fa-times"></i> Tutup
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="modal animated pulse text-left" id="modal_form4" role="dialog" aria-labelledby="myModalLabel17"
      aria-hidden="true">
@@ -647,7 +367,7 @@ $status = $project->st_data;
                                         success: function (data) {
                                             swal.close();
                                             if (data.status) {
-                                                window.location.href = "<?php echo site_url('/transaksi/project/edit_project/'); ?>" + data.id_project;
+                                                window.location.href = "<?php echo site_url('/transaksi/projects_ket/cek_exist_projects/'); ?>" + data.id_project;
                                             } else {
                                                 swal.close();
                                                 if (data.sw_alert) {
