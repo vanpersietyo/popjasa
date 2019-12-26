@@ -1,7 +1,8 @@
 <?php
 $this->load->view('template/head');
 ?>
-<form action="<?php echo $action; ?>" method="post">
+<form action="<?php echo $action; ?>" method="post" action="javascript:void(0)"
+          autocomplete="off">
     <div class="content-body">
         <section class="row">
             <div class="col-12">
