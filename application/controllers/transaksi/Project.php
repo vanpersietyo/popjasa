@@ -587,4 +587,18 @@ class Project extends CI_Controller
         );
         return save_edit(1, $input);
     }
+    
+    public function confirm($id)
+    {        
+        $detail = array(
+            'st_data' => 1,
+            'id_project' => $id,
+        );
+        $this->M_project->update(array('id_project' => $id), $detail);
+        // var_dump($this->db->last_query());
+        // exit();
+
+        redirect('transaksi/project/');
+    }
+
 }

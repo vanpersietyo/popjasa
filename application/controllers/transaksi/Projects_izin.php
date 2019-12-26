@@ -110,7 +110,7 @@ class Projects_izin extends CI_Controller
 
         $this->M_Project_izin->insert($data);
         $this->session->set_flashdata('message', 'Create Record Success');
-        redirect(site_url('transaksi/project_uraian/create_uraian/') . $id_projects);
+        redirect(site_url('transaksi/project_uraian/cek_exist_projects/') . $id_projects);
 
     }
 
@@ -137,50 +137,42 @@ class Projects_izin extends CI_Controller
                 'ID_Project_JNS' => set_value('ID_Project_JNS', $row->ID_Project_JNS),
                 'ID_Hdr_Project' => set_value('ID_Hdr_Project', $row->ID_Hdr_Project),
                 'ID_Project' => set_value('ID_Project', $row->ID_Project),
-                'Created_by' => set_value('Created_by', $row->Created_by),
-                'EntryTime' => set_value('EntryTime', $row->EntryTime),
-                'Modified_by' => set_value('Modified_by', $row->Modified_by),
-                'Last_Modified' => set_value('Last_Modified', $row->Last_Modified),
+                'pages' => 'transaksi/projects_izin/form',
             );
-            $this->load->view('transaksi/projects_izin/form', $data);
+            $this->load->view('layout', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('_projects_izin'));
+            redirect(site_url('transaksi/project'));
         }
     }
 
     public function update_action()
-    {
-        $this->_rules();
+    {  
+        $id_projects = $this->input->post('ID_Project', TRUE);
+        $data = array(
+            'Bool_Izin_Akta_Notaris' => $this->input->post('Bool_Izin_Akta_Notaris', TRUE),
+            'Izin_Akta_Notaris' => $this->input->post('Izin_Akta_Notaris', TRUE),
+            'Bool_Izin_Pengesahan' => $this->input->post('Bool_Izin_Pengesahan', TRUE),
+            'Izin_Pengesahan' => $this->input->post('Izin_Pengesahan', TRUE),
+            'Bool_NPWP' => $this->input->post('Bool_NPWP', TRUE),
+            'Bool_NPWP_Perusahaan' => $this->input->post('Bool_NPWP_Perusahaan', TRUE),
+            'Bool_SKT_Perusahaan' => $this->input->post('Bool_SKT_Perusahaan', TRUE),
+            'Bool_SIUP_TDP' => $this->input->post('Bool_SIUP_TDP', TRUE),
+            'Bool_Registrasi' => $this->input->post('Bool_Registrasi', TRUE),
+            'Bool_PKP' => $this->input->post('Bool_PKP', TRUE),
+            'Bool_SK_Domisili' => $this->input->post('Bool_SK_Domisili', TRUE),
+            'Izin_Lain' => $this->input->post('Izin_Lain', TRUE),
+            'ID_Hdr_Project' => $this->input->post('ID_Hdr_Project', TRUE),
+            'ID_Project' => $id_projects,
+            'Created_by' => $this->input->post('Created_by', TRUE),
+            'EntryTime' => $this->input->post('EntryTime', TRUE),
+            'Modified_by' => $this->session->userdata('yangLogin'),
+            'Last_Modified' => date('Y-m-d H:i:s'),
+        );
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('ID_Project_JNS', TRUE));
-        } else {
-            $data = array(
-                'Bool_Izin_Akta_Notaris' => $this->input->post('Bool_Izin_Akta_Notaris', TRUE),
-                'Izin_Akta_Notaris' => $this->input->post('Izin_Akta_Notaris', TRUE),
-                'Bool_Izin_Pengesahan' => $this->input->post('Bool_Izin_Pengesahan', TRUE),
-                'Izin_Pengesahan' => $this->input->post('Izin_Pengesahan', TRUE),
-                'Bool_NPWP' => $this->input->post('Bool_NPWP', TRUE),
-                'Bool_NPWP_Perusahaan' => $this->input->post('Bool_NPWP_Perusahaan', TRUE),
-                'Bool_SKT_Perusahaan' => $this->input->post('Bool_SKT_Perusahaan', TRUE),
-                'Bool_SIUP_TDP' => $this->input->post('Bool_SIUP_TDP', TRUE),
-                'Bool_Registrasi' => $this->input->post('Bool_Registrasi', TRUE),
-                'Bool_PKP' => $this->input->post('Bool_PKP', TRUE),
-                'Bool_SK_Domisili' => $this->input->post('Bool_SK_Domisili', TRUE),
-                'Izin_Lain' => $this->input->post('Izin_Lain', TRUE),
-                'ID_Hdr_Project' => $this->input->post('ID_Hdr_Project', TRUE),
-                'ID_Project' => $this->input->post('ID_Project', TRUE),
-                'Created_by' => $this->input->post('Created_by', TRUE),
-                'EntryTime' => $this->input->post('EntryTime', TRUE),
-                'Modified_by' => $this->input->post('Modified_by', TRUE),
-                'Last_Modified' => $this->input->post('Last_Modified', TRUE),
-            );
-
-            $this->M_Project_izin->update($this->input->post('ID_Project_JNS', TRUE), $data);
-            $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('_projects_izin'));
-        }
+        $this->M_Project_izin->update($this->input->post('ID_Project_JNS', TRUE), $data);
+        $this->session->set_flashdata('message', 'Update Record Success');
+        redirect(site_url('transaksi/project_uraian/cek_exist_projects/') . $id_projects);  
     }
 
     public function delete($id)
@@ -228,7 +220,7 @@ class Projects_izin extends CI_Controller
         if (!empty($project)) {
             $data = array(
                 'button' => 'Create',
-                'action' => site_url('transaksi/projects_izin/create_action'),
+                'action' => site_url('transaksi/projects_izin/cek_exist_projects/'),
                 'Bool_Izin_Akta_Notaris' => set_value('Bool_Izin_Akta_Notaris'),
                 'Izin_Akta_Notaris' => set_value('Izin_Akta_Notaris'),
                 'Bool_Izin_Pengesahan' => set_value('Bool_Izin_Pengesahan'),
@@ -252,6 +244,14 @@ class Projects_izin extends CI_Controller
         }
     }
 
+    public function cek_exist_projects($id) {
+        $project_ket =$this->M_Project_izin->find_first(["id_project"=>$id]);
+        if ($project_ket) {
+            return $this->update($project_ket->id);
+        }else {
+            return $this->create($id);
+        }
+    }
 }
 
 /* End of file Projects_izin.php */

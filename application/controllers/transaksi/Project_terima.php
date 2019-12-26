@@ -89,38 +89,31 @@ class Project_terima extends CI_Controller
     
     public function create_action() 
     {
-        $this->_rules();
+        $id_projects = $this->input->post('ID_Project', TRUE);
+        $data = array(
+            'bool_ktp_fotokopi' => $this->input->post('bool_ktp_fotokopi',TRUE),
+            'bool_ktp_asli' => $this->input->post('bool_ktp_asli',TRUE),
+            'bool_npwp_fotokopi' => $this->input->post('bool_npwp_fotokopi',TRUE),
+            'bool_npwp_asli' => $this->input->post('bool_npwp_asli',TRUE),
+            'bool_sertifikat_fotokopi' => $this->input->post('bool_sertifikat_fotokopi',TRUE),
+            'bool_sertifikat_asli' => $this->input->post('bool_sertifikat_asli',TRUE),
+            'bool_imb_fotokopi' => $this->input->post('bool_imb_fotokopi',TRUE),
+            'bool_imb_asli' => $this->input->post('bool_imb_asli',TRUE),
+            'bool_stempel' => $this->input->post('bool_stempel',TRUE),
+            'jml_materai' => $this->input->post('jml_materai',TRUE),
+            'bool_sk_domisili_fotokopi' => $this->input->post('bool_sk_domisili_fotokopi',TRUE),
+            'bool_sk_domisili_asli' => $this->input->post('bool_sk_domisili_asli',TRUE),
+            'bool_surat_sewa_fotokopi' => $this->input->post('bool_surat_sewa_fotokopi',TRUE),
+            'bool_surat_sewa_asli' => $this->input->post('bool_surat_sewa_asli',TRUE),
+            'ID_Hdr_Project' => $this->input->post('ID_Hdr_Project',TRUE),
+            'ID_Project' => $id_projects,
+            'Created_By' => $this->session->userdata('yangLogin'),
+            'EntryTime' => date('Y-m-d H:i:s'),
+        );
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
-            $data = array(
-		'bool_ktp_fotokopi' => $this->input->post('bool_ktp_fotokopi',TRUE),
-		'bool_ktp_asli' => $this->input->post('bool_ktp_asli',TRUE),
-		'bool_npwp_fotokopi' => $this->input->post('bool_npwp_fotokopi',TRUE),
-		'bool_npwp_asli' => $this->input->post('bool_npwp_asli',TRUE),
-		'bool_sertifikat_fotokopi' => $this->input->post('bool_sertifikat_fotokopi',TRUE),
-		'bool_sertifikat_asli' => $this->input->post('bool_sertifikat_asli',TRUE),
-		'bool_imb_fotokopi' => $this->input->post('bool_imb_fotokopi',TRUE),
-		'bool_imb_asli' => $this->input->post('bool_imb_asli',TRUE),
-		'bool_stempel' => $this->input->post('bool_stempel',TRUE),
-		'jml_materai' => $this->input->post('jml_materai',TRUE),
-		'bool_sk_domisili_fotokopi' => $this->input->post('bool_sk_domisili_fotokopi',TRUE),
-		'bool_sk_domisili_asli' => $this->input->post('bool_sk_domisili_asli',TRUE),
-		'bool_surat_sewa_fotokopi' => $this->input->post('bool_surat_sewa_fotokopi',TRUE),
-		'bool_surat_sewa_asli' => $this->input->post('bool_surat_sewa_asli',TRUE),
-		'ID_Hdr_Project' => $this->input->post('ID_Hdr_Project',TRUE),
-		'ID_Project' => $this->input->post('ID_Project',TRUE),
-		'Created_by' => $this->input->post('Created_by',TRUE),
-		'EntryTime' => $this->input->post('EntryTime',TRUE),
-		'Modified_by' => $this->input->post('Modified_by',TRUE),
-		'Last_Modified' => $this->input->post('Last_Modified',TRUE),
-	    );
-
-            $this->M_Project_terima->insert($data);
-            $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('project_terima'));
-        }
+        $this->M_Project_terima->insert($data);
+        $this->session->set_flashdata('message', 'Create Record Success');
+        redirect(site_url('transaksi/project/'));      
     }
     
     public function update($id) 
@@ -130,7 +123,7 @@ class Project_terima extends CI_Controller
         if ($row) {
             $data = array(
                 'button' => 'Update',
-                'action' => site_url('project_terima/update_action'),
+                'action' => site_url('transaksi/project_terima/update_action'),
 		'bool_ktp_fotokopi' => set_value('bool_ktp_fotokopi', $row->bool_ktp_fotokopi),
 		'bool_ktp_asli' => set_value('bool_ktp_asli', $row->bool_ktp_asli),
 		'bool_npwp_fotokopi' => set_value('bool_npwp_fotokopi', $row->bool_npwp_fotokopi),
@@ -148,52 +141,41 @@ class Project_terima extends CI_Controller
 		'ID_Project_terima' => set_value('ID_Project_terima', $row->ID_Project_terima),
 		'ID_Hdr_Project' => set_value('ID_Hdr_Project', $row->ID_Hdr_Project),
 		'ID_Project' => set_value('ID_Project', $row->ID_Project),
-		'Created_by' => set_value('Created_by', $row->Created_by),
-		'EntryTime' => set_value('EntryTime', $row->EntryTime),
-		'Modified_by' => set_value('Modified_by', $row->Modified_by),
-		'Last_Modified' => set_value('Last_Modified', $row->Last_Modified),
+                'pages' => 'transaksi/project_terima/form',
 	    );
-            $this->load->view('project_terima/trs_project_terima_form', $data);
+            $this->load->view('layout', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('project_terima'));
+            redirect(site_url('transaksi/project/'));
         }
     }
     
     public function update_action() 
-    {
-        $this->_rules();
+    {        
+        $data = array(
+            'bool_ktp_fotokopi' => $this->input->post('bool_ktp_fotokopi',TRUE),
+            'bool_ktp_asli' => $this->input->post('bool_ktp_asli',TRUE),
+            'bool_npwp_fotokopi' => $this->input->post('bool_npwp_fotokopi',TRUE),
+            'bool_npwp_asli' => $this->input->post('bool_npwp_asli',TRUE),
+            'bool_sertifikat_fotokopi' => $this->input->post('bool_sertifikat_fotokopi',TRUE),
+            'bool_sertifikat_asli' => $this->input->post('bool_sertifikat_asli',TRUE),
+            'bool_imb_fotokopi' => $this->input->post('bool_imb_fotokopi',TRUE),
+            'bool_imb_asli' => $this->input->post('bool_imb_asli',TRUE),
+            'bool_stempel' => $this->input->post('bool_stempel',TRUE),
+            'jml_materai' => $this->input->post('jml_materai',TRUE),
+            'bool_sk_domisili_fotokopi' => $this->input->post('bool_sk_domisili_fotokopi',TRUE),
+            'bool_sk_domisili_asli' => $this->input->post('bool_sk_domisili_asli',TRUE),
+            'bool_surat_sewa_fotokopi' => $this->input->post('bool_surat_sewa_fotokopi',TRUE),
+            'bool_surat_sewa_asli' => $this->input->post('bool_surat_sewa_asli',TRUE),
+            'ID_Hdr_Project' => $this->input->post('ID_Hdr_Project',TRUE),
+            'ID_Project' => $this->input->post('ID_Project',TRUE),
+            'Modified_by' => $this->session->userdata('yangLogin'),
+            'Last_Modified' => date('Y-m-d H:i:s'),
+        );
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('ID_Project_terima', TRUE));
-        } else {
-            $data = array(
-		'bool_ktp_fotokopi' => $this->input->post('bool_ktp_fotokopi',TRUE),
-		'bool_ktp_asli' => $this->input->post('bool_ktp_asli',TRUE),
-		'bool_npwp_fotokopi' => $this->input->post('bool_npwp_fotokopi',TRUE),
-		'bool_npwp_asli' => $this->input->post('bool_npwp_asli',TRUE),
-		'bool_sertifikat_fotokopi' => $this->input->post('bool_sertifikat_fotokopi',TRUE),
-		'bool_sertifikat_asli' => $this->input->post('bool_sertifikat_asli',TRUE),
-		'bool_imb_fotokopi' => $this->input->post('bool_imb_fotokopi',TRUE),
-		'bool_imb_asli' => $this->input->post('bool_imb_asli',TRUE),
-		'bool_stempel' => $this->input->post('bool_stempel',TRUE),
-		'jml_materai' => $this->input->post('jml_materai',TRUE),
-		'bool_sk_domisili_fotokopi' => $this->input->post('bool_sk_domisili_fotokopi',TRUE),
-		'bool_sk_domisili_asli' => $this->input->post('bool_sk_domisili_asli',TRUE),
-		'bool_surat_sewa_fotokopi' => $this->input->post('bool_surat_sewa_fotokopi',TRUE),
-		'bool_surat_sewa_asli' => $this->input->post('bool_surat_sewa_asli',TRUE),
-		'ID_Hdr_Project' => $this->input->post('ID_Hdr_Project',TRUE),
-		'ID_Project' => $this->input->post('ID_Project',TRUE),
-		'Created_by' => $this->input->post('Created_by',TRUE),
-		'EntryTime' => $this->input->post('EntryTime',TRUE),
-		'Modified_by' => $this->input->post('Modified_by',TRUE),
-		'Last_Modified' => $this->input->post('Last_Modified',TRUE),
-	    );
-
-            $this->M_Project_terima->update($this->input->post('ID_Project_terima', TRUE), $data);
-            $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('project_terima'));
-        }
+        $this->M_Project_terima->update($this->input->post('ID_Project_terima', TRUE), $data);
+        $this->session->set_flashdata('message', 'Update Record Success');
+        redirect(site_url('transaksi/project'));       
     }
     
     public function delete($id) 
@@ -237,37 +219,47 @@ class Project_terima extends CI_Controller
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
-    public function create_uraian($id)
+    public function create_terima($id)
     {
-        $data = array(
-            'button' => 'Create',
-            'action' => site_url('project_terima/create_action'),
-            'bool_ktp_fotokopi' => set_value('bool_ktp_fotokopi'),
-            'bool_ktp_asli' => set_value('bool_ktp_asli'),
-            'bool_npwp_fotokopi' => set_value('bool_npwp_fotokopi'),
-            'bool_npwp_asli' => set_value('bool_npwp_asli'),
-            'bool_sertifikat_fotokopi' => set_value('bool_sertifikat_fotokopi'),
-            'bool_sertifikat_asli' => set_value('bool_sertifikat_asli'),
-            'bool_imb_fotokopi' => set_value('bool_imb_fotokopi'),
-            'bool_imb_asli' => set_value('bool_imb_asli'),
-            'bool_stempel' => set_value('bool_stempel'),
-            'jml_materai' => set_value('jml_materai'),
-            'bool_sk_domisili_fotokopi' => set_value('bool_sk_domisili_fotokopi'),
-            'bool_sk_domisili_asli' => set_value('bool_sk_domisili_asli'),
-            'bool_surat_sewa_fotokopi' => set_value('bool_surat_sewa_fotokopi'),
-            'bool_surat_sewa_asli' => set_value('bool_surat_sewa_asli'),
-            'ID_Project_terima' => set_value('ID_Project_terima'),
-            'ID_Hdr_Project' => set_value('ID_Hdr_Project'),
-            'ID_Project' => set_value('ID_Project'),
-            'pages' =>'project_terima/trs_project_terima_form',
-        );
-        $this->load->view('layout', $data);
+        $project = $this->M_project->find_first(array('id_project' => $id));
+        if (!empty($project)) {
+            $data = array(
+                'button' => 'Create',
+                'action' => site_url('transaksi/project_terima/create_action'),
+                'bool_ktp_fotokopi' => set_value('bool_ktp_fotokopi'),
+                'bool_ktp_asli' => set_value('bool_ktp_asli'),
+                'bool_npwp_fotokopi' => set_value('bool_npwp_fotokopi'),
+                'bool_npwp_asli' => set_value('bool_npwp_asli'),
+                'bool_sertifikat_fotokopi' => set_value('bool_sertifikat_fotokopi'),
+                'bool_sertifikat_asli' => set_value('bool_sertifikat_asli'),
+                'bool_imb_fotokopi' => set_value('bool_imb_fotokopi'),
+                'bool_imb_asli' => set_value('bool_imb_asli'),
+                'bool_stempel' => set_value('bool_stempel'),
+                'jml_materai' => set_value('jml_materai'),
+                'bool_sk_domisili_fotokopi' => set_value('bool_sk_domisili_fotokopi'),
+                'bool_sk_domisili_asli' => set_value('bool_sk_domisili_asli'),
+                'bool_surat_sewa_fotokopi' => set_value('bool_surat_sewa_fotokopi'),
+                'bool_surat_sewa_asli' => set_value('bool_surat_sewa_asli'),
+                'ID_Project_terima' => set_value('ID_Project_terima'),
+                'ID_Hdr_Project' => set_value('ID_Hdr_Project'),
+                'ID_Project' => set_value('ID_Project'),
+                'pages' =>'transaksi/project_terima/form',
+            );
+            $this->load->view('layout', $data);
+        } else {
+            redirect(site_url('transaksi/project/'));
+        }
     }
 
+    public function cek_exist_projects($id) {
+        $project_ket =$this->M_Project_terima->find_first(["id_project"=>$id]);
+        if ($project_ket) {
+            return $this->update($project_ket->id);
+        }else {
+            return $this->create($id);
+        }
+    }
 }
 
 /* End of file Project_terima.php */
 /* Location: ./application/controllers/Project_terima.php */
-/* Please DO NOT modify this information : */
-/* Generated by Harviacode Codeigniter CRUD Generator 2019-12-24 05:26:49 */
-/* http://harviacode.com */

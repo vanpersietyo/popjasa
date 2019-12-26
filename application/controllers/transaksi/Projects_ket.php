@@ -106,11 +106,12 @@ class Projects_ket extends CI_Controller
                 'Pass_Email' => $this->input->post('password',TRUE),
                 'Created_By' => $this->session->userdata('yangLogin'),
                 'EntryTime' => date('Y-m-d H:i:s'),
+                'Pass_Email'=>$this->input->post('Pass_Email', TRUE),
             );
 
             $this->M_Project_ket->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('transaksi/projects_izin/create_izin/').$id_project);
+            redirect(site_url('transaksi/projects_izin/cek_exist_projects/').$id_project);
     }
 
     public function update($id)
@@ -120,7 +121,7 @@ class Projects_ket extends CI_Controller
         if ($row) {
             $data = array(
                 'button' => 'Update',
-                'action' => site_url('projects_ket/update_action'),
+                'action' => site_url('transaksi/projects_ket/update_action'),
                 'Ket_Email' => set_value('Ket_Email', $row->Ket_Email),
                 'Email_Pengurus' => set_value('Email_Pengurus', $row->Email_Pengurus),
                 'No_Telp' => set_value('No_Telp', $row->No_Telp),
@@ -131,12 +132,9 @@ class Projects_ket extends CI_Controller
                 'ID_Project_Ket' => set_value('ID_Project_Ket', $row->ID_Project_Ket),
                 'ID_Hdr_Project' => set_value('ID_Hdr_Project', $row->ID_Hdr_Project),
                 'ID_Project' => set_value('ID_Project', $row->ID_Project),
-                'Created_By' => set_value('Created_By', $row->Created_By),
-                'EntryTime' => set_value('EntryTime', $row->EntryTime),
-                'Modified_By' => set_value('Modified_By', $row->Modified_By),
-                'Last_Mofidified' => set_value('Last_Mofidified', $row->Last_Mofidified),
+                'pages' => 'transaksi/projects_ket/form',                
             );
-            $this->load->view('transaksi/projects_ket/form', $data);
+            $this->load->view('layout', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('transaksi/project'));
@@ -144,32 +142,24 @@ class Projects_ket extends CI_Controller
     }
 
     public function update_action()
-    {
-        $this->_rules();
+    {   $id_project = $this->input->post('ID_Project', TRUE);
+        $data = array(
+            'Ket_Email' => $this->input->post('Ket_Email', TRUE),
+            'Email_Pengurus' => $this->input->post('Email_Pengurus', TRUE),
+            'No_Telp' => $this->input->post('No_Telp', TRUE),
+            'Ket_Luas' => $this->input->post('Ket_Luas', TRUE),
+            'Ket_Bidang_Usaha' => $this->input->post('Ket_Bidang_Usaha', TRUE),
+            'Ket_Bidang_Usaha_Utama' => $this->input->post('Ket_Bidang_Usaha_Utama', TRUE),
+            'Ket_Informasi' => $this->input->post('Ket_Informasi', TRUE),
+            'ID_Hdr_Project' => $this->input->post('ID_Hdr_Project', TRUE),
+            'ID_Project' => $id_project,
+            'Modified_By' => $this->session->userdata('yangLogin'),
+            'Last_Mofidified' => date('Y-m-d H:i:s'),
+        );
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('ID_Project_Ket', TRUE));
-        } else {
-            $data = array(
-                'Ket_Email' => $this->input->post('Ket_Email', TRUE),
-                'Email_Pengurus' => $this->input->post('Email_Pengurus', TRUE),
-                'No_Telp' => $this->input->post('No_Telp', TRUE),
-                'Ket_Luas' => $this->input->post('Ket_Luas', TRUE),
-                'Ket_Bidang_Usaha' => $this->input->post('Ket_Bidang_Usaha', TRUE),
-                'Ket_Bidang_Usaha_Utama' => $this->input->post('Ket_Bidang_Usaha_Utama', TRUE),
-                'Ket_Informasi' => $this->input->post('Ket_Informasi', TRUE),
-                'ID_Hdr_Project' => $this->input->post('ID_Hdr_Project', TRUE),
-                'ID_Project' => $this->input->post('ID_Project', TRUE),
-                'Created_By' => $this->input->post('Created_By', TRUE),
-                'EntryTime' => $this->input->post('EntryTime', TRUE),
-                'Modified_By' => $this->input->post('Modified_By', TRUE),
-                'Last_Mofidified' => $this->input->post('Last_Mofidified', TRUE),
-            );
-
-            $this->M_Project_ket->update($this->input->post('ID_Project_Ket', TRUE), $data);
-            $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('_projects_ket'));
-        }
+        $this->M_Project_ket->update($this->input->post('ID_Project_Ket', TRUE), $data);
+        $this->session->set_flashdata('message', 'Update Record Success');
+        redirect(site_url('transaksi/projects_izin/cek_exist_projects/').$id_project);       
     }
 
     public function delete($id)

@@ -88,38 +88,31 @@ class Project_uraian extends CI_Controller
     }
 
     public function create_action()
-    {
-        $this->_rules();
+    {        
+        $id_projects = $this->input->post('ID_Project', TRUE);
+        $data = array(
+            'nm_perusahaan' => $this->input->post('nm_perusahaan', TRUE),
+            'modal' => $this->input->post('modal', TRUE),
+            'presentase_shm' => $this->input->post('presentase_shm', TRUE),
+            'hrg_saham' => $this->input->post('hrg_saham', TRUE),
+            'No_Telp' => $this->input->post('No_Telp', TRUE),
+            'No_Fax' => $this->input->post('No_Fax', TRUE),
+            'alamat' => $this->input->post('alamat', TRUE),
+            'kota' => $this->input->post('kota', TRUE),
+            'kelurahan' => $this->input->post('kelurahan', TRUE),
+            'kabupaten' => $this->input->post('kabupaten', TRUE),
+            'izin_persetujuan' => $this->input->post('izin_persetujuan', TRUE),
+            'signature_commander' => $this->input->post('signature_commander', TRUE),
+            'penerima' => $this->input->post('penerima', TRUE),
+            'ID_Hdr_Project' => $this->input->post('ID_Hdr_Project', TRUE),
+            'ID_Project' => $id_projects,
+            'Created_By' => $this->session->userdata('yangLogin'),
+            'EntryTime' => date('Y-m-d H:i:s'),          
+        );
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
-            $data = array(
-                'nm_perusahaan' => $this->input->post('nm_perusahaan', TRUE),
-                'modal' => $this->input->post('modal', TRUE),
-                'presentase_shm' => $this->input->post('presentase_shm', TRUE),
-                'hrg_saham' => $this->input->post('hrg_saham', TRUE),
-                'No_Telp' => $this->input->post('No_Telp', TRUE),
-                'No_Fax' => $this->input->post('No_Fax', TRUE),
-                'alamat' => $this->input->post('alamat', TRUE),
-                'kota' => $this->input->post('kota', TRUE),
-                'kelurahan' => $this->input->post('kelurahan', TRUE),
-                'kabupaten' => $this->input->post('kabupaten', TRUE),
-                'izin_persetujuan' => $this->input->post('izin_persetujuan', TRUE),
-                'signature_commander' => $this->input->post('signature_commander', TRUE),
-                'penerima' => $this->input->post('penerima', TRUE),
-                'ID_Hdr_Project' => $this->input->post('ID_Hdr_Project', TRUE),
-                'ID_Project' => $this->input->post('ID_Project', TRUE),
-                'Created_by' => $this->input->post('Created_by', TRUE),
-                'EntryTime' => $this->input->post('EntryTime', TRUE),
-                'Modified_by' => $this->input->post('Modified_by', TRUE),
-                'Last_Modified' => $this->input->post('Last_Modified', TRUE),
-            );
-
-            $this->M_Project_uraian->insert($data);
-            $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('_project_uraian'));
-        }
+        $this->M_Project_uraian->insert($data);
+        $this->session->set_flashdata('message', 'Create Record Success');
+        redirect(site_url('transaksi/project_terima/cek_exist_projects/') . $id_projects);                    
     }
 
     public function update($id)
@@ -129,7 +122,7 @@ class Project_uraian extends CI_Controller
         if ($row) {
             $data = array(
                 'button' => 'Update',
-                'action' => site_url('project_uraian/update_action'),
+                'action' => site_url('transaksi/project_uraian/update_action'),
                 'nm_perusahaan' => set_value('nm_perusahaan', $row->nm_perusahaan),
                 'modal' => set_value('modal', $row->modal),
                 'presentase_shm' => set_value('presentase_shm', $row->presentase_shm),
@@ -146,51 +139,42 @@ class Project_uraian extends CI_Controller
                 'ID_Project_Uraian' => set_value('ID_Project_Uraian', $row->ID_Project_Uraian),
                 'ID_Hdr_Project' => set_value('ID_Hdr_Project', $row->ID_Hdr_Project),
                 'ID_Project' => set_value('ID_Project', $row->ID_Project),
-                'Created_by' => set_value('Created_by', $row->Created_by),
-                'EntryTime' => set_value('EntryTime', $row->EntryTime),
-                'Modified_by' => set_value('Modified_by', $row->Modified_by),
-                'Last_Modified' => set_value('Last_Modified', $row->Last_Modified),
+                'pages' => 'transaksi/project_uraian/form',   
             );
-            $this->load->view('project_uraian/trs_project_uraian_form', $data);
+            $this->load->view('layout', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('_project_uraian'));
+            redirect(site_url('transaksi/project/'));
         }
     }
 
     public function update_action()
-    {
-        $this->_rules();
+    {    
+        $id_projects = $this->input->post('ID_Project', TRUE);
+        $data = array(
+            'nm_perusahaan' => $this->input->post('nm_perusahaan', TRUE),
+            'modal' => $this->input->post('modal', TRUE),
+            'presentase_shm' => $this->input->post('presentase_shm', TRUE),
+            'hrg_saham' => $this->input->post('hrg_saham', TRUE),
+            'No_Telp' => $this->input->post('No_Telp', TRUE),
+            'No_Fax' => $this->input->post('No_Fax', TRUE),
+            'alamat' => $this->input->post('alamat', TRUE),
+            'kota' => $this->input->post('kota', TRUE),
+            'kelurahan' => $this->input->post('kelurahan', TRUE),
+            'kabupaten' => $this->input->post('kabupaten', TRUE),
+            'izin_persetujuan' => $this->input->post('izin_persetujuan', TRUE),
+            'signature_commander' => $this->input->post('signature_commander', TRUE),
+            'penerima' => $this->input->post('penerima', TRUE),
+            'ID_Hdr_Project' => $this->input->post('ID_Hdr_Project', TRUE),
+            'ID_Project' => $id_projects,
+            'Modified_by' => $this->session->userdata('yangLogin'),
+            'Last_Modified' => date('Y-m-d H:i:s'),
+        );
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('ID_Project_Uraian', TRUE));
-        } else {
-            $data = array(
-                'nm_perusahaan' => $this->input->post('nm_perusahaan', TRUE),
-                'modal' => $this->input->post('modal', TRUE),
-                'presentase_shm' => $this->input->post('presentase_shm', TRUE),
-                'hrg_saham' => $this->input->post('hrg_saham', TRUE),
-                'No_Telp' => $this->input->post('No_Telp', TRUE),
-                'No_Fax' => $this->input->post('No_Fax', TRUE),
-                'alamat' => $this->input->post('alamat', TRUE),
-                'kota' => $this->input->post('kota', TRUE),
-                'kelurahan' => $this->input->post('kelurahan', TRUE),
-                'kabupaten' => $this->input->post('kabupaten', TRUE),
-                'izin_persetujuan' => $this->input->post('izin_persetujuan', TRUE),
-                'signature_commander' => $this->input->post('signature_commander', TRUE),
-                'penerima' => $this->input->post('penerima', TRUE),
-                'ID_Hdr_Project' => $this->input->post('ID_Hdr_Project', TRUE),
-                'ID_Project' => $this->input->post('ID_Project', TRUE),
-                'Created_by' => $this->input->post('Created_by', TRUE),
-                'EntryTime' => $this->input->post('EntryTime', TRUE),
-                'Modified_by' => $this->input->post('Modified_by', TRUE),
-                'Last_Modified' => $this->input->post('Last_Modified', TRUE),
-            );
-
-            $this->M_Project_uraian->update($this->input->post('ID_Project_Uraian', TRUE), $data);
-            $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('_project_uraian'));
-        }
+        $this->M_Project_uraian->update($this->input->post('ID_Project_Uraian', TRUE), $data);
+        $this->session->set_flashdata('message', 'Update Record Success');
+        redirect(site_url('transaksi/project_terima/cek_exist_projects/') . $id_projects);  
+        
     }
 
     public function delete($id)
@@ -264,6 +248,14 @@ class Project_uraian extends CI_Controller
         }
     }
 
+    public function cek_exist_projects($id) {
+        $project_ket =$this->M_Project_uraian->find_first(["id_project"=>$id]);
+        if ($project_ket) {
+            return $this->update($project_ket->id);
+        }else {
+            return $this->create($id);
+        }
+    }
 }
 
 /* End of file Project_uraian.php */
