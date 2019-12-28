@@ -94,7 +94,7 @@
  * @property M_Customer         				$M_Customer
  * @property M_layanan         				    $M_layanan
  * @property M_harga                            $M_harga
- *
+ * @property M_Fix_assets                   $M_Fix_assets
 
  * Transaksi
  * @property M_project		    $M_project

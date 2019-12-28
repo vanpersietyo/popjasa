@@ -78,7 +78,7 @@ class Projects_ket extends CI_Controller
                 'Ket_Bidang_Usaha_Utama' => set_value('Ket_Bidang_Usaha_Utama'),
                 'Ket_Informasi' => set_value('Ket_Informasi'),
                 'ID_Project_Ket' => set_value('ID_Project_Ket'),
-                'ID_Hdr_Project' => set_value('ID_Hdr_Project'),
+                'ID_Hdr_Project' => $project->id_hdr_project,
                 'ID_Project' => $id,
                 'Pass_Email' => set_value('Pass_Email'),
                 'pages' => 'transaksi/projects_ket/form',
@@ -106,7 +106,6 @@ class Projects_ket extends CI_Controller
                 'Pass_Email' => $this->input->post('password',TRUE),
                 'Created_By' => $this->session->userdata('yangLogin'),
                 'EntryTime' => date('Y-m-d H:i:s'),
-                'Pass_Email'=>$this->input->post('Pass_Email', TRUE),
             );
 
             $this->M_Project_ket->insert($data);

@@ -137,7 +137,7 @@ role="navigation" data-menu="menu-wrapper">
           <!-- <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/bank')?>"
             data-toggle="dropdown"><i class="icon-credit-card"></i>Bank</a>
           </li> -->
-           <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/customer')?>"
+           <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/fix_assets')?>"
              data-toggle="dropdown"><i class="icon-trophy"></i>Aset</a>
            </li>
              <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon-target"></i>Target</a>
