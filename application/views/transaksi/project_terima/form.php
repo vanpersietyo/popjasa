@@ -41,9 +41,12 @@ $this->load->view('template/head');
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-3">
                                                     <label for="bool_ktp" class="col-form-label">KTP :</label>
-                                                    <input type="numeric" class="form-control" name="jml_ktp" id="jml_ktp"/>                                                            
+                                                    <input type="numeric" class="form-control" name="jml_ktp" id="jml_ktp" placeholder="Jumlah Orang"/>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <label for="bool_ktp" class="col-form-label">&nbsp;</label>
                                                     <select class="form-control" id="bool_ktp" name="bool_ktp" value="<?php echo $bool_ktp; ?>">
                                                         <option value="">---SILAHKAN PILIH---</option>
                                                         <option value="Fotokopi">FOTOKOPI</option>
@@ -62,18 +65,18 @@ $this->load->view('template/head');
                                                         <option value="Asli">ASLI</option>
                                                     </select>
                                                 </div>
+                                            </div>                            
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
                                                 <div class="col-md-6">
                                                     <label for="jns_sertifikat" class="col-form-label">SERTIFIKAT T. USAHA :</label>
                                                     <select class="form-control" id="bool_sertifikat" name="bool_sertifikat" value="<?php echo $bool_sertifikat; ?>" >
                                                         <option value="">---SILAHKAN PILIH---</option>
                                                         <option value="Fotokopi">FOTOKOPI</option>
                                                         <option value="Asli">ASLI</option>
-                                                    </select>                               
+                                                    </select>
                                                 </div>
-                                            </div>                            
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
                                                 <div class="col-md-6">
                                                     <label for="jns_imb" class="col-form-label">IMB (IJIN MENDIRIKAN BANGUNAN) :</label>
                                                     <select class="form-control" id="bool_imb" name="bool_imb" value="<?php echo $bool_imb; ?>">
@@ -84,27 +87,23 @@ $this->load->view('template/head');
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-check">
+                                        <div class="form-group">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label for="bool_stempel" class="col-form-label">Stempel :</label>   
-                                                    &nbsp;
+                                                    <label for="bool_stempel" class="col-form-label">Stempel :</label>&nbsp;
                                                     <select class="form-control" id="bool_stempel" name="bool_stempel" value="<?php echo $bool_stempel; ?>">
                                                         <option value="">---SILAHKAN PILIH---</option>
                                                         <option value="Fotokopi">Yes</option>
                                                         <option value="Asli">No</option>
                                                     </select>
                                                 </div>
-                                            </div>                            
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
                                                 <div class="col-md-6">
                                                     <label for="materai" class="col-form-label">MATERAI :</label>
-                                                    <input type="number" class="form-control" name="jml_materai" id="jml_materai" value="<?php echo $jml_materai; ?>"/>                                    
+                                                    <input type="number" class="form-control" name="jml_materai" id="jml_materai" value="<?php echo $jml_materai; ?>" placeholder="Jumlah Materai"/>
                                                 </div>
-                                            </div>
+                                            </div>                            
                                         </div>
+
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-md-6">

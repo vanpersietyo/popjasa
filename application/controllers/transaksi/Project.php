@@ -505,12 +505,12 @@ class Project extends CI_Controller
 															aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
 															<div class="dropdown-menu">
 															<a class="dropdown-item"  href="javascript:void(0)" onclick="create(' . "'" . $d->id_project . "'" . ')"><i class="ft-file"></i> Lihat Project</a>
-															<a class="dropdown-item"  href="javascript:void(0)" onclick="confirm(' . "'" . $d->id_project . "'" . ')"><i class="ft-check"></i> Confirm Project</a>
+															<a class="dropdown-item"  href="javascript:void(0)" onclick="confirm_project(' . "'" . $d->id_project . "'" . ')"><i class="ft-check"></i> Confirm Project</a>
 															<a class="dropdown-item" href="javascript:void(0)" onclick="delete_project(' . "'" . $d->id_project . "'" . ')"><i class="ft-trash"></i> Delete Project</a>
 															</div>';
             }
 
-            $row[] = '<h5 class="text-bold-500">' . $d->id_hdr_project;
+            $row[] = '<h5 class="text-bold-500">' . $d->id_project;
             $row[] = '<h5 class="text-bold-500">' . $d->nm_project;
             $row[] = '<h5 class="text-bold-500">' . $d->nm_customer;
             $row[] = '<h5 class="text-bold-500">' . number_format($d->harga_jual);
@@ -595,10 +595,8 @@ class Project extends CI_Controller
             'id_project' => $id,
         );
         $this->M_project->update(array('id_project' => $id), $detail);
-        // var_dump($this->db->last_query());
-        // exit();
 
-        redirect('transaksi/project/');
+        echo json_encode(array("status" => TRUE));
     }
 
 }

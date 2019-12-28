@@ -6,20 +6,14 @@ if (!defined('BASEPATH'))
 class M_Project_terima extends CI_Model
 {
     //Models
-    const bool_ktp_fotokopi = "bool_ktp_fotokopi";
-    const bool_ktp_asli = "bool_ktp_asli";
-    const bool_npwp_fotokopi = "bool_npwp_fotokopi";
-    const bool_npwp_asli = "bool_npwp_asli";
-    const bool_sertifikat_fotokopi = "bool_sertifikat_fotokopi";
-    const bool_sertifikat_asli = "bool_sertifikat_asli";
-    const bool_imb_fotokopi = "bool_imb_fotokopi";
-    const bool_imb_asli = "bool_imb_asli";
+    const bool_ktp = "bool_ktp";
+    const bool_npwp = "bool_npwp";
+    const bool_sertifikat = "bool_sertifikat";
+    const bool_imb = "bool_imb";
     const bool_stempel = "bool_stempel";
     const jml_materai = "jml_materai";
-    const bool_sk_domisili_fotokopi = "bool_sk_domisili_fotokopi";
-    const bool_sk_domisili_asli = "bool_sk_domisili_asli";
-    const bool_surat_sewa_fotokopi = "bool_surat_sewa_fotokopi";
-    const bool_surat_sewa_asli = "bool_surat_sewa_asli";
+    const bool_sk_domisili = "bool_sk_domisili";
+    const bool_surat_sewa = "bool_surat_sewa";
     const ID_Project_terima = "ID_Project_terima";
     const ID_Hdr_Project = "ID_Hdr_Project";
     const ID_Project = "ID_Project";
@@ -30,20 +24,14 @@ class M_Project_terima extends CI_Model
     const TABLE = "trs_project_terima";
 
 //for inisialisasi.
-    public $bool_ktp_fotokopi;
-    public $bool_ktp_asli;
-    public $bool_npwp_fotokopi;
-    public $bool_npwp_asli;
-    public $bool_sertifikat_fotokopi;
-    public $bool_sertifikat_asli;
-    public $bool_imb_fotokopi;
-    public $bool_imb_asli;
+    public $bool_ktp;
+    public $bool_npwp;
+    public $bool_sertifikat;
+    public $bool_imb;
     public $bool_stempel;
     public $jml_materai;
-    public $bool_sk_domisili_fotokopi;
-    public $bool_sk_domisili_asli;
-    public $bool_surat_sewa_fotokopi;
-    public $bool_surat_sewa_asli;
+    public $bool_sk_domisili;
+    public $bool_surat_sewa;
     public $ID_Project_terima;
     public $ID_Hdr_Project;
     public $ID_Project;
@@ -65,11 +53,11 @@ class M_Project_terima extends CI_Model
     // datatables
     function json()
     {
-        $this->datatables->select('bool_ktp_fotokopi,bool_ktp_asli,bool_npwp_fotokopi,bool_npwp_asli,bool_sertifikat_fotokopi,bool_sertifikat_asli,bool_imb_fotokopi,bool_imb_asli,bool_stempel,jml_materai,bool_sk_domisili_fotokopi,bool_sk_domisili_asli,bool_surat_sewa_fotokopi,bool_surat_sewa_asli,ID_Project_terima,ID_Hdr_Project,ID_Project,Created_by,EntryTime,Modified_by,Last_Modified');
+        $this->datatables->select('bool_ktp,bool_npwp,bool_sertifikat,bool_imb,bool_stempel,jml_materai,bool_sk_domisili,bool_surat_sewa,ID_Project_terima,ID_Hdr_Project,ID_Project,Created_by,EntryTime,Modified_by,Last_Modified');
         $this->datatables->from('trs_project_terima');
         //add this line for join
         //$this->datatables->join('table2', 'trs_project_terima.field = table2.field');
-        $this->datatables->add_column('action', anchor(site_url('project_terima/read/$1'), 'Read') . " | " . anchor(site_url('project_terima/update/$1'), 'Update') . " | " . anchor(site_url('project_terima/delete/$1'), 'Delete', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'ID_Project_terima');
+        $this->datatables->add_column('action', anchor(site_url('transaksi/project_terima/read/$1'), 'Read') . " | " . anchor(site_url('transaksi/project_terima/update/$1'), 'Update') . " | " . anchor(site_url('transaksi/project_terima/delete/$1'), 'Delete', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'ID_Project_terima');
         return $this->datatables->generate();
     }
 
@@ -91,20 +79,14 @@ class M_Project_terima extends CI_Model
     function total_rows($q = NULL)
     {
         $this->db->like('ID_Project_terima', $q);
-        $this->db->or_like('bool_ktp_fotokopi', $q);
-        $this->db->or_like('bool_ktp_asli', $q);
-        $this->db->or_like('bool_npwp_fotokopi', $q);
-        $this->db->or_like('bool_npwp_asli', $q);
-        $this->db->or_like('bool_sertifikat_fotokopi', $q);
-        $this->db->or_like('bool_sertifikat_asli', $q);
-        $this->db->or_like('bool_imb_fotokopi', $q);
-        $this->db->or_like('bool_imb_asli', $q);
+        $this->db->or_like('bool_ktp', $q);
+        $this->db->or_like('bool_npwp', $q);
+        $this->db->or_like('bool_sertifikat', $q);
+        $this->db->or_like('bool_imb', $q);
         $this->db->or_like('bool_stempel', $q);
         $this->db->or_like('jml_materai', $q);
-        $this->db->or_like('bool_sk_domisili_fotokopi', $q);
-        $this->db->or_like('bool_sk_domisili_asli', $q);
-        $this->db->or_like('bool_surat_sewa_fotokopi', $q);
-        $this->db->or_like('bool_surat_sewa_asli', $q);
+        $this->db->or_like('bool_sk_domisili', $q);
+        $this->db->or_like('bool_surat_sewa', $q);
         $this->db->or_like('ID_Hdr_Project', $q);
         $this->db->or_like('ID_Project', $q);
         $this->db->or_like('Created_by', $q);
@@ -120,20 +102,14 @@ class M_Project_terima extends CI_Model
     {
         $this->db->order_by($this->id, $this->order);
         $this->db->like('ID_Project_terima', $q);
-        $this->db->or_like('bool_ktp_fotokopi', $q);
-        $this->db->or_like('bool_ktp_asli', $q);
-        $this->db->or_like('bool_npwp_fotokopi', $q);
-        $this->db->or_like('bool_npwp_asli', $q);
-        $this->db->or_like('bool_sertifikat_fotokopi', $q);
-        $this->db->or_like('bool_sertifikat_asli', $q);
-        $this->db->or_like('bool_imb_fotokopi', $q);
-        $this->db->or_like('bool_imb_asli', $q);
+        $this->db->or_like('bool_ktp', $q);
+        $this->db->or_like('bool_npwp', $q);
+        $this->db->or_like('bool_sertifikat', $q);
+        $this->db->or_like('bool_imb', $q);
         $this->db->or_like('bool_stempel', $q);
         $this->db->or_like('jml_materai', $q);
-        $this->db->or_like('bool_sk_domisili_fotokopi', $q);
-        $this->db->or_like('bool_sk_domisili_asli', $q);
-        $this->db->or_like('bool_surat_sewa_fotokopi', $q);
-        $this->db->or_like('bool_surat_sewa_asli', $q);
+        $this->db->or_like('bool_sk_domisili', $q);
+        $this->db->or_like('bool_surat_sewa', $q);
         $this->db->or_like('ID_Hdr_Project', $q);
         $this->db->or_like('ID_Project', $q);
         $this->db->or_like('Created_by', $q);

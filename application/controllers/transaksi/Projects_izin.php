@@ -10,8 +10,10 @@ class Projects_izin extends CI_Controller
         parent::__construct();
         $this->load->model('M_project');
         $this->load->model('M_Project_izin');
+        $this->load->model('M_login');
         $this->load->library('form_validation');
         $this->load->library('datatables');
+        $this->M_login->isLogin();
     }
 
     public function index()

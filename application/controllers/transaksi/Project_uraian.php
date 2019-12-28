@@ -10,8 +10,10 @@ class Project_uraian extends CI_Controller
         parent::__construct();
         $this->load->model('M_Project_uraian');
         $this->load->model('M_project');
+        $this->load->model('M_login');
         $this->load->library('form_validation');
         $this->load->library('datatables');
+        $this->M_login->isLogin();
     }
 
     public function index()
@@ -108,7 +110,7 @@ class Project_uraian extends CI_Controller
             'ID_Project' => $id_projects,
             'Created_By' => $this->session->userdata('yangLogin'),
             'EntryTime' => date('Y-m-d H:i:s'),
-            'ID_Project_Uraian' => $this->M_Project_uraian->getId(),
+            'ID_Project_Uraian' => $this->M_Project_uraian->get_Id(),
         );
 
         $this->M_Project_uraian->insert($data);

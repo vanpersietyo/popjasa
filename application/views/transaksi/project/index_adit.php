@@ -96,6 +96,60 @@
 		window.location.href = "<?php echo site_url('transaksi/project/create_project')?>";
     }
 
+    function confirm_project($id) {
+        if(confirm('Are you sure confirm this data?'))
+        {
+            // ajax delete data to database
+            $.ajax({
+                url : "<?php echo site_url('transaksi/project/confirm')?>/"+$id,
+                type: "POST",
+                dataType: "JSON",
+                success: function(data)
+                {
+                    //if success reload ajax table
+                    $('#modal_form').modal('hide');
+                    reload_table();
+                    swal("Good Job !", "Data Berhasil Diupdate !", "success");
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    swal("Upps Sorry !", "Data Gagal Diupdate !", "warning");
+                }
+            });
+
+        }
+    }
+
+    function delete_project(id)
+    {
+        if(confirm('Are you sure delete this data?'))
+        {
+            // ajax delete data to database
+            $.ajax({
+                url : "<?php echo site_url('transaksi/project/ajax_delete_project')?>/"+id,
+                type: "POST",
+                dataType: "JSON",
+                success: function(data)
+                {
+                    //if success reload ajax table
+                    $('#modal_form').modal('hide');
+                    reload_table();
+                    swal("Good Job !", "Data Berhasil Dihapus !", "success");
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    swal("Upps Sorry !", "Data Gagal Dihapus !", "warning");
+                }
+            });
+
+        }
+    }
+
+
+    function reload_table()
+    {
+        table.ajax.reload(null,false); //reload datatable ajax
+    }
 </script>
 
 <?php
