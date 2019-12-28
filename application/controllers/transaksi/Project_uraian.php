@@ -107,7 +107,8 @@ class Project_uraian extends CI_Controller
             'ID_Hdr_Project' => $this->input->post('ID_Hdr_Project', TRUE),
             'ID_Project' => $id_projects,
             'Created_By' => $this->session->userdata('yangLogin'),
-            'EntryTime' => date('Y-m-d H:i:s'),          
+            'EntryTime' => date('Y-m-d H:i:s'),
+            'ID_Project_Uraian' => $this->M_Project_uraian->getId(),
         );
 
         $this->M_Project_uraian->insert($data);
@@ -253,7 +254,7 @@ class Project_uraian extends CI_Controller
         if ($project_ket) {
             return $this->update($project_ket->id);
         }else {
-            return $this->create($id);
+            return $this->create_uraian($id);
         }
     }
 }

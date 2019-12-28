@@ -206,6 +206,22 @@ class M_Project_terima extends CI_Model
         return empty($result) ? FALSE : $data->result();
     }
 
+    function get_id(){
+        $tahun=date('Y');
+        $bulan=date('m');
+        $q = $this->db->query("select MAX(RIGHT($this->id,5)) as kd_max from $this->table");
+        $kd = "";
+        if($q->num_rows()>0){
+            foreach($q->result() as $k){
+                $tmp = ((int)$k->kd_max)+1;
+                $kd = sprintf("%05s",$tmp);
+            }
+        }else{
+            $kd = "00001";
+        }
+        return "DKT$tahun$bulan".$kd;
+    }
+
 }
 
 /* End of file M_Project_terima.php */

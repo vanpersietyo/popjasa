@@ -256,7 +256,7 @@ class Project_terima extends CI_Controller
         if ($project_ket) {
             return $this->update($project_ket->id);
         }else {
-            return $this->create($id);
+            return $this->create_terima($id);
         }
     }
 }

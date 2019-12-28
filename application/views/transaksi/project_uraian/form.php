@@ -13,6 +13,33 @@ $this->load->view('template/head');
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="varchar">ID Hdr
+                                                        Project <?php echo form_error('ID_Hdr_Project') ?></label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="ID_Hdr_Project"
+                                                               id="ID_Hdr_Project"
+                                                               placeholder="ID Hdr Project"
+                                                               value="<?php echo $ID_Hdr_Project; ?>"
+                                                               readonly/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="varchar">ID
+                                                        Project <?php echo form_error('ID_Project') ?></label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="ID_Project"
+                                                               id="ID_Project"
+                                                               placeholder="ID Project"
+                                                               value="<?php echo $ID_Project; ?>" readonly/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="col-md-12">
                                                 <label>NAMA PERUSAHAAN</label>
                                                 <div class="input-group">

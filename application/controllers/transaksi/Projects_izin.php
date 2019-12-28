@@ -220,7 +220,7 @@ class Projects_izin extends CI_Controller
         if (!empty($project)) {
             $data = array(
                 'button' => 'Create',
-                'action' => site_url('transaksi/projects_izin/cek_exist_projects/'),
+                'action' => site_url('transaksi/projects_izin/create_action/'),
                 'Bool_Izin_Akta_Notaris' => set_value('Bool_Izin_Akta_Notaris'),
                 'Izin_Akta_Notaris' => set_value('Izin_Akta_Notaris'),
                 'Bool_Izin_Pengesahan' => set_value('Bool_Izin_Pengesahan'),
@@ -249,7 +249,7 @@ class Projects_izin extends CI_Controller
         if ($project_ket) {
             return $this->update($project_ket->id);
         }else {
-            return $this->create($id);
+            return $this->create_izin($id);
         }
     }
 }
