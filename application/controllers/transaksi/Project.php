@@ -599,4 +599,16 @@ class Project extends CI_Controller
         echo json_encode(array("status" => TRUE));
     }
 
+    public function simpan_edit_project()
+    {
+        $id = $this->input->post('id_project');
+
+        $data = [
+            'nm_project' => $this->input->post('nm_project'),
+            'keterangan' => $this->input->post('keterangan'),
+        ];
+
+        $this->M_project->update(array('id_project' => $id), $data);
+        echo json_encode(array("status" => TRUE));
+    }
 }

@@ -55,9 +55,10 @@ class Projects_ket extends CI_Controller
     }
 
     public function cek_exist_projects($id) {
-        $project_ket =$this->M_Project_ket->find_first(["id_project"=>$id]);
+
+        $project_ket =$this->M_Project_ket->find_first(["ID_Project"=>$id]);
         if ($project_ket) {
-            return $this->update($project_ket->id);
+            return $this->update($project_ket->ID_Project_Ket);
         }else {
             return $this->create($id);
         }
@@ -131,6 +132,7 @@ class Projects_ket extends CI_Controller
                 'ID_Project_Ket' => set_value('ID_Project_Ket', $row->ID_Project_Ket),
                 'ID_Hdr_Project' => set_value('ID_Hdr_Project', $row->ID_Hdr_Project),
                 'ID_Project' => set_value('ID_Project', $row->ID_Project),
+                'Pass_Email' => set_value('Pass_Email', $row->Pass_Email),
                 'pages' => 'transaksi/projects_ket/form',                
             );
             $this->load->view('layout', $data);
