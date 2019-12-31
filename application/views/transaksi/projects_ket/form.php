@@ -60,7 +60,7 @@ $this->load->view('template/head');
                                                         <label>Email UNTUK NIB</label>
                                                         <div class="input-group">
                                                             <input type="text" class="form-control" name="email"
-                                                                   id="email" value="<?php echo $Ket_Email; ?>"/>
+                                                                   id="email" value="<?php echo $Email; ?>"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">

@@ -249,7 +249,7 @@ class Projects_izin extends CI_Controller
     public function cek_exist_projects($id) {
         $project_ket =$this->M_Project_izin->find_first(["id_project"=>$id]);
         if ($project_ket) {
-            return $this->update($project_ket->id);
+            return $this->update($project_ket->ID_Project_JNS);
         }else {
             return $this->create_izin($id);
         }
