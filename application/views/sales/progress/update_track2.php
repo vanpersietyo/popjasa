@@ -221,471 +221,472 @@
       <!-- Form wzard with step validation section start -->
       <section id="icon-tabs">
          <div class="row">
-           <div class="col-12">
-             <div class="card">
-               <div class="card-header">
-                 <h4 class="card-title danger">#Tracking Progress Produk Jasa </h4>
-                 <a class="heading-elements-toggle"><i class="la la-ellipsis-h font-medium-3"></i></a>
+             <div class="col-12">
+                 <div class="card">
+                     <div class="card-header">
+                         <h4 class="card-title danger">#Tracking Progress Produk Jasa </h4>
+                         <a class="heading-elements-toggle"><i class="la la-ellipsis-h font-medium-3"></i></a>
 
-               </div>
-               <div class="card-content collapse show">
-                 <div class="card-body">
-                   <form action="#" class="icons-tab-steps wizard-notification">
-                     <!-- Step 1 -->
-                     <h6 class="bg-dark"><i class="step-icon la la-file"></i> Minuta</h6>
-                     <fieldset>
-                       <div class="row">
-                         <div class="col-md-12">
-                           <div class="row">
-                             <div class="col-md-4">
-                              <label>Status</label>
-                                <select class="form-control" name="kota_customer"  width="100%" required>
-                                   <option value="1"> Tidak Dikerjain </option>
-                                   <option value="2"> On Progress </option>
-                                   <option value="3"> Bermasalah </option>
-                                   <option value="4"> Belum Dikerjain </option>
-                                   <option value="5"> Sudah Dikerjakan </option>
-                                 </select>
-                               </div>
-                             <div class="col-md-4">
-                               <div class="form-group">
-                                   <label for="projectinput2">Tgl Minuta Jadi</label>
-                                   <div class="input-group">
-                                     <div class="input-group-prepend">
-                                       <button class="btn btn-dark" type="button"><i class="la la-calendar"></i></button>
+                     </div>
+                     <div class="card-content collapse show">
+                         <div class="card-body">
+                             <form action="#" class="icons-tab-steps wizard-notification">
+                                 <!-- Step 1
+                                 <h6 class="bg-dark"><i class="step-icon la la-file"></i> Minuta</h6>
+                                 <fieldset>
+                                   <div class="row">
+                                     <div class="col-md-12">
+                                       <div class="row">
+                                         <div class="col-md-4">
+                                          <label>Status</label>
+                                            <select class="form-control" name="kota_customer"  width="100%" required>
+                                               <option value="1"> Tidak Dikerjain </option>
+                                               <option value="2"> On Progress </option>
+                                               <option value="3"> Bermasalah </option>
+                                               <option value="4"> Belum Dikerjain </option>
+                                               <option value="5"> Sudah Dikerjakan </option>
+                                             </select>
+                                           </div>
+                                         <div class="col-md-4">
+                                           <div class="form-group">
+                                               <label for="projectinput2">Tgl Minuta Jadi</label>
+                                               <div class="input-group">
+                                                 <div class="input-group-prepend">
+                                                   <button class="btn btn-dark" type="button"><i class="la la-calendar"></i></button>
+                                                 </div>
+                                                 <input data-role="date" type='text' class="datepicker form-control" name="TGL_01" required />
+                                             </div>
+                                           </div>
+                                         </div>
+                                         <div class="col-md-4">
+                                           <div class="form-group">
+                                               <label for="projectinput2">Tgl TTD Minuta</label>
+                                               <div class="input-group">
+                                                 <div class="input-group-prepend">
+                                                   <button class="btn btn-dark" type="button"><i class="la la-calendar"></i></button>
+                                                 </div>
+                                               <input data-role="date" type='text' class="datepicker form-control" name="TGL_02" required />
+                                             </div>
+                                           </div>
+                                         </div>
+                                         <div class="col-md-6">
+                                           <label>Nama Client Yang Hadir Saat TTD</label>
+                                            <textarea name="keterangan" placeholder="Ketik Disini .." maxlength="255" class="form-control" type="textarea" required></textarea>
+                                         </div>
+                                         <div class="col-md-6">
+                                           <label>Pengertian Minuta</label>
+                                             <textarea name="keterangan" placeholder="Ketik Disini .." maxlength="255" class="form-control" type="textarea" required></textarea>
+                                         </div>
+                                       </div>
                                      </div>
-                                     <input data-role="date" type='text' class="datepicker form-control" name="TGL_01" required />
-                                 </div>
-                               </div>
-                             </div>
-                             <div class="col-md-4">
-                               <div class="form-group">
-                                   <label for="projectinput2">Tgl TTD Minuta</label>
-                                   <div class="input-group">
-                                     <div class="input-group-prepend">
-                                       <button class="btn btn-dark" type="button"><i class="la la-calendar"></i></button>
-                                     </div>
-                                   <input data-role="date" type='text' class="datepicker form-control" name="TGL_02" required />
-                                 </div>
-                               </div>
-                             </div>
-                             <div class="col-md-6">
-                               <label>Nama Client Yang Hadir Saat TTD</label>
-                                <textarea name="keterangan" placeholder="Ketik Disini .." maxlength="255" class="form-control" type="textarea" required></textarea>
-                             </div>
-                             <div class="col-md-6">
-                               <label>Pengertian Minuta</label>
-                                 <textarea name="keterangan" placeholder="Ketik Disini .." maxlength="255" class="form-control" type="textarea" required></textarea>
-                             </div>
-                           </div>
-                         </div>
-                       </div>
-                     </fieldset>
-                     <!-- Step Akte -->
-                     <h6><i class="step-icon la la-file"></i> Akte</h6>
-                     <fieldset>
-                       <div class="row">
-                         <div class="col-md-12">
-                           <div class="row">
-                             <div class="col-md-3">
-                              <label>Status</label>
-                                <select class="form-control" name="kota_customer"  width="100%" required>
-                                   <option value="1"> Tidak Dikerjain </option>
-                                   <option value="2"> On Progress </option>
-                                   <option value="3"> Bermasalah </option>
-                                   <option value="4"> Belum Dikerjain </option>
-                                   <option value="5"> Sudah Dikerjakan </option>
-                                 </select>
-                               </div>
-                             <div class="col-md-3">
-                               <div class="form-group">
-                                   <label for="projectinput2">No Akte</label>
-                                   <div class="input-group">
-                                     <div class="input-group-prepend">
-                                       <button class="btn btn-dark" type="button"><i class="la la-file"></i></button>
-                                     </div>
-                                     <input type='text' class="form-control" name="TGL_01" required />
-                                 </div>
-                               </div>
-                             </div>
-                             <div class="col-md-3">
-                               <div class="form-group">
-                                   <label for="projectinput2">Kedudukan Perusahaan</label>
-                                   <div class="input-group">
-                                     <div class="input-group-prepend">
-                                       <button class="btn btn-dark" type="button"><i class="la la-calendar"></i></button>
-                                     </div>
-                                   <input data-role="date" type='text' class="datepicker form-control" name="TGL_02" required />
-                                 </div>
-                               </div>
-                             </div>
+                                   </div>
+                                 </fieldset>
+                                 <!-- Step Akte
+                                 <h6><i class="step-icon la la-file"></i> Akte</h6>
+                                 <fieldset>
+                                   <div class="row">
+                                     <div class="col-md-12">
+                                       <div class="row">
+                                         <div class="col-md-3">
+                                          <label>Status</label>
+                                            <select class="form-control" name="kota_customer"  width="100%" required>
+                                               <option value="1"> Tidak Dikerjain </option>
+                                               <option value="2"> On Progress </option>
+                                               <option value="3"> Bermasalah </option>
+                                               <option value="4"> Belum Dikerjain </option>
+                                               <option value="5"> Sudah Dikerjakan </option>
+                                             </select>
+                                           </div>
+                                         <div class="col-md-3">
+                                           <div class="form-group">
+                                               <label for="projectinput2">No Akte</label>
+                                               <div class="input-group">
+                                                 <div class="input-group-prepend">
+                                                   <button class="btn btn-dark" type="button"><i class="la la-file"></i></button>
+                                                 </div>
+                                                 <input type='text' class="form-control" name="TGL_01" required />
+                                             </div>
+                                           </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                           <div class="form-group">
+                                               <label for="projectinput2">Kedudukan Perusahaan</label>
+                                               <div class="input-group">
+                                                 <div class="input-group-prepend">
+                                                   <button class="btn btn-dark" type="button"><i class="la la-calendar"></i></button>
+                                                 </div>
+                                               <input data-role="date" type='text' class="datepicker form-control" name="TGL_02" required />
+                                             </div>
+                                           </div>
+                                         </div>
 
-                             <div class="col-md-3">
-                               <div class="form-group">
-                                   <label for="projectinput2">Modal Yang Tercantum Dalam Akte</label>
-                                   <div class="input-group">
-                                     <div class="input-group-prepend">
-                                       <button class="btn btn-dark" type="button"><i class="la la-calendar"></i></button>
+                                         <div class="col-md-3">
+                                           <div class="form-group">
+                                               <label for="projectinput2">Modal Yang Tercantum Dalam Akte</label>
+                                               <div class="input-group">
+                                                 <div class="input-group-prepend">
+                                                   <button class="btn btn-dark" type="button"><i class="la la-calendar"></i></button>
+                                                 </div>
+                                               <input data-role="date" type='text' class="datepicker form-control" name="TGL_02" required />
+                                             </div>
+                                           </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                           <div class="form-group">
+                                               <label for="projectinput2">No Akte</label>
+                                               <div class="input-group">
+                                                 <div class="input-group-prepend">
+                                                   <button class="btn btn-dark" type="button"><i class="la la-file"></i></button>
+                                                 </div>
+                                                 <input type='text' class="form-control" name="TGL_01" required />
+                                             </div>
+                                           </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                           <label>Susunan Pengurus dan Nama Client</label>
+                                            <textarea name="keterangan" placeholder="Ketik Disini .. (Contoh: akta pendirian,akta pembubaran atau akta perubahan)" maxlength="255" class="form-control" type="textarea" required></textarea>
+                                         </div>
+                                         <div class="col-md-3">
+                                           <label>Keterangan Akte</label>
+                                            <textarea name="keterangan" placeholder="Ketik Disini .. (Contoh: akta pendirian,akta pembubaran atau akta perubahan)" maxlength="255" class="form-control" type="textarea" required></textarea>
+                                         </div>
+                                         <div class="col-md-3">
+                                           <label>Pengertian Akte</label>
+                                             <textarea name="keterangan" placeholder="Ketik Disini .." maxlength="255" class="form-control" type="textarea" required></textarea>
+                                         </div>
+                                       </div>
                                      </div>
-                                   <input data-role="date" type='text' class="datepicker form-control" name="TGL_02" required />
-                                 </div>
-                               </div>
-                             </div>
-                             <div class="col-md-3">
-                               <div class="form-group">
-                                   <label for="projectinput2">No Akte</label>
-                                   <div class="input-group">
-                                     <div class="input-group-prepend">
-                                       <button class="btn btn-dark" type="button"><i class="la la-file"></i></button>
+                                   </div>
+                                 </fieldset>
+                                 <!-- Step 3
+                                 <h6><i class="step-icon la la-map-o"></i> Domisili</h6>
+                                 <fieldset>
+                                   <div class="row">
+                                     <div class="col-md-6">
+                                       <div class="form-group">
+                                         <label for="eventName2">Event Name :</label>
+                                         <input type="text" class="form-control" id="eventName2">
+                                       </div>
+                                       <div class="form-group">
+                                         <label for="eventType2">Event Type :</label>
+                                         <select class="c-select form-control" id="eventType2" data-placeholder="Type to search cities"
+                                         name="eventType2">
+                                           <option value="Banquet">Banquet</option>
+                                           <option value="Fund Raiser">Fund Raiser</option>
+                                           <option value="Dinner Party">Dinner Party</option>
+                                           <option value="Wedding">Wedding</option>
+                                         </select>
+                                       </div>
+                                       <div class="form-group">
+                                         <label for="eventLocation2">Event Location :</label>
+                                         <select class="c-select form-control" id="eventLocation2" name="location">
+                                           <option value="">Select City</option>
+                                           <option value="Amsterdam">Amsterdam</option>
+                                           <option value="Berlin">Berlin</option>
+                                           <option value="Frankfurt">Frankfurt</option>
+                                         </select>
+                                       </div>
                                      </div>
-                                     <input type='text' class="form-control" name="TGL_01" required />
-                                 </div>
-                               </div>
-                             </div>
-                             <div class="col-md-3">
-                               <label>Susunan Pengurus dan Nama Client</label>
-                                <textarea name="keterangan" placeholder="Ketik Disini .. (Contoh: akta pendirian,akta pembubaran atau akta perubahan)" maxlength="255" class="form-control" type="textarea" required></textarea>
-                             </div>
-                             <div class="col-md-3">
-                               <label>Keterangan Akte</label>
-                                <textarea name="keterangan" placeholder="Ketik Disini .. (Contoh: akta pendirian,akta pembubaran atau akta perubahan)" maxlength="255" class="form-control" type="textarea" required></textarea>
-                             </div>
-                             <div class="col-md-3">
-                               <label>Pengertian Akte</label>
-                                 <textarea name="keterangan" placeholder="Ketik Disini .." maxlength="255" class="form-control" type="textarea" required></textarea>
-                             </div>
-                           </div>
+                                     <div class="col-md-6">
+                                       <div class="form-group">
+                                         <label>Event Date - Time :</label>
+                                         <div class='input-group'>
+                                           <input type='text' class="form-control datetime" />
+                                           <span class="input-group-addon">
+                                             <span class="ft-calendar"></span>
+                                           </span>
+                                         </div>
+                                       </div>
+                                       <div class="form-group">
+                                         <label for="eventStatus2">Event Status :</label>
+                                         <select class="c-select form-control" id="eventStatus2" name="eventStatus">
+                                           <option value="Planning">Planning</option>
+                                           <option value="In Progress">In Progress</option>
+                                           <option value="Finished">Finished</option>
+                                         </select>
+                                       </div>
+                                       <div class="form-group">
+                                         <label>Requirements :</label>
+                                         <div class="c-inputs-stacked">
+                                           <div class="d-inline-block custom-control custom-checkbox">
+                                             <input type="checkbox" name="status2" class="custom-control-input" id="staffing2">
+                                             <label class="custom-control-label" for="staffing2">Staffing</label>
+                                           </div>
+                                           <div class="d-inline-block custom-control custom-checkbox">
+                                             <input type="checkbox" name="status2" class="custom-control-input" id="catering2">
+                                             <label class="custom-control-label" for="catering2">Catering</label>
+                                           </div>
+                                         </div>
+                                       </div>
+                                     </div>
+                                   </div>
+                                 </fieldset>
+                                 <!-- Step 4
+                                 <h6><i class="step-icon la la-money"></i> NPWP</h6>
+                                 <fieldset>
+                                   <div class="row">
+                                     <div class="col-md-6">
+                                       <div class="form-group">
+                                         <label for="meetingName2">Name of Meeting :</label>
+                                         <input type="text" class="form-control" id="meetingName2">
+                                       </div>
+                                       <div class="form-group">
+                                         <label for="meetingLocation2">Location :</label>
+                                         <input type="text" class="form-control" id="meetingLocation2">
+                                       </div>
+                                       <div class="form-group">
+                                         <label for="participants2">Names of Participants</label>
+                                         <textarea name="participants" id="participants2" rows="4" class="form-control"></textarea>
+                                       </div>
+                                     </div>
+                                     <div class="col-md-6">
+                                       <div class="form-group">
+                                         <label for="decisions2">Decisions Reached</label>
+                                         <textarea name="decisions" id="decisions2" rows="4" class="form-control"></textarea>
+                                       </div>
+                                       <div class="form-group">
+                                         <label>Agenda Items :</label>
+                                         <div class="c-inputs-stacked">
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item21">
+                                             <label class="custom-control-label" for="item21">1st item</label>
+                                           </div>
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item22">
+                                             <label class="custom-control-label" for="item22">2nd item</label>
+                                           </div>
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item23">
+                                             <label class="custom-control-label" for="item23">3rd item</label>
+                                           </div>
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item24">
+                                             <label class="custom-control-label" for="item24">4th item</label>
+                                           </div>
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item25">
+                                             <label class="custom-control-label" for="item25">5th item</label>
+                                           </div>
+                                         </div>
+                                       </div>
+                                     </div>
+                                   </div>
+                                 </fieldset>
+                                 <!-- Step 5
+                                 <h6><i class="step-icon la la-building"></i> PN</h6>
+                                 <fieldset>
+                                   <div class="row">
+                                     <div class="col-md-6">
+                                       <div class="form-group">
+                                         <label for="meetingName2">Name of Meeting :</label>
+                                         <input type="text" class="form-control" id="meetingName2">
+                                       </div>
+                                       <div class="form-group">
+                                         <label for="meetingLocation2">Location :</label>
+                                         <input type="text" class="form-control" id="meetingLocation2">
+                                       </div>
+                                       <div class="form-group">
+                                         <label for="participants2">Names of Participants</label>
+                                         <textarea name="participants" id="participants2" rows="4" class="form-control"></textarea>
+                                       </div>
+                                     </div>
+                                     <div class="col-md-6">
+                                       <div class="form-group">
+                                         <label for="decisions2">Decisions Reached</label>
+                                         <textarea name="decisions" id="decisions2" rows="4" class="form-control"></textarea>
+                                       </div>
+                                       <div class="form-group">
+                                         <label>Agenda Items :</label>
+                                         <div class="c-inputs-stacked">
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item21">
+                                             <label class="custom-control-label" for="item21">1st item</label>
+                                           </div>
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item22">
+                                             <label class="custom-control-label" for="item22">2nd item</label>
+                                           </div>
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item23">
+                                             <label class="custom-control-label" for="item23">3rd item</label>
+                                           </div>
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item24">
+                                             <label class="custom-control-label" for="item24">4th item</label>
+                                           </div>
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item25">
+                                             <label class="custom-control-label" for="item25">5th item</label>
+                                           </div>
+                                         </div>
+                                       </div>
+                                     </div>
+                                   </div>
+                                 </fieldset>
+                                 <!-- Step 6
+                                 <h6><i class="step-icon la la-building"></i> SIUP</h6>
+                                 <fieldset>
+                                   <div class="row">
+                                     <div class="col-md-6">
+                                       <div class="form-group">
+                                         <label for="meetingName2">Name of Meeting :</label>
+                                         <input type="text" class="form-control" id="meetingName2">
+                                       </div>
+                                       <div class="form-group">
+                                         <label for="meetingLocation2">Location :</label>
+                                         <input type="text" class="form-control" id="meetingLocation2">
+                                       </div>
+                                       <div class="form-group">
+                                         <label for="participants2">Names of Participants</label>
+                                         <textarea name="participants" id="participants2" rows="4" class="form-control"></textarea>
+                                       </div>
+                                     </div>
+                                     <div class="col-md-6">
+                                       <div class="form-group">
+                                         <label for="decisions2">Decisions Reached</label>
+                                         <textarea name="decisions" id="decisions2" rows="4" class="form-control"></textarea>
+                                       </div>
+                                       <div class="form-group">
+                                         <label>Agenda Items :</label>
+                                         <div class="c-inputs-stacked">
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item21">
+                                             <label class="custom-control-label" for="item21">1st item</label>
+                                           </div>
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item22">
+                                             <label class="custom-control-label" for="item22">2nd item</label>
+                                           </div>
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item23">
+                                             <label class="custom-control-label" for="item23">3rd item</label>
+                                           </div>
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item24">
+                                             <label class="custom-control-label" for="item24">4th item</label>
+                                           </div>
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item25">
+                                             <label class="custom-control-label" for="item25">5th item</label>
+                                           </div>
+                                         </div>
+                                       </div>
+                                     </div>
+                                   </div>
+                                 </fieldset>
+                                 <!-- Step 7
+                                 <h6><i class="step-icon la la-building"></i> TDP</h6>
+                                 <fieldset>
+                                   <div class="row">
+                                     <div class="col-md-6">
+                                       <div class="form-group">
+                                         <label for="meetingName2">Name of Meeting :</label>
+                                         <input type="text" class="form-control" id="meetingName2">
+                                       </div>
+                                       <div class="form-group">
+                                         <label for="meetingLocation2">Location :</label>
+                                         <input type="text" class="form-control" id="meetingLocation2">
+                                       </div>
+                                       <div class="form-group">
+                                         <label for="participants2">Names of Participants</label>
+                                         <textarea name="participants" id="participants2" rows="4" class="form-control"></textarea>
+                                       </div>
+                                     </div>
+                                     <div class="col-md-6">
+                                       <div class="form-group">
+                                         <label for="decisions2">Decisions Reached</label>
+                                         <textarea name="decisions" id="decisions2" rows="4" class="form-control"></textarea>
+                                       </div>
+                                       <div class="form-group">
+                                         <label>Agenda Items :</label>
+                                         <div class="c-inputs-stacked">
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item21">
+                                             <label class="custom-control-label" for="item21">1st item</label>
+                                           </div>
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item22">
+                                             <label class="custom-control-label" for="item22">2nd item</label>
+                                           </div>
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item23">
+                                             <label class="custom-control-label" for="item23">3rd item</label>
+                                           </div>
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item24">
+                                             <label class="custom-control-label" for="item24">4th item</label>
+                                           </div>
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item25">
+                                             <label class="custom-control-label" for="item25">5th item</label>
+                                           </div>
+                                         </div>
+                                       </div>
+                                     </div>
+                                   </div>
+                                 </fieldset>
+                                 <!-- Step 8
+                                 <h6><i class="step-icon la la-building"></i> PKD</h6>
+                                 <fieldset>
+                                   <div class="row">
+                                     <div class="col-md-6">
+                                       <div class="form-group">
+                                         <label for="meetingName2">Name of Meeting :</label>
+                                         <input type="text" class="form-control" id="meetingName2">
+                                       </div>
+                                       <div class="form-group">
+                                         <label for="meetingLocation2">Location :</label>
+                                         <input type="text" class="form-control" id="meetingLocation2">
+                                       </div>
+                                       <div class="form-group">
+                                         <label for="participants2">Names of Participants</label>
+                                         <textarea name="participants" id="participants2" rows="4" class="form-control"></textarea>
+                                       </div>
+                                     </div>
+                                     <div class="col-md-6">
+                                       <div class="form-group">
+                                         <label for="decisions2">Decisions Reached</label>
+                                         <textarea name="decisions" id="decisions2" rows="4" class="form-control"></textarea>
+                                       </div>
+                                       <div class="form-group">
+                                         <label>Agenda Items :</label>
+                                         <div class="c-inputs-stacked">
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item21">
+                                             <label class="custom-control-label" for="item21">1st item</label>
+                                           </div>
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item22">
+                                             <label class="custom-control-label" for="item22">2nd item</label>
+                                           </div>
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item23">
+                                             <label class="custom-control-label" for="item23">3rd item</label>
+                                           </div>
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item24">
+                                             <label class="custom-control-label" for="item24">4th item</label>
+                                           </div>
+                                           <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" name="agenda2" class="custom-control-input" id="item25">
+                                             <label class="custom-control-label" for="item25">5th item</label>
+                                           </div>
+                                         </div>
+                                       </div>
+                                     </div>
+                                   </div>
+                                 </fieldset>
+                                 -->
+                             </form>
                          </div>
-                       </div>
-                     </fieldset>
-                     <!-- Step 3 -->
-                     <h6><i class="step-icon la la-map-o"></i> Domisili</h6>
-                     <fieldset>
-                       <div class="row">
-                         <div class="col-md-6">
-                           <div class="form-group">
-                             <label for="eventName2">Event Name :</label>
-                             <input type="text" class="form-control" id="eventName2">
-                           </div>
-                           <div class="form-group">
-                             <label for="eventType2">Event Type :</label>
-                             <select class="c-select form-control" id="eventType2" data-placeholder="Type to search cities"
-                             name="eventType2">
-                               <option value="Banquet">Banquet</option>
-                               <option value="Fund Raiser">Fund Raiser</option>
-                               <option value="Dinner Party">Dinner Party</option>
-                               <option value="Wedding">Wedding</option>
-                             </select>
-                           </div>
-                           <div class="form-group">
-                             <label for="eventLocation2">Event Location :</label>
-                             <select class="c-select form-control" id="eventLocation2" name="location">
-                               <option value="">Select City</option>
-                               <option value="Amsterdam">Amsterdam</option>
-                               <option value="Berlin">Berlin</option>
-                               <option value="Frankfurt">Frankfurt</option>
-                             </select>
-                           </div>
-                         </div>
-                         <div class="col-md-6">
-                           <div class="form-group">
-                             <label>Event Date - Time :</label>
-                             <div class='input-group'>
-                               <input type='text' class="form-control datetime" />
-                               <span class="input-group-addon">
-                                 <span class="ft-calendar"></span>
-                               </span>
-                             </div>
-                           </div>
-                           <div class="form-group">
-                             <label for="eventStatus2">Event Status :</label>
-                             <select class="c-select form-control" id="eventStatus2" name="eventStatus">
-                               <option value="Planning">Planning</option>
-                               <option value="In Progress">In Progress</option>
-                               <option value="Finished">Finished</option>
-                             </select>
-                           </div>
-                           <div class="form-group">
-                             <label>Requirements :</label>
-                             <div class="c-inputs-stacked">
-                               <div class="d-inline-block custom-control custom-checkbox">
-                                 <input type="checkbox" name="status2" class="custom-control-input" id="staffing2">
-                                 <label class="custom-control-label" for="staffing2">Staffing</label>
-                               </div>
-                               <div class="d-inline-block custom-control custom-checkbox">
-                                 <input type="checkbox" name="status2" class="custom-control-input" id="catering2">
-                                 <label class="custom-control-label" for="catering2">Catering</label>
-                               </div>
-                             </div>
-                           </div>
-                         </div>
-                       </div>
-                     </fieldset>
-                     <!-- Step 4 -->
-                     <h6><i class="step-icon la la-money"></i> NPWP</h6>
-                     <fieldset>
-                       <div class="row">
-                         <div class="col-md-6">
-                           <div class="form-group">
-                             <label for="meetingName2">Name of Meeting :</label>
-                             <input type="text" class="form-control" id="meetingName2">
-                           </div>
-                           <div class="form-group">
-                             <label for="meetingLocation2">Location :</label>
-                             <input type="text" class="form-control" id="meetingLocation2">
-                           </div>
-                           <div class="form-group">
-                             <label for="participants2">Names of Participants</label>
-                             <textarea name="participants" id="participants2" rows="4" class="form-control"></textarea>
-                           </div>
-                         </div>
-                         <div class="col-md-6">
-                           <div class="form-group">
-                             <label for="decisions2">Decisions Reached</label>
-                             <textarea name="decisions" id="decisions2" rows="4" class="form-control"></textarea>
-                           </div>
-                           <div class="form-group">
-                             <label>Agenda Items :</label>
-                             <div class="c-inputs-stacked">
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item21">
-                                 <label class="custom-control-label" for="item21">1st item</label>
-                               </div>
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item22">
-                                 <label class="custom-control-label" for="item22">2nd item</label>
-                               </div>
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item23">
-                                 <label class="custom-control-label" for="item23">3rd item</label>
-                               </div>
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item24">
-                                 <label class="custom-control-label" for="item24">4th item</label>
-                               </div>
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item25">
-                                 <label class="custom-control-label" for="item25">5th item</label>
-                               </div>
-                             </div>
-                           </div>
-                         </div>
-                       </div>
-                     </fieldset>
-                     <!-- Step 5 -->
-                     <h6><i class="step-icon la la-building"></i> PN</h6>
-                     <fieldset>
-                       <div class="row">
-                         <div class="col-md-6">
-                           <div class="form-group">
-                             <label for="meetingName2">Name of Meeting :</label>
-                             <input type="text" class="form-control" id="meetingName2">
-                           </div>
-                           <div class="form-group">
-                             <label for="meetingLocation2">Location :</label>
-                             <input type="text" class="form-control" id="meetingLocation2">
-                           </div>
-                           <div class="form-group">
-                             <label for="participants2">Names of Participants</label>
-                             <textarea name="participants" id="participants2" rows="4" class="form-control"></textarea>
-                           </div>
-                         </div>
-                         <div class="col-md-6">
-                           <div class="form-group">
-                             <label for="decisions2">Decisions Reached</label>
-                             <textarea name="decisions" id="decisions2" rows="4" class="form-control"></textarea>
-                           </div>
-                           <div class="form-group">
-                             <label>Agenda Items :</label>
-                             <div class="c-inputs-stacked">
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item21">
-                                 <label class="custom-control-label" for="item21">1st item</label>
-                               </div>
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item22">
-                                 <label class="custom-control-label" for="item22">2nd item</label>
-                               </div>
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item23">
-                                 <label class="custom-control-label" for="item23">3rd item</label>
-                               </div>
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item24">
-                                 <label class="custom-control-label" for="item24">4th item</label>
-                               </div>
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item25">
-                                 <label class="custom-control-label" for="item25">5th item</label>
-                               </div>
-                             </div>
-                           </div>
-                         </div>
-                       </div>
-                     </fieldset>
-                     <!-- Step 6 -->
-                     <h6><i class="step-icon la la-building"></i> SIUP</h6>
-                     <fieldset>
-                       <div class="row">
-                         <div class="col-md-6">
-                           <div class="form-group">
-                             <label for="meetingName2">Name of Meeting :</label>
-                             <input type="text" class="form-control" id="meetingName2">
-                           </div>
-                           <div class="form-group">
-                             <label for="meetingLocation2">Location :</label>
-                             <input type="text" class="form-control" id="meetingLocation2">
-                           </div>
-                           <div class="form-group">
-                             <label for="participants2">Names of Participants</label>
-                             <textarea name="participants" id="participants2" rows="4" class="form-control"></textarea>
-                           </div>
-                         </div>
-                         <div class="col-md-6">
-                           <div class="form-group">
-                             <label for="decisions2">Decisions Reached</label>
-                             <textarea name="decisions" id="decisions2" rows="4" class="form-control"></textarea>
-                           </div>
-                           <div class="form-group">
-                             <label>Agenda Items :</label>
-                             <div class="c-inputs-stacked">
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item21">
-                                 <label class="custom-control-label" for="item21">1st item</label>
-                               </div>
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item22">
-                                 <label class="custom-control-label" for="item22">2nd item</label>
-                               </div>
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item23">
-                                 <label class="custom-control-label" for="item23">3rd item</label>
-                               </div>
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item24">
-                                 <label class="custom-control-label" for="item24">4th item</label>
-                               </div>
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item25">
-                                 <label class="custom-control-label" for="item25">5th item</label>
-                               </div>
-                             </div>
-                           </div>
-                         </div>
-                       </div>
-                     </fieldset>
-                     <!-- Step 7 -->
-                     <h6><i class="step-icon la la-building"></i> TDP</h6>
-                     <fieldset>
-                       <div class="row">
-                         <div class="col-md-6">
-                           <div class="form-group">
-                             <label for="meetingName2">Name of Meeting :</label>
-                             <input type="text" class="form-control" id="meetingName2">
-                           </div>
-                           <div class="form-group">
-                             <label for="meetingLocation2">Location :</label>
-                             <input type="text" class="form-control" id="meetingLocation2">
-                           </div>
-                           <div class="form-group">
-                             <label for="participants2">Names of Participants</label>
-                             <textarea name="participants" id="participants2" rows="4" class="form-control"></textarea>
-                           </div>
-                         </div>
-                         <div class="col-md-6">
-                           <div class="form-group">
-                             <label for="decisions2">Decisions Reached</label>
-                             <textarea name="decisions" id="decisions2" rows="4" class="form-control"></textarea>
-                           </div>
-                           <div class="form-group">
-                             <label>Agenda Items :</label>
-                             <div class="c-inputs-stacked">
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item21">
-                                 <label class="custom-control-label" for="item21">1st item</label>
-                               </div>
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item22">
-                                 <label class="custom-control-label" for="item22">2nd item</label>
-                               </div>
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item23">
-                                 <label class="custom-control-label" for="item23">3rd item</label>
-                               </div>
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item24">
-                                 <label class="custom-control-label" for="item24">4th item</label>
-                               </div>
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item25">
-                                 <label class="custom-control-label" for="item25">5th item</label>
-                               </div>
-                             </div>
-                           </div>
-                         </div>
-                       </div>
-                     </fieldset>
-                     <!-- Step 8 -->
-                     <h6><i class="step-icon la la-building"></i> PKD</h6>
-                     <fieldset>
-                       <div class="row">
-                         <div class="col-md-6">
-                           <div class="form-group">
-                             <label for="meetingName2">Name of Meeting :</label>
-                             <input type="text" class="form-control" id="meetingName2">
-                           </div>
-                           <div class="form-group">
-                             <label for="meetingLocation2">Location :</label>
-                             <input type="text" class="form-control" id="meetingLocation2">
-                           </div>
-                           <div class="form-group">
-                             <label for="participants2">Names of Participants</label>
-                             <textarea name="participants" id="participants2" rows="4" class="form-control"></textarea>
-                           </div>
-                         </div>
-                         <div class="col-md-6">
-                           <div class="form-group">
-                             <label for="decisions2">Decisions Reached</label>
-                             <textarea name="decisions" id="decisions2" rows="4" class="form-control"></textarea>
-                           </div>
-                           <div class="form-group">
-                             <label>Agenda Items :</label>
-                             <div class="c-inputs-stacked">
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item21">
-                                 <label class="custom-control-label" for="item21">1st item</label>
-                               </div>
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item22">
-                                 <label class="custom-control-label" for="item22">2nd item</label>
-                               </div>
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item23">
-                                 <label class="custom-control-label" for="item23">3rd item</label>
-                               </div>
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item24">
-                                 <label class="custom-control-label" for="item24">4th item</label>
-                               </div>
-                               <div class="custom-control custom-checkbox">
-                                 <input type="checkbox" name="agenda2" class="custom-control-input" id="item25">
-                                 <label class="custom-control-label" for="item25">5th item</label>
-                               </div>
-                             </div>
-                           </div>
-                         </div>
-                       </div>
-                     </fieldset>
-                   </form>
+                     </div>
                  </div>
-               </div>
              </div>
-           </div>
          </div>
-       </section>
-      <!-- Form wzard with step validation section end -->
-    </div>
-  </div>
+      </section>
+            <!-- Form wzard with step validation section end -->
+        </div>
+      </div>
 </div>
 
 
