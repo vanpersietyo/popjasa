@@ -50,27 +50,27 @@ class Progress extends CI_Controller{
 				$status='<h5 class="text-bold-500 text-red">Not Confirmed';
 			}
 
-			$row[] = '<button type="button" class="btn btn-dark dropdown-toggle btn-sm" data-toggle="dropdown"
+            $row[] = '<button type="button" class="btn btn-dark dropdown-toggle btn-sm" data-toggle="dropdown"
 														aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
 														<div class="dropdown-menu">
-														<a class="dropdown-item"  href="javascript:void(0)" onclick="create('."'".$d->id_hdr_project."'".')"><i class="ft-file"></i> Lihat Project</a>
-														<a class="dropdown-item"  href="javascript:void(0)" onclick="invoice('."'".$d->id_hdr_project."'".')"><i class="ft-printer"></i> Cetak Invoice</a>
-														<a class="dropdown-item"  href="javascript:void(0)" onclick="update_track('."'".$d->id_hdr_project."'".')"><i class="ft-share-2"></i> Update Progress</a>
+														<a class="dropdown-item"  href="javascript:void(0)" onclick="create(' . "'" . $d->id_hdr_project . "'" . ')"><i class="ft-file"></i> Lihat Project</a>
+														<a class="dropdown-item"  href="javascript:void(0)" onclick="invoice(' . "'" . $d->id_hdr_project . "'" . ')"><i class="ft-printer"></i> Cetak Invoice</a>
+														<a class="dropdown-item"  href="javascript:void(0)" onclick="update_track(' . "'" . $d->id_hdr_project . "'" . ')"><i class="ft-share-2"></i> Update Progress</a>
 														</div>';
 
-			$row[] = '<h5 class="text-bold-500">'.$d->id_hdr_project;
-			$row[] = '<h5 class="text-bold-500">'.$d->nm_customer;
-			$row[] = '<h5 class="text-bold-500">'.$d->jml_penjualan;
-			$date=date("d/m/Y", strtotime($d->tgl_input));
-				$row[] = $status	;
-			$row[] = '<h5 class="text-bold-500">'.$date	;
-			$row[] = '<h5 class="text-bold-500">'.$d->input_by;
+            $row[] = '<h5 class="text-bold-500">' . $d->id_hdr_project;
+            $row[] = '<h5 class="text-bold-500">' . $d->nm_customer;
+            $row[] = '<h5 class="text-bold-500">' . number_format($d->jml_penjualan);
+            $date = date("d/m/Y", strtotime($d->tgl_input));
+            $row[] = $status;
+            $row[] = '<h5 class="text-bold-500">' . $date;
+            $row[] = '<h5 class="text-bold-500">' . $d->input_by;
 
-			//add html for action
+            //add html for action
 
 
-			$data[] = $row;
-		}
+            $data[] = $row;
+        }
 
 		$output = array(
 
