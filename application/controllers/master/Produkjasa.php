@@ -33,7 +33,6 @@ class Produkjasa extends CI_Controller{
 
 			//add html for action
 			$row[] = '
-			<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Detail" onclick="detail('."'".$d->id_layanan."'".')"><i class="la la-ellipsis-h"></i></a>
 				  <a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_person('."'".$d->id_layanan."'".')"><i class="la la-edit"></i></a>
 				  <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('."'".$d->id_layanan."'".')"><i class="la la-close"></i></a>';
 

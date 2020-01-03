@@ -66,6 +66,7 @@ class Hargalayanan extends CI_Controller{
 			'id_hrg_layanan' => $this->M_harga->get_ID('id_hrg_layanan'),
 			'id_layanan' => $this->input->post('id_layanan'),
 			'harga' => $this->input->post('harga'),
+            'hpp' => $this->input->post('hpp'),
 			'keterangan' => $this->input->post('keterangan'),
 			'tgl_input' => date('Y-m-d H:i:s'),
 			'inputby' => $this->session->userdata('yangLogin'),
@@ -82,6 +83,7 @@ class Hargalayanan extends CI_Controller{
 		$data = array(
 			'id_layanan' => $this->input->post('id_layanan'),
 			'harga' => $this->input->post('harga'),
+            'hpp' => $this->input->post('hpp'),
 			'keterangan' => $this->input->post('keterangan'),
 			'tgl_input' => date('Y-m-d H:i:s'),
 			'inputby' => $this->session->userdata('yangLogin'),
