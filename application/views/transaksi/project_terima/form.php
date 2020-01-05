@@ -43,11 +43,14 @@ $this->load->view('template/head');
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <label for="bool_ktp" class="col-form-label">KTP :</label>
-                                                    <input type="numeric" class="form-control" name="jml_ktp" id="jml_ktp" placeholder="Jumlah Orang"/>
+                                                    <input type="numeric" class="form-control" name="jml_ktp"
+                                                           id="jml_ktp" placeholder="Jumlah Orang"
+                                                           value="<?php echo $jml_ktp ?>"/>
                                                 </div>
                                                 <div class="col-md-9">
                                                     <label for="bool_ktp" class="col-form-label">&nbsp;</label>
-                                                    <select class="form-control" id="bool_ktp" name="bool_ktp" value="<?php echo $bool_ktp; ?>">
+                                                    <select class="form-control" id="bool_ktp" name="bool_ktp"
+                                                            value="<?php echo $bool_ktp; ?>">
                                                         <option value="">---SILAHKAN PILIH---</option>
                                                         <option value="Fotokopi">FOTOKOPI</option>
                                                         <option value="Asli">ASLI</option>

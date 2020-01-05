@@ -212,8 +212,8 @@ class Project extends CI_Controller
     function detail($id)
     {
         $data['id_header'] = $id;
-        $data['produk'] = $this->M_project->get_trs_project_hdr_id($id);
-        $hdr = $this->M_project->get_trs_project_hdr_id($id);
+        $data['produk'] = $this->M_project->get_trs_project_by_project($id);
+        $hdr = $this->M_project->get_trs_project_by_project($id);
         $data['id_customer'] = $hdr->id_customer;
         $data['customer'] = $this->M_Customer->get_by_id($hdr->id_customer);
         $data['produk'] = $this->M_project->get_produk();
@@ -278,13 +278,64 @@ class Project extends CI_Controller
         echo json_encode($output);
     }
 
+    public function ajax_project2($id)
+    {
+        $this->load->helper('url');
+
+        $list = $this->M_project->get_user_project($id);
+        $data = array();
+
+        foreach ($list as $d) {
+            $row = array();
+            $row[] = '<h5 class="text-bold-500">' . $d->nama_layanan;
+            $row[] = $d->harga;
+            $row[] = $d->harga_jual;
+            $date = date("d/m/Y", strtotime($d->tgl_input));
+            //$row[] = '<h5 class="text-bold-500">'.$date	;
+
+            if ($d->st_data == 1) {
+                $row[] = '<button type="button" class="btn btn-danger dropdown-toggle btn-sm" data-toggle="dropdown"
+															aria-haspopup="true" aria-expanded="false" disabled><i class="ft-menu" ></i></button>
+															<div class="dropdown-menu">
+																<a class="dropdown-item"><i class="ft-edit"></i>Update</a>
+																<a class="dropdown-item"><i class="ft-trash"></i>Delete</a>
+															</div>';
+            } else {
+                $row[] = '<button type="button" class="btn btn-dark dropdown-toggle btn-sm" data-toggle="dropdown"
+															aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
+															<div class="dropdown-menu">
+																<a class="dropdown-item"  href="javascript:void(0)" onclick="edit_person(' . "'" . $d->id_project . "'" . ')"><i class="ft-edit"></i>Update</a>
+																<a class="dropdown-item" href="javascript:void(0)" onclick="delete_person(' . "'" . $d->id_project . "'" . ')"><i class="ft-trash"></i>Delete</a>
+															</div>';
+            }
+            //add html for action
+            // $row[] = '<button type="button" class="btn btn-dark dropdown-toggle btn-sm" data-toggle="dropdown"
+            //                       aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
+            // 											<div class="dropdown-menu">
+            // 												<a class="dropdown-item"  href="javascript:void(0)" onclick="edit_person('."'".$d->id_project."'".')"><i class="ft-edit"></i>Update</a>
+            // 												<a class="dropdown-item" href="javascript:void(0)" onclick="delete_person('."'".$d->id_project."'".')"><i class="ft-trash"></i>Delete</a>
+            // 											</div>';
+
+            $data[] = $row;
+        }
+
+        $output = array(
+
+            "recordsTotal" => $this->M_project->count_all_project($id),
+            "recordsFiltered" => $this->M_project->count_filtered_project($id),
+            "data" => $data,
+        );
+        //output to json format
+        echo json_encode($output);
+    }
+
     public function ajax_project_produk($id)
     {
         $this->load->helper('url');
 
         $list = $this->M_project->get_produk();
         $data = array();
-        $hdr = $this->M_project->get_trs_project_hdr_id($id);
+        $hdr = $this->M_project->get_trs_project_by_project($id);
 
         foreach ($list as $d) {
             $row = array();

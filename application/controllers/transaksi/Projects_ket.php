@@ -195,6 +195,11 @@ class Projects_ket extends CI_Controller
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
+    public function ajax_edit($id)
+    {
+        $data = $this->M_Project_ket->get_by_project($id);
+        echo json_encode($data);
+    }
 
 }
 

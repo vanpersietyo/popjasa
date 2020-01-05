@@ -51,19 +51,22 @@ $this->load->view('template/head');
                                             <div class="col-md-3">
                                                 <label>MODAL DASAR : Rp.</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="modal" id="modal" value="<?php echo $modal; ?>"/>
+                                                    <input type="text" class="form-control" name="modal" id="modal"
+                                                           value="<?php echo $modal; ?>"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <label>MODAL DISETOR : Rp.</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="nm_perusahaan" id="nm_perusahaan"/>
+                                                    <input type="text" class="form-control" name="modal_disetor"
+                                                           id="modal_disetor" value="<?php echo $modal_disetor; ?>"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <label>PRESENTASE PEMBAGIAN SAHAM :</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="presentase_shm" id="presentase_shm" value="<?php echo $presentase_shm; ?>"/>
+                                                    <input type="text" class="form-control" name="presentase_shm"
+                                                           id="presentase_shm" value="<?php echo $presentase_shm; ?>"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">

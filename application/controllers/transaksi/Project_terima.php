@@ -225,6 +225,12 @@ class Project_terima extends CI_Controller
             return $this->create_terima($id);
         }
     }
+
+    public function ajax_edit($id)
+    {
+        $data = $this->M_Project_terima->find_first(["id_project" => $id]);
+        echo json_encode($data);
+    }
 }
 
 /* End of file Project_terima.php */

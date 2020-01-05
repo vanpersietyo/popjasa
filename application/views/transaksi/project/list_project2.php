@@ -152,17 +152,20 @@
 
                   </table>
                 </div>
-                <div class="row">
-                  <div class="col-6">
-                    <a class="btn btn-info btn-block <?php echo $status?>" href="<?php echo site_url('transaksi/project/simpan_transaksi/'.$id_header)?>"><i class="ft-check"></i> Confirmed</a>
+                  <div class="row">
+                      <div class="col-6">
+                          <a class="btn btn-info btn-block <?php echo $status ?>"
+                             href="<?php echo site_url('transaksi/project/simpan_transaksi/' . $id_header) ?>"><i
+                                      class="ft-check"></i> Confirmed</a>
+                      </div>
+                      <div class="col-6">
+                          <a class="btn btn-danger btn-block " href="<?php echo site_url('transaksi/progress') ?>"><i
+                                      class="ft-repeat"></i> Kembali</a>
+                      </div>
                   </div>
-                  <div class="col-6">
-                    <a class="btn btn-danger btn-block " href="<?php echo site_url('transaksi/project')?>"><i class="ft-repeat"></i> Kembali</a>
-                  </div>
-                </div>
 
 
-                <!--/ Invoices table -->
+                  <!--/ Invoices table -->
               </div>
             </div>
           </div>
@@ -215,17 +218,17 @@ $(document).ready(function() {
 
         // Load data for the table's content from an Ajax source
         "ajax": {
-            "url": "<?php echo site_url('transaksi/project/ajax_project/'.$id_header)?>",
+            "url": "<?php echo site_url('transaksi/project/ajax_project2/' . $id_header)?>",
             "type": "POST"
         },
 
-        "footerCallback": function ( row, data, start, end, display ) {
-           var api = this.api(), data;
+        "footerCallback": function (row, data, start, end, display) {
+            var api = this.api(), data;
 
-           // Remove the formatting to get integer data for summation
-           var intVal = function ( i ) {
-               return typeof i === 'string' ?
-                   i.replace(/[\$,]/g, '')*1 :
+            // Remove the formatting to get integer data for summation
+            var intVal = function (i) {
+                return typeof i === 'string' ?
+                    i.replace(/[\$,]/g, '') * 1 :
                    typeof i === 'number' ?
                        i : 0;
            };
