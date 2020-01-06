@@ -5,6 +5,28 @@ if (!defined('BASEPATH'))
 
 class M_Project_logs extends CI_Model
 {
+//Models
+    const Project_id = "Project_id";
+    const LineNo = "LineNo";
+    const Status_log = "Status_log";
+    const tgl_log = "tgl_log";
+    const keterangan = "keterangan";
+    const created_by = "created_by";
+    const created_at = "created_at";
+    const modified_by = "modified_by";
+    const modified_at = "modified_at";
+    const TABLE = "trs_project_logs";
+
+//for inisialisasi.
+    public $Project_id;
+    public $LineNo;
+    public $Status_log;
+    public $tgl_log;
+    public $keterangan;
+    public $created_by;
+    public $created_at;
+    public $modified_by;
+    public $modified_at;
 
     public $table = 'trs_project_logs';
     public $id = 'Project_id';
@@ -16,10 +38,11 @@ class M_Project_logs extends CI_Model
     }
 
     // datatables
-    function json()
+    function json($id)
     {
-        $this->datatables->select('Project_id,LineNo,Status_log,tgl_log,keterangan');
-        $this->datatables->from('trs_project_logs');
+        $this->datatables->select('Project_id,LineNo, Status_log  ,tgl_log,keterangan');
+        $this->datatables->from('v_project_logs');
+        $this->datatables->where(array('Project_id' => $id));
         //add this line for join
         //$this->datatables->join('table2', 'trs_project_logs.field = table2.field');
         $this->datatables->add_column('action', anchor(site_url('transaksi/project_logs/update/$1'), 'Update') . " | " . anchor(site_url('transaksi/project_logs/delete/$1'), 'Delete', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'Project_id');
@@ -91,6 +114,20 @@ class M_Project_logs extends CI_Model
         $this->db->delete($this->table);
     }
 
+    function getLineNo($project_id)
+    {
+        $q = $this->db->query("select MAX(LineNo) as kd_max from $this->table where $this->id = '$project_id' ");
+        $kd = "";
+        if ($q->num_rows() > 0) {
+            foreach ($q->result() as $k) {
+                $tmp = ((int)$k->kd_max) + 1;
+                $kd = $tmp;
+            }
+        } else {
+            $kd = "1";
+        }
+        return $kd;
+    }
 }
 
 /* End of file M_Project_logs.php */

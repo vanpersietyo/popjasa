@@ -29,10 +29,10 @@ class Project_logs extends CI_Controller
         $this->load->view('layout', $data);
     }
 
-    public function json()
+    public function json($id)
     {
         header('Content-Type: application/json');
-        echo $this->M_Project_logs->json();
+        echo $this->M_Project_logs->json($id);
     }
 
     public function read($id)
@@ -61,7 +61,7 @@ class Project_logs extends CI_Controller
     {
         $data = array(
             'button' => 'Create',
-            'action' => site_url('project_logs/create_action'),
+            'action' => site_url('transaksi/project_logs/create_action'),
             'Project_id' => set_value('Project_id'),
             'LineNo' => set_value('LineNo'),
             'Status_log' => set_value('Status_log'),
@@ -77,7 +77,7 @@ class Project_logs extends CI_Controller
         $projects = $this->M_project->find_first(["id_project" => $id]);
         $data = array(
             'button' => 'Create',
-            'action' => site_url('project_logs/create_action'),
+            'action' => site_url('transaksi/project_logs/create_action'),
             'Project_id' => $projects->id_project,
             'LineNo' => set_value('LineNo'),
             'Status_log' => set_value('Status_log'),
@@ -92,7 +92,7 @@ class Project_logs extends CI_Controller
     public function create_action()
     {
         $this->_rules();
-
+        $id_project = $this->input->post('Project_id', TRUE);
         if ($this->form_validation->run() == FALSE) {
             $this->create();
         } else {
@@ -100,15 +100,15 @@ class Project_logs extends CI_Controller
                 'Status_log' => $this->input->post('Status_log', TRUE),
                 'tgl_log' => $this->input->post('tgl_log', TRUE),
                 'keterangan' => $this->input->post('keterangan', TRUE),
-                'created_by' => $this->input->post('created_by', TRUE),
-                'created_at' => $this->input->post('created_at', TRUE),
-                'modified_by' => $this->input->post('modified_by', TRUE),
-                'modified_at' => $this->input->post('modified_at', TRUE),
+                'created_by' => $this->session->userdata('yangLogin'),
+                'created_at' => date('Y-m-d H:i:s'),
+                'Project_id' => $id_project,
+                'LineNo' => $this->M_Project_logs->getLineNo($id_project),
             );
 
             $this->M_Project_logs->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('transaksi/project_logs'));
+            redirect(site_url('transaksi/project_logs/get_logs/') . $id_project);
         }
     }
 
@@ -119,7 +119,7 @@ class Project_logs extends CI_Controller
         if ($row) {
             $data = array(
                 'button' => 'Update',
-                'action' => site_url('project_logs/update_action'),
+                'action' => site_url('transaksi/project_logs/update_action'),
                 'Project_id' => set_value('Project_id', $row->Project_id),
                 'LineNo' => set_value('LineNo', $row->LineNo),
                 'Status_log' => set_value('Status_log', $row->Status_log),
@@ -130,14 +130,14 @@ class Project_logs extends CI_Controller
             $this->load->view('layout', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('transaksi/project_logs'));
+            redirect(site_url('transaksi/project_logs/get_logs/') . $id);
         }
     }
 
     public function update_action()
     {
         $this->_rules();
-
+        $id_project = $this->input->post('Project_id', TRUE);
         if ($this->form_validation->run() == FALSE) {
             $this->update($this->input->post('Project_id', TRUE));
         } else {
@@ -149,9 +149,9 @@ class Project_logs extends CI_Controller
                 'modified_at' => $this->input->post('modified_at', TRUE),
             );
 
-            $this->M_Project_logs->update($this->input->post('Project_id', TRUE), $data);
+            $this->M_Project_logs->update($id_project, $data);
             $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('transaksi/project_logs'));
+            redirect(site_url('transaksi/project_logs/get_logs/') . $id_project);
         }
     }
 

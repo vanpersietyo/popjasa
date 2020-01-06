@@ -1,7 +1,8 @@
 <?php
 $this->load->view('template/head');
 ?>
-
+    <link href="<?php echo base_url('assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') ?>"
+          rel="stylesheet">
     <div class="content-header row">
         <div class="content-header-left col-md-6 col-12 mb-2">
             <h3 class="content-header-title">Log's Project</h3>
@@ -25,8 +26,13 @@ $this->load->view('template/head');
                             <form action="<?php echo $action; ?>" method="post">
                                 <div class="form-group">
                                     <label for="smallint">Status Log <?php echo form_error('Status_log') ?></label>
-                                    <input type="text" class="form-control" name="Status_log" id="Status_log"
-                                           placeholder="Status Log" value="<?php echo $Status_log; ?>"/>
+                                    <select class="form-control" id="Status_log" name="Status_log"
+                                            value="<?php echo $Status_log; ?>">
+                                        <option value="">---SILAHKAN PILIH---</option>
+                                        <option value="0">New</option>
+                                        <option value="1">On Progress</option>
+                                        <option value="2">Finish</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="date">Tgl Log <?php echo form_error('tgl_log') ?></label>
@@ -40,7 +46,8 @@ $this->load->view('template/head');
                                 </div>
                                 <input type="hidden" name="Project_id" value="<?php echo $Project_id; ?>"/>
                                 <button type="submit" class="btn btn-primary"><?php echo $button ?></button>
-                                <a href="<?php echo site_url('project_logs') ?>" class="btn btn-default">Cancel</a>
+                                <a href="<?php echo site_url('transaksi/project_logs/get_logs/') . $Project_id ?>"
+                                   class="btn btn-default">Cancel</a>
                             </form>
                         </div>
                     </div>
@@ -48,19 +55,20 @@ $this->load->view('template/head');
             </div>
         </section>
     </div>
-
+    <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js') ?>"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            //datepicker
-            $('.datepicker').datepicker({
-                autoclose: true,
-                format: "yyyy-mm-dd",
-                todayHighlight: true,
-                orientation: "top auto",
-                todayBtn: true,
-                todayHighlight: true,
-            });
+        var date = new Date();
+        date.setDate(date.getDate());
+
+        $('.datepicker').datepicker({
+            autoclose: true,
+            format: "yyyy-mm-dd",
+            todayHighlight: true,
+            orientation: "top auto",
+            todayBtn: true,
+            todayHighlight: true,
         });
+
     </script>
 
 <?php
