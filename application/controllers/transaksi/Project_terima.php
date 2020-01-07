@@ -95,6 +95,7 @@ class Project_terima extends CI_Controller
             'bool_surat_sewa' => $this->input->post('bool_surat_sewa', TRUE),
             'ID_Hdr_Project' => $this->input->post('ID_Hdr_Project', TRUE),
             'ID_Project' => $id_projects,
+            'ID_Project_terima' => $this->M_Project_terima->get_id(),
             'Created_By' => $this->session->userdata('yangLogin'),
             'EntryTime' => date('Y-m-d H:i:s'),
         );
@@ -219,10 +220,16 @@ class Project_terima extends CI_Controller
     {
         $project_ket = $this->M_Project_terima->find_first(["id_project" => $id]);
         if ($project_ket) {
-            return $this->update($project_ket->id);
+            return $this->update($project_ket->ID_Project_terima);
         } else {
             return $this->create_terima($id);
         }
+    }
+
+    public function ajax_edit($id)
+    {
+        $data = $this->M_Project_terima->find_first(["id_project" => $id]);
+        echo json_encode($data);
     }
 }
 

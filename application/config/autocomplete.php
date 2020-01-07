@@ -92,19 +92,19 @@
  * @property M_login            				$M_login
  * @property M_user             				$M_user
  * @property M_Customer         				$M_Customer
- * @property M_layanan         				    $M_layanan
- * @property M_harga                            $M_harga
- * @property M_Fix_assets                   $M_Fix_assets
-
+ * @property M_layanan $M_layanan
+ * @property M_harga $M_harga
+ * @property M_Fix_assets $M_Fix_assets
  * Transaksi
- * @property M_project		    $M_project
- * @property M_Project_ket      $M_Project_ket
- * @property M_Project_izin     $M_Project_izin
- * @property M_Project_uraian   $M_Project_uraian
- * @property M_Project_terima   $M_Project_terima
+ * @property M_project $M_project
+ * @property M_Project_ket $M_Project_ket
+ * @property M_Project_izin $M_Project_izin
+ * @property M_Project_uraian $M_Project_uraian
+ * @property M_Project_terima $M_Project_terima
+ * @property M_Project_logs $M_Project_logs
  * Custom  Libraries
- * @property Unirest        	$unirest
- * @property Conversion         $conversion
+ * @property Unirest $unirest
+ * @property Conversion $conversion
  *
  */
 class CI_Controller

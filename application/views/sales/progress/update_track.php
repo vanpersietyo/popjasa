@@ -103,20 +103,21 @@
                <div class="card">
                  <div class="card-header">
                    <h4 class="card-title">Tracking Progress Produk Jasa </h4>
-                   <a class="heading-elements-toggle"><i class="la la-ellipsis-h font-medium-3"></i></a>
-                   <div class="heading-elements">
-                     <ul class="list-inline mb-0">
-                       <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                       <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                       <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                       <li><a data-action="close"><i class="ft-x"></i></a></li>
-                     </ul>
-                   </div>
+                     <a class="heading-elements-toggle"><i class="la la-ellipsis-h font-medium-3"></i></a>
+                     <div class="heading-elements">
+                         <ul class="list-inline mb-0">
+                             <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                             <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                             <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                             <li><a data-action="close"><i class="ft-x"></i></a></li>
+                         </ul>
+                     </div>
                  </div>
+                   <!--
                  <div class="card-content collapse show">
                    <div class="card-body">
                      <form action="#" class="icons-tab-steps wizard-notification">
-                       <!-- Step 1 -->
+                       <!-- Step 1
                        <h6 class="bg-dark"><i class="step-icon la la-file"></i> Minuta</h6>
                        <fieldset>
                          <form method="post" action="<?php echo site_url('report/hrd/absensi/cetak') ?>">
@@ -199,7 +200,7 @@
 
                          </script>
                        </fieldset>
-                       <!-- Step 2 -->
+                       <!-- Step 2
                        <h6><i class="step-icon la la-file"></i> Akte</h6>
                        <fieldset>
                          <form method="post" action="<?php echo site_url('report/hrd/absensi/cetak') ?>">
@@ -282,7 +283,7 @@
 
                          </script>
                        </fieldset>
-                       <!-- Step 3 -->
+                       <!-- Step 3
                        <h6><i class="step-icon la la-map-o"></i> Domisili</h6>
                        <fieldset>
                          <div class="row">
@@ -345,7 +346,7 @@
                            </div>
                          </div>
                        </fieldset>
-                       <!-- Step 4 -->
+                       <!-- Step 4
                        <h6><i class="step-icon la la-money"></i> NPWP</h6>
                        <fieldset>
                          <div class="row">
@@ -396,7 +397,7 @@
                            </div>
                          </div>
                        </fieldset>
-                       <!-- Step 5 -->
+                       <!-- Step 5
                        <h6><i class="step-icon la la-building"></i> PN</h6>
                        <fieldset>
                          <div class="row">
@@ -447,7 +448,7 @@
                            </div>
                          </div>
                        </fieldset>
-                       <!-- Step 6 -->
+                       <!-- Step 6
                        <h6><i class="step-icon la la-building"></i> SIUP</h6>
                        <fieldset>
                          <div class="row">
@@ -498,7 +499,7 @@
                            </div>
                          </div>
                        </fieldset>
-                       <!-- Step 7 -->
+                       <!-- Step 7
                        <h6><i class="step-icon la la-building"></i> TDP</h6>
                        <fieldset>
                          <div class="row">
@@ -549,7 +550,7 @@
                            </div>
                          </div>
                        </fieldset>
-                       <!-- Step 8 -->
+                       <!-- Step 8
                        <h6><i class="step-icon la la-building"></i> PKD</h6>
                        <fieldset>
                          <div class="row">
@@ -603,16 +604,17 @@
                      </form>
                    </div>
                  </div>
+                    -->
                </div>
              </div>
            </div>
-         </section>
-        <!-- Form wzard with step validation section end -->
+        </section>
+          <!-- Form wzard with step validation section end -->
       </div>
     </div>
   </div>
-  <!-- ////////////////////////////////////////////////////////////////////////////-->
-  <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+<script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
   <script type="text/javascript">
       var date = new Date();
       date.setDate(date.getDate());

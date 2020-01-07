@@ -122,12 +122,11 @@ class Projects_ket extends CI_Controller
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('transaksi/projects_ket/update_action'),
-                'Ket_Email' => set_value('Ket_Email', $row->Ket_Email),
+                'Email' => set_value('Ket_Email', $row->Ket_Email),
                 'Email_Pengurus' => set_value('Email_Pengurus', $row->Email_Pengurus),
                 'No_Telp' => set_value('No_Telp', $row->No_Telp),
                 'Ket_Luas' => set_value('Ket_Luas', $row->Ket_Luas),
                 'Ket_Bidang_Usaha' => set_value('Ket_Bidang_Usaha', $row->Ket_Bidang_Usaha),
-                'Ket_Bidang_Usaha_Utama' => set_value('Ket_Bidang_Usaha_Utama', $row->Ket_Bidang_Usaha_Utama),
                 'Ket_Informasi' => set_value('Ket_Informasi', $row->Ket_Informasi),
                 'ID_Project_Ket' => set_value('ID_Project_Ket', $row->ID_Project_Ket),
                 'ID_Hdr_Project' => set_value('ID_Hdr_Project', $row->ID_Hdr_Project),
@@ -145,13 +144,12 @@ class Projects_ket extends CI_Controller
     public function update_action()
     {   $id_project = $this->input->post('ID_Project', TRUE);
         $data = array(
-            'Ket_Email' => $this->input->post('Ket_Email', TRUE),
-            'Email_Pengurus' => $this->input->post('Email_Pengurus', TRUE),
-            'No_Telp' => $this->input->post('No_Telp', TRUE),
-            'Ket_Luas' => $this->input->post('Ket_Luas', TRUE),
+            'Ket_Email' => $this->input->post('email', TRUE),
+            'Email_Pengurus' => $this->input->post('email_pengurus', TRUE),
+            'No_Telp' => $this->input->post('notelp', TRUE),
+            'Ket_Luas' => $this->input->post('luas', TRUE),
             'Ket_Bidang_Usaha' => $this->input->post('Ket_Bidang_Usaha', TRUE),
-            'Ket_Bidang_Usaha_Utama' => $this->input->post('Ket_Bidang_Usaha_Utama', TRUE),
-            'Ket_Informasi' => $this->input->post('Ket_Informasi', TRUE),
+            'Ket_Informasi' => $this->input->post('tahu', TRUE),
             'ID_Hdr_Project' => $this->input->post('ID_Hdr_Project', TRUE),
             'ID_Project' => $id_project,
             'Modified_By' => $this->session->userdata('yangLogin'),
@@ -197,6 +195,11 @@ class Projects_ket extends CI_Controller
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
+    public function ajax_edit($id)
+    {
+        $data = $this->M_Project_ket->get_by_project($id);
+        echo json_encode($data);
+    }
 
 }
 

@@ -52,6 +52,7 @@ class M_Project_uraian extends CI_Model
 
     var $table = 'trs_project_uraian';
     var $id = 'ID_Project_Uraian';
+    var $id_project = 'ID_Project';
 
     public $order = 'DESC';
 
@@ -82,6 +83,13 @@ class M_Project_uraian extends CI_Model
     function get_by_id($id)
     {
         $this->db->where($this->id, $id);
+        return $this->db->get($this->table)->row();
+    }
+
+    // get data by id
+    function get_by_project($id)
+    {
+        $this->db->where($this->id_project, $id);
         return $this->db->get($this->table)->row();
     }
 

@@ -50,6 +50,7 @@ class M_Project_izin extends CI_Model
 
     var $table = 'trs_projects_izin';
     var $id = 'ID_Project_JNS';
+    var $id_project = 'ID_Project';
     public $order = 'DESC';
 
     function __construct()
@@ -79,6 +80,12 @@ class M_Project_izin extends CI_Model
     function get_by_id($id)
     {
         $this->db->where($this->id, $id);
+        return $this->db->get($this->table)->row();
+    }
+
+    function get_by_project($id)
+    {
+        $this->db->where($this->id_project, $id);
         return $this->db->get($this->table)->row();
     }
 

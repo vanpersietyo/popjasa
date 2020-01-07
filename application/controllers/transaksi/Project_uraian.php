@@ -106,6 +106,7 @@ class Project_uraian extends CI_Controller
             'izin_persetujuan' => $this->input->post('izin_persetujuan', TRUE),
             'signature_commander' => $this->input->post('signature_commander', TRUE),
             'penerima' => $this->input->post('penerima', TRUE),
+            'modal_disetor' => $this->input->post('modal_disetor', TRUE),
             'ID_Hdr_Project' => $this->input->post('ID_Hdr_Project', TRUE),
             'ID_Project' => $id_projects,
             'Created_By' => $this->session->userdata('yangLogin'),
@@ -139,10 +140,11 @@ class Project_uraian extends CI_Controller
                 'izin_persetujuan' => set_value('izin_persetujuan', $row->izin_persetujuan),
                 'signature_commander' => set_value('signature_commander', $row->signature_commander),
                 'penerima' => set_value('penerima', $row->penerima),
+                'modal_disetor' => set_value('modal_disetor', $row->modal_disetor),
                 'ID_Project_Uraian' => set_value('ID_Project_Uraian', $row->ID_Project_Uraian),
                 'ID_Hdr_Project' => set_value('ID_Hdr_Project', $row->ID_Hdr_Project),
                 'ID_Project' => set_value('ID_Project', $row->ID_Project),
-                'pages' => 'transaksi/project_uraian/form',   
+                'pages' => 'transaksi/project_uraian/form',
             );
             $this->load->view('layout', $data);
         } else {
@@ -168,6 +170,7 @@ class Project_uraian extends CI_Controller
             'izin_persetujuan' => $this->input->post('izin_persetujuan', TRUE),
             'signature_commander' => $this->input->post('signature_commander', TRUE),
             'penerima' => $this->input->post('penerima', TRUE),
+            'modal_disetor' => $this->input->post('modal_disetor', true),
             'ID_Hdr_Project' => $this->input->post('ID_Hdr_Project', TRUE),
             'ID_Project' => $id_projects,
             'Modified_by' => $this->session->userdata('yangLogin'),
@@ -240,6 +243,7 @@ class Project_uraian extends CI_Controller
                 'izin_persetujuan' => set_value('izin_persetujuan'),
                 'signature_commander' => set_value('signature_commander'),
                 'penerima' => set_value('penerima'),
+                'modal_disetor' => set_value('modal_disetor'),
                 'ID_Project_Uraian' => set_value('ID_Project_Uraian'),
                 'ID_Hdr_Project' => $project->id_hdr_project,
                 'ID_Project' => $id,
@@ -251,13 +255,20 @@ class Project_uraian extends CI_Controller
         }
     }
 
-    public function cek_exist_projects($id) {
-        $project_ket =$this->M_Project_uraian->find_first(["id_project"=>$id]);
+    public function cek_exist_projects($id)
+    {
+        $project_ket = $this->M_Project_uraian->find_first(["id_project" => $id]);
         if ($project_ket) {
-            return $this->update($project_ket->id);
-        }else {
+            return $this->update($project_ket->ID_Project_Uraian);
+        } else {
             return $this->create_uraian($id);
         }
+    }
+
+    public function ajax_edit($id)
+    {
+        $data = $this->M_Project_uraian->get_by_project($id);
+        echo json_encode($data);
     }
 }
 
