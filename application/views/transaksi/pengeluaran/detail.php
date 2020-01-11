@@ -24,20 +24,7 @@
 <!-- END Page Level CSS-->
 <!-- BEGIN Custom CSS-->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/assets/css/style.css') ?>">
-<style media="screen">
-label {
-  display: inline-block;
-  margin-bottom: .5rem;
-  font-size: 17px;
-  font-weight: 500;
-  font-style: italic;
-}
 
-#table_filter
-{
-    display:none;
-}
-</style>
 <!-- END Custom CSS-->
 <div class="app-content content">
   <div class="content-wrapper">
@@ -382,7 +369,7 @@ function detail(id)
                            </div>
                           <div class="col-12 mb-2">
                                <label for="projectinput2">Nama Pengeluaran</label>
-                                 <select class="select2 select2-size-lg form-control block" id="responsive_single" name="id_rekbiaya" style="width: 100%" required>
+                                 <select class="select select-size-lg form-control block" id="responsive_single" name="id_rekbiaya" style="width: 100%" required>
                                    <option value="" class="disabled"> --- </option>
                                       <?php foreach ($rekbiaya as $key => $value) { ?>
                                         <option value="<?php echo $value->id_rekbiaya?>"> <?php echo $value->nm_rekbiaya ?></option>

@@ -25,7 +25,7 @@ class Pengeluaran extends CI_Controller{
 			$row[] = '<p class="badge badge-dark" style="font-size: 15px;">'.$d->id_trs_rekbiaya;
 			$row[] = '<h5 class="text-bold-500">'.$d->periode;
 			$row[] = '<h5 class="text-bold-500">'.$d->keterangan;
-			$row[] = '<h5 class="text-bold-500">'.$d->total_pengeluaran;
+			$row[] = '<h5 class="text-bold-500">'.number_format($d->total_pengeluaran);
 			$row[] = '<p class="text-bold-500">'.$d->tgl_input;
 			$row[] = '<p class="text-bold-500">'.$d->inputby;
 
