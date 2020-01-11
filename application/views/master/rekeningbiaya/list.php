@@ -24,20 +24,7 @@
 <!-- END Page Level CSS-->
 <!-- BEGIN Custom CSS-->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/assets/css/style.css') ?>">
-<style media="screen">
-label {
-  display: inline-block;
-  margin-bottom: .5rem;
-  font-size: 17px;
-  font-weight: 500;
-  font-style: italic;
-}
 
-#table_filter
-{
-    display:none;
-}
-</style>
 <!-- END Custom CSS-->
 <div class="app-content content">
   <div class="content-wrapper">
@@ -402,7 +389,7 @@ function cetak(ID){
                           </div>
                           <div class="form-group col-6 mb-2">
                             <label for="projectinput2">Jenis Rekening Biaya</label>
-                              <select class="select2 select2-size-lg form-control block" id="responsive_single" name="id_jns_rekbiaya" style="width: 100%" required>
+                              <select class="select form-control block" id="responsive_single" name="id_jns_rekbiaya" style="width: 100%" required>
                                 <option value=""> --- </option>
                                 <?php foreach ($nm_jns_rekbiaya as $jr) { ?>
                                   <option value="<?php echo $jr->id_jns_rekbiaya ?>"> <?php echo "$jr->id_jns_rekbiaya - $jr->nm_jns_rekbiaya" ?> </option>
