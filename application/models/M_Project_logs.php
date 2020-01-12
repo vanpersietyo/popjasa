@@ -49,10 +49,29 @@ class M_Project_logs extends CI_Model
         return $this->datatables->generate();
     }
 
+    // datatables
+    function json2($id)
+    {
+        $this->datatables->select('Project_id,LineNo, Status_log  ,tgl_log,keterangan, created_by');
+        $this->datatables->from('v_project_logs');
+        $this->datatables->where(array('Project_id' => $id));
+        //add this line for join
+        //$this->datatables->join('table2', 'trs_project_logs.field = table2.field');
+//        $this->datatables->add_column();
+        return $this->datatables->generate();
+    }
+
     // get all
     function get_all()
     {
         $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+
+    // get data by id
+    function get_by_id_list($id)
+    {
+        $this->db->where($this->id, $id);
         return $this->db->get($this->table)->result();
     }
 
