@@ -321,14 +321,14 @@ function cetak(ID){
                                  <div class="NOTIF_ERROR_nm_customer"></div>
                              </div>
                              <div class="col-md-12">
-                                 <label for="projectinput2">President</label>
-                                 <select class="select2 form-control block" id="responsive_single" name="president" style="width: 100%">
-                                     <option value="" class="disabled">Pilih Supplier Barang</option>
-                                        <option value="01" >JOKOWI AMIN</option>
-                                         <option value="02" >PRABOWO SANDI</option>
-
-                                 </select>
-                                 <div class="NOTIF_ERROR_president"></div>
+<!--                                 <label for="projectinput2">President</label>-->
+<!--                                 <select class="select2 form-control block" id="responsive_single" name="president" style="width: 100%">-->
+<!--                                     <option value="" class="disabled">Pilih Supplier Barang</option>-->
+<!--                                        <option value="01" >JOKOWI AMIN</option>-->
+<!--                                         <option value="02" >PRABOWO SANDI</option>-->
+<!---->
+<!--                                 </select>-->
+<!--                                 <div class="NOTIF_ERROR_president"></div>-->
                              </div>
                             </div>
 
