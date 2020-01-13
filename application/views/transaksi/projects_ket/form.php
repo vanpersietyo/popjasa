@@ -110,7 +110,7 @@ $this->load->view('template/head');
                                                     <div class="col-md-6">
                                                         <label>LUASAN TEMPAT USAHA:</label>
                                                         <div class="input-group">
-                                                            <input type="number" class="form-control" name="luas"
+                                                            <input type="text" class="form-control" name="luas"
                                                                    id="luas" value="<?php echo $Ket_Luas; ?>"/>
                                                         </div>
                                                     </div>

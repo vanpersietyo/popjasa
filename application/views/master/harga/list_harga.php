@@ -24,14 +24,6 @@
 <!-- END Page Level CSS-->
 <!-- BEGIN Custom CSS-->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/assets/css/style.css') ?>">
-<style media="screen">
-label {
-  display: inline-block;
-  margin-bottom: .5rem;
-  font-size: 18px;
-  font-weight: 500;
-}
-</style>
 <!-- END Custom CSS-->
 <div class="app-content content">
   <div class="content-wrapper">
@@ -165,7 +157,7 @@ function add_person()
     $('.form-group').removeClass('has-error'); // clear error class
     $('.help-block').empty(); // clear error string
     $('#modal_form').modal('show'); // show bootstrap modal
-    $('.modal-title').text('Tambah Karyawan Baru'); // Set Title to Bootstrap modal title
+    $('.modal-title').text('Tambah Data'); // Set Title to Bootstrap modal title
 
 }
 
@@ -188,6 +180,7 @@ function edit_person(id)
             $('[name="id_hrg_layanan"]').val(data.id_hrg_layanan);
             $('[name="id_layanan"]').val(data.id_layanan);
             $('[name="harga"]').val(data.harga);
+            $('[name="hpp"]').val(data.hpp);
             $('[name="keterangan"]').val(data.keterangan);
             $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
             $('.modal-title').text('Edit User'); // Set title to Bootstrap modal title
@@ -323,8 +316,13 @@ function cetak(ID){
                                    <input type="hidden" name="id"/>
                                    <span class="help-block"></span>
                                </div>
+                                 <label class="control-label col-md-12">HPP</label>
+                                 <div class="col-md-12">
+                                     <input name="hpp" placeholder="Harga Pokok Produksi .." class="form-control" type="number">
+                                     <span class="help-block"></span>
+                                 </div>
                                 <div class="col-md-12">
-                                 <label class="control-label col-md-12">Pilih Produk Jasa</label>
+                                 <label class="control-label">Pilih Produk Jasa</label>
                                      <select class="form-control" name="id_layanan" required>
                                       <option value=""> --- </option>
                                       <?php foreach ($produk as $key => $value) { ?>

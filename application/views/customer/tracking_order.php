@@ -88,7 +88,7 @@ data-menu="horizontal-menu" data-col="1-column">
                    <div class="card-body">
                      <form action="#" class="icons-tab-steps wizard-notification">
                        <!-- Step 1 -->
-                       <h6><i class="step-icon la la-file"></i> Minuta</h6>
+                       <h6><i class="step-icon la la-file"></i> New</h6>
                        <fieldset>
                          <div class="row">
                            <div class="col-md-4 text-left">
@@ -105,7 +105,7 @@ data-menu="horizontal-menu" data-col="1-column">
 
                        </fieldset>
                        <!-- Step 2 -->
-                       <h6><i class="step-icon la la-file"></i> Akte</h6>
+                       <h6><i class="step-icon la la-file"></i> Sedang Dikerjakan</h6>
                        <fieldset>
                          <div class="row">
                            <div class="col-md-6">
@@ -135,7 +135,7 @@ data-menu="horizontal-menu" data-col="1-column">
                          </div>
                        </fieldset>
                        <!-- Step 3 -->
-                       <h6><i class="step-icon la la-map-o"></i> Domisili</h6>
+                       <h6><i class="step-icon la la-map-o"></i> Selesai</h6>
                        <fieldset>
                          <div class="row">
                            <div class="col-md-6">
@@ -197,261 +197,7 @@ data-menu="horizontal-menu" data-col="1-column">
                            </div>
                          </div>
                        </fieldset>
-                       <!-- Step 4 -->
-                       <h6><i class="step-icon la la-money"></i> NPWP</h6>
-                       <fieldset>
-                         <div class="row">
-                           <div class="col-md-6">
-                             <div class="form-group">
-                               <label for="meetingName2">Name of Meeting :</label>
-                               <input type="text" class="form-control" id="meetingName2">
-                             </div>
-                             <div class="form-group">
-                               <label for="meetingLocation2">Location :</label>
-                               <input type="text" class="form-control" id="meetingLocation2">
-                             </div>
-                             <div class="form-group">
-                               <label for="participants2">Names of Participants</label>
-                               <textarea name="participants" id="participants2" rows="4" class="form-control"></textarea>
-                             </div>
-                           </div>
-                           <div class="col-md-6">
-                             <div class="form-group">
-                               <label for="decisions2">Decisions Reached</label>
-                               <textarea name="decisions" id="decisions2" rows="4" class="form-control"></textarea>
-                             </div>
-                             <div class="form-group">
-                               <label>Agenda Items :</label>
-                               <div class="c-inputs-stacked">
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item21">
-                                   <label class="custom-control-label" for="item21">1st item</label>
-                                 </div>
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item22">
-                                   <label class="custom-control-label" for="item22">2nd item</label>
-                                 </div>
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item23">
-                                   <label class="custom-control-label" for="item23">3rd item</label>
-                                 </div>
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item24">
-                                   <label class="custom-control-label" for="item24">4th item</label>
-                                 </div>
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item25">
-                                   <label class="custom-control-label" for="item25">5th item</label>
-                                 </div>
-                               </div>
-                             </div>
-                           </div>
-                         </div>
-                       </fieldset>
-                       <!-- Step 5 -->
-                       <h6><i class="step-icon la la-building"></i> PN</h6>
-                       <fieldset>
-                         <div class="row">
-                           <div class="col-md-6">
-                             <div class="form-group">
-                               <label for="meetingName2">Name of Meeting :</label>
-                               <input type="text" class="form-control" id="meetingName2">
-                             </div>
-                             <div class="form-group">
-                               <label for="meetingLocation2">Location :</label>
-                               <input type="text" class="form-control" id="meetingLocation2">
-                             </div>
-                             <div class="form-group">
-                               <label for="participants2">Names of Participants</label>
-                               <textarea name="participants" id="participants2" rows="4" class="form-control"></textarea>
-                             </div>
-                           </div>
-                           <div class="col-md-6">
-                             <div class="form-group">
-                               <label for="decisions2">Decisions Reached</label>
-                               <textarea name="decisions" id="decisions2" rows="4" class="form-control"></textarea>
-                             </div>
-                             <div class="form-group">
-                               <label>Agenda Items :</label>
-                               <div class="c-inputs-stacked">
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item21">
-                                   <label class="custom-control-label" for="item21">1st item</label>
-                                 </div>
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item22">
-                                   <label class="custom-control-label" for="item22">2nd item</label>
-                                 </div>
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item23">
-                                   <label class="custom-control-label" for="item23">3rd item</label>
-                                 </div>
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item24">
-                                   <label class="custom-control-label" for="item24">4th item</label>
-                                 </div>
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item25">
-                                   <label class="custom-control-label" for="item25">5th item</label>
-                                 </div>
-                               </div>
-                             </div>
-                           </div>
-                         </div>
-                       </fieldset>
-                       <!-- Step 6 -->
-                       <h6><i class="step-icon la la-building"></i> SIUP</h6>
-                       <fieldset>
-                         <div class="row">
-                           <div class="col-md-6">
-                             <div class="form-group">
-                               <label for="meetingName2">Name of Meeting :</label>
-                               <input type="text" class="form-control" id="meetingName2">
-                             </div>
-                             <div class="form-group">
-                               <label for="meetingLocation2">Location :</label>
-                               <input type="text" class="form-control" id="meetingLocation2">
-                             </div>
-                             <div class="form-group">
-                               <label for="participants2">Names of Participants</label>
-                               <textarea name="participants" id="participants2" rows="4" class="form-control"></textarea>
-                             </div>
-                           </div>
-                           <div class="col-md-6">
-                             <div class="form-group">
-                               <label for="decisions2">Decisions Reached</label>
-                               <textarea name="decisions" id="decisions2" rows="4" class="form-control"></textarea>
-                             </div>
-                             <div class="form-group">
-                               <label>Agenda Items :</label>
-                               <div class="c-inputs-stacked">
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item21">
-                                   <label class="custom-control-label" for="item21">1st item</label>
-                                 </div>
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item22">
-                                   <label class="custom-control-label" for="item22">2nd item</label>
-                                 </div>
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item23">
-                                   <label class="custom-control-label" for="item23">3rd item</label>
-                                 </div>
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item24">
-                                   <label class="custom-control-label" for="item24">4th item</label>
-                                 </div>
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item25">
-                                   <label class="custom-control-label" for="item25">5th item</label>
-                                 </div>
-                               </div>
-                             </div>
-                           </div>
-                         </div>
-                       </fieldset>
-                       <!-- Step 7 -->
-                       <h6><i class="step-icon la la-building"></i> TDP</h6>
-                       <fieldset>
-                         <div class="row">
-                           <div class="col-md-6">
-                             <div class="form-group">
-                               <label for="meetingName2">Name of Meeting :</label>
-                               <input type="text" class="form-control" id="meetingName2">
-                             </div>
-                             <div class="form-group">
-                               <label for="meetingLocation2">Location :</label>
-                               <input type="text" class="form-control" id="meetingLocation2">
-                             </div>
-                             <div class="form-group">
-                               <label for="participants2">Names of Participants</label>
-                               <textarea name="participants" id="participants2" rows="4" class="form-control"></textarea>
-                             </div>
-                           </div>
-                           <div class="col-md-6">
-                             <div class="form-group">
-                               <label for="decisions2">Decisions Reached</label>
-                               <textarea name="decisions" id="decisions2" rows="4" class="form-control"></textarea>
-                             </div>
-                             <div class="form-group">
-                               <label>Agenda Items :</label>
-                               <div class="c-inputs-stacked">
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item21">
-                                   <label class="custom-control-label" for="item21">1st item</label>
-                                 </div>
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item22">
-                                   <label class="custom-control-label" for="item22">2nd item</label>
-                                 </div>
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item23">
-                                   <label class="custom-control-label" for="item23">3rd item</label>
-                                 </div>
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item24">
-                                   <label class="custom-control-label" for="item24">4th item</label>
-                                 </div>
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item25">
-                                   <label class="custom-control-label" for="item25">5th item</label>
-                                 </div>
-                               </div>
-                             </div>
-                           </div>
-                         </div>
-                       </fieldset>
-                       <!-- Step 8 -->
-                       <h6><i class="step-icon la la-building"></i> PKD</h6>
-                       <fieldset>
-                         <div class="row">
-                           <div class="col-md-6">
-                             <div class="form-group">
-                               <label for="meetingName2">Name of Meeting :</label>
-                               <input type="text" class="form-control" id="meetingName2">
-                             </div>
-                             <div class="form-group">
-                               <label for="meetingLocation2">Location :</label>
-                               <input type="text" class="form-control" id="meetingLocation2">
-                             </div>
-                             <div class="form-group">
-                               <label for="participants2">Names of Participants</label>
-                               <textarea name="participants" id="participants2" rows="4" class="form-control"></textarea>
-                             </div>
-                           </div>
-                           <div class="col-md-6">
-                             <div class="form-group">
-                               <label for="decisions2">Decisions Reached</label>
-                               <textarea name="decisions" id="decisions2" rows="4" class="form-control"></textarea>
-                             </div>
-                             <div class="form-group">
-                               <label>Agenda Items :</label>
-                               <div class="c-inputs-stacked">
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item21">
-                                   <label class="custom-control-label" for="item21">1st item</label>
-                                 </div>
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item22">
-                                   <label class="custom-control-label" for="item22">2nd item</label>
-                                 </div>
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item23">
-                                   <label class="custom-control-label" for="item23">3rd item</label>
-                                 </div>
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item24">
-                                   <label class="custom-control-label" for="item24">4th item</label>
-                                 </div>
-                                 <div class="custom-control custom-checkbox">
-                                   <input type="checkbox" name="agenda2" class="custom-control-input" id="item25">
-                                   <label class="custom-control-label" for="item25">5th item</label>
-                                 </div>
-                               </div>
-                             </div>
-                           </div>
-                         </div>
-                       </fieldset>
+
                      </form>
                    </div>
                  </div>
