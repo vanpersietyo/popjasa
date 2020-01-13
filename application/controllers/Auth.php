@@ -18,31 +18,11 @@ class Auth extends CI_Controller {
 
 	}
 
-  public function login16(){
-    $this->load->library('user_agent');
-    if ($this->agent->is_mobile()) {
-       $this->load->view('login/login16');
-   }else {
-    $this->load->view('login/login16');
-   }
-
-  }
-
-  public function login18(){
-    $this->load->library('user_agent');
-    if ($this->agent->is_mobile()) {
-       $this->load->view('login/login18');
-   }else {
-    $this->load->view('login/login18');
-   }
-
-  }
-
 	function process() {
 		$this->load->model('M_login'); // load model_user
 		$hasil = $this->M_login->cek_user(strtoupper($this->input->post('user_id')),$this->input->post('password'));
-		// var_dump($this->db->last_query());
-		// exit();
+//		 var_dump($this->db->last_query());
+//		 exit();
 		if($hasil == true){
 			$this->session->set_userdata('isLogin',true);
 			$this->session->set_userdata('yangLogin',strtoupper($this->input->post('user_id')));

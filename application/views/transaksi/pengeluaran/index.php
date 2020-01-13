@@ -333,7 +333,7 @@ function detail(id)
 
                           <div class="col-12 mb-2">
                                <label for="projectinput2">Periode Pengeluaran</label>
-                                 <select class="select2 select2-size-lg form-control block" id="responsive_single" name="periode" style="width: 100%" required>
+                                 <select class="select select-size-lg form-control block" id="responsive_single" name="periode" style="width: 100%" required>
                                    <option value="" class="disabled"> --- </option>
                                   <option value="Januari"> Januari </option>
                                   <option value="Februari"> Februari </option>
@@ -350,13 +350,10 @@ function detail(id)
                                  </select>
                            </div>
                            <div class="col-12 mb-2">
-                              <label for="issueinput5">Keterangan</label>
+                              <label for="issueinput5">Keterangan Biaya Pengeluaran</label>
                               <div class="input-group">
-                               <div class="input-group-prepend">
-                                 <span class="input-group-text" id="basic-addon3"><i class="fas fa-edit"></i></span>
-                               </div>
                                <input type="text" class="form-control form-control-lg input-lg position-inside-maxlength"
-                                id="maxlength-position-inside" maxlength="65" name="keterangan" placeholder="" aria-describedby="basic-addon3">
+                                id="maxlength-position-inside" maxlength="120" name="keterangan" placeholder="" aria-describedby="basic-addon3">
                              </div>
                             </div>
                        </div>
