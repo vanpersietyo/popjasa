@@ -30,19 +30,34 @@ class M_trs_pengeluaran extends CI_Model {
 
   function get_datatables_detail($id)
 	{
-		$query = $this->db->query("SELECT * FROM trs_detail_rekening_biaya where id_trs_rekbiaya='$id'");
+		$query = $this->db->query("
+        SELECT A.*,B.nm_rekbiaya
+        FROM trs_detail_rekening_biaya A
+        JOIN m_rekening_biaya B ON A.id_rekbiaya=B.id_rekbiaya
+        where id_trs_rekbiaya='$id'
+        ");
 		return $query->result();
 	}
 
 	function count_filtered_detail($id)
 	{
-		$query = $this->db->query("SELECT * FROM trs_detail_rekening_biaya where id_trs_rekbiaya='$id'");
+		$query = $this->db->query("
+		SELECT *
+        FROM trs_detail_rekening_biaya A
+        JOIN m_rekening_biaya B ON A.id_rekbiaya=B.id_rekbiaya
+        where id_trs_rekbiaya='$id'
+		");
   		return $query->num_rows();
 	}
 
 	public function count_all_detail($id)
 	{
-    $query = $this->db->query("SELECT * FROM trs_detail_rekening_biaya where id_trs_rekbiaya='$id'");
+        $query = $this->db->query("
+		SELECT *
+        FROM trs_detail_rekening_biaya A
+        JOIN m_rekening_biaya B ON A.id_rekbiaya=B.id_rekbiaya
+        where id_trs_rekbiaya='$id'
+		");
     return $query->num_rows();
 	}
 

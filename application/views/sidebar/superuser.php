@@ -104,12 +104,12 @@ role="navigation" data-menu="menu-wrapper">
 
           <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon-folder"></i>Operational</a>
            <ul class="dropdown-menu">
-             <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/customer')?>"
-               data-toggle="dropdown"><i class="icon-diamond"></i>Customer</a>
-             </li>
-             <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/supplier')?>"
-               data-toggle="dropdown"><i class="icon-star"></i>Notaris</a>
-             </li>
+<!--             <li data-menu=""><a class="dropdown-item" href="--><?php //echo site_url('master/customer')?><!--"-->
+<!--               data-toggle="dropdown"><i class="icon-diamond"></i>Customer</a>-->
+<!--             </li>-->
+<!--             <li data-menu=""><a class="dropdown-item" href="--><?php //echo site_url('master/supplier')?><!--"-->
+<!--               data-toggle="dropdown"><i class="icon-star"></i>Notaris</a>-->
+<!--             </li>-->
              <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/agen')?>"
                data-toggle="dropdown"><i class="icon-moustache"></i>Agen</a>
              </li>
@@ -124,31 +124,38 @@ role="navigation" data-menu="menu-wrapper">
             </li>
            </ul>
          </li>
-           <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon-credit-card"></i>Rekening Biaya</a>
-            <ul class="dropdown-menu">
-              <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/jenisrekeningbiaya')?>"
-                data-toggle="dropdown">Kategori Rekening Biaya</a>
-              </li>
-              <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/rekeningbiaya')?>"
-                data-toggle="dropdown">Rekening Biaya</a>
-              </li>
-            </ul>
-          </li>
+
+            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/rekeningbiaya')?>"
+                                data-toggle="dropdown"><i class="icon-credit-card"></i>Rekening Biaya</a>
+            </li>
+<!--           <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon-credit-card"></i>Rekening Biaya</a>-->
+<!--            <ul class="dropdown-menu">-->
+<!--              <li data-menu=""><a class="dropdown-item" href="--><?php //echo site_url('master/jenisrekeningbiaya')?><!--"-->
+<!--                data-toggle="dropdown">Kategori Rekening Biaya</a>-->
+<!--              </li>-->
+<!--              <li data-menu=""><a class="dropdown-item" href="--><?php //echo site_url('master/rekeningbiaya')?><!--"-->
+<!--                data-toggle="dropdown">Rekening Biaya</a>-->
+<!--              </li>-->
+<!--            </ul>-->
+<!--          </li>-->
           <!-- <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/bank')?>"
             data-toggle="dropdown"><i class="icon-credit-card"></i>Bank</a>
           </li> -->
            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/fix_assets')?>"
              data-toggle="dropdown"><i class="icon-trophy"></i>Aset</a>
            </li>
-             <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon-target"></i>Target</a>
-              <ul class="dropdown-menu">
-                 <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/targetpencapaian')?>" data-toggle="dropdown"> Target Pencapaian Global</a>
-                </li>
-                <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/hargalayanan')?>"
-                  data-toggle="dropdown">Target Pencapaian Per Produk</a>
-                </li>
-              </ul>
+            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/targetpencapaian')?>"
+                                data-toggle="dropdown"><i class="icon-target"></i>Target Omzet</a>
             </li>
+<!--             <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon-target"></i>Target</a>-->
+<!--              <ul class="dropdown-menu">-->
+<!--                 <li data-menu=""><a class="dropdown-item" href="--><?php //echo site_url('master/targetpencapaian')?><!--" data-toggle="dropdown"> Target Pencapaian Global</a>-->
+<!--                </li>-->
+<!--                <li data-menu=""><a class="dropdown-item" href="--><?php //echo site_url('master/hargalayanan')?><!--"-->
+<!--                  data-toggle="dropdown">Target Pencapaian Per Produk</a>-->
+<!--                </li>-->
+<!--              </ul>-->
+<!--            </li>-->
              <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/user')?>"
               data-toggle="dropdown"><i class="icon-users"></i>User</a>
             </li>

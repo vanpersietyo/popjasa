@@ -148,8 +148,7 @@ class Pengeluaran extends CI_Controller{
 		$data = array();
 		foreach ($list as $d) {
 			$row = array();
-      $row[] = '<p class="badge badge-dark" style="font-size: 15px;">'.$d->id_dtlrekbiaya;
-			$row[] = '<p class="badge badge-dark" style="font-size: 15px;">'.$d->id_trs_rekbiaya;
+			$row[] = '<h5>'.$d->nm_rekbiaya;
 			$row[] = '<h5 class="text-bold-500">'.number_format($d->harga);
 			$row[] = '<h5 class="text-bold-500">'.$d->keterangan;
 			$row[] = '<p class="text-bold-500">'.$d->tgl_input;

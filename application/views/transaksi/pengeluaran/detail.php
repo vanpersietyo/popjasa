@@ -69,8 +69,7 @@
                   <table id="table" class="table table-striped table-bordered sourced-data">
                     <thead>
                       <tr>
-                        <th width="10%">ID Rincian Pengeluaran</th>
-                        <th width="10%">Periode</th>
+                        <th width="10%">Nama Rek. Biaya</th>
                         <th width="10%">Jml Pengeluaran</th>
                         <th width="30%">keterangan</th>
                         <th width="15%">Tgl Dibuat</th>
