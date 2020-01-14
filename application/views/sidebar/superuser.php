@@ -198,7 +198,11 @@ role="navigation" data-menu="menu-wrapper">
         </ul>
       </li>
 
-
+        <li class=" nav-item pull-up" data-menu="">
+            <a class="nav-link" href="<?php echo site_url('customers/track')?>" target="_blank"><i class="ft-search"></i>
+                <span>Customers Track</span>
+            </a>
+        </li>
 
       <li class=" nav-item pull-up" data-menu="">
        <a class="nav-link" href="<?php echo site_url('auth/logout')?>"><i class="ft-power"></i>

@@ -6,15 +6,22 @@ class Dashboard extends CI_Controller{
 		parent::__construct();
 		$this->load->model('M_login');
 		$this->load->model('dashboard/M_hrd', 'M_hrd');
+        $this->load->model('dashboard/M_dir', 'M_dir');
 		$this->load->model('hrd/M_pembayaran_karyawan', 'M_pembayaran_karyawan');
 		$this->M_login->isLogin();
 	}
 
 	public function index(){
+	    $data['order']=$this->M_dir->tot_order();
+        $data['progress']=$this->M_dir->tot_onprogress();
+        $data['finish']=$this->M_dir->tot_finish();
+
+        $data['cust_contacted']=$this->M_dir->cust_contacted();
+        $data['cust_deal']=$this->M_dir->cust_deal();
+        $data['cust_lost']=$this->M_dir->cust_lost();
+
 		$data['target']=$this->M_login->target_today();
 		$data['pages']='dashboard/chart';
-		// var_dump($data);
-		// exit();
 		$this->load->view('layout',$data);
 	}
 

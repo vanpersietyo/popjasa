@@ -23,90 +23,111 @@ data-menu="horizontal-menu" data-col="2-columns">
 
       <div class="content-body">
         <div class="row">
-          <div class="col-xl-3 col-lg-6 col-12">
+          <div class="col-xl-4 col-lg-6 col-12">
             <div class="card pull-up">
               <div class="card-content">
                 <div class="card-body">
                   <div class="media d-flex">
                     <div class="media-body text-left">
-                      <h3 class="info">1000</h3>
+                      <h3 class="info"><?= number_format($order->tot_order) ?></h3>
                       <h6>Total Order</h6>
                     </div>
                     <div>
                       <i class="icon-basket-loaded info font-large-2 float-right"></i>
                     </div>
                   </div>
-                  <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
-                    <div class="progress-bar bg-gradient-x-info" role="progressbar" style="width: 80%"
-                    aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
+
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-xl-3 col-lg-6 col-12">
+          <div class="col-xl-4 col-lg-6 col-12">
             <div class="card pull-up">
               <div class="card-content">
                 <div class="card-body">
                   <div class="media d-flex">
                     <div class="media-body text-left">
-                      <h3 class="warning">500</h3>
+                      <h3 class="warning"><?= number_format($progress->on_progress) ?></h3>
                       <h6>Total Belum Selesai</h6>
                     </div>
                     <div>
                       <i class="icon-pie-chart warning font-large-2 float-right"></i>
                     </div>
                   </div>
-                  <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
-                    <div class="progress-bar bg-gradient-x-warning" role="progressbar" style="width: 65%"
-                    aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
+
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-xl-3 col-lg-6 col-12">
+          <div class="col-xl-4 col-lg-6 col-12">
             <div class="card pull-up">
               <div class="card-content">
                 <div class="card-body">
                   <div class="media d-flex">
                     <div class="media-body text-left">
-                      <h3 class="danger">500</h3>
+                      <h3 class="danger"><?= number_format($finish->finish) ?></h3>
                       <h6>Total Sudah Selesai</h6>
                     </div>
                     <div>
                       <i class="icon-heart danger font-large-2 float-right"></i>
                     </div>
                   </div>
-                  <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
-                    <div class="progress-bar bg-gradient-x-danger" role="progressbar" style="width: 85%"
-                    aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
+
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-xl-3 col-lg-6 col-12">
+          <div class="col-xl-4 col-lg-6 col-12">
             <div class="card pull-up">
               <div class="card-content">
                 <div class="card-body">
                   <div class="media d-flex">
                     <div class="media-body text-left">
-                      <h3 class="success">1000</h3>
-                      <h6>Customer Baru</h6>
+                      <h3 class="primary"><?= number_format($cust_contacted->contacted) ?></h3>
+                      <h6>Customer Contacted</h6>
                     </div>
                     <div>
-                      <i class="icon-user-follow success font-large-2 float-right"></i>
+                      <i class="icon-user-follow primary font-large-2 float-right"></i>
                     </div>
-                  </div>
-                  <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
-                    <div class="progress-bar bg-gradient-x-success" role="progressbar" style="width: 75%"
-                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+            <div class="col-xl-4 col-lg-6 col-12">
+                <div class="card pull-up">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="media d-flex">
+                                <div class="media-body text-left">
+                                    <h3 class="success"><?= number_format($cust_deal->contacted) ?></h3>
+                                    <h6>Customer Deal</h6>
+                                </div>
+                                <div>
+                                    <i class="icon-user-follow success font-large-2 float-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-12">
+                <div class="card pull-up">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="media d-flex">
+                                <div class="media-body text-left">
+                                    <h3 class="danger"><?= number_format($cust_lost->contacted) ?></h3>
+                                    <h6>Customer Lost</h6>
+                                </div>
+                                <div>
+                                    <i class="icon-user-unfollow danger font-large-2 float-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- line chart section start -->
         <section id="chartjs-line-charts">
