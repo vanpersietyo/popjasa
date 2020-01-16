@@ -88,7 +88,11 @@
         table = $('#table').DataTable({
             "ajax": {
                 "url": "<?php echo site_url('transaksi/project/ajax_list2')?>",
-            }
+            },
+            dom: 'Bfrtip',
+            buttons: [
+                'excel'
+            ]
         });
     });
 

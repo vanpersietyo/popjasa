@@ -130,6 +130,10 @@ $(document).ready(function() {
             "url": "<?php echo site_url('transaksi/pembayaran/ajax_project/'.$id_customer)?>",
             "type": "POST"
         },
+        dom: 'Bfrtip',
+        buttons: [
+            'excel'
+        ]
 
     });
 

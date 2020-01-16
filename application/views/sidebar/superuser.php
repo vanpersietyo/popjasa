@@ -170,7 +170,7 @@ role="navigation" data-menu="menu-wrapper">
                data-toggle="dropdown"><i class="la la-file"></i>Kehadiran Karyawan<div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti')?></div></a>
              </li>
              <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/hrd/gaji')?>"
-               data-toggle="dropdown"><i class="la la-file"></i>Gaji Karyawan<div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti')?></div></a>
+               data-toggle="dropdown"><i class="la la-file"></i>Gaji Karyawan<div class="badge badge-pill badge-danger"></div></a>
              </li>
              <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/hrd/cuti')?>"
                data-toggle="dropdown"><i class="la la-file"></i>Ketidakhadiran Karyawan<div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti')?></div></a>
@@ -181,20 +181,20 @@ role="navigation" data-menu="menu-wrapper">
               data-toggle="dropdown"><i class="icon-calendar"></i>Biaya Pengeluaran<div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti')?></div></a>
             </li>
             <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/omzet')?>"
-              data-toggle="dropdown"><i class="icon-calendar"></i>Omzet<div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti')?></div></a>
+              data-toggle="dropdown"><i class="icon-calendar"></i>Project<div class="badge badge-pill badge-danger"></div></a>
             </li>
             <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/piutangoutstanding')?>"
-              data-toggle="dropdown"><i class="icon-calendar"></i>Piutang Outstanding<div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti')?></div></a>
+              data-toggle="dropdown"><i class="icon-calendar"></i>Piutang Outstanding<div class="badge badge-pill badge-danger"></div></a>
             </li>
             <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/labarugi')?>"
-              data-toggle="dropdown"><i class="icon-calendar"></i>Laba Rugi<div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti')?></div></a>
+              data-toggle="dropdown"><i class="icon-calendar"></i>Laba Rugi<div class="badge badge-pill badge-danger"></div></a>
             </li>
-            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/labarugi')?>"
-              data-toggle="dropdown"><i class="icon-calendar"></i>Detail Order<div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti')?></div></a>
-            </li>
-            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/labarugi')?>"
-              data-toggle="dropdown"><i class="icon-calendar"></i>Analytics<div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti')?></div></a>
-            </li>
+<!--            <li data-menu=""><a class="dropdown-item" href="--><?php //echo site_url('report/labarugi')?><!--"-->
+<!--              data-toggle="dropdown"><i class="icon-calendar"></i>Detail Order<div class="badge badge-pill badge-danger"></div></a>-->
+<!--            </li>-->
+<!--            <li data-menu=""><a class="dropdown-item" href="--><?php //echo site_url('report/labarugi')?><!--"-->
+<!--              data-toggle="dropdown"><i class="icon-calendar"></i>Analytics<div class="badge badge-pill badge-danger"></div></a>-->
+<!--            </li>-->
         </ul>
       </li>
 

@@ -11,10 +11,12 @@ class Contacted extends CI_Controller{
 			$this->load->model('M_master_agen');
 			$this->load->model('sales/M_reason_deal', 'M_reason_deal');
 			$this->load->model('sales/M_reason_lost', 'M_reason_lost');
+        $this->load->model('M_produkjasa');
 		$this->load->model('sales/M_area', 'M_area');
 	}
 
 	public function index(){
+	    $data['layanan']=$this->M_produkjasa->get_user();
 		$data['agen']=$this->M_master_agen->get_data();
 		$data['area']=$this->M_area->get_user();
 		$data['reason_deal']=$this->M_reason_deal->get_data();
@@ -95,6 +97,7 @@ class Contacted extends CI_Controller{
 			'keterangan' => $this->input->post('keterangan'),
 			'tgl_input' => date('Y-m-d H:i:s'),
 			'inputby' => $this->session->userdata('yangLogin'),
+            'id_layanan' => $this->input->post('id_layanan'),
 			);
 
 			// var_dump($data);
@@ -128,6 +131,7 @@ class Contacted extends CI_Controller{
 			'keterangan' => $this->input->post('keterangan'),
 			'tgl_input' => date('Y-m-d H:i:s'),
 			'inputby' => $this->session->userdata('yangLogin'),
+            'id_layanan' => $this->input->post('id_layanan'),
 			);
 
 			// var_dump($data);

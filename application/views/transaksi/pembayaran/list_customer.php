@@ -134,6 +134,10 @@ $(document).ready(function() {
             "url": "<?php echo site_url('transaksi/pembayaran/ajax_list')?>",
             "type": "POST"
         },
+        dom: 'Bfrtip',
+        buttons: [
+            'excel'
+        ]
 
     });
 

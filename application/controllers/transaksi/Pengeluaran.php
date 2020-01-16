@@ -60,6 +60,7 @@ class Pengeluaran extends CI_Controller{
 			'id_trs_rekbiaya' => $this->M_trs_pengeluaran->get_ID('id_trs_rekbiaya'),
 			'periode' => $this->input->post('periode'),
       'keterangan' => $this->input->post('keterangan'),
+            'kd_cabang' => $this->session->userdata('cabang'),
 			'total_pengeluaran' => 0,
 			'tgl_input' => date('Y-m-d H:i:s'),
 			'inputby' => $this->session->userdata('yangLogin'),
@@ -77,6 +78,7 @@ class Pengeluaran extends CI_Controller{
 			'itemname' => $this->input->post('itemname'),
 			'amount' => $this->input->post('amount'),
 			'trtype' => $this->input->post('trtype'),
+            'kd_cabang' => $this->session->userdata('cabang'),
 			'itemcategoryid' => $this->input->post('itemcategoryid'),
 			'ukuranid' => $this->input->post('ukuranid'),
 			'lastmodify' => date('Y-m-d H:i:s'),
@@ -125,10 +127,10 @@ class Pengeluaran extends CI_Controller{
 		$kode=date('Ymds');
 		$data = array(
 			'id_dtlrekbiaya' => $this->M_trs_pengeluaran->get_ID_detail('id_trs_rekbiaya'),
-      'id_trs_rekbiaya' => $this->input->post('id_header'),
-			'id_rekbiaya' => $this->input->post('id_rekbiaya'),
-      'keterangan' => $this->input->post('keterangan'),
-      'harga' => str_replace(".", "", $this->input->post('harga')),
+            'id_trs_rekbiaya' => $this->input->post('id_header'),
+            'id_rekbiaya' => $this->input->post('id_rekbiaya'),
+            'keterangan' => $this->input->post('keterangan'),
+            'harga' => str_replace(".", "", $this->input->post('harga')),
 			'tgl_input' => date('Y-m-d H:i:s'),
 			'inputby' => $this->session->userdata('yangLogin'),
 			);

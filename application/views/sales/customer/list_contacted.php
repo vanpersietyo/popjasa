@@ -433,6 +433,15 @@ function delete_person(id)
                                      <?php }?>
                                  </select>
                              </div>
+                            <div class="col-md-12">
+                                <label for="projectinput2">Tertarik Dengan Produk ?</label>
+                                <select class="select2 form-control block"  name="id_layanan" style="width: 100%">
+                                    <option value="" class="disabled">Pilih Produk</option>
+                                    <?php foreach ($layanan as $layanan) { ?>
+                                        <option value="<?php echo $layanan->id_layanan?>" ><?php echo $layanan->nama_layanan?></option>
+                                    <?php }?>
+                                </select>
+                            </div>
                              <!-- <div class="col-md-6">
                                 <label>Jenis Usaha</label>
                                <input name="jns_usaha" placeholder="Jenis Usaha .." class="form-control" type="text">
@@ -560,7 +569,7 @@ function delete_person(id)
                               <label>Bidang Usaha</label>
                              <input name="bidang_usaha" placeholder="Bidang Usaha .." class="form-control" type="text" disabled>
                            </div>
-
+                            
                            <div class="col-md-12">
                               <label>Agen</label>
                            <input name="Agen" placeholder="Agen .." class="form-control" type="text" disabled>

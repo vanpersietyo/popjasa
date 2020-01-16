@@ -56,7 +56,7 @@
                     </tbody>
                     <tfoot>
                       <tr>
-                          <th colspan="2"><h5 class="text-bold-500" align="right">Total Tunjangan:<h5></th>
+                          <th colspan="2"><h5 class="text-bold-500" align="right">Total Potongan:<h5></th>
                           <th colspan="2"></th>
                       </tr>
                   </tfoot>
