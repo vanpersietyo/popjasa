@@ -62,17 +62,17 @@
 
                               <div class="col-md-12">
                                <label for="issueinput5">Tunjangan</label>
-                               <select class="form-control" name="id_potongan">
+                               <select class="form-control" name="id_tunjangan">
                                   <option value=""> --- </option>
-                                  <?php foreach ($potongan as $potongan) { ?>
-                                    <option value="<?php echo $potongan->id_potongan ?>"> <?php echo "$potongan->keterangan" ?> </option>
+                                  <?php foreach ($tunjangan as $tunjangan) { ?>
+                                    <option value="<?php echo $tunjangan->id_tunjangan ?>"> <?php echo "$tunjangan->keterangan" ?> </option>
                                   <?php }?>
                                 </select>
                                 <div class="NOTIF_ERROR_id_potongan"></div>
                               </div>
 
                               <div class="col-md-12">
-                                <label for="issueinput5">Jumlah Potongan</label>
+                                <label for="issueinput5">Jumlah Tunjangan</label>
                                 <input type="text" name="jumlah" class="form-control" id="tanpa-rupiah" required="" >
                                    <div class="NOTIF_ERROR_jumlah"></div>
                               </div>

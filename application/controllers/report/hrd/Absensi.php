@@ -98,7 +98,8 @@ class Absensi extends CI_Controller {
 	  $TGL2=date("d/m/Y", strtotime($tgl_akhir));
 		$TGL1=date("d/m/Y", strtotime($tgl_awal));
 		$periode=strtoupper(date("F Y", strtotime($tgl_akhir)));
-		$PRD_BLTH=strtoupper(date("My", strtotime($tgl_akhir)));
+		$PRD_BLTH=strtoupper(date("Fy", strtotime($tgl_akhir)));
+
 		$cabang=$this->session->userdata('nm_cabang');
 		$sysdate=date('d/m/Y H:i');
 
