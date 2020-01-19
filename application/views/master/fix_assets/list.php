@@ -127,6 +127,11 @@
                                     <label for="varchar">Penerima <?php echo form_error('Penerima') ?></label>
                                     <input type="text" class="form-control" name="Penerima" id="Penerima" placeholder="Penerima" />
                                 </div>
+                                <div class="form-group">
+                                    <label for="varchar">Harga <?php echo form_error('Harga') ?></label>
+                                    <input type="text" class="form-control" name="Harga" id="Harga"
+                                           placeholder="Harga" value="<?php echo $Harga; ?>"/>
+                                </div>
                             </div>
                         </div>
                     </form>

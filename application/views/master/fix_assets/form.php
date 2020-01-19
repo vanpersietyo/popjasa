@@ -64,6 +64,11 @@ $this->load->view('template/head');
                                 <input type="text" class="form-control" name="Penerima" id="Penerima"
                                        placeholder="Penerima" value="<?php echo $Penerima; ?>"/>
                             </div>
+                            <div class="form-group">
+                                <label for="varchar">Harga <?php echo form_error('Harga') ?></label>
+                                <input type="text" class="form-control" name="Harga" id="Harga"
+                                       placeholder="Harga" value="<?php echo $Harga; ?>"/>
+                            </div>
                             <input type="hidden" name="Fa_ID" value="<?php echo $Fa_ID; ?>"/>
                             <button type="submit" class="btn btn-primary"><?php echo $button ?></button>
                             <a href="<?php echo site_url('master/fix_assets') ?>" class="btn btn-default">Cancel</a>

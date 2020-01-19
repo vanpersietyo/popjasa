@@ -20,7 +20,7 @@ $this->load->view('./template/head');
             <div class="form-group" style="text-align: right">
                 <input type="hidden" value="<?php echo $project->id_project; ?>" id="id_project" name="id_project"/>
                 <?php echo anchor(site_url('transaksi/project_logs/create_progress/') . $project->id_project, 'Create', 'class="btn btn-primary"'); ?>
-                <?php echo anchor(site_url('transaksi/progress'), 'Kembali', 'class="btn btn-primary"'); ?>
+                <?php echo anchor(site_url('transaksi/progress/update_track/').$project->id_project, 'Kembali', 'class="btn btn-primary"'); ?>
             </div>
         </div>
     </div>
