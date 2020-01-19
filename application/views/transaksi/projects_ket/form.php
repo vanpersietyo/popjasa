@@ -60,7 +60,7 @@ $this->load->view('template/head');
                                                         <label>Email UNTUK NIB</label>
                                                         <div class="input-group">
                                                             <input type="text" class="form-control" name="email"
-                                                                   id="email" value="<?php echo $Email; ?>"/>
+                                                                   id="email" value="<?php echo $Ket_Email; ?>"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -118,15 +118,29 @@ $this->load->view('template/head');
                                                         <label>MENGETAHUI POPJASA dari:</label>
                                                         <div class="input-group">
                                                             <select class="form-control" id="tahu" name="tahu"
-                                                                    value="<?php echo $Ket_Informasi; ?>">
+                                                                    onselect="<?php echo $Ket_Informasi; ?>">
                                                                 <option value="">---SILAHKAN PILIH---</option>
-                                                                <option value="pernah_order">PERNAH ORDER</option>
-                                                                <option value="website">WEBSITE</option>
-                                                                <option value="facebook">FACEBOOK</option>
-                                                                <option value="instagram">INSTAGRAM</option>
-                                                                <option value="olx">OLX</option>
-                                                                <option value="spanduk">SPANDUK</option>
-                                                                <option value="teman">TEMAN</option>
+                                                                <option value="pernah_order" <?php if ($Ket_Informasi == 'pernah_order'): ?> selected="selected"<?php endif; ?>>
+                                                                    PERNAH ORDER
+                                                                </option>
+                                                                <option value="website" <?php if ($Ket_Informasi == 'website'): ?> selected="selected"<?php endif; ?>>
+                                                                    WEBSITE
+                                                                </option>
+                                                                <option value="facebook" <?php if ($Ket_Informasi == 'facebook'): ?> selected="selected"<?php endif; ?>>
+                                                                    FACEBOOK
+                                                                </option>
+                                                                <option value="instagram" <?php if ($Ket_Informasi == 'instagram'): ?> selected="selected"<?php endif; ?>>
+                                                                    INSTAGRAM
+                                                                </option>
+                                                                <option value="olx" <?php if ($Ket_Informasi == 'olx'): ?> selected="selected"<?php endif; ?>>
+                                                                    OLX
+                                                                </option>
+                                                                <option value="spanduk" <?php if ($Ket_Informasi == 'spanduk'): ?> selected="selected"<?php endif; ?>>
+                                                                    SPANDUK
+                                                                </option>
+                                                                <option value="teman" <?php if ($Ket_Informasi == 'teman'): ?> selected="selected"<?php endif; ?>>
+                                                                    TEMAN
+                                                                </option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -163,7 +177,7 @@ $this->load->view('template/head');
                                     <input type="hidden" name="ID_Project_Ket" value="<?php echo $ID_Project_Ket; ?>"/>
                                     <button type="submit" class="btn btn-primary"><?php echo $button ?></button>
                                     <a class="btn btn-danger bg-accent-4 pull-up" type="button"
-                                       href="<?php echo site_url('transaksi/project/index_adit') ?>"><i
+                                       href="<?php echo site_url('transaksi/progress/update_track/') . $ID_Project ?>"><i
                                                 class="ft-arrow-left white"></i>
                                         Kembali</a>
                                 </div>
@@ -172,7 +186,7 @@ $this->load->view('template/head');
 
                     </div>
                 </div>
-            </div>
+        </div>
         </section>
         </div>
 

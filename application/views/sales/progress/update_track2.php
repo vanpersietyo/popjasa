@@ -409,7 +409,6 @@
     </div>
 </div>
 
-
 <div class="modal animated pulse text-left" id="modal_form_izin" role="dialog" aria-labelledby="myModalLabel17"
      aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
@@ -931,121 +930,125 @@
     function show_keterangan() {
 
         let id = $('[name="id_project"]').val();
-        //Ajax Load data from ajax
-        $.ajax({
-            url: "<?php echo site_url('transaksi/projects_ket/ajax_edit')?>/" + id,
-            type: "GET",
-            dataType: "JSON",
-            success: function (data) {
-                $('[name="id_project_ket"]').val(data.ID_Project_Ket);
-                $('[name="Id_hdr_Project"]').val(data.ID_Hdr_Project);
-                $('[name="id_project"]').val(data.ID_Project);
-                $('[name="email"]').val(data.Ket_Email);
-                $('[name="password"]').val(data.Pass_Email);
-                $('[name="email_pengurus"]').val(data.Email_Pengurus);
-                $('[name="notelp"]').val(data.No_Telp);
-                $('[name="luas"]').val(data.Ket_Luas);
-                $('[name="tahu"]').val(data.Ket_Informasi);
-                $('[name="bidang_usaha"]').val(data.Ket_Bidang_Usaha);
-                $('#modal_form_keterangan').modal('show'); // show bootstrap modal when complete loaded
-                $('.modal-title').text('Document Informasi Keterangan'); // Set title to Bootstrap modal title
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                alert('Error get data from ajax');
-            }
-        });
+        ////Ajax Load data from ajax
+        //$.ajax({
+        //    url: "<?php //echo site_url('transaksi/projects_ket/_exist_document')?>///" + id,
+        //    type: "GET",
+        //    dataType: "JSON",
+        //    success: function (data) {
+        window.location.href = "<?php echo site_url('/transaksi/projects_ket/cek_exist_projects/'); ?>" + id;
+        // $('[name="id_project_ket"]').val(data.ID_Project_Ket);
+        // $('[name="Id_hdr_Project"]').val(data.ID_Hdr_Project);
+        // $('[name="id_project"]').val(data.ID_Project);
+        // $('[name="email"]').val(data.Ket_Email);
+        // $('[name="password"]').val(data.Pass_Email);
+        // $('[name="email_pengurus"]').val(data.Email_Pengurus);
+        // $('[name="notelp"]').val(data.No_Telp);
+        // $('[name="luas"]').val(data.Ket_Luas);
+        // $('[name="tahu"]').val(data.Ket_Informasi);
+        // $('[name="bidang_usaha"]').val(data.Ket_Bidang_Usaha);
+        // $('#modal_form_keterangan').modal('show'); // show bootstrap modal when complete loaded
+        // $('.modal-title').text('Document Informasi Keterangan'); // Set title to Bootstrap modal title
+        // },
+        // error: function (jqXHR, textStatus, errorThrown) {
+        //     alert('Error get data from ajax');
+        // }
+        // });
     }
 
     function show_izin() {
 
         let id = $('[name="id_project"]').val();
+        window.location.href = "<?php echo site_url('/transaksi/projects_izin/cek_exist_projects/'); ?>" + id;
         //Ajax Load data from ajax
-        $.ajax({
-            url: "<?php echo site_url('transaksi/projects_izin/ajax_edit')?>/" + id,
-            type: "GET",
-            dataType: "JSON",
-            success: function (data) {
-                $('[name="id_project_izin"]').val(data.ID_Project_JNS);
-                $('[name="Id_hdr_Project"]').val(data.ID_Hdr_Project);
-                $('[name="id_project"]').val(data.ID_Project);
-                $('[name="akta_notaris"]').val(data.Izin_Akta_Notaris);
-                $('[name="pengesahan"]').val(data.Izin_Pengesahan);
-                $('[name="npwp"]').val(data.Bool_NPWP);
-                $('[name="npwp_perusahaan"]').val(data.Bool_NPWP_Perusahaan);
-                $('[name="skt_perusahaan"]').val(data.Bool_SKT_Perusahaan);
-                $('[name="siup_tdp"]').val(data.Bool_SIUP_TDP);
-                $('[name="registrasi"]').val(data.Bool_Registrasi);
-                $('[name="pkp"]').val(data.Bool_PKP);
-                $('[name="sk_domisili"]').val(data.Bool_SK_Domisili);
-                $('[name="lain_text"]').val(data.Izin_Lain);
-                $('#modal_form_izin').modal('show'); // show bootstrap modal when complete loaded
-                $('.modal-title').text('Document Informasi Izin Usaha'); // Set title to Bootstrap modal title
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                alert('Error get data from ajax');
-            }
-        });
+        //$.ajax({
+        //    url: "<?php //echo site_url('transaksi/projects_izin/ajax_edit')?>///" + id,
+        //    type: "GET",
+        //    dataType: "JSON",
+        //    success: function (data) {
+        //        $('[name="id_project_izin"]').val(data.ID_Project_JNS);
+        //        $('[name="Id_hdr_Project"]').val(data.ID_Hdr_Project);
+        //        $('[name="id_project"]').val(data.ID_Project);
+        //        $('[name="akta_notaris"]').val(data.Izin_Akta_Notaris);
+        //        $('[name="pengesahan"]').val(data.Izin_Pengesahan);
+        //        $('[name="npwp"]').val(data.Bool_NPWP);
+        //        $('[name="npwp_perusahaan"]').val(data.Bool_NPWP_Perusahaan);
+        //        $('[name="skt_perusahaan"]').val(data.Bool_SKT_Perusahaan);
+        //        $('[name="siup_tdp"]').val(data.Bool_SIUP_TDP);
+        //        $('[name="registrasi"]').val(data.Bool_Registrasi);
+        //        $('[name="pkp"]').val(data.Bool_PKP);
+        //        $('[name="sk_domisili"]').val(data.Bool_SK_Domisili);
+        //        $('[name="lain_text"]').val(data.Izin_Lain);
+        //        $('#modal_form_izin').modal('show'); // show bootstrap modal when complete loaded
+        //        $('.modal-title').text('Document Informasi Izin Usaha'); // Set title to Bootstrap modal title
+        //    },
+        //    error: function (jqXHR, textStatus, errorThrown) {
+        //        alert('Error get data from ajax');
+        //    }
+        //});
     }
 
     function show_uraian() {
 
         let id = $('[name="id_project"]').val();
+        window.location.href = "<?php echo site_url('/transaksi/project_uraian/cek_exist_projects/'); ?>" + id;
         //Ajax Load data from ajax
-        $.ajax({
-            url: "<?php echo site_url('transaksi/project_uraian/ajax_edit')?>/" + id,
-            type: "GET",
-            dataType: "JSON",
-            success: function (data) {
-                $('[name="id_project_izin"]').val(data.ID_Project_JNS);
-                $('[name="Id_hdr_Project"]').val(data.ID_Hdr_Project);
-                $('[name="id_project"]').val(data.ID_Project);
-                $('[name="nm_perusahaan"]').val(data.nm_perusahaan);
-                $('[name="modal"]').val(data.modal);
-                $('[name="modal_disetor"]').val(data.modal_disetor);
-                $('[name="presentase_shm"]').val(data.presentase_shm);
-                $('[name="hrg_saham"]').val(data.hrg_saham);
-                $('[name="no_telp"]').val(data.No_Telp);
-                $('[name="no_fax"]').val(data.No_Fax);
-                $('[name="alamat"]').val(data.alamat);
-                $('[name="kota"]').val(data.kota);
-                $('[name="kelurahan"]').val(data.kelurahan);
-                $('#modal_form_uraian').modal('show'); // show bootstrap modal when complete loaded
-                $('.modal-title').text('Document Informasi Uraian Usaha'); // Set title to Bootstrap modal title
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                alert('Error get data from ajax');
-            }
-        });
+        //$.ajax({
+        //    url: "<?php //echo site_url('transaksi/project_uraian/ajax_edit')?>///" + id,
+        //    type: "GET",
+        //    dataType: "JSON",
+        //    success: function (data) {
+        //        $('[name="id_project_izin"]').val(data.ID_Project_JNS);
+        //        $('[name="Id_hdr_Project"]').val(data.ID_Hdr_Project);
+        //        $('[name="id_project"]').val(data.ID_Project);
+        //        $('[name="nm_perusahaan"]').val(data.nm_perusahaan);
+        //        $('[name="modal"]').val(data.modal);
+        //        $('[name="modal_disetor"]').val(data.modal_disetor);
+        //        $('[name="presentase_shm"]').val(data.presentase_shm);
+        //        $('[name="hrg_saham"]').val(data.hrg_saham);
+        //        $('[name="no_telp"]').val(data.No_Telp);
+        //        $('[name="no_fax"]').val(data.No_Fax);
+        //        $('[name="alamat"]').val(data.alamat);
+        //        $('[name="kota"]').val(data.kota);
+        //        $('[name="kelurahan"]').val(data.kelurahan);
+        //        $('#modal_form_uraian').modal('show'); // show bootstrap modal when complete loaded
+        //        $('.modal-title').text('Document Informasi Uraian Usaha'); // Set title to Bootstrap modal title
+        //    },
+        //    error: function (jqXHR, textStatus, errorThrown) {
+        //        alert('Error get data from ajax');
+        //    }
+        //});
     }
 
     function show_terima() {
 
         let id = $('[name="id_project"]').val();
+        window.location.href = "<?php echo site_url('/transaksi/project_terima/cek_exist_projects/'); ?>" + id;
         //Ajax Load data from ajax
-        $.ajax({
-            url: "<?php echo site_url('transaksi/project_terima/ajax_edit')?>/" + id,
-            type: "GET",
-            dataType: "JSON",
-            success: function (data) {
-                $('[name="id_project_izin"]').val(data.ID_Project_terima);
-                $('[name="Id_hdr_Project"]').val(data.ID_Hdr_Project);
-                $('[name="id_project"]').val(data.ID_Project);
-                $('[name="ktp"]').val(data.bool_ktp);
-                $('[name="jml_ktp"]').val(data.jml_ktp);
-                $('[name="npwp"]').val(data.bool_npwp);
-                $('[name="sertifikat"]').val(data.bool_sertifikat);
-                $('[name="imb"]').val(data.bool_imb);
-                $('[name="stempel"]').val(data.bool_stempel);
-                $('[name="jml_materai"]').val(data.jml_materai);
-                $('[name="domisili"]').val(data.bool_sk_domisili);
-                $('[name="surat_sewa"]').val(data.bool_surat_sewa);
-                $('#modal_form_terima').modal('show'); // show bootstrap modal when complete loaded
-                $('.modal-title').text('Document Informasi'); // Set title to Bootstrap modal title
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                alert('Error get data from ajax');
-            }
-        });
+        //$.ajax({
+        //    url: "<?php //echo site_url('transaksi/project_terima/ajax_edit')?>///" + id,
+        //    type: "GET",
+        //    dataType: "JSON",
+        //    success: function (data) {
+        //        $('[name="id_project_izin"]').val(data.ID_Project_terima);
+        //        $('[name="Id_hdr_Project"]').val(data.ID_Hdr_Project);
+        //        $('[name="id_project"]').val(data.ID_Project);
+        //        $('[name="ktp"]').val(data.bool_ktp);
+        //        $('[name="jml_ktp"]').val(data.jml_ktp);
+        //        $('[name="npwp"]').val(data.bool_npwp);
+        //        $('[name="sertifikat"]').val(data.bool_sertifikat);
+        //        $('[name="imb"]').val(data.bool_imb);
+        //        $('[name="stempel"]').val(data.bool_stempel);
+        //        $('[name="jml_materai"]').val(data.jml_materai);
+        //        $('[name="domisili"]').val(data.bool_sk_domisili);
+        //        $('[name="surat_sewa"]').val(data.bool_surat_sewa);
+        //        $('#modal_form_terima').modal('show'); // show bootstrap modal when complete loaded
+        //        $('.modal-title').text('Document Informasi'); // Set title to Bootstrap modal title
+        //    },
+        //    error: function (jqXHR, textStatus, errorThrown) {
+        //        alert('Error get data from ajax');
+        //    }
+        //});
     }
 </script>
 <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js') ?>"></script>

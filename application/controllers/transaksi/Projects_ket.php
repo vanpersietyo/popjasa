@@ -55,7 +55,6 @@ class Projects_ket extends CI_Controller
     }
 
     public function cek_exist_projects($id) {
-
         $project_ket =$this->M_Project_ket->find_first(["ID_Project"=>$id]);
         if ($project_ket) {
             return $this->update($project_ket->ID_Project_Ket);
@@ -111,7 +110,7 @@ class Projects_ket extends CI_Controller
 
             $this->M_Project_ket->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('transaksi/projects_izin/cek_exist_projects/').$id_project);
+        redirect(site_url('transaksi/progress/update_track/') . $id_project);
     }
 
     public function update($id)
@@ -122,7 +121,7 @@ class Projects_ket extends CI_Controller
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('transaksi/projects_ket/update_action'),
-                'Email' => set_value('Ket_Email', $row->Ket_Email),
+                'Ket_Email' => set_value('Ket_Email', $row->Ket_Email),
                 'Email_Pengurus' => set_value('Email_Pengurus', $row->Email_Pengurus),
                 'No_Telp' => set_value('No_Telp', $row->No_Telp),
                 'Ket_Luas' => set_value('Ket_Luas', $row->Ket_Luas),
@@ -158,7 +157,7 @@ class Projects_ket extends CI_Controller
 
         $this->M_Project_ket->update($this->input->post('ID_Project_Ket', TRUE), $data);
         $this->session->set_flashdata('message', 'Update Record Success');
-        redirect(site_url('transaksi/projects_izin/cek_exist_projects/').$id_project);       
+        redirect(site_url('transaksi/progress/update_track/') . $id_project);
     }
 
     public function delete($id)
