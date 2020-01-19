@@ -1050,6 +1050,30 @@
         //    }
         //});
     }
+
+    function confirm_project($id) {
+        if(confirm('Are you sure confirm this data?'))
+        {
+            // ajax delete data to database
+            $.ajax({
+                url : "<?php echo site_url('transaksi/project/confirm')?>/"+$id,
+                type: "POST",
+                dataType: "JSON",
+                success: function(data)
+                {
+                    //if success reload ajax table
+                    // $('#modal_form').modal('hide');
+                    reload_table();
+                    swal("Good Job !", "Data Berhasil Diupdate !", "success");
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    swal("Upps Sorry !", "Data Gagal Diupdate !", "warning");
+                }
+            });
+
+        }
+    }
 </script>
 <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js') ?>"></script>
 <script src="<?php echo base_url('assets') ?>/app-assets/vendors/js/extensions/jquery.steps.min.js"
