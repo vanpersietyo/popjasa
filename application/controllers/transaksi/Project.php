@@ -135,12 +135,17 @@ class Project extends CI_Controller
         $data['error_string'] = array();
         $data['inputerror'] = array();
         $data['status'] = TRUE;
-
-        if ($this->input->post('categoryname') == '') {
-            $data['inputerror'][] = 'categoryname';
-            $data['error_string'][] = 'Nama Kategori Belum di Isi ..';
+        if ($this->input->post('id_customer') == '') {
+            $data['inputerror'][] = 'id_customer';
+            $data['error_string'][] = 'Nama Customer Belum di Isi ..';
             $data['status'] = FALSE;
         }
+        if ($this->input->post('layanan') == '') {
+            $data['inputerror'][] = 'layanan';
+            $data['error_string'][] = 'Layanan Belum di Isi ..';
+            $data['status'] = FALSE;
+        }
+
 
         if ($data['status'] === FALSE) {
             echo json_encode($data);
@@ -304,8 +309,7 @@ class Project extends CI_Controller
                 $row[] = '<button type="button" class="btn btn-dark dropdown-toggle btn-sm" data-toggle="dropdown"
 															aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
 															<div class="dropdown-menu">
-																<a class="dropdown-item"  href="javascript:void(0)" onclick="edit_person(' . "'" . $d->id_project . "'" . ')"><i class="ft-edit"></i>Update</a>
-																<a class="dropdown-item" href="javascript:void(0)" onclick="delete_person(' . "'" . $d->id_project . "'" . ')"><i class="ft-trash"></i>Delete</a>
+															    <a class="dropdown-item"  href="javascript:void(0)" onclick="confirm_project(' . "'" . $d->id_project . "'" . ')"><i class="ft-check"></i> Confirm Project</a>																
 															</div>';
             }
             //add html for action
@@ -482,6 +486,7 @@ class Project extends CI_Controller
      */
     public function simpan_project()
     {
+        $this->_validate();
         $id = $this->M_project->get_ID();
         $input = array(
             'id_project' => $id,

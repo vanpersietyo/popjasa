@@ -68,7 +68,7 @@ class Customer extends CI_Controller{
      * function: show table_customer in form create project
      */
 	public function tabel_customer(){
-		$list   = $this->M_Customer->find();
+		$list   = $this->M_Customer->find(['status'=>2]);
 		$data   = [];
 		/** @var M_Customer $detail */
 		if($list){
@@ -99,7 +99,7 @@ class Customer extends CI_Controller{
 
 	public function find_customer_by_name($name)
 	{
-		$customer = $this->M_Customer->find_first(['nm_customer'=>$name]);
+		$customer = $this->M_Customer->find_first(['nm_customer'=>$name,'status'=>2]);
 		if ($customer) {
             $data = [
                 'status'=> true,
