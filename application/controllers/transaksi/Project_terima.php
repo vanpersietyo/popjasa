@@ -98,11 +98,12 @@ class Project_terima extends CI_Controller
             'ID_Project_terima' => $this->M_Project_terima->get_id(),
             'Created_By' => $this->session->userdata('yangLogin'),
             'EntryTime' => date('Y-m-d H:i:s'),
+            'jml_ktp' => $this->input->post('jml_ktp', TRUE),
         );
 
         $this->M_Project_terima->insert($data);
         $this->session->set_flashdata('message', 'Create Record Success');
-        redirect(site_url('transaksi/project/'));
+        redirect(site_url('transaksi/progress/update_track/') . $id_projects);
     }
 
     public function update($id)
@@ -125,6 +126,7 @@ class Project_terima extends CI_Controller
                 'ID_Hdr_Project' => set_value('ID_Hdr_Project', $row->ID_Hdr_Project),
                 'ID_Project' => set_value('ID_Project', $row->ID_Project),
                 'pages' => 'transaksi/project_terima/form',
+                'jml_ktp' => set_value('jml_ktp', $row->jml_ktp),
             );
             $this->load->view('layout', $data);
         } else {
@@ -135,6 +137,7 @@ class Project_terima extends CI_Controller
 
     public function update_action()
     {
+        $id_projects = $this->input->post('ID_Project', TRUE);
         $data = array(
             'bool_ktp' => $this->input->post('bool_ktp', TRUE),
             'bool_npwp' => $this->input->post('bool_npwp', TRUE),
@@ -145,14 +148,15 @@ class Project_terima extends CI_Controller
             'bool_sk_domisili' => $this->input->post('bool_sk_domisili', TRUE),
             'bool_surat_sewa' => $this->input->post('bool_surat_sewa', TRUE),
             'ID_Hdr_Project' => $this->input->post('ID_Hdr_Project', TRUE),
-            'ID_Project' => $this->input->post('ID_Project', TRUE),
+            'ID_Project' => $id_projects,
             'Modified_by' => $this->session->userdata('yangLogin'),
             'Last_Modified' => date('Y-m-d H:i:s'),
+            'jml_ktp' => $this->input->post('jml_ktp', TRUE),
         );
 
         $this->M_Project_terima->update($this->input->post('ID_Project_terima', TRUE), $data);
         $this->session->set_flashdata('message', 'Update Record Success');
-        redirect(site_url('transaksi/project'));
+        redirect(site_url('transaksi/progress/update_track/') . $id_projects);
     }
 
     public function delete($id)
@@ -209,6 +213,7 @@ class Project_terima extends CI_Controller
                 'ID_Hdr_Project' => $project->id_hdr_project,
                 'ID_Project' => $id,
                 'pages' => 'transaksi/project_terima/form',
+                'jml_ktp' => set_value('jml_ktp'),
             );
             $this->load->view('layout', $data);
         } else {

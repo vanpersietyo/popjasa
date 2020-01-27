@@ -310,26 +310,24 @@ function simpan_create_project() {
     loading('Sedang Menyimpan Data Project..');
     var formData = new FormData($('#form_project')[0]);
     $.ajax({
-        url     : "<?php echo site_url('/transaksi/project/simpan_project/');?>",
-        data  	: formData,
-        type    : "POST",
+        url: "<?php echo site_url('/transaksi/project/simpan_project/');?>",
+        data: formData,
+        type: "POST",
         dataType: "JSON",
-        contentType	: false,
-        processData	: false,
-        success : function(data)
-        {
+        contentType: false,
+        processData: false,
+        success: function (data) {
             swal.close();
-            if(data.status){
-                window.location.href="<?php echo site_url('/transaksi/project/edit_project/'); ?>" + data.id_project;
-            }else{
+            if (data.status) {
+                window.location.href = "<?php echo site_url('/transaksi/progress/update_track/'); ?>" + data.id_project;
+            } else {
                 swal.close();
-                if(data.sw_alert){
+                if (data.sw_alert) {
                     error_swal(data.message);
-                }else{
-                    for (let i = 0; i < data.inputerror.length; i++)
-                    {
-                        let inputerror = $('[name="'+data.inputerror[i]+'"]');
-                        $('[class="NOTIF_ERROR_'+data.inputerror[i]+'"]').html(data.notiferror[i]);
+                } else {
+                    for (let i = 0; i < data.inputerror.length; i++) {
+                        let inputerror = $('[name="' + data.inputerror[i] + '"]');
+                        $('[class="NOTIF_ERROR_' + data.inputerror[i] + '"]').html(data.notiferror[i]);
                         inputerror.addClass('border-danger');
                     }
                     $('[name="'+data.inputerror[0]+'"]').focus();

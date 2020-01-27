@@ -112,7 +112,7 @@ class Projects_izin extends CI_Controller
 
         $this->M_Project_izin->insert($data);
         $this->session->set_flashdata('message', 'Create Record Success');
-        redirect(site_url('transaksi/project_uraian/cek_exist_projects/') . $id_projects);
+        redirect(site_url('transaksi/progress/update_track/') . $id_projects);
 
     }
 
@@ -174,7 +174,7 @@ class Projects_izin extends CI_Controller
 
         $this->M_Project_izin->update($this->input->post('ID_Project_JNS', TRUE), $data);
         $this->session->set_flashdata('message', 'Update Record Success');
-        redirect(site_url('transaksi/project_uraian/cek_exist_projects/') . $id_projects);  
+        redirect(site_url('transaksi/progress/update_track/') . $id_projects);
     }
 
     public function delete($id)

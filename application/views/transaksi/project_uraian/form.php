@@ -106,7 +106,7 @@ $this->load->view('template/head');
                                         </div>
                                     </div>
                                 </div>
-                            </div>                                
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -114,12 +114,12 @@ $this->load->view('template/head');
         </section>
     </div>
     <div class="modal-footer">
-        <input type="hidden" name="ID_Project_Uraian" value="<?php echo $ID_Project_Uraian; ?>" /> 
+        <input type="hidden" name="ID_Project_Uraian" value="<?php echo $ID_Project_Uraian; ?>"/>
         <button type="submit" class="btn btn-primary"><?php echo $button ?></button>
-            <a class="btn btn-danger bg-accent-4 pull-up" type="button"
-               href="<?php echo site_url('transaksi/project/index_adit') ?>"><i
-                        class="ft-arrow-left white"></i>
-                Kembali</a>
+        <a class="btn btn-danger bg-accent-4 pull-up" type="button"
+           href="<?php echo site_url('transaksi/progress/update_track/') . $ID_Project ?>"><i
+                    class="ft-arrow-left white"></i>
+            Kembali</a>
     </div>
 </form>
 <?php

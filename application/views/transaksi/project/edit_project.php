@@ -151,19 +151,21 @@ $status = $project->st_data;
                                     <div class="col-md-6">
                                         <label>Nama Project</label>
                                         <?php if ($status == 1) { ?>
-                                            <input name="nm_project" value="DEFF PROJECT" placeholder="Nama Project .."
+                                            <input name="nm_project" placeholder="Nama Project .."
                                                    value="<?php echo $project->nm_project; ?>"
                                                    class="form-control" type="text" readonly>
                                         <?php } else { ?>
-                                            <input name="nm_project" value="DEFF PROJECT" placeholder="Nama Project .."
+                                            <input name="nm_project" placeholder="Nama Project .."
                                                    value="<?php echo $project->nm_project; ?>"
                                                    class="form-control" type="text">
                                         <?php } ?>
                                     </div>
                                     <div class="col-md-12">
                                         <label>Note Project</label>
-                                        <textarea id="keterangan" name="keterangan" placeholder="Note Project .." maxlength="255"
-                                                  class="form-control" type="textarea"></textarea>
+                                        <textarea id="keterangan" name="keterangan" placeholder="Note Project .."
+                                                  maxlength="255"
+                                                  class="form-control"
+                                                  type="textarea"><?php echo $project->keterangan; ?></textarea>
                                     </div>
                                 </div>
 
@@ -173,7 +175,7 @@ $status = $project->st_data;
                                             <button style="margin-top: 1.25rem !important;" type="submit"
                                                     onclick="javascript:simpan_create_project();"
                                                     class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up">
-                                                Lanjutkan
+                                                Save
                                             </button>
                                         </div>
                                     </div>
@@ -268,7 +270,8 @@ $status = $project->st_data;
                 success: function (data) {
                     swal.close();
                     if (data.status) {
-                        window.location.href = "<?php echo site_url('/transaksi/projects_ket/cek_exist_projects/'); ?>" + id_val;
+                        // window.location.href = "<?php echo site_url('/transaksi/projects_ket/cek_exist_projects/'); ?>" + id_val;
+                        window.location.href = "<?php echo site_url('/transaksi/projects/'); ?>";
                     } else {
                         swal.close();
                         if (data.sw_alert) {
