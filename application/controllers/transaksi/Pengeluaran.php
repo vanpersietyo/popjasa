@@ -26,7 +26,7 @@ class Pengeluaran extends CI_Controller{
 			$row[] = '<h5 class="text-bold-500">'.$d->periode;
 			$row[] = '<h5 class="text-bold-500">'.$d->keterangan;
 			$row[] = '<h5 class="text-bold-500">'.number_format($d->total_pengeluaran);
-			$row[] = '<p class="text-bold-500">'.$d->tgl_input;
+			$row[] = '<p class="text-bold-500">'.date("d/m/Y", strtotime($d->tgl_input));
 			$row[] = '<p class="text-bold-500">'.$d->inputby;
 
 			//add html for action
@@ -153,7 +153,7 @@ class Pengeluaran extends CI_Controller{
 			$row[] = '<h5>'.$d->nm_rekbiaya;
 			$row[] = '<h5 class="text-bold-500">'.number_format($d->harga);
 			$row[] = '<h5 class="text-bold-500">'.$d->keterangan;
-			$row[] = '<p class="text-bold-500">'.$d->tgl_input;
+			$row[] = '<p class="text-bold-500">'.date("d/m/Y", strtotime($d->tgl_input));
 			$row[] = '<p class="text-bold-500">'.$d->inputby;
 
 			//add html for action
