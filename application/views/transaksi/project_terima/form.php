@@ -52,8 +52,12 @@ $this->load->view('template/head');
                                                     <select class="form-control" id="bool_ktp" name="bool_ktp"
                                                             value="<?php echo $bool_ktp; ?>">
                                                         <option value="">---SILAHKAN PILIH---</option>
-                                                        <option value="Fotokopi">FOTOKOPI</option>
-                                                        <option value="Asli">ASLI</option>
+                                                        <option value="fotokopi" <?php if ($bool_ktp == 'fotokopi'): ?> selected="selected"<?php endif; ?>>
+                                                            FOTOKOPI
+                                                        </option>
+                                                        <option value="asli" <?php if ($bool_ktp == 'asli'): ?> selected="selected"<?php endif; ?>>
+                                                            ASLI
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -61,32 +65,51 @@ $this->load->view('template/head');
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label for="jns_npwp" class="col-form-label">NPWP PRIBADI (SEMU PENGURUS) :</label>
-                                                    <select class="form-control" id="bool_npwp" name="bool_npwp" value="<?php echo $bool_npwp; ?>">
+                                                    <label for="jns_npwp" class="col-form-label">NPWP PRIBADI (SEMU
+                                                        PENGURUS) :</label>
+                                                    <select class="form-control" id="bool_npwp" name="bool_npwp"
+                                                            value="<?php echo $bool_npwp; ?>">
                                                         <option value="">---SILAHKAN PILIH---</option>
-                                                        <option value="Fotokopi">FOTOKOPI</option>
-                                                        <option value="Asli">ASLI</option>
+                                                        <option value="fotokopi" <?php if ($bool_npwp == 'fotokopi'): ?> selected="selected"<?php endif; ?>>
+                                                            FOTOKOPI
+                                                        </option>
+                                                        <option value="asli" <?php if ($bool_npwp == 'asli'): ?> selected="selected"<?php endif; ?>>
+                                                            ASLI
+                                                        </option>
                                                     </select>
                                                 </div>
-                                            </div>                            
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label for="jns_sertifikat" class="col-form-label">SERTIFIKAT T. USAHA :</label>
-                                                    <select class="form-control" id="bool_sertifikat" name="bool_sertifikat" value="<?php echo $bool_sertifikat; ?>" >
+                                                    <label for="jns_sertifikat" class="col-form-label">SERTIFIKAT T.
+                                                        USAHA :</label>
+                                                    <select class="form-control" id="bool_sertifikat"
+                                                            name="bool_sertifikat"
+                                                            value="<?php echo $bool_sertifikat; ?>">
                                                         <option value="">---SILAHKAN PILIH---</option>
-                                                        <option value="Fotokopi">FOTOKOPI</option>
-                                                        <option value="Asli">ASLI</option>
+                                                        <option value="fotokopi" <?php if ($bool_sertifikat == 'fotokopi'): ?> selected="selected"<?php endif; ?>>
+                                                            FOTOKOPI
+                                                        </option>
+                                                        <option value="asli" <?php if ($bool_sertifikat == 'asli'): ?> selected="selected"<?php endif; ?>>
+                                                            ASLI
+                                                        </option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label for="jns_imb" class="col-form-label">IMB (IJIN MENDIRIKAN BANGUNAN) :</label>
-                                                    <select class="form-control" id="bool_imb" name="bool_imb" value="<?php echo $bool_imb; ?>">
+                                                    <label for="jns_imb" class="col-form-label">IMB (IJIN MENDIRIKAN
+                                                        BANGUNAN) :</label>
+                                                    <select class="form-control" id="bool_imb" name="bool_imb"
+                                                            value="<?php echo $bool_imb; ?>">
                                                         <option value="">---SILAHKAN PILIH---</option>
-                                                        <option value="Fotokopi">FOTOKOPI</option>
-                                                        <option value="Asli">ASLI</option>
-                                                    </select>                                   
+                                                        <option value="fotokopi" <?php if ($bool_imb == 'fotokopi'): ?> selected="selected"<?php endif; ?>>
+                                                            FOTOKOPI
+                                                        </option>
+                                                        <option value="asli" <?php if ($bool_imb == 'asli'): ?> selected="selected"<?php endif; ?>>
+                                                            ASLI
+                                                        </option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -94,48 +117,67 @@ $this->load->view('template/head');
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <label for="bool_stempel" class="col-form-label">Stempel :</label>&nbsp;
-                                                    <select class="form-control" id="bool_stempel" name="bool_stempel" value="<?php echo $bool_stempel; ?>">
+                                                    <select class="form-control" id="bool_stempel" name="bool_stempel"
+                                                            value="<?php echo $bool_stempel; ?>">
                                                         <option value="">---SILAHKAN PILIH---</option>
-                                                        <option value="Fotokopi">Yes</option>
-                                                        <option value="Asli">No</option>
+                                                        <option value="yes" <?php if ($bool_stempel == 'yes'): ?> selected="selected"<?php endif; ?>>
+                                                            YES
+                                                        </option>
+                                                        <option value="no" <?php if ($bool_stempel == 'no'): ?> selected="selected"<?php endif; ?>>
+                                                            NO
+                                                        </option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="materai" class="col-form-label">MATERAI :</label>
-                                                    <input type="number" class="form-control" name="jml_materai" id="jml_materai" value="<?php echo $jml_materai; ?>" placeholder="Jumlah Materai"/>
+                                                    <input type="number" class="form-control" name="jml_materai"
+                                                           id="jml_materai" value="<?php echo $jml_materai; ?>"
+                                                           placeholder="Jumlah Materai"/>
                                                 </div>
-                                            </div>                            
+                                            </div>
                                         </div>
 
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <label for="nofax" class="col-form-label">S.K. DOMISILI :</label>
-                                                    <select class="form-control" id="bool_stempel" name="bool_sk_domisili" value="<?php echo $bool_sk_domisili; ?>">
+                                                    <select class="form-control" id="bool_sk_domisili"
+                                                            name="bool_sk_domisili"
+                                                            value="<?php echo $bool_sk_domisili; ?>">
                                                         <option value="">---SILAHKAN PILIH---</option>
-                                                        <option value="Fotokopi">Yes</option>
-                                                        <option value="Asli">No</option>
-                                                    </select>                                   
+                                                        <option value="fotokopi" <?php if ($bool_sk_domisili == 'fotokopi'): ?> selected="selected"<?php endif; ?>>
+                                                            FOTOKOPI
+                                                        </option>
+                                                        <option value="asli" <?php if ($bool_sk_domisili == 'asli'): ?> selected="selected"<?php endif; ?>>
+                                                            ASLI
+                                                        </option>
+                                                    </select>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <label for="jns_sewa" class="col-form-label">SURAT SEWA :</label>
-                                                    <select class="form-control" id="jns_sewa" name="bool_surat_sewa" value="<?php echo $bool_surat_sewa; ?>">
+                                                    <select class="form-control" id="jns_sewa" name="bool_surat_sewa"
+                                                            value="<?php echo $bool_surat_sewa; ?>">
                                                         <option value="">---SILAHKAN PILIH---</option>
-                                                        <option value="Fotokopi">FOTOKOPI</option>
-                                                        <option value="Asli">ASLI</option>
-                                                    </select>                                 
-                                                </div>                            
-                                            </div>                            
-                                        </div>                                                            
-                                    </div>  
+                                                        <option value="fotokopi" <?php if ($bool_surat_sewa == 'fotokopi'): ?> selected="selected"<?php endif; ?>>
+                                                            FOTOKOPI
+                                                        </option>
+                                                        <option value="asli" <?php if ($bool_surat_sewa == 'asli'): ?> selected="selected"<?php endif; ?>>
+                                                            ASLI
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="modal-footer">
-                                        <input type="hidden" name="ID_Project_terima" value="<?php echo $ID_Project_terima; ?>" /> 
-                                        <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
+                                        <input type="hidden" name="ID_Project_terima"
+                                               value="<?php echo $ID_Project_terima; ?>"/>
+                                        <button type="submit" class="btn btn-primary"><?php echo $button ?></button>
                                         <a class="btn btn-danger bg-accent-4 pull-up" type="button"
-                                           href="<?php echo site_url('transaksi/project/index_adit') ?>"><i
-                                                class="ft-arrow-left white"></i>
-                                            Kembali</a>                     
+                                           href="<?php echo site_url('transaksi/progress/update_track/') . $ID_Project ?>"><i
+                                                    class="ft-arrow-left white"></i>
+                                            Kembali</a>
                                     </div>
                                 </div>
                             </div>

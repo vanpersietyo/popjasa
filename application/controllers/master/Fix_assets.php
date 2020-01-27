@@ -93,6 +93,7 @@ class Fix_assets extends CI_Controller
             'Date_FA' => set_value('Date_FA'),
             'Date_Disposed' => set_value('Date_Disposed'),
             'Penerima' => set_value('Penerima'),
+            'Harga' => set_value('Harga'),
         );
         $this->load->view('master/fix_assets/form', $data);
     }
@@ -115,6 +116,7 @@ class Fix_assets extends CI_Controller
                 'Date_FA' => $this->input->post('Date_FA', TRUE),
                 'Date_Disposed' => $this->input->post('Date_Disposed', TRUE),
                 'Penerima' => $this->input->post('Penerima', TRUE),
+                'Harga' => $this->input->post('Harga', TRUE),
             );
 
             $this->M_Fix_assets->insert($data);
@@ -141,6 +143,7 @@ class Fix_assets extends CI_Controller
                 'Date_Disposed' => set_value('Date_Disposed', $row->Date_Disposed),
                 'Penerima' => set_value('Penerima', $row->Penerima),
                 'pages' => 'master/fix_assets/form',
+                'Harga' => set_value('Harga', $row->Harga),
             );
             $this->load->view('layout', $data);
         } else {
@@ -165,6 +168,7 @@ class Fix_assets extends CI_Controller
                 'Date_FA' => $this->input->post('Date_FA', TRUE),
                 'Date_Disposed' => $this->input->post('Date_Disposed', TRUE),
                 'Penerima' => $this->input->post('Penerima', TRUE),
+                'Harga' => $this->input->post('Harga', TRUE),
             );
 
             $this->M_Fix_assets->update($this->input->post('Fa_ID', TRUE), $data);
@@ -221,6 +225,7 @@ class Fix_assets extends CI_Controller
             'Date_Disposed' => $this->input->post('Date_Disposed', TRUE),
             'Penerima' => $this->input->post('Penerima', TRUE),
             'FA_ID'=> $id,
+            'Harga' => $this->input->post('Harga', TRUE),
         );
         $this->M_Fix_assets->insert($input);
 

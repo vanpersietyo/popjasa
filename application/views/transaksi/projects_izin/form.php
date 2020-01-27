@@ -59,40 +59,59 @@ $this->load->view('template/head');
                                             <div class="col-md-3">
                                                 <label>NPWP PRIBADI</label>
                                                 <div class="input-group">
-                                                    <select class="form-control" id="Bool_NPWP" name="Bool_NPWP" value="<?php echo $Bool_NPWP; ?>">
+                                                    <select class="form-control" id="Bool_NPWP" name="Bool_NPWP">
                                                         <option value="">---SILAHKAN PILIH---</option>
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
+                                                        <option value="Yes" <?php if ($Bool_NPWP == 'Yes'): ?> selected="selected"<?php endif; ?>>
+                                                            Yes
+                                                        </option>
+                                                        <option value="No" <?php if ($Bool_NPWP == 'No'): ?> selected="selected"<?php endif; ?>>
+                                                            No
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <label>NPWP (dikirim) PERUSAHAAN</label>
                                                 <div class="input-group">
-                                                    <select class="form-control" id="Bool_NPWP_Perusahaan" name="Bool_NPWP_Perusahaan" value="<?php echo $Bool_NPWP_Perusahaan; ?>">
+                                                    <select class="form-control" id="Bool_NPWP_Perusahaan"
+                                                            name="Bool_NPWP_Perusahaan">
                                                         <option value="">---SILAHKAN PILIH---</option>
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
+                                                        <option value="Yes" <?php if ($Bool_NPWP_Perusahaan == 'Yes'): ?> selected="selected"<?php endif; ?>>
+                                                            Yes
+                                                        </option>
+                                                        <option value="No" <?php if ($Bool_NPWP_Perusahaan == 'No'): ?> selected="selected"<?php endif; ?>>
+                                                            No
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <label>SKT NPWP (dikirim)</label>
                                                 <div class="input-group">
-                                                    <select class="form-control" id="Bool_SKT_Perusahaan" name="Bool_SKT_Perusahaan" value="<?php echo $Bool_SKT_Perusahaan; ?>">
+                                                    <select class="form-control" id="Bool_SKT_Perusahaan"
+                                                            name="Bool_SKT_Perusahaan">
                                                         <option value="">---SILAHKAN PILIH---</option>
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
+                                                        <option value="Yes" <?php if ($Bool_SKT_Perusahaan == 'Yes'): ?> selected="selected"<?php endif; ?>>
+                                                            Yes
+                                                        </option>
+                                                        <option value="No" <?php if ($Bool_SKT_Perusahaan == 'No'): ?> selected="selected"<?php endif; ?>>
+                                                            No
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">&nbsp;
                                                 <label>SIUP & TDP (NIB)</label>
                                                 <div class="input-group">
-                                                    <select class="form-control" id="Bool_SIUP_TDP" name="Bool_SIUP_TDP" value="<?php echo $Bool_SIUP_TDP; ?>">
+                                                    <select class="form-control" id="Bool_SIUP_TDP"
+                                                            name="Bool_SIUP_TDP">
                                                         <option value="">---SILAHKAN PILIH---</option>
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
+                                                        <option value="Yes" <?php if ($Bool_SIUP_TDP == 'Yes'): ?> selected="selected"<?php endif; ?>>
+                                                            Yes
+                                                        </option>
+                                                        <option value="No" <?php if ($Bool_SIUP_TDP == 'No'): ?> selected="selected"<?php endif; ?>>
+                                                            No
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -102,30 +121,44 @@ $this->load->view('template/head');
                                             <div class="col-md-3">
                                                 <label>REGISTRASI</label>
                                                 <div class="input-group">
-                                                    <select class="form-control" id="Bool_Registrasi" name="Bool_Registrasi" value="<?php echo $Bool_Registrasi; ?>">
+                                                    <select class="form-control" id="Bool_Registrasi"
+                                                            name="Bool_Registrasi">
                                                         <option value="">---SILAHKAN PILIH---</option>
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
+                                                        <option value="Yes" <?php if ($Bool_Registrasi == 'Yes'): ?> selected="selected"<?php endif; ?>>
+                                                            Yes
+                                                        </option>
+                                                        <option value="No" <?php if ($Bool_Registrasi == 'No'): ?> selected="selected"<?php endif; ?>>
+                                                            No
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <label>PKP</label>
                                                 <div class="input-group">
-                                                    <select class="form-control" id="Bool_PKP" name="Bool_PKP" value="<?php echo $Bool_PKP; ?>">
+                                                    <select class="form-control" id="Bool_PKP" name="Bool_PKP">
                                                         <option value="">---SILAHKAN PILIH---</option>
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
+                                                        <option value="Yes" <?php if ($Bool_PKP == 'Yes'): ?> selected="selected"<?php endif; ?>>
+                                                            Yes
+                                                        </option>
+                                                        <option value="No" <?php if ($Bool_PKP == 'No'): ?> selected="selected"<?php endif; ?>>
+                                                            No
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <label>S.K. DOMISILI</label>
                                                 <div class="input-group">
-                                                    <select class="form-control" id="Bool_SK_Domisili" name="Bool_SK_Domisili" value="<?php echo $Bool_SK_Domisili; ?>">
+                                                    <select class="form-control" id="Bool_SK_Domisili"
+                                                            name="Bool_SK_Domisili">
                                                         <option value="">---SILAHKAN PILIH---</option>
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
+                                                        <option value="Yes" <?php if ($Bool_SK_Domisili == 'Yes'): ?> selected="selected"<?php endif; ?>>
+                                                            Yes
+                                                        </option>
+                                                        <option value="No" <?php if ($Bool_SK_Domisili == 'No'): ?> selected="selected"<?php endif; ?>>
+                                                            No
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -135,28 +168,28 @@ $this->load->view('template/head');
                                             <div class="col-md-6">&nbsp;
                                                 <label>Lain-lain</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="lain_text" value="<?php echo $Izin_Lain; ?>" id="lain_text"/>
+                                                    <input type="text" class="form-control" name="lain_text"
+                                                           value="<?php echo $Izin_Lain; ?>" id="lain_text"/>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>                                              
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" name="ID_Project_JNS" value="<?php echo $ID_Project_JNS; ?>" /> 
+                        <input type="hidden" name="ID_Project_JNS" value="<?php echo $ID_Project_JNS; ?>"/>
                         <button type="submit" class="btn btn-primary"><?php echo $button ?></button>
                         <a class="btn btn-danger bg-accent-4 pull-up" type="button"
-                           href="<?php echo site_url('transaksi/project/index_adit') ?>"><i
+                           href="<?php echo site_url('transaksi/progress/update_track/') . $ID_Project ?>"><i
                                     class="ft-arrow-left white"></i>
-                            Kembali</a>                     
+                            Kembali</a>
                     </div>
                 </div>
             </div>
         </section>
     </div>
-
 
 
 </form>

@@ -116,7 +116,7 @@ class Project_uraian extends CI_Controller
 
         $this->M_Project_uraian->insert($data);
         $this->session->set_flashdata('message', 'Create Record Success');
-        redirect(site_url('transaksi/project_terima/cek_exist_projects/') . $id_projects);                    
+        redirect(site_url('transaksi/progress/update_track/') . $id_projects);
     }
 
     public function update($id)
@@ -179,7 +179,7 @@ class Project_uraian extends CI_Controller
 
         $this->M_Project_uraian->update($this->input->post('ID_Project_Uraian', TRUE), $data);
         $this->session->set_flashdata('message', 'Update Record Success');
-        redirect(site_url('transaksi/project_terima/cek_exist_projects/') . $id_projects);  
+        redirect(site_url('transaksi/progress/update_track/') . $id_projects);
         
     }
 
