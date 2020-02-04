@@ -114,7 +114,7 @@ data-menu="horizontal-menu" data-col="2-columns">
           </div>
         </div>
 
-        <section class="row match-height">
+        <section class="row">
           <div class="col-6">
             <div class="card">
               <div class="card-content">

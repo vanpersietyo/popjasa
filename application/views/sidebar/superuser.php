@@ -144,6 +144,12 @@ role="navigation" data-menu="menu-wrapper">
           <!-- <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/bank')?>"
             data-toggle="dropdown"><i class="icon-credit-card"></i>Bank</a>
           </li> -->
+            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/bank')?>"
+                                data-toggle="dropdown"><i class="icon-credit-card"></i>Bank</a>
+            </li>
+            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/kota')?>"
+                                data-toggle="dropdown"><i class="la la-folder"></i>Kota</a>
+            </li>
            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/fix_assets')?>"
              data-toggle="dropdown"><i class="icon-trophy"></i>Aset</a>
            </li>

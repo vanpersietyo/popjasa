@@ -17,7 +17,9 @@ class Contacted extends CI_Controller{
 
 	public function index(){
 	    $data['layanan']=$this->M_produkjasa->get_user();
+        $data['layanan_update']=$this->M_produkjasa->get_user();
 		$data['agen']=$this->M_master_agen->get_data();
+        $data['agen_update']=$this->M_master_agen->get_data();
 		$data['area']=$this->M_area->get_user();
 		$data['reason_deal']=$this->M_reason_deal->get_data();
 		$data['reason_lost']=$this->M_reason_lost->get_data();
@@ -39,8 +41,9 @@ class Contacted extends CI_Controller{
 			                      <div class="dropdown-menu">
 			                        <a class="dropdown-item"  href="javascript:void(0)" onclick="deals('."'".$d->id_customer."'".')"><i class="ft-thumbs-up"></i> Generate To Deals</a>
 			                        <a class="dropdown-item" href="javascript:void(0)" onclick="lost('."'".$d->id_customer."'".')"><i class="ft-thumbs-down"></i> Generat To Lost</a>
+			                        <a class="dropdown-item" href="javascript:void(0)" onclick="perbarui('."'".$d->id_customer."'".')"><i class="ft-edit"></i> Update</a>
 			                        <a class="dropdown-item" href="javascript:void(0)" onclick="delete_person('."'".$d->id_customer."'".')"><i class="ft-trash"></i> Delete</a>
-															<a class="dropdown-item" href="javascript:void(0)" onclick="view('."'".$d->id_customer."'".')"><i class="ft-file"></i> View Detail</a>
+					                <a class="dropdown-item" href="javascript:void(0)" onclick="view('."'".$d->id_customer."'".')"><i class="ft-file"></i> View Detail</a>
 			                      </div>';
 			$row[] = $d->id_customer;
 			$row[] = $d->nm_customer;
@@ -141,6 +144,40 @@ class Contacted extends CI_Controller{
 
 		echo json_encode(array("status" => TRUE));
 	}
+
+    public function ajax_perbarui()
+    {
+        $this->_validate();
+        $kode=date('Ymds');
+        $data = array(
+            'id_customer' => $this->M_Customer->get_ID('id_customer'),
+            'kd_cabang' => $this->session->userdata('cabang'),
+            'nm_customer' => $this->input->post('nm_customer'),
+            'alamat' => $this->input->post('alamat'),
+            'nm_perusahaan' => $this->input->post('nm_perusahaan'),
+            'alamat_perusahaan' => $this->input->post('alamat_perusahaan'),
+            'jns_usaha' => $this->input->post('jns_usaha'),
+            'bidang_usaha' => $this->input->post('bidang_usaha'),
+            'Agen' => $this->input->post('Agen'),
+            'nm_customer' => $this->input->post('nm_customer'),
+            'tlp_customer' => $this->input->post('tlp_customer'),
+            'telp2_customer' => $this->input->post('telp2_customer'),
+            'email_customer' => $this->input->post('email_customer'),
+            'kota_customer' => $this->input->post('kota_customer'),
+            'status' => 1,
+            'keterangan' => $this->input->post('keterangan'),
+            'tgl_input' => date('Y-m-d H:i:s'),
+            'inputby' => $this->session->userdata('yangLogin'),
+            'id_layanan' => $this->input->post('id_layanan'),
+        );
+
+        // var_dump($data);
+        // exit();
+
+        $this->M_Customer->update(array('id_customer' => $this->input->post('id')), $data);
+
+        echo json_encode(array("status" => TRUE));
+    }
 
 	public function ajax_lost()
 	{

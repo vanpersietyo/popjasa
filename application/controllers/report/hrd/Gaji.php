@@ -224,7 +224,7 @@ class Gaji extends CI_Controller {
 					// $pdf->Cell(280,5,"Filter               : ($TGL1) - ($TGL2)",0,2,'L');
 					$pdf->Cell(280,5,"JABATAN            : ".strtoupper($get_karyawan->nama_jabatan),0,2,'L');
 					$pdf->Cell(120,5,"NAMA                  : ".strtoupper($get_karyawan->nama_karyawan),0,0,'L');
-					$date_kerja=strtoupper(date("My", strtotime($tgl_akhir)));
+					$date_kerja=strtoupper(date("Fy", strtotime($tgl_akhir)));
 					$hari_kerja=$this->M_absensi_karyawan->jml_kerja($date_kerja);
 					$kerja=number_format($hari_kerja->jml_harikerja);
 					// var_dump($hari_kerja);
@@ -242,7 +242,7 @@ class Gaji extends CI_Controller {
 					$pdf->Cell(50,5,"1. Gaji Pokok",0,0,'L');
 					$pdf->Cell(50,5,": ".number_format($gaji->jml_gaji),0,1,'L');
 					$bonus = $this->M_gaji->get_jumlah_bonus($get_karyawan->id_karyawan,$PRD_BLTH);
-					$pdf->Cell(50,5,"2. Bonus",0,0,'L');
+					$pdf->Cell(50,5,"2. Total Bonus",0,0,'L');
 					$pdf->Cell(50,5,": ".number_format($bonus->bonus),0,1,'L');
 					$tunjangan=$this->M_absensi_karyawan->get_tunjangan();
 					$p=3;
@@ -277,7 +277,7 @@ class Gaji extends CI_Controller {
 						$pdf->Cell(50,5,"TOTAL   :",0,1,'L');
 						$pdf->Cell(50,5,"Total Penerimaan",0,0,'L');
 						$pdf->Cell(50,5," : $tot_tunjangan_res",0,1,'L');
-						$pdf->Cell(50,5,"Take Potongan",0,0,'L');
+						$pdf->Cell(50,5,"Total Potongan",0,0,'L');
 						$pdf->Cell(50,5," : $tot_potongan_res",0,1,'L');
 						$pdf->Cell(10,5,'__________________________________________________________________ +',0,1);
 						$thp=(array_sum($tot_tunjangan)+$gaji->jml_gaji+$bonus->bonus)-(array_sum($tot_potongan));
@@ -307,10 +307,11 @@ class Gaji extends CI_Controller {
 						$pdf->Cell(95,5," : - ",0,0,'L');
 						$pdf->Cell(5,5," ",0,0,'L');
 						$pdf->SetFont('Times','UB',8);
-						$pdf->Cell(50,5,"Ananda Ms",0,1,'L');
+						$pdf->Cell(50,5,"",0,1,'L');
 						$pdf->SetFont('Times','B',8);
 						$pdf->Cell(145,5,"",0,0,'L');
-						$pdf->Cell(20,5,"   Staff Keuangan",0,1,'L');
+						$cabang=$this->session->userdata('cabang');
+						$pdf->Cell(20,5,"____________________",0,1,'L');
 
 
 			    $pdf->Output();
