@@ -79,6 +79,9 @@ $this->load->view('template/head');
         </div>
     </section>
 </div>
+<?php
+$this->load->view('template/foot');
+?>
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -94,6 +97,4 @@ $this->load->view('template/head');
     });
 </script>
 
-<?php
-$this->load->view('template/foot');
-?>
+
