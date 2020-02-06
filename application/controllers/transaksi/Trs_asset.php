@@ -23,8 +23,41 @@ class Trs_asset extends CI_Controller
 
     public function json()
     {
-        header('Content-Type: application/json');
-        echo $this->M_Trs_asset->json();
+
+//        header('Content-Type: application/json');
+//        echo $this->M_Trs_asset->json();
+        $list = $this->M_Trs_asset->get_all();
+        $data = array();
+        foreach ($list as $d) {
+            $row = array();
+            $row[] = '<button type="button" class="btn btn-dark dropdown-toggle btn-sm" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
+                                                        <div class="dropdown-menu">
+                                                        <a class="dropdown-item"  href="javascript:void(0)" onclick="edit_setup(' . "'" . $d->trno . "'" . ')"><i class="ft-file"></i> Lihat</a>                                                        
+                                                        <a class="dropdown-item" href="javascript:void(0)" onclick="destroy(' . "'" . $d->trno . "'" . ')"><i class="ft-trash"></i> Delete</a>
+                                                        </div>';
+
+            $row[] = '<h5 class="text-bold-500">' . $d->trno;
+            $row[] = '<h5 class="text-bold-500">' . $d->fa_id;
+            $row[] = '<h5 class="text-bold-500">' . $d->jenis;
+            $row[] = '<h5 class="text-bold-500">' . $d->date_beli;
+            $row[] = '<h5 class="text-bold-500">' . $d->estimasi;
+            $row[] = '<h5 class="text-bold-500">' . $d->date_penyusutan;
+            $row[] = '<h5 class="text-bold-500">' . $d->hrg_beli;
+            $row[] = '<h5 class="text-bold-500">' . $d->penyusutan_thn;
+            $row[] = '<h5 class="text-bold-500">' . $d->penyusutan_bln;
+            $row[] = '<h5 class="text-bold-500">' . $d->pembulatan;
+
+            //add html for action
+            $data[] = $row;
+        }
+
+        $output = [
+            "data" => $data
+        ];
+        //output to json format
+        echo json_encode($output);
+
     }
 
     public function read($id)
@@ -58,7 +91,7 @@ class Trs_asset extends CI_Controller
     {
         $data = array(
             'button' => 'Create',
-            'action' => site_url('trs_asset/create_action'),
+            'action' => site_url('transaksi/trs_asset/create_action'),
             'trno' => set_value('trno'),
             'fa_id' => set_value('fa_id'),
             'jenis' => set_value('jenis'),
@@ -69,12 +102,9 @@ class Trs_asset extends CI_Controller
             'penyusutan_thn' => set_value('penyusutan_thn'),
             'penyusutan_bln' => set_value('penyusutan_bln'),
             'pembulatan' => set_value('pembulatan'),
-            'added_by' => set_value('added_by'),
-            'entry_time' => set_value('entry_time'),
-            'changed_by' => set_value('changed_by'),
-            'last_modified' => set_value('last_modified'),
+            'pages' => 'transaksi/trs_asset/form',
         );
-        $this->load->view('trs_asset/trs_fix_asset_form', $data);
+        $this->load->view('layout', $data);
     }
 
     public function create_action()

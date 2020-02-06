@@ -102,6 +102,7 @@
  * @property M_Project_uraian $M_Project_uraian
  * @property M_Project_terima $M_Project_terima
  * @property M_Project_logs $M_Project_logs
+ * @property M_Trs_asset $M_Trs_asset
  * Custom  Libraries
  * @property Unirest $unirest
  * @property Conversion $conversion
