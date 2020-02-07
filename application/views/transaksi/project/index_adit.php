@@ -149,6 +149,10 @@
         }
     }
 
+    function invoice(id) {
+        window.open("<?php echo site_url('transaksi/project/cetak_invoice')?>/"+id);
+    }
+
 
     function reload_table()
     {

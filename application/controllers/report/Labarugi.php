@@ -132,13 +132,13 @@ class Labarugi extends CI_Controller {
         $pdf->SetTextColor(255,0,0);
         $pdf->Cell(40,5,'TOTAL UANG KELUAR',0,0,'L');
         $pdf->Cell(5,5,': Rp.',0,0,'L');
-        $pdf->Cell(40,5,number_format(array_sum($jum_keluar)),0,1,'R');
+        $pdf->Cell(40,5,number_format(array_sum($jum_keluar)+array_sum($SUM_thp)),0,1,'R');
         $pdf->SetTextColor(0,0,0);
         $pdf->Cell(80,5,'_______________________________________________________________________________ -',0,1,'L');
 
         $pdf->Cell(40,5,'LABA PENJUALAN',0,0,'L');
         $pdf->Cell(5,5,': Rp. ',0,0,'L');
-        $pdf->Cell(20,5,number_format(((array_sum($SUM_JUM_BIAYA))-(array_sum($jum_keluar))) ),0,1,'R');
+        $pdf->Cell(20,5,number_format(((array_sum($SUM_JUM_BIAYA))-(array_sum($jum_keluar)+array_sum($SUM_thp))) ),0,1,'R');
 
 
         $pdf->Output();
