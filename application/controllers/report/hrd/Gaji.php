@@ -229,9 +229,11 @@ class Gaji extends CI_Controller {
 					$kerja=number_format($hari_kerja->jml_harikerja);
 					// var_dump($hari_kerja);
 					// exit();
+                 $cuti=number_format($this->M_absensi_karyawan->jml_cuti_id($id_karyawan,$TGL01,$TGL02)->jml);
+                 $absen=number_format($get_karyawan->jml_masuk);
 					$pdf->Cell(140,5,"JUMLAH HARI KERJA    : $kerja Hari",0,1,'L');
 					$pdf->Cell(120,5,"PERIODE            : $periode",0,0,'L');
-					$pdf->Cell(140,5,"ABSEN/CUTI                       : $get_karyawan->nama_karyawan",0,1,'L');
+					$pdf->Cell(140,5,"ABSEN/CUTI                       : $cuti Hari",0,1,'L');
 					$pdf->Cell(10,5,'',0,1);
 					$pdf->SetFont('Times','B',8);
 	        // Memberikan space kebawah agar tidak terlalu rapat
@@ -284,7 +286,10 @@ class Gaji extends CI_Controller {
 						$pdf->Cell(50,5,"Take Home Pay",0,0,'L');
 						$pdf->Cell(50,5," : ".number_format($thp),0,1,'L');
 
-						$pdf->Cell(50,5,"Sisa Cicilan",0,0,'L');
+                        $pdf->Cell(50,5,"Pinjaman",0,0,'L');
+                        $pdf->Cell(50,5," : ".number_format($get_karyawan->jml_piutang),0,1,'L');
+
+                        $pdf->Cell(50,5,"Sisa Cicilan",0,0,'L');
 						$pdf->Cell(50,5," : ".number_format($get_karyawan->jml_piutang-$get_karyawan->jml_bayar),0,1,'L');
 
 						$pdf->Cell(10,5,'',0,1);
