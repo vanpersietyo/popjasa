@@ -53,42 +53,33 @@ class Pembayaran extends CI_Controller{
 		echo json_encode($output);
 	}
 
-    public function history(){
+    public function history($id){
+        $data['id_project']=$id;
+        $data['produk']=$this->M_project->get_produk();
         $data['pages']='transaksi/pembayaran/history_pembayaran';
         $this->load->view('layout',$data);
     }
 
-    public function ajax_list()
+    public function ajax_list_pembayaran($id_project)
     {
         $this->load->helper('url');
 
-        $list = $this->M_payment->get_bayar();
+        $list = $this->M_payment->get_history($id_project);
         $data = array();
 
         foreach ($list as $d) {
             $row = array();
-            //									<a class="dropdown-item" href="javascript:void(0)" onclick="create('."'".$d->id_customer."'".')"> Detail Data Project</a>
-            $row[] = '<button type="button" class="btn btn-dark dropdown-toggle btn-sm" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
-									<div class="dropdown-menu">
-									<a class="dropdown-item"  href="javascript:void(0)" onclick="edit_person('."'".$d->id_customer."'".')"> Detail Data Customer</a>
-
-									<a class="dropdown-item" href="javascript:void(0)" onclick="bayar('."'".$d->id_customer."'".')"> Bayar Project</a>
-									</div>';
-
-            $row[] = '<h5 class="text-bold-500">'.$d->id_customer;
-            $row[] = '<h5 class="text-bold-500">'.$d->nm_customer;
-            $row[] = '<h5 class="text-bold-500">'.number_format($d->profit);
-            $row[] = '<h5 class="text-bold-500">'.number_format($d->jumlah_byr);
-            $row[] = '<h5 class="text-bold-500">'.number_format($d->profit - $d->jumlah_byr);
+            $row[] = '<h5 class="text-bold-500">'.$d->id_pay;
+            $row[] = '<h5 class="text-bold-500">'.number_format($d->jumlah_pay);
+            $row[] = '<h5 class="text-bold-500">'.strtoupper(date("d-m-Y", strtotime($d->tgl_input)));
 
             $data[] = $row;
         }
 
         $output = array(
 
-            "recordsTotal" => $this->M_Customer->count_all(),
-            "recordsFiltered" => $this->M_Customer->count_filtered(),
+            "recordsTotal" => $this->M_payment->count_history($id_project),
+            "recordsFiltered" => $this->M_payment->count_history($id_project),
             "data" => $data,
         );
         //output to json format

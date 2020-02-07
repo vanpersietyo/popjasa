@@ -21,154 +21,154 @@
 }
 
 
-#loading {
-  transition: 0.3s all ease-out;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 999999999999;
-  background: white;
-}
+/*#loading {*/
+/*  transition: 0.3s all ease-out;*/
+/*  position: fixed;*/
+/*  top: 0;*/
+/*  bottom: 0;*/
+/*  left: 0;*/
+/*  right: 0;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*  z-index: 999999999999;*/
+/*  background: white;*/
+/*}*/
 
-#loading.ready {
-  opacity: 0;
-}
+/*#loading.ready {*/
+/*  opacity: 0;*/
+/*}*/
 
-.sweet-load-outer {
-  height: 128px;
-  width: 128px;
-  animation: bounce 2s infinite ease-in-out both;
-}
+/*.sweet-load-outer {*/
+/*  height: 128px;*/
+/*  width: 128px;*/
+/*  animation: bounce 2s infinite ease-in-out both;*/
+/*}*/
 
-.sweet-load-ring {
-  height: 100%;
-  width: 100%;
-  border-radius: 50%;
-  background-color: #FF8686;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  -webkit-animation: ring-color 20s infinite ease-in-out both;
-  animation: ring-color 20s infinite ease-in-out both;
-}
+/*.sweet-load-ring {*/
+/*  height: 100%;*/
+/*  width: 100%;*/
+/*  border-radius: 50%;*/
+/*  background-color: #FF8686;*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  -webkit-animation: ring-color 20s infinite ease-in-out both;*/
+/*  animation: ring-color 20s infinite ease-in-out both;*/
+/*}*/
 
-.sweet-load-circle {
-  height: 80%;
-  width: 80%;
-  border-radius: 50%;
-  background: linear-gradient(221deg, #f12d54, #d03e82, #3c91e6, #ff6e6e, #ffd123, #ff6eaa, #92ff23, #67a6e7, #6123ff, #9961cc, #d0207b, #a569b6, #f12d54);
-  background-size: 2600% 2600%;
-  -webkit-animation: circle-color 25s ease infinite;
-  -moz-animation: circle-color 25s ease infinite;
-  animation: circle-color 25s ease infinite;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/*.sweet-load-circle {*/
+/*  height: 80%;*/
+/*  width: 80%;*/
+/*  border-radius: 50%;*/
+/*  background: linear-gradient(221deg, #f12d54, #d03e82, #3c91e6, #ff6e6e, #ffd123, #ff6eaa, #92ff23, #67a6e7, #6123ff, #9961cc, #d0207b, #a569b6, #f12d54);*/
+/*  background-size: 2600% 2600%;*/
+/*  -webkit-animation: circle-color 25s ease infinite;*/
+/*  -moz-animation: circle-color 25s ease infinite;*/
+/*  animation: circle-color 25s ease infinite;*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*}*/
 
-.sweet-load-punch {
-  height: 45%;
-  width: 45%;
-  background: white;
-  border-radius: 12px;
-  transform: rotate(45deg);
-}
+/*.sweet-load-punch {*/
+/*  height: 45%;*/
+/*  width: 45%;*/
+/*  background: white;*/
+/*  border-radius: 12px;*/
+/*  transform: rotate(45deg);*/
+/*}*/
 
-@-webkit-keyframes ring-color {
-  0% {
-    background-color: #FF8686;
-  }
-  15% {
-    background-color: #67A6E7;
-  }
-  30% {
-    background-color: #FFC686
-  }
-  45% {
-    background-color: #41C991;
-  }
-  60% {
-    background-color: #BC5DC8;
-  }
-  85% {
-    background-color: #DA589D;
-  }
-  100% {
-    background-color: #FF8686;
-  }
-}
+/*@-webkit-keyframes ring-color {*/
+/*  0% {*/
+/*    background-color: #FF8686;*/
+/*  }*/
+/*  15% {*/
+/*    background-color: #67A6E7;*/
+/*  }*/
+/*  30% {*/
+/*    background-color: #FFC686*/
+/*  }*/
+/*  45% {*/
+/*    background-color: #41C991;*/
+/*  }*/
+/*  60% {*/
+/*    background-color: #BC5DC8;*/
+/*  }*/
+/*  85% {*/
+/*    background-color: #DA589D;*/
+/*  }*/
+/*  100% {*/
+/*    background-color: #FF8686;*/
+/*  }*/
+/*}*/
 
-@keyframes ring-color {
-  0% {
-    background-color: #FF8686;
-  }
-  15% {
-    background-color: #67A6E7;
-  }
-  30% {
-    background-color: #FFC686
-  }
-  45% {
-    background-color: #41C991;
-  }
-  60% {
-    background-color: #BC5DC8;
-  }
-  85% {
-    background-color: #DA589D;
-  }
-  100% {
-    background-color: #FF8686;
-  }
-}
+/*@keyframes ring-color {*/
+/*  0% {*/
+/*    background-color: #FF8686;*/
+/*  }*/
+/*  15% {*/
+/*    background-color: #67A6E7;*/
+/*  }*/
+/*  30% {*/
+/*    background-color: #FFC686*/
+/*  }*/
+/*  45% {*/
+/*    background-color: #41C991;*/
+/*  }*/
+/*  60% {*/
+/*    background-color: #BC5DC8;*/
+/*  }*/
+/*  85% {*/
+/*    background-color: #DA589D;*/
+/*  }*/
+/*  100% {*/
+/*    background-color: #FF8686;*/
+/*  }*/
+/*}*/
 
-@-webkit-keyframes circle-color {
-  0% {
-    background-position: 78% 0%
-  }
-  100% {
-    background-position: 23% 100%
-  }
-}
+/*@-webkit-keyframes circle-color {*/
+/*  0% {*/
+/*    background-position: 78% 0%*/
+/*  }*/
+/*  100% {*/
+/*    background-position: 23% 100%*/
+/*  }*/
+/*}*/
 
-@keyframes circle-color {
-  0% {
-    background-position: 78% 0%
-  }
-  100% {
-    background-position: 23% 100%
-  }
-}
+/*@keyframes circle-color {*/
+/*  0% {*/
+/*    background-position: 78% 0%*/
+/*  }*/
+/*  100% {*/
+/*    background-position: 23% 100%*/
+/*  }*/
+/*}*/
 
-@-webkit-keyframes bounce {
-  0%,
-  80%,
-  100% {
-    -webkit-transform: scale(0.9)
-  }
-  40% {
-    -webkit-transform: scale(1.0)
-  }
-}
+/*@-webkit-keyframes bounce {*/
+/*  0%,*/
+/*  80%,*/
+/*  100% {*/
+/*    -webkit-transform: scale(0.9)*/
+/*  }*/
+/*  40% {*/
+/*    -webkit-transform: scale(1.0)*/
+/*  }*/
+/*}*/
 
-@keyframes bounce {
-  0%,
-  80%,
-  100% {
-    -webkit-transform: scale(0.8);
-    transform: scale(0.9);
-  }
-  40% {
-    -webkit-transform: scale(1.0);
-    transform: scale(1.0);
-  }
-}
+/*@keyframes bounce {*/
+/*  0%,*/
+/*  80%,*/
+/*  100% {*/
+/*    -webkit-transform: scale(0.8);*/
+/*    transform: scale(0.9);*/
+/*  }*/
+/*  40% {*/
+/*    -webkit-transform: scale(1.0);*/
+/*    transform: scale(1.0);*/
+/*  }*/
+/*}*/
 
 </style>
 

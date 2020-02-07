@@ -96,6 +96,15 @@
                                         <label>Nama Project</label>
                                            <input name="nm_project" value="DEFF PROJECT" placeholder="Nama Project .." class="form-control" type="text" required>
                                        </div>
+
+                                       <div class="col-md-12">
+                                           <label>Status Perusahaan</label>
+                                           <select class="form-control" name="st_project" >
+                                               <option value="1">POP JASA</option>
+                                               <option value="2">JASA MURAH</option>
+                                           </select>
+                                       </div>
+
                                        <div class="col-md-12">
                                          <label>Note Project</label>
                                         <textarea name="note_project" placeholder="Note Project .." maxlength="255" class="form-control" type="textarea"></textarea>

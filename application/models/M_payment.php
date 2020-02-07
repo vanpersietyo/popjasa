@@ -9,18 +9,36 @@ class M_payment extends CI_Model {
 	}
 
 	public function get_user($id){
-		// $query=$this->db->query("
+    // $query=$this->db->query("
     //   SELECT a.id_project,a.id_layanan,c.nama_layanan,d.harga,a.id_customer,b.nm_customer,a.harga_jual,a.keterangan,a.input_by,a.tgl_input
     //   FROM trs_project a,m_customer b, m_layanan c, m_harga_layanan d
     //   WHERE a.id_customer=b.id_customer AND a.id_layanan=c.id_layanan AND a.id_layanan=d.id_layanan AND a.id_customer='$id'
-		// 	");
+    // 	");
 
-			$query=$this->db->query("
+    $query=$this->db->query("
 				SELECT *
 				FROM v_paybycustomers
 				");
-		return $query->result();
-	}
+    return $query->result();
+}
+
+    public function get_history($id){
+        $query=$this->db->query("
+				SELECT *
+				FROM trs_pembayaran
+				where id_project='$id'
+				");
+        return $query->result();
+    }
+
+    public function count_history($id){
+        $query=$this->db->query("
+				SELECT *
+				FROM trs_pembayaran
+				where id_project='$id'
+				");
+        return $query->num_rows();
+    }
 
 	public function get_customer(){
 		$query=$this->db->query("
