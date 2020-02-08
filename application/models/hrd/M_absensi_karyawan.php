@@ -311,6 +311,20 @@ class M_absensi_karyawan extends CI_Model {
 		return $query->row();
 	}
 
+    function jml_cuti_id($id,$tgl1,$tgl2){
+        $query=$this->db->query("
+        SELECT
+		sum(jml_cuti) AS jml
+	    FROM
+		trs_hrd_cuti
+	    WHERE
+		id_karyawan = '$id' and st_konfirmasi=1
+		and STR_TO_DATE(tgl_input,'%Y-%m-%d') >= DATE('$tgl1')
+		and STR_TO_DATE(tgl_input,'%Y-%m-%d') <= DATE('$tgl2')
+		");
+        return $query->row();
+    }
+
 	function get_tunjangan(){
 		$query=$this->db->query("
 		select * from m_tunjangan

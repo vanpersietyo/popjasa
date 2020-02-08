@@ -74,6 +74,24 @@ class M_labarugi extends CI_Model {
         return $query->row();
     }
 
+    function v_paybyproject($id){
+        $query=$this->db->query("
+		    SELECT *
+            FROM v_paybyproject
+            WHERE id_project='$id'
+			");
+        return $query->result();
+    }
+
+    function trs_pembayaran($id){
+        $query=$this->db->query("
+		    SELECT *
+            FROM trs_pembayaran
+            WHERE id_project='$id'
+			");
+        return $query->result();
+    }
+
 
 
 }

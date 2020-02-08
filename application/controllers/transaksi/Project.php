@@ -15,6 +15,9 @@ class Project extends CI_Controller
         $this->load->model('M_Project_izin');
         $this->load->model('M_Project_uraian');
         $this->load->model('M_Project_terima');
+        $this->load->library('pdf');
+        $this->load->model('M_login');
+        $this->load->model('report/M_labarugi', 'M_labarugi');
         $this->M_login->isLogin();
     }
 
@@ -668,5 +671,91 @@ class Project extends CI_Controller
 
         $this->M_project->update(array('id_project' => $id), $data);
         echo json_encode(array("status" => TRUE));
+    }
+
+    public function cetak_invoice($id_project){
+            $cabang=$this->session->userdata('nm_cabang');
+            $sysdate=date('d/m/Y H:i');
+
+            $pdf = new FPDF('l','mm','A4');
+            // membuat halaman baru
+            $pdf->AddPage('P');
+            // setting jenis font yang akan digunakan
+            $pdf->Image(base_url().'assets/app-assets/vendors/logo/popjasa.png',180,10,0,20);
+            $pdf->Image(base_url().'assets/app-assets/vendors/logo/popjasa.png',10,10,0,20);
+            $pdf->SetFont('Times','B',16);
+            // mencetak string
+            $sysdate=date('d/m/Y H:i');
+            $pdf->Cell(0,7,"INVOICE PEMBAYARAN PROJECT",0,2,'C');
+            $pdf->Cell(0,5,"POPJASA",0,2,'C');
+            $pdf->SetFont('Times','B',8);
+            $pdf->Cell(10,5,'',0,1);
+            $pdf->Cell(0,1,"KANTOR CABANG : $cabang",0,1,'C');
+            $pdf->SetFont('Arial','B',12);
+            $pdf->Cell(2,5,'________________________________________________________________________________',0,1,'L');
+            $pdf->SetFont('Times','B',8);
+            $pdf->Cell(280,5,"Tgl Cetak                      : $sysdate",0,2,'L');
+        $pdf->Cell(280,5,"No Invoice / Id Project : $id_project",0,2,'L');
+            $pdf->Cell(10,5,'',0,1);
+            $pdf->SetFont('Arial','B',12);
+            // Memberikan space kebawah agar tidak terlalu rapat
+            //header
+            $pdf->Cell(10,5,'',0,1);
+            $pdf->SetFont('Arial','B',8);
+
+            //value
+            $pdf->Cell(40,5,'RINCIAN PEMBELIAN :',0,1,'L');
+                $pdf->SetFont('Arial','',7);
+                $pdf->Cell(10,5,'No',1,0,'C');
+                $pdf->Cell(110,5,'Nama Produk Jasa',1,0,'L');
+                $pdf->Cell(35,5,'Jumlah Tagihan',1,0,'R');
+                $pdf->Cell(35,5,'Jumlah Bayar',1,0,'R');
+                $pdf->Cell(10,5,'',0,1);
+                $list = $this->M_labarugi->v_paybyproject($id_project);
+                $i='1';
+                foreach ($list as $row){
+                    $pdf->SetFont('Arial','',7);
+                    $pdf->Cell(10,5,$i,1,0,'C');
+                    $pdf->Cell(110,5,$row->nama_layanan,1,0,'L');
+                    $pdf->Cell(35,5,number_format($row->profit),1,0,'R');
+                    $pdf->Cell(35,5,number_format($row->jumlah_byr),1,0,'R');
+                    $pdf->Cell(0,5,'',0,1,'C');
+                    $SUM_TAGIHAN[]=$row->profit;
+                    $SUM_BAYAR[]=$row->jumlah_byr;
+                    $i='1'+ $i;
+                }
+
+                $pdf->Cell(120,5,'TOTAL ',1,0,'R');
+                $pdf->Cell(35,5,number_format(array_sum($SUM_TAGIHAN)),1,0,'R');
+                $pdf->Cell(35,5,number_format(array_sum($SUM_BAYAR)),1,0,'R');
+                $pdf->Cell(0,5,'',0,1,'C');
+
+                $pdf->Cell(10,5,'',0,1);
+                $pdf->Cell(10,5,'',0,1);
+                 $pdf->SetFont('Arial','B',8);
+                $pdf->Cell(40,5,'RINCIAN PEMBAYARAN :',0,1,'L');
+                $pdf->SetFont('Arial','',7);
+                $pdf->Cell(10,5,'No',1,0,'C');
+                $pdf->Cell(35,5,'Tgl Pembayaran',1,0,'C');
+                $pdf->Cell(35,5,'Tipe Pembayaran',1,0,'C');
+                $pdf->Cell(35,5,'Jumlah Pembayaran',1,0,'R');
+                $pdf->Cell(10,5,'',0,1);
+                $pembayaran = $this->M_labarugi->trs_pembayaran($id_project);
+                $i='1';
+                foreach ($pembayaran as $pembayaran){
+                    $pdf->SetFont('Arial','',7);
+                    $pdf->Cell(10,5,$i,1,0,'C');
+                    $pdf->Cell(35,5, $pembayaran->tgl_input,1,0,'C');
+                    $pdf->Cell(35,5, $pembayaran->tipe_pay,1,0,'C');
+                    $pdf->Cell(35,5,number_format($pembayaran->jumlah_pay),1,0,'R');
+                    $pdf->Cell(0,5,'',0,1,'C');
+                    $SUM_PAY[]=$pembayaran->jumlah_pay;
+                    $i='1'+ $i;
+                }
+                $pdf->Cell(80,5,'TOTAL ',1,0,'R');
+                $A=number_format(array_sum($SUM_PAY));
+                $pdf->Cell(35,5,$A,1,0,'R');
+                $pdf->Cell(0,5,'',0,1,'C');
+            $pdf->Output();
     }
 }
