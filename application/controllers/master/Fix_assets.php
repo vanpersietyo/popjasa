@@ -53,33 +53,6 @@ class Fix_assets extends CI_Controller
         echo json_encode($output);
     }
 
-    // datatables
-    public function json2()
-    {
-        $list = $this->M_Fix_assets->get_all();
-        $data = [];
-        /** @var M_Fix_assets $detail */
-        if ($list) {
-            foreach ($list as $i => $detail) {
-                $no = $i + 1;
-                $row = [];
-
-                $row[] = $no;
-                $row[] = $detail->Fa_ID;
-                $row[] = $detail->Nama_FA;
-                $row[] = $detail->Date_FA;
-                $row[] = $detail->Harga;
-                $row[] = '<a class="btn btn-sm btn-success" href="javascript:void(0)" title="Tambah FA" onclick="pilih_fix_asset(' . "'" . $detail->Fa_ID . "','" . $detail->Nama_FA . "','" . $detail->Date_FA . "','" . $detail->Harga . "'" . ')"><i class="ft-plus-square"></i></a>';
-
-                $data[] = $row;
-            }
-        }
-        $output = array(
-            "data" => $data,
-        );
-        echo json_encode($output);
-    }
-
     public function read($id)
     {
         $row = $this->M_Fix_assets->get_by_id($id);

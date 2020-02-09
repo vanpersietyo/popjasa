@@ -130,7 +130,7 @@
                                 <div class="form-group">
                                     <label for="varchar">Harga <?php echo form_error('Harga') ?></label>
                                     <input type="text" class="form-control" name="Harga" id="Harga"
-                                           placeholder="Harga" value="<?php echo $Harga; ?>"/>
+                                           placeholder="Harga"/>
                                 </div>
                             </div>
                         </div>
