@@ -189,6 +189,23 @@ class M_Trs_asset extends CI_Model
         //return
         return $data->num_rows();
     }
+
+    function get_ID()
+    {
+        $tahun = date('Y');
+        $bulan = date('m');
+        $q = $this->db->query("select MAX(RIGHT(trno,5)) as kd_max from m_fix_assets");
+        $kd = "";
+        if ($q->num_rows() > 0) {
+            foreach ($q->result() as $k) {
+                $tmp = ((int)$k->kd_max) + 1;
+                $kd = sprintf("%05s", $tmp);
+            }
+        } else {
+            $kd = "00001";
+        }
+        return "FA$tahun$bulan" . $kd;
+    }
 }
 
 /* End of file M_Trs_asset.php */

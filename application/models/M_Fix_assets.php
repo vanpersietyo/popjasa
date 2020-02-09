@@ -128,6 +128,73 @@ class M_Fix_assets extends CI_Model
         }
         return "FA$tahun$bulan".$kd;
     }
+
+    /**
+     * @param null|array|string $where
+     * @param array $order
+     * @return array|bool|M_Fix_assets
+     */
+    public function find_first($where = null, $order = [])
+    {
+        //cek order
+        if ($order) {
+            foreach ($order as $key => $value) {
+                $this->db->order_by($key, $value);
+            }
+        }
+        //cek where
+        $data = $where ? $this->db->get_where($this->table, $where) : $this->db->get($this->table);
+        $result = $data->num_rows();
+        return empty($result) ? FALSE : $data->row();
+    }
+
+    /**
+     * @param null|array|string $where
+     * @param array $order
+     * @return array|bool|M_Fix_assets
+     */
+    public function find($where = null, $order = [])
+    {
+        //cek order
+        if ($order) {
+            foreach ($order as $key => $value) {
+                $this->db->order_by($key, $value);
+            }
+        }
+        //cek where
+        $data = $where ? $this->db->get_where($this->table, $where) : $this->db->get($this->table);
+
+        $result = $data->num_rows();
+        //return
+        return empty($result) ? FALSE : $data->result();
+    }
+
+    /**
+     * @param null $where
+     * @param array $order
+     * @return int
+     */
+    public function count($where = null)
+    {
+        //cek where
+        $data = $where ? $this->db->get_where($this->table, $where) : $this->db->get($this->table);
+        //return
+        return $data->num_rows();
+    }
+
+    /**
+     * @param null $column
+     * @param null $where
+     * @return int
+     */
+    public function sum($column = null, $where = null)
+    {
+        //cek where
+        $this->db->select_sum($column, 'total');
+        $data = $where ? $this->db->get_where($this->table, $where) : $this->db->get($this->table);
+        //return
+        return $data->row()->total ?: 0;
+    }
 }
 
 /* End of file M_Fix_assets.php */
