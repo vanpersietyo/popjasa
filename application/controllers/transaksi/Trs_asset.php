@@ -115,6 +115,7 @@ class Trs_asset extends CI_Controller
             $this->create();
         } else {
             $data = array(
+                'trno' => $this->M_Trs_asset->get_ID(),
                 'fa_id' => $this->input->post('fa_id', TRUE),
                 'jenis' => $this->input->post('jenis', TRUE),
                 'date_beli' => $this->input->post('date_beli', TRUE),
@@ -124,10 +125,8 @@ class Trs_asset extends CI_Controller
                 'penyusutan_thn' => $this->input->post('penyusutan_thn', TRUE),
                 'penyusutan_bln' => $this->input->post('penyusutan_bln', TRUE),
                 'pembulatan' => $this->input->post('pembulatan', TRUE),
-                'added_by' => $this->input->post('added_by', TRUE),
-                'entry_time' => $this->input->post('entry_time', TRUE),
-                'changed_by' => $this->input->post('changed_by', TRUE),
-                'last_modified' => $this->input->post('last_modified', TRUE),
+                'added_by' => $this->session->userdata('yangLogin'),
+                'entry_time' => date('Y-m-d H:i:s'),
             );
 
             $this->M_Trs_asset->insert($data);
@@ -154,10 +153,6 @@ class Trs_asset extends CI_Controller
                 'penyusutan_thn' => set_value('penyusutan_thn', $row->penyusutan_thn),
                 'penyusutan_bln' => set_value('penyusutan_bln', $row->penyusutan_bln),
                 'pembulatan' => set_value('pembulatan', $row->pembulatan),
-                'added_by' => set_value('added_by', $row->added_by),
-                'entry_time' => set_value('entry_time', $row->entry_time),
-                'changed_by' => set_value('changed_by', $row->changed_by),
-                'last_modified' => set_value('last_modified', $row->last_modified),
             );
             $this->load->view('trs_asset/trs_fix_asset_form', $data);
         } else {
@@ -183,10 +178,8 @@ class Trs_asset extends CI_Controller
                 'penyusutan_thn' => $this->input->post('penyusutan_thn', TRUE),
                 'penyusutan_bln' => $this->input->post('penyusutan_bln', TRUE),
                 'pembulatan' => $this->input->post('pembulatan', TRUE),
-                'added_by' => $this->input->post('added_by', TRUE),
-                'entry_time' => $this->input->post('entry_time', TRUE),
-                'changed_by' => $this->input->post('changed_by', TRUE),
-                'last_modified' => $this->input->post('last_modified', TRUE),
+                'changed_by' => $this->session->userdata('yangLogin'),
+                'last_modified' => date('Y-m-d H:i:s'),
             );
 
             $this->M_Trs_asset->update($this->input->post('trno', TRUE), $data);
@@ -220,12 +213,8 @@ class Trs_asset extends CI_Controller
         $this->form_validation->set_rules('penyusutan_thn', 'penyusutan thn', 'trim|required|numeric');
         $this->form_validation->set_rules('penyusutan_bln', 'penyusutan bln', 'trim|required|numeric');
         $this->form_validation->set_rules('pembulatan', 'pembulatan', 'trim|required|numeric');
-        $this->form_validation->set_rules('added_by', 'added by', 'trim|required');
-        $this->form_validation->set_rules('entry_time', 'entry time', 'trim|required');
-        $this->form_validation->set_rules('changed_by', 'changed by', 'trim|required');
-        $this->form_validation->set_rules('last_modified', 'last modified', 'trim|required');
 
-        $this->form_validation->set_rules('trno', 'trno', 'trim');
+        //$this->form_validation->set_rules('trno', 'trno', 'trim');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
@@ -260,10 +249,6 @@ class Trs_asset extends CI_Controller
         xlsWriteLabel($tablehead, $kolomhead++, "Penyusutan Thn");
         xlsWriteLabel($tablehead, $kolomhead++, "Penyusutan Bln");
         xlsWriteLabel($tablehead, $kolomhead++, "Pembulatan");
-        xlsWriteLabel($tablehead, $kolomhead++, "Added By");
-        xlsWriteLabel($tablehead, $kolomhead++, "Entry Time");
-        xlsWriteLabel($tablehead, $kolomhead++, "Changed By");
-        xlsWriteLabel($tablehead, $kolomhead++, "Last Modified");
 
         foreach ($this->M_Trs_asset->get_all() as $data) {
             $kolombody = 0;
@@ -279,10 +264,6 @@ class Trs_asset extends CI_Controller
             xlsWriteNumber($tablebody, $kolombody++, $data->penyusutan_thn);
             xlsWriteNumber($tablebody, $kolombody++, $data->penyusutan_bln);
             xlsWriteNumber($tablebody, $kolombody++, $data->pembulatan);
-            xlsWriteLabel($tablebody, $kolombody++, $data->added_by);
-            xlsWriteLabel($tablebody, $kolombody++, $data->entry_time);
-            xlsWriteLabel($tablebody, $kolombody++, $data->changed_by);
-            xlsWriteLabel($tablebody, $kolombody++, $data->last_modified);
 
             $tablebody++;
             $nourut++;
