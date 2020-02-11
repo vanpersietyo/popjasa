@@ -72,7 +72,7 @@
             </div>
             <div class="modal-body">
                 <div class="col-md-12">
-                    <form method="post" class="form-horizontal" id="form_fa" action="javascript:void(0)"
+                    <form method="post" class="form-horizontal form-control" id="form_fa" action="javascript:void(0)"
                           onsubmit="simpan()" autocomplete="off">
                         <div class="row">
                             <div class="col-md-6">
