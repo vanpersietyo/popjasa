@@ -72,7 +72,8 @@
             </div>
             <div class="modal-body">
                 <div class="col-md-12">
-                    <form method="post" class="form-horizontal" id="form_project" action="javascript:void(0)" onsubmit="simpan()" autocomplete="off">
+                    <form method="post" class="form-horizontal" id="form_fa" action="javascript:void(0)"
+                          onsubmit="simpan()" autocomplete="off">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -175,6 +176,7 @@
             todayBtn: true,
             todayHighlight: true,
         });
+
     });
 
     /**
@@ -285,9 +287,9 @@
 
     function reload_table()
     {
-        mytable.ajax.reload(null,false); //reload datatable ajax
+        var table = $('#mytable').DataTable();
+        table.ajax.reload(null, false); //reload datatable ajax
     }
-
 
 </script>
 
