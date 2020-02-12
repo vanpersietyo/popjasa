@@ -106,19 +106,22 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="datetime">Date Akuisisi <?php echo form_error('Date_Akuisisi') ?></label>
-                                    <input type="text" class="form-control datepicker" name="Date_Akuisisi" id="Date_Akuisisi" placeholder="Date Akuisisi" />
+                                    <input type="text" class="form-control datepicker1" name="Date_Akuisisi"
+                                           id="Date_Akuisisi" placeholder="Date Akuisisi"/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="datetime">Date FA <?php echo form_error('Date_FA') ?></label>
-                                    <input type="text" class="form-control datepicker" name="Date_FA" id="Date_FA" placeholder="Date FA" />
+                                    <input type="text" class="form-control datepicker1" name="Date_FA" id="Date_FA"
+                                           placeholder="Date FA"/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="datetime">Date Disposed <?php echo form_error('Date_Disposed') ?></label>
-                                    <input type="text" class="form-control datepicker" name="Date_Disposed" id="Date_Disposed" placeholder="Date Disposed" />
+                                    <input type="text" class="form-control datepicker1" name="Date_Disposed"
+                                           id="Date_Disposed" placeholder="Date Disposed"/>
                                 </div>
                             </div>
                         </div>
@@ -168,7 +171,7 @@
         });
 
         //datepicker
-        $('.datepicker').datepicker({
+        $('.datepicker1').datepicker({
             autoclose: true,
             format: "yyyy-mm-dd",
             todayHighlight: true,

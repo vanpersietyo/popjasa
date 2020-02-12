@@ -26,7 +26,7 @@ $this->load->view('template/head');
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="varchar">Penyutan No <?php echo form_error('fa_id') ?></label>
+                                        <label for="varchar">Penyutan No</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control" name="trno"
                                                    value="<?php echo $trno; ?>" disabled/>
@@ -75,7 +75,7 @@ $this->load->view('template/head');
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="date">Date Beli <?php echo form_error('date_beli') ?></label>
-                                        <input type="text" class="form-control datepicker" name="date_beli"
+                                        <input type="text" class="form-control datepicker1" name="date_beli"
                                                id="date_beli"
                                                placeholder="Date Beli"
                                                value="<?php echo $date_beli; ?>"/>
@@ -85,7 +85,7 @@ $this->load->view('template/head');
                                     <div class="form-group">
                                         <label for="date">Date
                                             Penyusutan <?php echo form_error('date_penyusutan') ?></label>
-                                        <input type="text" class="form-control datepicker" name="date_penyusutan"
+                                        <input type="text" class="form-control datepicker1" name="date_penyusutan"
                                                id="date_penyusutan"
                                                placeholder="Date Penyusutan" value="<?php echo $date_penyusutan; ?>"/>
                                     </div>
@@ -193,7 +193,7 @@ $this->load->view('template/head');
             }
         });
         //datepicker
-        $('.datepicker').datepicker({
+        $('.datepicker1').datepicker({
             autoclose: true,
             format: "yyyy-mm-dd",
             todayHighlight: true,
@@ -287,10 +287,10 @@ $this->load->view('template/head');
         $('#modal_form').modal('show'); // show bootstrap modal
     }
 
-    function pilih_customer(customer, nama_customer) {
+    function pilih_items(fa_id, nama_fa) {
         $('#modal_form').modal('hide'); // show bootstrap modal
-        $('[name="customer"]').val(nama_customer);
-        $('[name="fa_id"]').val(customer);
+        $('[name="nama_fa"]').val(nama_fa);
+        $('[name="fa_id"]').val(fa_id);
         // form_project.val().trigger('change');
         // alert(customer);
     }

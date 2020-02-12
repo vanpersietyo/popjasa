@@ -194,7 +194,7 @@ class M_Trs_asset extends CI_Model
     {
         $tahun = date('Y');
         $bulan = date('m');
-        $q = $this->db->query("select MAX(RIGHT(trno,5)) as kd_max from m_fix_assets");
+        $q = $this->db->query("select MAX(RIGHT(trno,5)) as kd_max from trs_fix_asset");
         $kd = "";
         if ($q->num_rows() > 0) {
             foreach ($q->result() as $k) {
@@ -204,7 +204,7 @@ class M_Trs_asset extends CI_Model
         } else {
             $kd = "00001";
         }
-        return "FA$tahun$bulan" . $kd;
+        return "TFA$tahun$bulan" . $kd;
     }
 }
 
