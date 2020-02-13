@@ -49,17 +49,14 @@ $this->load->view('template/head');
                             <table id="mytable" class="table table-striped table-bordered sourced-data">
                                 <thead>
                                 <tr>
+                                    <th width="200px">Action</th>
                                     <th width="80px">TrNo</th>
                                     <th>Fa Id</th>
                                     <th>Jenis</th>
                                     <th>Date Beli</th>
-                                    <th>Estimasi</th>
-                                    <th>Date Penyusutan</th>
                                     <th>Hrg Beli</th>
                                     <th>Penyusutan Thn</th>
                                     <th>Penyusutan Bln</th>
-                                    <th>Pembulatan</th>
-                                    <th width="200px">Action</th>
                                 </tr>
                                 </thead>
 
@@ -72,6 +69,11 @@ $this->load->view('template/head');
     </section>
 </div>
 
+<script type="text/javascript">
+    function edit_setup(ID) {
+        location.replace("<?php echo base_url('transaksi/trs_asset/update/')?>" + ID);
+    }
+</script>
 
 <?php
 $this->load->view('/template/foot');
@@ -86,5 +88,21 @@ $this->load->view('/template/foot');
             },
         });
     });
+
+    function destroy(id) {
+        if (confirm('Are you sure delete this data?')) {
+            // ajax delete data to database
+            $.ajax({
+                url: "<?php echo site_url('transaksi/trs_asset/delete/')?>" + id,
+                type: "POST",
+            });
+            reload_table();
+        }
+    }
+
+    function reload_table() {
+        var table = $('#mytable').DataTable();
+        table.ajax.reload(null, false); //reload datatable ajax
+    }
 </script>
 
