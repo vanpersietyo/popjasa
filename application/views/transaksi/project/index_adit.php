@@ -89,6 +89,11 @@
             "ajax": {
                 "url": "<?php echo site_url('transaksi/project/ajax_list2')?>",
             },
+            columnDefs: [
+                { type: 'date-uk', targets: 6 }
+            ],
+            "order": [[ 6, "desc" ]],
+
             dom: 'Bfrtip',
             buttons: [
                 'excel'

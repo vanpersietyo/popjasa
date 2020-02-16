@@ -55,13 +55,17 @@ $status = $project->st_data;
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-10">
                                                     <label>Nama Customer</label>
                                                     <input name="nm_customer"
                                                            value="<?php echo $customer->nm_customer; ?>"
                                                            placeholder="Nama Customer .."
                                                            class="form-control" type="text" disabled>
                                                 </div>
+                                                <div class="col-md-2" align="right">
+                                                <label>Tanggal Deal </label>
+                                                <input type="text"   class="form-control"  value="<?php echo date("d/m/Y", strtotime($project->tgl_input)); ?>" disabled>
+                                            </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">

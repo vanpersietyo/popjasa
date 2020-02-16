@@ -83,8 +83,8 @@ class Labarugi extends CI_Controller {
         foreach ($popjasa as $popjasa ) {
             $pdf->Cell(95,5,"- $popjasa->nm_customer",0,0,'L');
             $pdf->Cell(1,5,": Rp.  ",0,0,'R');
-            $uang_masuk=number_format($popjasa->jumlah_byr,0,",",".");
-            $SUM_JUM_BIAYA[]=$popjasa->jumlah_byr;
+            $uang_masuk=number_format($popjasa->profit,0,",",".");
+            $SUM_JUM_BIAYA[]=$popjasa->profit;
             $pdf->Cell(20,5,"$uang_masuk",0,1,'R');
         }
         $pdf->Cell(80,5,'___________________________________________________________________________ +',0,1,'L');
@@ -98,8 +98,8 @@ class Labarugi extends CI_Controller {
         foreach ($jasmurah as $jasmurah ) {
             $pdf->Cell(95,5,"- $jasmurah->nm_customer",0,0,'L');
             $pdf->Cell(1,5,": Rp.  ",0,0,'R');
-            $uang_masuk=number_format($jasmurah->jumlah_byr,0,",",".");
-            $SUM_JUM_jasmurah[]=$jasmurah->jumlah_byr;
+            $uang_masuk=number_format($jasmurah->profit,0,",",".");
+            $SUM_JUM_jasmurah[]=$jasmurah->profit;
             $pdf->Cell(20,5,"$uang_masuk",0,1,'R');
         }
         $pdf->Cell(80,5,'___________________________________________________________________________ +',0,1,'L');
@@ -124,14 +124,42 @@ class Labarugi extends CI_Controller {
             $SUMPENGELUARAN[]=$uk->pengeluaran;
         }
 
+        $hpppj=$this->M_labarugi->uang_masuk($TGL01,$TGL02,'1');
+        foreach ($hpppj as $hpppj ) {
+            $SUMHPPPOPJASA[]=$hpppj->hpp;
+        }
+        $hppjm=$this->M_labarugi->uang_masuk($TGL01,$TGL02,'2');
+        foreach ($hppjm as $hppjm ) {
+            $SUMHHPPJASAMURAH[]=$hppjm->hpp;
+        }
+
+
         $hji=array_sum($SUM_GAJI);
         $pgl=array_sum($SUMPENGELUARAN);
-        $totalkeluar=array_sum($SUM_GAJI)+array_sum($SUMPENGELUARAN);
+        $hhppji=array_sum($SUMHPPPOPJASA);
+        $phppgl=array_sum($SUMHHPPJASAMURAH);
+        $totalkeluar=array_sum($SUM_GAJI)+array_sum($SUMPENGELUARAN)+array_sum($SUMHPPPOPJASA)+array_sum($SUMHHPPJASAMURAH);
 
         $pdf->Cell(10,5,'',0,1);
         $pdf->Cell(10,5,'',0,1);
         $pdf->Cell(40,5,'RINCIAN PENGELUARAN :',0,1,'L');
         $pdf->Cell(10,5,'',0,1);
+        $pdf->Cell(87,5,'HPP POPJASA',1,0,'L');
+        $prosentase_9=$hhppji/$totalkeluar*100;
+        $echo_p9=number_format($prosentase_9);
+        $pdf->Cell(30,5,"$echo_p9 %",1,1,'R');
+        $pdf->Cell(95,5,"- HPP POPJASA",0,0,'L');
+        $pdf->Cell(1,5,": Rp.  ",0,0,'R');
+        $pdf->Cell(20,5,number_format($hhppji),0,1,'R');
+
+        $pdf->Cell(87,5,'HPP JASAMURAH',1,0,'L');
+        $prosentase_10=$phppgl/$totalkeluar*100;
+        $echo_p10=number_format($prosentase_10);
+        $pdf->Cell(30,5,"$echo_p10 %",1,1,'R');
+        $pdf->Cell(95,5,"- HPP JASAMURAH",0,0,'L');
+        $pdf->Cell(1,5,": Rp.  ",0,0,'R');
+        $pdf->Cell(20,5,number_format($phppgl),0,1,'R');
+
         $pdf->Cell(87,5,'GAJI KARYAWAN',1,0,'L');
         $prosentase_3=$hji/$totalkeluar*100;
         $echo_p3=number_format($prosentase_3);

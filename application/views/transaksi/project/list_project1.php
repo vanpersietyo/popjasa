@@ -54,10 +54,14 @@
                                <div class="form-group">
                                   <div class="row">
                                 		<!-- <form  action="<?php echo site_url('transaksi/project/input_header') ?>" method="post"> -->
-                                    <div class="col-md-12">
+                                    <div class="col-md-10">
                                       <h3 class="content-header-title">Data Customers</h3>
                                         <br>
                                     </div>
+                                      <div class="col-md-2" align="right">
+                                          <label>Tanggal Deal </label>
+                                          <input type="text"   class="form-control"  value="<?php echo date('d-m-Y') ?>" disabled>
+                                      </div>
                                    <div class="col-md-4">
                                         <label>Nama Customer</label>
                                         <input type="hidden" name="id_customer" value="<?php echo $customer->id_customer ?>">
