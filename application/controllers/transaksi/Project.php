@@ -575,8 +575,9 @@ class Project extends CI_Controller
             $row[] = '<h5 class="text-bold-500">' . $d->nm_customer;
             $row[] = '<h5 class="text-bold-500">' . number_format($d->harga_jual);
             $date = date("d/m/Y", strtotime($d->tgl_input));
+            $date2 = date("Y-m-d", strtotime($d->tgl_input));
             $row[] = $status;
-            $row[] = '<h5 class="text-bold-500">' . $date;
+            $row[] =  '<h5 class="text-bold-500">' .$d->tgl_input;
             $row[] = '<h5 class="text-bold-500">' . $d->input_by;
 
             //add html for action

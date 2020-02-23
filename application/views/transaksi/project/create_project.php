@@ -62,7 +62,7 @@
                     <div class="card-content collapse show" id="content-header">
                         <div class="card-body" style="padding-top: 0 !important">
                             <div class="row">
-                                <div class="col-md-9">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Customer</label>
                                         <div class="input-group">
@@ -85,6 +85,10 @@
                                         <input type="text" class="form-control" value="<?= $this->session->userdata('yangLogin'); ?>"
                                             disabled="disabled">
                                     </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Tanggal Deal </label>
+                                    <input type="text"   class="form-control"  value="<?php echo date('d-m-Y') ?>" disabled>
                                 </div>
                             </div>
 
