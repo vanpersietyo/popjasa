@@ -83,12 +83,8 @@ class Progress extends CI_Controller{
 		echo json_encode($output);
 	}
 
-
 	function save_minuta(){
 		echo "sukses";
 	}
-
-
-
 
 }

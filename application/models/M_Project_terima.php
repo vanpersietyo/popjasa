@@ -140,8 +140,6 @@ class M_Project_terima extends CI_Model
         $this->db->delete($this->table);
     }
 
-
-
     /**
      * @param null|array|string $where
      * @param array $order

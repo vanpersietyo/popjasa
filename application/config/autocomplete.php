@@ -101,6 +101,7 @@
  * @property M_Project_izin $M_Project_izin
  * @property M_Project_uraian $M_Project_uraian
  * @property M_Project_terima $M_Project_terima
+ * @property M_Project_terima_ktp $M_project_terima_ktp
  * @property M_Project_logs $M_Project_logs
  * @property M_Trs_asset $M_Trs_asset
  * Custom  Libraries

@@ -3,12 +3,16 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
+/**
+ * @property  M_Project_terima_ktp
+ */
 class Project_terima extends CI_Controller
 {
     function __construct()
     {
         parent::__construct();
         $this->load->model('M_Project_terima');
+        $this->load->model('M_Project_terima_ktp');
         $this->load->model('M_project');
         $this->load->model('M_login');
         $this->load->library('form_validation');
@@ -84,6 +88,7 @@ class Project_terima extends CI_Controller
     public function create_action()
     {
         $id_projects = $this->input->post('ID_Project', TRUE);
+
         $data = array(
             'bool_ktp' => $this->input->post('bool_ktp', TRUE),
             'bool_npwp' => $this->input->post('bool_npwp', TRUE),
@@ -102,6 +107,22 @@ class Project_terima extends CI_Controller
         );
 
         $this->M_Project_terima->insert($data);
+
+        $ktp        = $this->input->post('no_ktp', TRUE);
+        $namaktp    = $this->input->post('nama_ktp', TRUE);
+        $endloop    = count($ktp);
+        for ($i = 0; $i < $endloop ; $i++) {
+            $data = [];
+            if($ktp[$i]){
+                $data = [
+                    M_Project_terima_ktp::id_project        => $id_projects,
+                    M_Project_terima_ktp::no_ktp            => $ktp[$i],
+                    M_Project_terima_ktp::nama_ktp          => $namaktp[$i]
+                ];
+                $this->M_Project_terima_ktp->save($data);
+            };
+        }
+
         $this->session->set_flashdata('message', 'Create Record Success');
         redirect(site_url('transaksi/progress/update_track/') . $id_projects);
     }
@@ -116,17 +137,18 @@ class Project_terima extends CI_Controller
                 'action' => site_url('transaksi/project_terima/update_action'),
                 'bool_ktp' => set_value('bool_ktp', $row->bool_ktp),
                 'bool_npwp' => set_value('bool_npwp', $row->bool_npwp),
-                'bool_sertifikat' => set_value('bool_sertifikat', $row->bool_sertifikat),
-                'bool_imb' => set_value('bool_imb', $row->bool_imb),
-                'bool_stempel' => set_value('bool_stempel', $row->bool_stempel),
-                'jml_materai' => set_value('jml_materai', $row->jml_materai),
-                'bool_sk_domisili' => set_value('bool_sk_domisili', $row->bool_sk_domisili),
-                'bool_surat_sewa' => set_value('bool_surat_sewa', $row->bool_surat_sewa),
+                'bool_sertifikat'   => set_value('bool_sertifikat', $row->bool_sertifikat),
+                'bool_imb'          => set_value('bool_imb', $row->bool_imb),
+                'bool_stempel'      => set_value('bool_stempel', $row->bool_stempel),
+                'jml_materai'       => set_value('jml_materai', $row->jml_materai),
+                'bool_sk_domisili'  => set_value('bool_sk_domisili', $row->bool_sk_domisili),
+                'bool_surat_sewa'   => set_value('bool_surat_sewa', $row->bool_surat_sewa),
                 'ID_Project_terima' => set_value('ID_Project_terima', $row->ID_Project_terima),
-                'ID_Hdr_Project' => set_value('ID_Hdr_Project', $row->ID_Hdr_Project),
-                'ID_Project' => set_value('ID_Project', $row->ID_Project),
-                'pages' => 'transaksi/project_terima/form',
-                'jml_ktp' => set_value('jml_ktp', $row->jml_ktp),
+                'ID_Hdr_Project'    => set_value('ID_Hdr_Project', $row->ID_Hdr_Project),
+                'ID_Project'        => set_value('ID_Project', $row->ID_Project),
+                'pages'             => 'transaksi/project_terima/form',
+                'jml_ktp'           => set_value('jml_ktp', $row->jml_ktp),
+                'list_ktp'
             );
             $this->load->view('layout', $data);
         } else {

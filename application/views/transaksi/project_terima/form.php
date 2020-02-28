@@ -61,7 +61,32 @@ $this->load->view('template/head');
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="col-form-label">No Ktp :</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="col-form-label">Nama Ktp :</label>
+                                                </div>
+                                            </div>
+                                            <div class="row" id="form_ktp">
+                                                <div class="col-md-6" style="margin-bottom: 10px">
+                                                    <input type="number" class="form-control" name="no_ktp[]"
+                                                           placeholder="Nomor KTP"/>
+                                                </div>
+                                                <div class="col-md-6" style="margin-bottom: 10px">
+                                                    <input type="text" class="form-control" name="nama_ktp[]"
+                                                           placeholder="Nama KTP"/>
+                                                </div>
+                                                <br>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12" id="result_ktp">
+                                                </div>
+                                            </div>
                                         </div>
+
+
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -188,6 +213,20 @@ $this->load->view('template/head');
         </section>
     </div>
 </form>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var ktp         = $('#jml_ktp');
+        var form_ktp    = $('#form_ktp');
+        ktp.on('change',function () {
+            $('#result_ktp').html('');
+            for (i = 1; i < ktp.val(); i++) {
+                form_ktp.clone().appendTo($('#result_ktp'));
+            }
+        });
+    })
+</script>
+
 <?php
 $this->load->view('template/foot');
 ?>       
