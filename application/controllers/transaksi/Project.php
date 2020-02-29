@@ -551,8 +551,8 @@ class Project extends CI_Controller
 
         foreach ($list as $d) {
             $row = array();
-            if ($d->st_data == 1) {
-                $status = '<h5 class="text-bold-500 text-info">Confirmed';
+            if ($d->st_data) {
+                $status ='<span class="badge badge-success badge-md">Confirmed</span>';
                 $row[] = '<button type="button" class="btn btn-dark dropdown-toggle btn-sm" data-toggle="dropdown"
 															aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
 															<div class="dropdown-menu">
@@ -560,7 +560,7 @@ class Project extends CI_Controller
 															<a class="dropdown-item"  href="javascript:void(0)" onclick="invoice(' . "'" . $d->id_project . "'" . ')"><i class="ft-printer"></i> Cetak Invoice</a>
 															</div>';
             } else {
-                $status = '<h5 class="text-bold-500 text-red">Not Confirmed';
+                $status ='<span class="badge badge-danger badge-md">Not Confirmed</span>';
                 $row[] = '<button type="button" class="btn btn-dark dropdown-toggle btn-sm" data-toggle="dropdown"
 															aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
 															<div class="dropdown-menu">
@@ -574,10 +574,8 @@ class Project extends CI_Controller
             $row[] = '<h5 class="text-bold-500">' . $d->nm_project;
             $row[] = '<h5 class="text-bold-500">' . $d->nm_customer;
             $row[] = '<h5 class="text-bold-500">' . number_format($d->harga_jual);
-            $date = date("d/m/Y", strtotime($d->tgl_input));
-            $date2 = date("Y-m-d", strtotime($d->tgl_input));
             $row[] = $status;
-            $row[] =  '<h5 class="text-bold-500">' .$d->tgl_input;
+            $row[] =  '<h5 class="text-bold-500">' .Conversion::convert_date($d->tgl_input,'d-m-Y');
             $row[] = '<h5 class="text-bold-500">' . $d->input_by;
 
             //add html for action
