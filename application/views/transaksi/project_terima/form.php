@@ -42,7 +42,7 @@ $this->load->view('template/head');
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                    <label for="bool_ktp" class="col-form-label">KTP :</label>
+                                                    <label for="bool_ktp" class="col-form-label">Jumlah KTP :</label>
                                                     <input type="number" min="0" class="form-control" name="jml_ktp"
                                                            id="jml_ktp" placeholder="Jumlah Orang"
                                                            value="<?php echo $jml_ktp ?>"/>
