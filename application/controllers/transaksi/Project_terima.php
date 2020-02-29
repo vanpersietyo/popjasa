@@ -1,10 +1,5 @@
-<?php
-
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
-
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * @property  M_Project_terima_ktp
  */
 class Project_terima extends CI_Controller
 {
@@ -111,6 +106,7 @@ class Project_terima extends CI_Controller
         $ktp        = $this->input->post('no_ktp', TRUE);
         $namaktp    = $this->input->post('nama_ktp', TRUE);
         $endloop    = count($ktp);
+
         for ($i = 0; $i < $endloop ; $i++) {
             $data = [];
             if($ktp[$i]){
@@ -133,10 +129,10 @@ class Project_terima extends CI_Controller
 
         if ($row) {
             $data = array(
-                'button' => 'Update',
-                'action' => site_url('transaksi/project_terima/update_action'),
-                'bool_ktp' => set_value('bool_ktp', $row->bool_ktp),
-                'bool_npwp' => set_value('bool_npwp', $row->bool_npwp),
+                'button'            => 'Update',
+                'action'            => site_url('transaksi/project_terima/update_action'),
+                'bool_ktp'          => set_value('bool_ktp', $row->bool_ktp),
+                'bool_npwp'         => set_value('bool_npwp', $row->bool_npwp),
                 'bool_sertifikat'   => set_value('bool_sertifikat', $row->bool_sertifikat),
                 'bool_imb'          => set_value('bool_imb', $row->bool_imb),
                 'bool_stempel'      => set_value('bool_stempel', $row->bool_stempel),
@@ -146,10 +142,11 @@ class Project_terima extends CI_Controller
                 'ID_Project_terima' => set_value('ID_Project_terima', $row->ID_Project_terima),
                 'ID_Hdr_Project'    => set_value('ID_Hdr_Project', $row->ID_Hdr_Project),
                 'ID_Project'        => set_value('ID_Project', $row->ID_Project),
-                'pages'             => 'transaksi/project_terima/form',
                 'jml_ktp'           => set_value('jml_ktp', $row->jml_ktp),
-                'list_ktp'
-            );
+                'pages'             => 'transaksi/project_terima/form',
+                'list_ktp'          => $this->M_Project_terima_ktp->find([M_Project_terima_ktp::id_project => $row->ID_Project])
+
+        );
             $this->load->view('layout', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -161,22 +158,40 @@ class Project_terima extends CI_Controller
     {
         $id_projects = $this->input->post('ID_Project', TRUE);
         $data = array(
-            'bool_ktp' => $this->input->post('bool_ktp', TRUE),
-            'bool_npwp' => $this->input->post('bool_npwp', TRUE),
-            'bool_sertifikat' => $this->input->post('bool_sertifikat', TRUE),
-            'bool_imb' => $this->input->post('bool_imb', TRUE),
-            'bool_stempel' => $this->input->post('bool_stempel', TRUE),
-            'jml_materai' => $this->input->post('jml_materai', TRUE),
-            'bool_sk_domisili' => $this->input->post('bool_sk_domisili', TRUE),
-            'bool_surat_sewa' => $this->input->post('bool_surat_sewa', TRUE),
-            'ID_Hdr_Project' => $this->input->post('ID_Hdr_Project', TRUE),
-            'ID_Project' => $id_projects,
-            'Modified_by' => $this->session->userdata('yangLogin'),
-            'Last_Modified' => date('Y-m-d H:i:s'),
-            'jml_ktp' => $this->input->post('jml_ktp', TRUE),
+            'bool_ktp'          => $this->input->post('bool_ktp', TRUE),
+            'bool_npwp'         => $this->input->post('bool_npwp', TRUE),
+            'bool_sertifikat'   => $this->input->post('bool_sertifikat', TRUE),
+            'bool_imb'          => $this->input->post('bool_imb', TRUE),
+            'bool_stempel'      => $this->input->post('bool_stempel', TRUE),
+            'jml_materai'       => $this->input->post('jml_materai', TRUE),
+            'bool_sk_domisili'  => $this->input->post('bool_sk_domisili', TRUE),
+            'bool_surat_sewa'   => $this->input->post('bool_surat_sewa', TRUE),
+            'ID_Hdr_Project'    => $this->input->post('ID_Hdr_Project', TRUE),
+            'ID_Project'        => $id_projects,
+            'Modified_by'       => $this->session->userdata('yangLogin'),
+            'Last_Modified'     => date('Y-m-d H:i:s'),
+            'jml_ktp'           => $this->input->post('jml_ktp', TRUE),
         );
-
         $this->M_Project_terima->update($this->input->post('ID_Project_terima', TRUE), $data);
+
+        $ktp        = $this->input->post('no_ktp', TRUE);
+        $namaktp    = $this->input->post('nama_ktp', TRUE);
+        $endloop    = count($ktp);
+
+//        var_dump($ktp);die();
+
+        $this->M_Project_terima_ktp->delete_where([M_Project_terima_ktp::id_project => $id_projects]);
+        for ($i = 0; $i < $endloop ; $i++) {
+            $data = [];
+            if($ktp[$i]){
+                $data = [
+                    M_Project_terima_ktp::id_project        => $id_projects,
+                    M_Project_terima_ktp::no_ktp            => $ktp[$i],
+                    M_Project_terima_ktp::nama_ktp          => $namaktp[$i]
+                ];
+                $this->M_Project_terima_ktp->save($data);
+            };
+        }
         $this->session->set_flashdata('message', 'Update Record Success');
         redirect(site_url('transaksi/progress/update_track/') . $id_projects);
     }
@@ -221,21 +236,22 @@ class Project_terima extends CI_Controller
         $project = $this->M_project->find_first(array('id_project' => $id));
         if (!empty($project)) {
             $data = array(
-                'button' => 'Create',
-                'action' => site_url('transaksi/project_terima/create_action'),
-                'bool_ktp' => set_value('bool_ktp'),
-                'bool_npwp' => set_value('bool_npwp'),
-                'bool_sertifikat' => set_value('bool_sertifikat'),
-                'bool_imb' => set_value('bool_imb'),
-                'bool_stempel' => set_value('bool_stempel'),
-                'jml_materai' => set_value('jml_materai'),
-                'bool_sk_domisili' => set_value('bool_sk_domisili'),
-                'bool_surat_sewa' => set_value('bool_surat_sewa'),
+                'button'            => 'Create',
+                'action'            => site_url('transaksi/project_terima/create_action'),
+                'bool_ktp'          => set_value('bool_ktp'),
+                'bool_npwp'         => set_value('bool_npwp'),
+                'bool_sertifikat'   => set_value('bool_sertifikat'),
+                'bool_imb'          => set_value('bool_imb'),
+                'bool_stempel'      => set_value('bool_stempel'),
+                'jml_materai'       => set_value('jml_materai'),
+                'bool_sk_domisili'  => set_value('bool_sk_domisili'),
+                'bool_surat_sewa'   => set_value('bool_surat_sewa'),
                 'ID_Project_terima' => set_value('ID_Project_terima'),
-                'ID_Hdr_Project' => $project->id_hdr_project,
-                'ID_Project' => $id,
-                'pages' => 'transaksi/project_terima/form',
-                'jml_ktp' => set_value('jml_ktp'),
+                'ID_Hdr_Project'    => $project->id_hdr_project,
+                'ID_Project'        => $id,
+                'pages'             => 'transaksi/project_terima/form',
+                'jml_ktp'           => set_value('jml_ktp'),
+                'list_ktp'          => $this->M_Project_terima_ktp->find([M_Project_terima_ktp::id_project => $id])
             );
             $this->load->view('layout', $data);
         } else {
@@ -246,6 +262,10 @@ class Project_terima extends CI_Controller
     public function cek_exist_projects($id)
     {
         $project_ket = $this->M_Project_terima->find_first(["id_project" => $id]);
+//        echo "<pre>";
+//        var_dump($project_ket);
+//        echo "</pre>";
+//        die();
         if ($project_ket) {
             return $this->update($project_ket->ID_Project_terima);
         } else {

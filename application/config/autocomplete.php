@@ -209,7 +209,8 @@ class CI_Controller
  * @property M_login            				$M_login
  * @property M_user             				$M_user
  * @property M_customer         				$M_customer
- *
+ * @property M_Project_terima_ktp               $M_project_terima_ktp
+
  *
 
  * Transaksi

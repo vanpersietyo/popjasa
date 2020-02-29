@@ -1,8 +1,8 @@
 <?php
+/** @var M_Project_terima_ktp[] $list_ktp */
 $this->load->view('template/head');
 ?>
-<form action="<?php echo $action; ?>" method="post" action="javascript:void(0)"
-      autocomplete="off">
+<form action="<?php echo $action; ?>" method="post" action="javascript:void(0)" autocomplete="off">
     <div class="content-body">
         <section class="row">
             <div class="col-12">
@@ -43,7 +43,7 @@ $this->load->view('template/head');
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <label for="bool_ktp" class="col-form-label">KTP :</label>
-                                                    <input type="numeric" class="form-control" name="jml_ktp"
+                                                    <input type="number" min="0" class="form-control" name="jml_ktp"
                                                            id="jml_ktp" placeholder="Jumlah Orang"
                                                            value="<?php echo $jml_ktp ?>"/>
                                                 </div>
@@ -61,7 +61,7 @@ $this->load->view('template/head');
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row" id="header_ktp">
                                                 <div class="col-md-6">
                                                     <label class="col-form-label">No Ktp :</label>
                                                 </div>
@@ -69,23 +69,57 @@ $this->load->view('template/head');
                                                     <label class="col-form-label">Nama Ktp :</label>
                                                 </div>
                                             </div>
-                                            <div class="row" id="form_ktp">
-                                                <div class="col-md-6" style="margin-bottom: 10px">
+
+                                            <?php
+                                            /** @var M_Project_terima_ktp $ktp */
+                                            $i = 0;
+                                            if($list_ktp){
+                                                foreach ($list_ktp as $ktp) {?>
+                                                    <div class="row" id="form_ktp_<?php echo $i++?>">
+                                                        <div class="col-md-6" style="margin-bottom: 10px" id="no_ktp">
+                                                            <input type="number" class="form-control" name="no_ktp[]"
+                                                                   value="<?php echo $ktp->no_ktp ?>"/>
+                                                        </div>
+                                                        <div class="col-md-6" style="margin-bottom: 10px" id="nama_ktp">
+                                                            <input type="text" class="form-control" name="nama_ktp[]"
+                                                                   value="<?php echo $ktp->nama_ktp ?>"/>
+                                                        </div>
+                                                    </div>
+                                                    <?php
+                                                }
+                                            }else{?>
+
+                                                <div class="row" id="form_ktp_asli">
+                                                    <div class="col-md-6" style="margin-bottom: 10px" id="no_ktp">
+                                                        <input type="number" class="form-control" name="no_ktp[]"
+                                                               placeholder="Nomor KTP"/>
+                                                    </div>
+                                                    <div class="col-md-6" style="margin-bottom: 10px" id="nama_ktp">
+                                                        <input type="text" class="form-control" name="nama_ktp[]"
+                                                               placeholder="Nama KTP"/>
+                                                    </div>
+                                                    <br>
+                                                </div>
+                                            <?php } ?>
+
+
+                                            <div class="row" id="form_ktp_clone" style="display: none">
+                                                <div class="col-md-6" style="margin-bottom: 10px" id="no_ktp">
                                                     <input type="number" class="form-control" name="no_ktp[]"
                                                            placeholder="Nomor KTP"/>
                                                 </div>
-                                                <div class="col-md-6" style="margin-bottom: 10px">
+                                                <div class="col-md-6" style="margin-bottom: 10px" id="nama_ktp">
                                                     <input type="text" class="form-control" name="nama_ktp[]"
                                                            placeholder="Nama KTP"/>
                                                 </div>
                                                 <br>
                                             </div>
+
                                             <div class="row">
                                                 <div class="col-md-12" id="result_ktp">
                                                 </div>
                                             </div>
                                         </div>
-
 
                                         <div class="form-group">
                                             <div class="row">
@@ -196,8 +230,7 @@ $this->load->view('template/head');
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <input type="hidden" name="ID_Project_terima"
-                                               value="<?php echo $ID_Project_terima; ?>"/>
+                                        <input type="hidden" name="ID_Project_terima" value="<?php echo $ID_Project_terima; ?>"/>
                                         <button type="submit" class="btn btn-primary"><?php echo $button ?></button>
                                         <a class="btn btn-danger bg-accent-4 pull-up" type="button"
                                            href="<?php echo site_url('transaksi/progress/update_track/') . $ID_Project ?>"><i
@@ -217,12 +250,44 @@ $this->load->view('template/head');
 <script type="text/javascript">
     $(document).ready(function() {
         var ktp         = $('#jml_ktp');
-        var form_ktp    = $('#form_ktp');
+        var form_ktp    = $('#form_ktp_0');
+        var form_ktp_2  = $('#form_ktp_clone');
+        var result      = $('#result_ktp');
+        var length_exist= <?php echo count($list_ktp) ?>;
         ktp.on('change',function () {
-            $('#result_ktp').html('');
-            for (i = 1; i < ktp.val(); i++) {
-                form_ktp.clone().appendTo($('#result_ktp'));
+        result.html('');
+        if(ktp.val() >= 1 ){
+            $('#form_ktp_asli').remove();
+
+        <?php
+            if($list_ktp){ ?>
+            if(ktp.val() < length_exist) {
+                for (i = ktp.val(); i < length_exist; i++) {
+                    $('#form_ktp_'+i).remove();
+                    length_exist = length_exist - 1;
+                }
+            }else{
+                for (i = 1; i <= ktp.val()-length_exist; i++) {
+                    form_ktp_2.clone()
+                        .prop('id','form_ktp_'+i)
+                        .removeAttr('style')
+                        .appendTo(result);
+                }
             }
+
+            <?php }else{ ?>
+            console.log(ktp.val());
+            for (i = 1; i <= ktp.val(); i++) {
+                form_ktp_2.clone()
+                    .prop('id','form_ktp_'+i)
+                    .removeAttr('style')
+                    .appendTo(result);
+            }
+            <?php } ?>
+        }
+
+
+
         });
     })
 </script>

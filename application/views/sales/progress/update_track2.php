@@ -751,7 +751,7 @@
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <label for="bool_ktp" class="col-form-label">KTP :</label>
-                                                        <input type="numeric" class="form-control" name="jml_ktp"
+                                                        <input type="number" class="form-control" name="jml_ktp"
                                                                id="jml_ktp" placeholder="Jumlah Orang"/>
                                                     </div>
                                                     <div class="col-md-9">
