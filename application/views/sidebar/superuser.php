@@ -60,9 +60,6 @@ role="navigation" data-menu="menu-wrapper">
             <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/pengeluaran')?>"
               data-toggle="dropdown"><i class="la la-money"></i>Pengeluaran Bulanan</a>
             </li>
-            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/asset') ?>"
-                                data-toggle="dropdown"><i class="la la-money"></i>Fix Assets</a>
-            </li>
             <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/progress')?>"
               data-toggle="dropdown"><i class="la la-bar-chart"></i>Progress Project</a>
             </li>

@@ -22,7 +22,7 @@ class M_Trs_fix_asset_hdr extends CI_Model
         $this->datatables->from('trs_fix_asset_hdr');
         //add this line for join
         //$this->datatables->join('table2', 'trs_fix_asset_hdr.field = table2.field');
-        $this->datatables->add_column('action', anchor(site_url('transaksi/fixAsset_hdr/update/$1'), 'Update') . " | " . anchor(site_url('transaksi/fixAsset_hdr/delete/$1'), 'Delete', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'TrNo');
+        $this->datatables->add_column('action', anchor(site_url('transaksi/fixAsset_hdr/update/$1'), '<i class="ft-edit" aria-hidden="true"></i>', array('class' => 'btn btn-info btn-sm')) . " | " . anchor(site_url('transaksi/fixAsset_hdr/delete/$1'), '<i class="ft-trash" aria-hidden="true"></i>', 'class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'TrNo');
         return $this->datatables->generate();
     }
 

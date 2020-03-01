@@ -89,7 +89,7 @@ class FixAsset_Hdr extends CI_Controller
             $data = array(
                 'status' => 'update',
                 'button' => 'Update',
-                'action' => site_url('trs_fix_asset_hdr/update_action'),
+                'action' => site_url('transaksi/fixAsset_hdr/update_action'),
                 'TrNo' => set_value('TrNo', $row->TrNo),
                 'Tgl' => set_value('Tgl', $row->Tgl),
                 'TrManualRef' => set_value('TrManualRef', $row->TrManualRef),
