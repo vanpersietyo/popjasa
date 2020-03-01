@@ -95,35 +95,7 @@
           </div>
         </div>
 
-        <div class="col-5">
-          <div class="card">
-            <div class="card-content">
-              <div class="card-body">
-                <h3 class="content-header-title">List Jasa Produk :</h3>
-                  <br>
-                <!-- Invoices List table -->
-                <div class="table-responsive">
-                  <table id="table" class="table table-striped table-bordered sourced-data">
-                    <thead>
-                      <tr>
-                        <th>Nama Produk</th>
-                        <th>Harga Pokok</th>
-                        <th width="10%"></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-
-                  </table>
-                </div>
-                <!--/ Invoices table -->
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-7">
+        <div class="col-12">
           <div class="card">
             <div class="card-content">
               <div class="card-body">
