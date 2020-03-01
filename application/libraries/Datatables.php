@@ -36,7 +36,6 @@ class Datatables
     private $add_columns = array();
     private $edit_columns = array();
     private $unset_columns = array();
-
     /**
      * Copies an instance of CI
      */
@@ -44,7 +43,6 @@ class Datatables
     {
         $this->ci =& get_instance();
     }
-
     /**
      * If you establish multiple databases in config/database.php this will allow you to
      * set the database (other than $active_group) - more info: http://ellislab.com/forums/viewthread/145901/#712942
@@ -54,7 +52,6 @@ class Datatables
         $db_data = $this->ci->load->database($db_name, TRUE);
         $this->ci->db = $db_data;
     }
-
     /**
      * Generates the SELECT portion of the query
      *
@@ -73,7 +70,6 @@ class Datatables
         $this->ci->db->select($columns, $backtick_protect);
         return $this;
     }
-
     /**
      * Generates the DISTINCT portion of the query
      *
@@ -86,7 +82,6 @@ class Datatables
         $this->ci->db->distinct($column);
         return $this;
     }
-
     /**
      * Generates a custom GROUP BY portion of the query
      *
@@ -99,7 +94,6 @@ class Datatables
         $this->ci->db->group_by($val);
         return $this;
     }
-
     /**
      * Generates the FROM portion of the query
      *
@@ -111,7 +105,6 @@ class Datatables
         $this->table = $table;
         return $this;
     }
-
     /**
      * Generates the JOIN portion of the query
      *
@@ -126,7 +119,6 @@ class Datatables
         $this->ci->db->join($table, $fk, $type);
         return $this;
     }
-
     /**
      * Generates the WHERE portion of the query
      *
@@ -141,7 +133,6 @@ class Datatables
         $this->ci->db->where($key_condition, $val, $backtick_protect);
         return $this;
     }
-
     /**
      * Generates the WHERE portion of the query
      *
@@ -171,7 +162,6 @@ class Datatables
         $this->ci->db->where_in($key_condition, $val);
         return $this;
     }
-
     /**
      * Generates the WHERE portion of the query
      *
@@ -185,7 +175,6 @@ class Datatables
         $this->filter[] = array($key_condition, $val, $backtick_protect);
         return $this;
     }
-
     /**
      * Generates a %LIKE% portion of the query
      *
@@ -200,7 +189,6 @@ class Datatables
         $this->ci->db->like($key_condition, $val, $side);
         return $this;
     }
-
     /**
      * Generates the OR %LIKE% portion of the query
      *
@@ -215,7 +203,6 @@ class Datatables
         $this->ci->db->or_like($key_condition, $val, $side);
         return $this;
     }
-
     /**
      * Sets additional column variables for adding custom columns
      *
@@ -229,7 +216,6 @@ class Datatables
         $this->add_columns[$column] = array('content' => $content, 'replacement' => $this->explode(',', $match_replacement));
         return $this;
     }
-
     /**
      * Sets additional column variables for editing columns
      *
@@ -243,7 +229,6 @@ class Datatables
         $this->edit_columns[$column][] = array('content' => $content, 'replacement' => $this->explode(',', $match_replacement));
         return $this;
     }
-
     /**
      * Unset column
      *
@@ -256,7 +241,6 @@ class Datatables
         $this->unset_columns = array_merge($this->unset_columns, $column);
         return $this;
     }
-
     /**
      * Builds all the necessary query segments and performs the main query based on results set from chained statements
      *
@@ -272,7 +256,6 @@ class Datatables
         $this->get_filtering();
         return $this->produce_output(strtolower($output), strtolower($charset));
     }
-
     /**
      * Generates the LIMIT portion of the query
      *
@@ -285,7 +268,6 @@ class Datatables
         if ($iLength != '' && $iLength != '-1')
             $this->ci->db->limit($iLength, ($iStart) ? $iStart : 0);
     }
-
     /**
      * Generates the ORDER BY portion of the query
      *
@@ -301,7 +283,6 @@ class Datatables
                 else
                     $this->ci->db->order_by($this->columns[$key['column']], $key['dir']);
     }
-
     /**
      * Generates a %LIKE% portion of the query
      *
@@ -328,7 +309,6 @@ class Datatables
         foreach ($this->filter as $val)
             $this->ci->db->where($val[0], $val[1], $val[2]);
     }
-
     /**
      * Compiles the select statement based on the other functions called and runs the query
      *
@@ -338,7 +318,6 @@ class Datatables
     {
         return $this->ci->db->get($this->table);
     }
-
     /**
      * Builds an encoded string data. Returns JSON by default, and an array of aaData if output is set to raw.
      *
@@ -383,7 +362,6 @@ class Datatables
         } else
             return array('aaData' => $aaData);
     }
-
     /**
      * Get result count
      *
@@ -415,7 +393,6 @@ class Datatables
         $query = $this->ci->db->get($this->table, NULL, NULL, FALSE);
         return $query->num_rows();
     }
-
     /**
      * Runs callback functions and makes replacements
      *
@@ -451,7 +428,6 @@ class Datatables
         }
         return $custom_val['content'];
     }
-
     /**
      * Check column type -numeric or column name
      *
@@ -465,7 +441,6 @@ class Datatables
         else
             return TRUE;
     }
-
     /**
      * Return the difference of open and close characters
      *
@@ -481,7 +456,6 @@ class Datatables
         $retval = $openCount - $closeCount;
         return $retval;
     }
-
     /**
      * Explode, but ignore delimiter until closing characters are found
      *
@@ -510,7 +484,6 @@ class Datatables
             $retval[] = implode($delimiter, $hold);
         return $retval;
     }
-
     /**
      * Workaround for json_encode's UTF-8 encoding if a different charset needs to be used
      *
@@ -567,5 +540,5 @@ class Datatables
 /* End of file Datatables.php */
 /* Location: ./application/libraries/Datatables.php */
 /* Please DO NOT modify this information : */
-/* Generated by Harviacode Codeigniter CRUD Generator 2020-01-03 18:24:23 */
+/* Generated by Harviacode Codeigniter CRUD Generator 2020-02-28 16:38:09 */
 /* http://harviacode.com */

@@ -285,7 +285,8 @@
 
     function reload_table()
     {
-        mytable.ajax.reload(null,false); //reload datatable ajax
+        // mytable.ajax.reload(null,false); //reload datatable ajax
+        location.reload();
     }
 
 
