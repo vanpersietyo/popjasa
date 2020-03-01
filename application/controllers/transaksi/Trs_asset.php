@@ -40,13 +40,10 @@ class Trs_asset extends CI_Controller
             $row[] = '<h5 class="text-bold-500">' . $d->trno;
             $row[] = '<h5 class="text-bold-500">' . $d->fa_id;
             $row[] = '<h5 class="text-bold-500">' . $d->jenis;
-            $row[] = '<h5 class="text-bold-500">' . $d->date_beli;
-            $row[] = '<h5 class="text-bold-500">' . $d->estimasi;
-            $row[] = '<h5 class="text-bold-500">' . $d->date_penyusutan;
+            $row[] = '<h5 class="text-bold-500">' . date("d/m/Y", strtotime($d->date_beli));
             $row[] = '<h5 class="text-bold-500">' . $d->hrg_beli;
             $row[] = '<h5 class="text-bold-500">' . $d->penyusutan_thn;
             $row[] = '<h5 class="text-bold-500">' . $d->penyusutan_bln;
-            $row[] = '<h5 class="text-bold-500">' . $d->pembulatan;
 
             //add html for action
             $data[] = $row;
@@ -83,7 +80,7 @@ class Trs_asset extends CI_Controller
             $this->load->view('trs_asset/trs_fix_asset_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('trs_asset'));
+            redirect(site_url('transaksi/trs_asset'));
         }
     }
 
@@ -131,7 +128,7 @@ class Trs_asset extends CI_Controller
 
             $this->M_Trs_asset->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('trs_asset'));
+            redirect(site_url('transaksi/trs_asset'));
         }
     }
 
@@ -153,11 +150,12 @@ class Trs_asset extends CI_Controller
                 'penyusutan_thn' => set_value('penyusutan_thn', $row->penyusutan_thn),
                 'penyusutan_bln' => set_value('penyusutan_bln', $row->penyusutan_bln),
                 'pembulatan' => set_value('pembulatan', $row->pembulatan),
+                'pages' => 'transaksi/trs_asset/form',
             );
-            $this->load->view('trs_asset/trs_fix_asset_form', $data);
+            $this->load->view('layout', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('trs_asset'));
+            redirect(site_url('transaksi/trs_asset'));
         }
     }
 
@@ -184,7 +182,7 @@ class Trs_asset extends CI_Controller
 
             $this->M_Trs_asset->update($this->input->post('trno', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('trs_asset'));
+            redirect(site_url('transaksi/trs_asset'));
         }
     }
 
@@ -195,10 +193,10 @@ class Trs_asset extends CI_Controller
         if ($row) {
             $this->M_Trs_asset->delete($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
-            redirect(site_url('trs_asset'));
+            redirect(site_url('transaksi/trs_asset'));
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('trs_asset'));
+            redirect(site_url('transaksi/trs_asset'));
         }
     }
 
@@ -209,10 +207,10 @@ class Trs_asset extends CI_Controller
         $this->form_validation->set_rules('date_beli', 'date beli', 'trim|required');
         $this->form_validation->set_rules('estimasi', 'estimasi', 'trim|required');
         $this->form_validation->set_rules('date_penyusutan', 'date penyusutan', 'trim|required');
-        $this->form_validation->set_rules('hrg_beli', 'hrg beli', 'trim|required|numeric');
-        $this->form_validation->set_rules('penyusutan_thn', 'penyusutan thn', 'trim|required|numeric');
-        $this->form_validation->set_rules('penyusutan_bln', 'penyusutan bln', 'trim|required|numeric');
-        $this->form_validation->set_rules('pembulatan', 'pembulatan', 'trim|required|numeric');
+        $this->form_validation->set_rules('hrg_beli', 'hrg beli', 'trim|required');
+        $this->form_validation->set_rules('penyusutan_thn', 'penyusutan thn', 'trim|required');
+        $this->form_validation->set_rules('penyusutan_bln', 'penyusutan bln', 'trim|required');
+        $this->form_validation->set_rules('pembulatan', 'pembulatan', 'trim|required');
 
         //$this->form_validation->set_rules('trno', 'trno', 'trim');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
