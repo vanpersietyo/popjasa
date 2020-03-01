@@ -101,19 +101,34 @@ label {
                                              </div>
                                             </div>
 
-                                            <div class="col-6 mb-2">
-                                              <div class="form-group">
-                                                <label for="projectinput2">Tgl Transaksi Project</label>
-                                                  <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                      <button class="btn btn-dark" type="button"><i class="ft-calendar"></i></button>
-                                                    </div>
-                                                  <input type="text" value="<?php echo date("d - m - Y", strtotime($project->tgl_input)); ?>" class="form-control" placeholder="Value"
-                                                   data-toggle="tooltip" data-trigger="hover"
-                                                  data-placement="top" data-title="Value" required="" disabled>
-                                                </div>
-                                              </div>
-                                             </div>
+
+
+                                           <div class="col-3 mb-2">
+                                               <div class="form-group">
+                                                   <label for="projectinput2">Tgl Transaksi Pembayaran</label>
+                                                   <div class="input-group">
+                                                       <div class="input-group-prepend">
+                                                           <button class="btn btn-dark" type="button"><i class="ft-calendar"></i></button>
+                                                       </div>
+                                                       <input type="text" value="<?php echo date("d - m - Y"); ?>" class="form-control" placeholder="Value"
+                                                              data-toggle="tooltip" data-trigger="hover"
+                                                              data-placement="top" data-title="Value" required="" disabled>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                           <div class="col-3 mb-2">
+                                               <div class="form-group">
+                                                   <label for="projectinput2">Tgl Deal Project</label>
+                                                   <div class="input-group">
+                                                       <div class="input-group-prepend">
+                                                           <button class="btn btn-dark" type="button"><i class="ft-calendar"></i></button>
+                                                       </div>
+                                                       <input type="text" value="<?php echo date("d - m - Y", strtotime($project->tgl_input)); ?>" class="form-control" placeholder="Value"
+                                                              data-toggle="tooltip" data-trigger="hover"
+                                                              data-placement="top" data-title="Value" required="" disabled>
+                                                   </div>
+                                               </div>
+                                           </div>
 
                                              <div class="col-12 mb-2">
                                                <div class="form-group">
