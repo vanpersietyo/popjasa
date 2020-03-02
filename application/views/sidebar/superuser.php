@@ -51,7 +51,7 @@ role="navigation" data-menu="menu-wrapper">
             <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/project')?>"
              data-toggle="dropdown"><i class="la la-file-archive-o"></i>Buat Project</a>
             </li>
-            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/fixAsset_Hdr') ?>"
+            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/fixAsset_hdr') ?>"
                                 data-toggle="dropdown"><i class="la la-file-archive-o"></i>Fix Assets</a>
             </li>
             <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/pembayaran')?>"
@@ -59,9 +59,6 @@ role="navigation" data-menu="menu-wrapper">
             </li>
             <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/pengeluaran')?>"
               data-toggle="dropdown"><i class="la la-money"></i>Pengeluaran Bulanan</a>
-            </li>
-            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/trs_asset') ?>"
-                                data-toggle="dropdown"><i class="la la-money"></i>Fix Assets</a>
             </li>
             <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/progress')?>"
               data-toggle="dropdown"><i class="la la-bar-chart"></i>Progress Project</a>

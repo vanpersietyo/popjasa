@@ -84,7 +84,7 @@
                 },
                 processing: true,
                 serverSide: true,
-                ajax: {"url": "FixAsset_Hdr/json", "type": "POST"},
+                ajax: {"url": "fixAsset_hdr/json", "type": "POST"},
                 columns: [
                     {
                         "data": "TrNo",
