@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class FixAsset_Hdr extends CI_Controller
+class FixAsset_hdr extends CI_Controller
 {
     function __construct()
     {
