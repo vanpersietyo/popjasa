@@ -90,6 +90,7 @@ class Labarugi extends CI_Controller {
         $pdf->Cell(80,5,'___________________________________________________________________________ +',0,1,'L');
         $pdf->Cell(128,5,': Rp. ',0,0,'R');
         $pdf->Cell(20,5,number_format(array_sum($SUM_JUM_BIAYA)),0,1,'L');
+        $pdf->Cell(10,10,'',0,1);
         $pdf->Cell(87,5,'OMZET JASA MURAH',1,0,'L');
         $prosentase_2=$jsmrh/$total_semua*100;
         $echo_p2=number_format($prosentase_2);
@@ -109,6 +110,8 @@ class Labarugi extends CI_Controller {
         $pdf->Cell(160,5,'TOTAL OMZET  :',0,0,'R');
         $total_omz=number_format(array_sum($SUM_JUM_BIAYA)+array_sum($SUM_JUM_jasmurah));
         $pdf->Cell(20,5,"Rp.  $total_omz",0,1,'L');
+
+        $total_omz2=(array_sum($SUM_JUM_BIAYA)+array_sum($SUM_JUM_jasmurah));
 
         $gj=$this->M_labarugi->select_karyawan($TGL01,$TGL02,'1');
         foreach ($gj as $gj ) {
@@ -138,30 +141,30 @@ class Labarugi extends CI_Controller {
         $pgl=array_sum($SUMPENGELUARAN);
         $hhppji=array_sum($SUMHPPPOPJASA);
         $phppgl=array_sum($SUMHHPPJASAMURAH);
-        $totalkeluar=array_sum($SUM_GAJI)+array_sum($SUMPENGELUARAN)+array_sum($SUMHPPPOPJASA)+array_sum($SUMHHPPJASAMURAH);
+        $totalkeluar=(array_sum($SUM_JUM_BIAYA)+array_sum($SUM_JUM_jasmurah));
 
         $pdf->Cell(10,5,'',0,1);
         $pdf->Cell(10,5,'',0,1);
         $pdf->Cell(40,5,'RINCIAN PENGELUARAN :',0,1,'L');
         $pdf->Cell(10,5,'',0,1);
         $pdf->Cell(87,5,'HPP POPJASA',1,0,'L');
-        $prosentase_9=$hhppji/$totalkeluar*100;
+        $prosentase_9=$hhppji/$total_omz2*100;
         $echo_p9=number_format($prosentase_9);
         $pdf->Cell(30,5,"$echo_p9 %",1,1,'R');
         $pdf->Cell(95,5,"- HPP POPJASA",0,0,'L');
         $pdf->Cell(1,5,": Rp.  ",0,0,'R');
         $pdf->Cell(20,5,number_format($hhppji),0,1,'R');
-
+        $pdf->Cell(10,10,'',0,1);
         $pdf->Cell(87,5,'HPP JASAMURAH',1,0,'L');
-        $prosentase_10=$phppgl/$totalkeluar*100;
+        $prosentase_10=$phppgl/$total_omz2*100;
         $echo_p10=number_format($prosentase_10);
         $pdf->Cell(30,5,"$echo_p10 %",1,1,'R');
         $pdf->Cell(95,5,"- HPP JASAMURAH",0,0,'L');
         $pdf->Cell(1,5,": Rp.  ",0,0,'R');
         $pdf->Cell(20,5,number_format($phppgl),0,1,'R');
-
+        $pdf->Cell(10,10,'',0,1);
         $pdf->Cell(87,5,'GAJI KARYAWAN',1,0,'L');
-        $prosentase_3=$hji/$totalkeluar*100;
+        $prosentase_3=$hji/$total_omz2*100;
         $echo_p3=number_format($prosentase_3);
         $pdf->Cell(30,5,"$echo_p3 %",1,1,'R');
 
@@ -182,8 +185,9 @@ class Labarugi extends CI_Controller {
         $pdf->Cell(20,5,number_format(array_sum($SUM_thp)),0,1,'L');
         $pdf->Cell(10,5,'',0,1);
         $pdf->Cell(10,5,'',0,1);
+
         $pdf->Cell(87,5,'BIAYA OPERASIONAL',1,0,'L');
-        $prosentase_4=$pgl/$totalkeluar*100;
+        $prosentase_4=$pgl/$total_omz2*100;
         $echo_p4=number_format($prosentase_4);
         $pdf->Cell(30,5,"$echo_p4 %",1,1,'R');
         $keluar=$this->M_labarugi->uang_keluar($TGL01,$TGL02);
