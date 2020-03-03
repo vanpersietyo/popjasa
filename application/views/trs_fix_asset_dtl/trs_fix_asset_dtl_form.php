@@ -205,7 +205,7 @@
 
         function cari_fix_asset() {
             reload_fix_asset();
-            $('.modal-title').text('Cari Customer'); // Set Title to Bootstrap modal title
+            $('.modal-title').text('Cari Fix Asset'); // Set Title to Bootstrap modal title
             $('#modal_form').modal('show'); // show bootstrap modal
         }
 

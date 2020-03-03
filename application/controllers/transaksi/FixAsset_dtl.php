@@ -36,11 +36,11 @@ class FixAsset_dtl extends CI_Controller
 
             $row[] = '<h5 class="text-bold-500">' . $d->Fa_Id;
             $row[] = '<h5 class="text-bold-500">' . $d->Date_penyusutan;
-            $row[] = '<h5 class="text-bold-500">' . $d->Hrg_beli;
+            $row[] = '<h5 class="text-bold-500">' . number_format($d->Hrg_beli);
             $row[] = '<h5 class="text-bold-500">' . $d->Estimasi;
-            $row[] = '<h5 class="text-bold-500">' . $d->Penyusutan_thn;
-            $row[] = '<h5 class="text-bold-500">' . $d->Penyusutan_bln;
-            $row[] = '<h5 class="text-bold-500">' . $d->Pembulatan;
+            $row[] = '<h5 class="text-bold-500">' . number_format($d->Penyusutan_thn);
+            $row[] = '<h5 class="text-bold-500">' . number_format($d->Penyusutan_bln);
+            $row[] = '<h5 class="text-bold-500">' . number_format($d->Pembulatan);
 
             $row[] = '<button type="button" class="btn btn-dark dropdown-toggle btn-sm" data-toggle="dropdown"
                                                         aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>

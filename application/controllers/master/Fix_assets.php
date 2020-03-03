@@ -72,8 +72,8 @@ class Fix_assets extends CI_Controller
                 $row[] = $detail->Fa_ID;
                 $row[] = $detail->Nama_FA;
                 $row[] = $detail->Date_FA;
-                $row[] = $detail->Harga;
-                $row[] = '<a class="btn btn-sm btn-success" href="javascript:void(0)" title="Tambah Items" onclick="pilih_items(' . "'" . $detail->Fa_ID . "','" . $detail->Nama_FA . "'" . ')"><i class="ft-plus-square"></i></a>';
+                $row[] = number_format($detail->Harga);
+                $row[] = '<a class="btn btn-sm btn-success" href="javascript:void(0)" title="Tambah Items" onclick="pilih_fix_asset(' . "'" . $detail->Fa_ID . "','" . $detail->Nama_FA . "','" . $detail->Date_FA ."','" . $detail->Harga ."'" . ')"><i class="ft-plus-square"></i></a>';
 
                 $data[] = $row;
             }
