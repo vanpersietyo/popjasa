@@ -106,50 +106,50 @@ class Track extends CI_Controller
 
     function show_keterangan($id){
         $row = $this->M_Project_ket->get_by_id($id);
-            $data = array(
-                'Ket_Email' => $row->Ket_Email,
-                'Email_Pengurus' => $row->Email_Pengurus,
-                'No_Telp' => $row->No_Telp,
-                'Ket_Luas' => $row->Ket_Luas,
-                'Ket_Bidang_Usaha' => $row->Ket_Bidang_Usaha,
-                'Ket_Bidang_Usaha_Utama' => $row->Ket_Bidang_Usaha_Utama,
-                'Ket_Informasi' => $row->Ket_Informasi,
-                'ID_Project_Ket' => $row->ID_Project_Ket,
-                'ID_Hdr_Project' => $row->ID_Hdr_Project,
-                'ID_Project' => $row->ID_Project,
-                'Created_By' => $row->Created_By,
-                'EntryTime' => $row->EntryTime,
-                'Modified_By' => $row->Modified_By,
-                'Last_Mofidified' => $row->Last_Mofidified,
-                'id' =>$id
-            );
-            $this->load->view('customer/show_keterangan', $data);
+        $data = array(
+            'Ket_Email' => $row->Ket_Email,
+            'Email_Pengurus' => $row->Email_Pengurus,
+            'No_Telp' => $row->No_Telp,
+            'Ket_Luas' => $row->Ket_Luas,
+            'Ket_Bidang_Usaha' => $row->Ket_Bidang_Usaha,
+            'Ket_Bidang_Usaha_Utama' => $row->Ket_Bidang_Usaha_Utama,
+            'Ket_Informasi' => $row->Ket_Informasi,
+            'ID_Project_Ket' => $row->ID_Project_Ket,
+            'ID_Hdr_Project' => $row->ID_Hdr_Project,
+            'ID_Project' => $row->ID_Project,
+            'Created_By' => $row->Created_By,
+            'EntryTime' => $row->EntryTime,
+            'Modified_By' => $row->Modified_By,
+            'Last_Mofidified' => $row->Last_Mofidified,
+            'id' =>$id
+        );
+        $this->load->view('customer/show_keterangan', $data);
     }
 
     function show_izin($id){
         $row = $this->M_Project_izin->get_by_id($id);
-            $data = array(
-                'Bool_Izin_Akta_Notaris' => $row->Bool_Izin_Akta_Notaris,
-                'Izin_Akta_Notaris' => $row->Izin_Akta_Notaris,
-                'Bool_Izin_Pengesahan' => $row->Bool_Izin_Pengesahan,
-                'Izin_Pengesahan' => $row->Izin_Pengesahan,
-                'Bool_NPWP' => $row->Bool_NPWP,
-                'Bool_NPWP_Perusahaan' => $row->Bool_NPWP_Perusahaan,
-                'Bool_SKT_Perusahaan' => $row->Bool_SKT_Perusahaan,
-                'Bool_SIUP_TDP' => $row->Bool_SIUP_TDP,
-                'Bool_Registrasi' => $row->Bool_Registrasi,
-                'Bool_PKP' => $row->Bool_PKP,
-                'Bool_SK_Domisili' => $row->Bool_SK_Domisili,
-                'Izin_Lain' => $row->Izin_Lain,
-                'ID_Project_JNS' => $row->ID_Project_JNS,
-                'ID_Hdr_Project' => $row->ID_Hdr_Project,
-                'ID_Project' => $row->ID_Project,
-                'Created_by' => $row->Created_by,
-                'EntryTime' => $row->EntryTime,
-                'Modified_by' => $row->Modified_by,
-                'Last_Modified' => $row->Last_Modified,
-                'id' =>$id
-            );
+        $data = array(
+            'Bool_Izin_Akta_Notaris' => $row->Bool_Izin_Akta_Notaris,
+            'Izin_Akta_Notaris' => $row->Izin_Akta_Notaris,
+            'Bool_Izin_Pengesahan' => $row->Bool_Izin_Pengesahan,
+            'Izin_Pengesahan' => $row->Izin_Pengesahan,
+            'Bool_NPWP' => $row->Bool_NPWP,
+            'Bool_NPWP_Perusahaan' => $row->Bool_NPWP_Perusahaan,
+            'Bool_SKT_Perusahaan' => $row->Bool_SKT_Perusahaan,
+            'Bool_SIUP_TDP' => $row->Bool_SIUP_TDP,
+            'Bool_Registrasi' => $row->Bool_Registrasi,
+            'Bool_PKP' => $row->Bool_PKP,
+            'Bool_SK_Domisili' => $row->Bool_SK_Domisili,
+            'Izin_Lain' => $row->Izin_Lain,
+            'ID_Project_JNS' => $row->ID_Project_JNS,
+            'ID_Hdr_Project' => $row->ID_Hdr_Project,
+            'ID_Project' => $row->ID_Project,
+            'Created_by' => $row->Created_by,
+            'EntryTime' => $row->EntryTime,
+            'Modified_by' => $row->Modified_by,
+            'Last_Modified' => $row->Last_Modified,
+            'id' =>$id
+        );
         $this->load->view('customer/Show_izin', $data);
     }
 
