@@ -32,7 +32,7 @@
                         <form action="<?php echo site_url('customers/track/order') ?>" method="post">
                             <fieldset class="form-group position-relative">
                                 <input type="text" name="id_inv" class="form-control form-control-xl input-xl"
-                                       id="iconLeft1" placeholder="Ketik Nomor Invoice Anda ..." required>
+                                       id="id_inv" placeholder="Ketik Nomor Invoice Anda ..." required>
                                 <div class="form-control-position">
                                     <i class="ft-search font-medium-4"></i>
                                 </div>
