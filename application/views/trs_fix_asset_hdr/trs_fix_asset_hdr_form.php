@@ -49,8 +49,8 @@
                                                 <th>Date Penyusutan</th>
                                                 <th>Hrg Beli</th>
                                                 <th>Estimasi</th>
-                                                <th>Penyusutan Thn</th>
-                                                <th>Penyusutan Bln</th>
+                                                <th>Penyusutan Tahun</th>
+                                                <th>Penyusutan Bulan</th>
                                                 <th>Pembulatan</th>
                                                 <th style="min-width: 100px">Action</th>
                                             </tr>
