@@ -18,7 +18,7 @@ class M_Trs_fix_asset_hdr extends CI_Model
     // datatables
     function json()
     {
-        $this->datatables->select('TrNo,Tgl,TrManualRef,Created_At,Modified_By,EntryTime,Last_Modified');
+        $this->datatables->select('TrNo,Date_Format(Tgl,"%d-%m-%Y") as Tgl,TrManualRef,Created_At,Modified_By,EntryTime,Last_Modified');
         $this->datatables->from('trs_fix_asset_hdr');
         //add this line for join
         //$this->datatables->join('table2', 'trs_fix_asset_hdr.field = table2.field');

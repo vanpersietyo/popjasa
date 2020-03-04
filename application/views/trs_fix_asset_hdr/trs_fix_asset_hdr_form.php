@@ -37,7 +37,7 @@
                                 <div class="form-group">
                                     <label for="varchar">Keterangan <?php echo form_error('TrManualRef') ?></label>
                                     <input type="text" class="form-control" name="TrManualRef" id="TrManualRef"
-                                           placeholder="TrManualRef"
+                                           placeholder="Keterannga"
                                            value="<?php echo $TrManualRef; ?>"/>
                                 </div>
                                 <?php if ($status == 'update') { ?>
@@ -46,7 +46,7 @@
                                             <thead>
                                             <tr>
                                                 <th>Fa Id</th>
-                                                <th>Date Penyusutan</th>
+                                                <th>Tanggal Penyusutan</th>
                                                 <th>Hrg Beli</th>
                                                 <th>Estimasi</th>
                                                 <th>Penyusutan Tahun</th>
