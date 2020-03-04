@@ -60,7 +60,7 @@
                                 <div class="form-group">
                                     <label for="decimal">Hrg Beli <?php echo form_error('Hrg_beli') ?></label>
                                     <input type="text" class="form-control" name="Hrg_beli" id="Hrg_beli"
-                                           placeholder="Hrg Beli" value="<?php echo $Hrg_beli; ?>" readonly/>
+                                           placeholder="Hrg Beli" value="<?php echo $Hrg_beli; ?>"/>
                                 </div>
                                 <?php if ($status == 'Update') { ?>
                                     <div class="form-group">
@@ -122,7 +122,6 @@
                                                             <th style="min-width: 10%">Kode FA</th>
                                                             <th style="min-width: 15%">Nama Item</th>
                                                             <th style="min-width: 15%">Tanggal Beli</th>
-                                                            <th style="min-width: 15%">Harga Beli</th>
                                                             <th style="min-width: 5%">Aksi</th>
                                                         </tr>
                                                         </thead>
