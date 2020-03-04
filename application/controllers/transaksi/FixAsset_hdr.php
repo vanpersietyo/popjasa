@@ -91,7 +91,7 @@ class FixAsset_hdr extends CI_Controller
                 'button' => 'Update',
                 'action' => site_url('transaksi/fixAsset_hdr/update_action'),
                 'TrNo' => set_value('TrNo', $row->TrNo),
-                'Tgl' => set_value('Tgl', $row->Tgl),
+                'Tgl' => set_value('Tgl', strtoupper(date("d-m-Y", strtotime($row->Tgl)))),
                 'TrManualRef' => set_value('TrManualRef', $row->TrManualRef),
                 'pages' => 'trs_fix_asset_hdr/trs_fix_asset_hdr_form',
             );
