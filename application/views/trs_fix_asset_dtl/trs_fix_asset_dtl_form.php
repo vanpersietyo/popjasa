@@ -41,7 +41,7 @@
                                            value="<?php echo $Jenis; ?>"/>
                                 </div>
                                 <div class="form-group">
-                                    <label for="date">Date Beli <?php echo form_error('Date_beli') ?></label>
+                                    <label for="date">Tanggal Beli <?php echo form_error('Date_beli') ?></label>
                                     <input type="text" class="form-control" name="Date_beli" id="Date_beli"
                                            placeholder="Date Beli" value="<?php echo $Date_beli; ?>" readonly/>
                                 </div>
@@ -51,7 +51,7 @@
                                            placeholder="Estimasi" value="<?php echo $Estimasi; ?>"/>
                                 </div>
                                 <div class="form-group">
-                                    <label for="date">Date
+                                    <label for="date">Tanggal
                                         Penyusutan <?php echo form_error('Date_penyusutan') ?></label>
                                     <input type="text" class="form-control datepicker1" name="Date_penyusutan"
                                            id="Date_penyusutan"
