@@ -124,7 +124,7 @@ class FixAsset_dtl extends CI_Controller
                 'Hrg_beli' => $this->input->post('Hrg_beli', TRUE),
                 'Penyusutan_thn' => $penyusutan,
                 'Penyusutan_bln' => $penyusutan / 12,
-                'Pembulatan' => round(($penyusutan / 12), 4),
+                'Pembulatan' => round(($penyusutan / 12), 2),
                 'Added_by' => $this->session->userdata('yangLogin'),
                 'Entry_time' => date('Y-m-d H:i:s'),
                 'TrNo' => $trNo,
@@ -183,7 +183,7 @@ class FixAsset_dtl extends CI_Controller
                 'Hrg_beli' => $this->input->post('Hrg_beli', TRUE),
                 'Penyusutan_thn' => $penyusutan,
                 'Penyusutan_bln' => $penyusutan / 12,
-                'Pembulatan' => round(($penyusutan / 12), 4),
+                'Pembulatan' => round(($penyusutan / 12), 2),
                 'Changed_by' => $this->session->userdata('yangLogin'),
                 'Last_Modified' => date('Y-m-d H:i:s'),
             );
