@@ -29,13 +29,13 @@
                                     </div>
                                 <?php } ?>
                                 <div class="form-group">
-                                    <label for="date">Tgl <?php echo form_error('Tgl') ?></label>
+                                    <label for="date">Tanggal Transaksi <?php echo form_error('Tgl') ?></label>
                                     <input type="text" class="form-control datepicker1" name="Tgl" id="Tgl"
                                            placeholder="Tgl"
                                            value="<?php echo $Tgl; ?>"/>
                                 </div>
                                 <div class="form-group">
-                                    <label for="varchar">TrManualRef <?php echo form_error('TrManualRef') ?></label>
+                                    <label for="varchar">Keterangan <?php echo form_error('TrManualRef') ?></label>
                                     <input type="text" class="form-control" name="TrManualRef" id="TrManualRef"
                                            placeholder="TrManualRef"
                                            value="<?php echo $TrManualRef; ?>"/>
