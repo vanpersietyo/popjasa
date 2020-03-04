@@ -208,12 +208,11 @@
             $('#modal_form').modal('show'); // show bootstrap modal
         }
 
-        function pilih_fix_asset(customer, nama_customer, date_beli, harga) {
+        function pilih_fix_asset(customer, nama_customer, date_beli) {
             $('#modal_form').modal('hide'); // show bootstrap modal
             $('[name="nama_fa"]').val(nama_customer);
             $('[name="Fa_Id"]').val(customer);
             $('[name="Date_beli"]').val(date_beli);
-            $('[name="Hrg_beli"]').val(harga);
             // form_project.val().trigger('change');
             // alert(customer);
         }
