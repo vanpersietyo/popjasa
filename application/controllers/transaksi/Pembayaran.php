@@ -36,6 +36,7 @@ class Pembayaran extends CI_Controller{
 
 			$row[] = '<h5 class="text-bold-500">'.$d->id_customer;
 			$row[] = '<h5 class="text-bold-500">'.$d->nm_customer;
+			$row[] = '<h5 class="text-bold-500">'.$d->nm_perusahaan;
 			$row[] = '<h5 class="text-bold-500">'.number_format($d->profit);
 			$row[] = '<h5 class="text-bold-500">'.number_format($d->jumlah_byr);
 			$row[] = '<h5 class="text-bold-500">'.number_format($d->profit - $d->jumlah_byr);
