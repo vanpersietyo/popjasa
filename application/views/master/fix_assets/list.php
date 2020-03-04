@@ -110,33 +110,6 @@
                                            id="Date_Akuisisi" placeholder="Date Akuisisi"/>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="datetime">Date FA <?php echo form_error('Date_FA') ?></label>
-                                    <input type="text" class="form-control datepicker1" name="Date_FA" id="Date_FA"
-                                           placeholder="Date FA"/>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="datetime">Date Disposed <?php echo form_error('Date_Disposed') ?></label>
-                                    <input type="text" class="form-control datepicker1" name="Date_Disposed"
-                                           id="Date_Disposed" placeholder="Date Disposed"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="varchar">Penerima <?php echo form_error('Penerima') ?></label>
-                                    <input type="text" class="form-control" name="Penerima" id="Penerima" placeholder="Penerima" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="varchar">Harga <?php echo form_error('Harga') ?></label>
-                                    <input type="text" class="form-control" name="Harga" id="Harga"
-                                           placeholder="Harga"/>
-                                </div>
-                            </div>
                         </div>
                     </form>
                 </div>
