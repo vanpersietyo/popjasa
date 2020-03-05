@@ -153,6 +153,40 @@ class Project_uraian extends CI_Controller
         }
     }
 
+    public function update2($id)
+    {
+        $row = $this->M_Project_uraian->get_by_id($id);
+
+        if ($row) {
+            $data = array(
+                'button' => 'Update',
+                'action' => site_url('transaksi/project_uraian/update_action'),
+                'nm_perusahaan' => set_value('nm_perusahaan', $row->nm_perusahaan),
+                'modal' => set_value('modal', $row->modal),
+                'presentase_shm' => set_value('presentase_shm', $row->presentase_shm),
+                'hrg_saham' => set_value('hrg_saham', $row->hrg_saham),
+                'No_Telp' => set_value('No_Telp', $row->No_Telp),
+                'No_Fax' => set_value('No_Fax', $row->No_Fax),
+                'alamat' => set_value('alamat', $row->alamat),
+                'kota' => set_value('kota', $row->kota),
+                'kelurahan' => set_value('kelurahan', $row->kelurahan),
+                'kabupaten' => set_value('kabupaten', $row->kabupaten),
+                'izin_persetujuan' => set_value('izin_persetujuan', $row->izin_persetujuan),
+                'signature_commander' => set_value('signature_commander', $row->signature_commander),
+                'penerima' => set_value('penerima', $row->penerima),
+                'modal_disetor' => set_value('modal_disetor', $row->modal_disetor),
+                'ID_Project_Uraian' => set_value('ID_Project_Uraian', $row->ID_Project_Uraian),
+                'ID_Hdr_Project' => set_value('ID_Hdr_Project', $row->ID_Hdr_Project),
+                'ID_Project' => set_value('ID_Project', $row->ID_Project),
+                'pages' => 'transaksi/project_uraian/read',
+            );
+            $this->load->view('layout_customer', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('transaksi/project/'));
+        }
+    }
+
     public function update_action()
     {    
         $id_projects = $this->input->post('ID_Project', TRUE);
@@ -262,6 +296,16 @@ class Project_uraian extends CI_Controller
             return $this->update($project_ket->ID_Project_Uraian);
         } else {
             return $this->create_uraian($id);
+        }
+    }
+
+    public function cek_projects($id)
+    {
+        $project_ket = $this->M_Project_uraian->find_first(["id_project" => $id]);
+        if ($project_ket) {
+            return $this->update2($project_ket->ID_Project_Uraian);
+        }else {
+            redirect(site_url('customers/track/order2/'). $id);
         }
     }
 

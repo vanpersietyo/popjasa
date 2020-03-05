@@ -148,6 +148,38 @@ class Projects_izin extends CI_Controller
         }
     }
 
+    public function update2($id)
+    {
+        $row = $this->M_Project_izin->get_by_id($id);
+
+        if ($row) {
+            $data = array(
+                'button' => 'Update',
+                'action' => site_url('transaksi/projects_izin/update_action'),
+                'Bool_Izin_Akta_Notaris' => set_value('Bool_Izin_Akta_Notaris', $row->Bool_Izin_Akta_Notaris),
+                'Izin_Akta_Notaris' => set_value('Izin_Akta_Notaris', $row->Izin_Akta_Notaris),
+                'Bool_Izin_Pengesahan' => set_value('Bool_Izin_Pengesahan', $row->Bool_Izin_Pengesahan),
+                'Izin_Pengesahan' => set_value('Izin_Pengesahan', $row->Izin_Pengesahan),
+                'Bool_NPWP' => set_value('Bool_NPWP', $row->Bool_NPWP),
+                'Bool_NPWP_Perusahaan' => set_value('Bool_NPWP_Perusahaan', $row->Bool_NPWP_Perusahaan),
+                'Bool_SKT_Perusahaan' => set_value('Bool_SKT_Perusahaan', $row->Bool_SKT_Perusahaan),
+                'Bool_SIUP_TDP' => set_value('Bool_SIUP_TDP', $row->Bool_SIUP_TDP),
+                'Bool_Registrasi' => set_value('Bool_Registrasi', $row->Bool_Registrasi),
+                'Bool_PKP' => set_value('Bool_PKP', $row->Bool_PKP),
+                'Bool_SK_Domisili' => set_value('Bool_SK_Domisili', $row->Bool_SK_Domisili),
+                'Izin_Lain' => set_value('Izin_Lain', $row->Izin_Lain),
+                'ID_Project_JNS' => set_value('ID_Project_JNS', $row->ID_Project_JNS),
+                'ID_Hdr_Project' => set_value('ID_Hdr_Project', $row->ID_Hdr_Project),
+                'ID_Project' => set_value('ID_Project', $row->ID_Project),
+                'pages' => 'transaksi/projects_izin/read',
+            );
+            $this->load->view('layout_customer', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('transaksi/project'));
+        }
+    }
+
     public function update_action()
     {  
         $id_projects = $this->input->post('ID_Project', TRUE);
@@ -253,6 +285,16 @@ class Projects_izin extends CI_Controller
             return $this->update($project_ket->ID_Project_JNS);
         } else {
             return $this->create_izin($id);
+        }
+    }
+
+    public function cek_projects($id)
+    {
+        $project_ket = $this->M_Project_izin->find_first(["id_project" => $id]);
+        if ($project_ket) {
+            return $this->update2($project_ket->ID_Project_JNS);
+        }else {
+            redirect(site_url('customers/track/order2/'). $id);
         }
     }
 

@@ -1,36 +1,127 @@
-<!doctype html>
-<html>
-    <head>
-        <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css') ?>"/>
-        <style>
-            body{
-                padding: 15px;
-            }
-        </style>
-    </head>
-    <body>
-        <h2 style="margin-top:0px">Trs_project_uraian Read</h2>
-        <table class="table">
-	    <tr><td>Nm Perusahaan</td><td><?php echo $nm_perusahaan; ?></td></tr>
-	    <tr><td>Modal</td><td><?php echo $modal; ?></td></tr>
-	    <tr><td>Presentase Shm</td><td><?php echo $presentase_shm; ?></td></tr>
-	    <tr><td>Hrg Saham</td><td><?php echo $hrg_saham; ?></td></tr>
-	    <tr><td>No Telp</td><td><?php echo $No_Telp; ?></td></tr>
-	    <tr><td>No Fax</td><td><?php echo $No_Fax; ?></td></tr>
-	    <tr><td>Alamat</td><td><?php echo $alamat; ?></td></tr>
-	    <tr><td>Kota</td><td><?php echo $kota; ?></td></tr>
-	    <tr><td>Kelurahan</td><td><?php echo $kelurahan; ?></td></tr>
-	    <tr><td>Kabupaten</td><td><?php echo $kabupaten; ?></td></tr>
-	    <tr><td>Izin Persetujuan</td><td><?php echo $izin_persetujuan; ?></td></tr>
-	    <tr><td>Signature Commander</td><td><?php echo $signature_commander; ?></td></tr>
-	    <tr><td>Penerima</td><td><?php echo $penerima; ?></td></tr>
-	    <tr><td>ID Hdr Project</td><td><?php echo $ID_Hdr_Project; ?></td></tr>
-	    <tr><td>ID Project</td><td><?php echo $ID_Project; ?></td></tr>
-	    <tr><td>Created By</td><td><?php echo $Created_by; ?></td></tr>
-	    <tr><td>EntryTime</td><td><?php echo $EntryTime; ?></td></tr>
-	    <tr><td>Modified By</td><td><?php echo $Modified_by; ?></td></tr>
-	    <tr><td>Last Modified</td><td><?php echo $Last_Modified; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('_project_uraian') ?>" class="btn btn-default">Cancel</a></td></tr>
-	</table>
-        </body>
-</html>
+<?php
+$this->load->view('template/head');
+?>
+    <div style="padding: 20px"/>
+    <form action="<?php echo $action; ?>" method="post" action="javascript:void(0)"
+          autocomplete="off">
+        <div class="content-body">
+            <section class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="tab-content">
+                            <div class="container tab-pane active" id="keterangan" style="padding-top: 5px">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="varchar">ID Hdr
+                                                            Project <?php echo form_error('ID_Hdr_Project') ?></label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" name="ID_Hdr_Project"
+                                                                   id="ID_Hdr_Project"
+                                                                   placeholder="ID Hdr Project"
+                                                                   value="<?php echo $ID_Hdr_Project; ?>"
+                                                                   readonly/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="varchar">ID
+                                                            Project <?php echo form_error('ID_Project') ?></label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" name="ID_Project"
+                                                                   id="ID_Project"
+                                                                   placeholder="ID Project"
+                                                                   value="<?php echo $ID_Project; ?>" readonly/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>NAMA PERUSAHAAN</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="nm_perusahaan" id="nm_perusahaan" value="<?php echo $nm_perusahaan; ?>"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <label>MODAL DASAR : Rp.</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="modal" id="modal"
+                                                               value="<?php echo $modal; ?>"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label>MODAL DISETOR : Rp.</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="modal_disetor"
+                                                               id="modal_disetor" value="<?php echo $modal_disetor; ?>"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label>PRESENTASE PEMBAGIAN SAHAM :</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="presentase_shm"
+                                                               id="presentase_shm" value="<?php echo $presentase_shm; ?>"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label>HARGA TIAP SAHAM : RP.</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="hrg_saham" id="hrg_saham" value="<?php echo $hrg_saham; ?>"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>NO TELP :</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="No_Telp" id="No_Telp" value="<?php echo $No_Telp; ?>"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>NO FAX :</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="No_Fax" id="No_Fax" value="<?php echo $No_Fax; ?>"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>KEL :</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="kelurahan" id="kelurahan" value="<?php echo $kelurahan; ?>"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>KOTA/KABUPATEN :</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="Kabupaten" id="Kabupaten" value="<?php echo $kabupaten; ?>"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="modal-footer">
+            <input type="hidden" name="ID_Project_Uraian" value="<?php echo $ID_Project_Uraian; ?>"/>
+            <a class="btn btn-danger bg-accent-4 pull-up" type="button"
+               href="<?php echo site_url('customers/track/order2/') . $ID_Project ?>"><i
+                    class="ft-arrow-left white"></i>
+                Kembali</a>
+        </div>
+    </form>
+<?php
+$this->load->view('template/foot');
+?>

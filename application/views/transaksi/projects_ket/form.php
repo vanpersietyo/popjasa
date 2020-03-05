@@ -175,7 +175,9 @@ $this->load->view('template/head');
                             <div class="row">
                                 <div class="col-md-12">
                                     <input type="hidden" name="ID_Project_Ket" value="<?php echo $ID_Project_Ket; ?>"/>
-                                    <button type="submit" class="btn btn-primary"><?php echo $button ?></button>
+                                    <?php if ($status != '2') { ?>
+                                        <button type="submit" class="btn btn-primary"><?php echo $button ?></button>
+                                    <?php } ?>
                                     <a class="btn btn-danger bg-accent-4 pull-up" type="button"
                                        href="<?php echo site_url('transaksi/progress/update_track/') . $ID_Project ?>"><i
                                                 class="ft-arrow-left white"></i>
