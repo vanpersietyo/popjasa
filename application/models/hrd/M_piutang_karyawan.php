@@ -89,6 +89,7 @@ class M_piutang_karyawan extends CI_Model {
 		$query=$this->db->query("
 		select *
 		from kartu_piutang_karyawan
+		where id_karyawan='$id'
 			");
 		return $query->result();
 	}

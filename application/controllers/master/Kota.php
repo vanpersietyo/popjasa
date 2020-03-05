@@ -63,6 +63,7 @@ class Kota extends CI_Controller{
         $kode=date('Ymds');
         $data = array(
             'id_kota' => $this->M_kota->get_ID(),
+            'kd_cabang' => $this->session->userdata('cabang'),
             'nama_kota' => $this->input->post('nama_kota'),
             'tgl_input' => date('Y-m-d H:i:s'),
             'inputby' => $this->session->userdata('yangLogin'),
@@ -78,6 +79,7 @@ class Kota extends CI_Controller{
         $this->_validate();
         $data = array(
             'nama_kota' => $this->input->post('nama_kota'),
+            'kd_cabang' => $this->session->userdata('cabang'),
             'tgl_input' => date('Y-m-d H:i:s'),
             'inputby' => $this->session->userdata('yangLogin'),
         );
