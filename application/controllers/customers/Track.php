@@ -48,6 +48,28 @@ class Track extends CI_Controller
         $this->load->view('layout_customer', $data);
     }
 
+    public function order2($id)
+    {
+        $project_log = $this->M_Project_logs->get_by_id($id);
+        $data['id_header'] = $id;
+        $data['produk'] = $this->M_project->get_trs_project_by_project($id);
+        $hdr = $this->M_project->get_trs_project_by_project($id);
+        $data['id_customer'] = $hdr->id_customer;
+        $data['customer'] = $this->M_Customer->get_by_id($hdr->id_customer);
+        $data['produk'] = $this->M_project->get_produk();
+        $data['project'] = $hdr;
+        $data['id_project']=$id;
+        if ($hdr->st_data == 1) {
+            $data['status'] = 'disabled';
+        } else {
+            $data['status'] = '';
+        }
+        $data['project_log']= $project_log;
+
+        $data['pages'] = 'customer/list_order';
+        $this->load->view('layout_customer', $data);
+    }
+
     public function ajax_produk($id)
     {
         $this->load->helper('url');

@@ -140,8 +140,8 @@ class FixAsset_hdr extends CI_Controller
 
     public function _rules()
     {
-        $this->form_validation->set_rules('Tgl', 'tgl', 'trim|required');
-        $this->form_validation->set_rules('TrManualRef', 'trmanualref', 'trim');
+        $this->form_validation->set_rules('Tgl', 'Tanggal', 'trim|required');
+        $this->form_validation->set_rules('TrManualRef', 'Keterangan', 'trim');
 
         $this->form_validation->set_rules('TrNo', 'TrNo', 'trim');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

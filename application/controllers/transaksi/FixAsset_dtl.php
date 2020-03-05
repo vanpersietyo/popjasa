@@ -204,9 +204,9 @@ class FixAsset_dtl extends CI_Controller
     {
 
         $this->form_validation->set_rules('Jenis', 'jenis', 'trim|required');
-        $this->form_validation->set_rules('Date_beli', 'date beli', 'trim|required');
+        $this->form_validation->set_rules('Date_beli', 'Tanggal beli', 'trim|required');
         $this->form_validation->set_rules('Estimasi', 'estimasi', 'trim|required');
-        $this->form_validation->set_rules('Date_penyusutan', 'date penyusutan', 'trim|required');
+        $this->form_validation->set_rules('Date_penyusutan', 'Tanggal penyusutan', 'trim|required');
         $this->form_validation->set_rules('Hrg_beli', 'hrg beli', 'trim|required|numeric');
 
         $this->form_validation->set_rules('TrNo', 'TrNo', 'trim');

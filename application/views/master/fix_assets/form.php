@@ -47,7 +47,7 @@ $this->load->view('template/head');
                             <div class="form-group">
                                 <label for="datetime">Tanggal Pembelian <?php echo form_error('Date_Akuisisi') ?></label>
                                 <input type="text" class="form-control datepicker" name="Date_Akuisisi" id="Date_Akuisisi"
-                                       placeholder="Date Akuisisi" value="<?php echo $Date_Akuisisi; ?>"/>
+                                       placeholder="Tanggal Pembelian" value="<?php echo $Date_Akuisisi; ?>"/>
                             </div>
                             <input type="hidden" name="Fa_ID" value="<?php echo $Fa_ID; ?>"/>
                             <button type="submit" class="btn btn-primary"><?php echo $button ?></button>
