@@ -29,15 +29,15 @@
                                     </div>
                                 <?php } ?>
                                 <div class="form-group">
-                                    <label for="date">Tgl <?php echo form_error('Tgl') ?></label>
+                                    <label for="date">Tanggal Transaksi <?php echo form_error('Tgl') ?></label>
                                     <input type="text" class="form-control datepicker1" name="Tgl" id="Tgl"
                                            placeholder="Tgl"
                                            value="<?php echo $Tgl; ?>"/>
                                 </div>
                                 <div class="form-group">
-                                    <label for="varchar">TrManualRef <?php echo form_error('TrManualRef') ?></label>
+                                    <label for="varchar">Keterangan <?php echo form_error('TrManualRef') ?></label>
                                     <input type="text" class="form-control" name="TrManualRef" id="TrManualRef"
-                                           placeholder="TrManualRef"
+                                           placeholder="Keterannga"
                                            value="<?php echo $TrManualRef; ?>"/>
                                 </div>
                                 <?php if ($status == 'update') { ?>
@@ -46,11 +46,11 @@
                                             <thead>
                                             <tr>
                                                 <th>Fa Id</th>
-                                                <th>Date Penyusutan</th>
+                                                <th>Tanggal Penyusutan</th>
                                                 <th>Hrg Beli</th>
                                                 <th>Estimasi</th>
-                                                <th>Penyusutan Thn</th>
-                                                <th>Penyusutan Bln</th>
+                                                <th>Penyusutan Tahun</th>
+                                                <th>Penyusutan Bulan</th>
                                                 <th>Pembulatan</th>
                                                 <th style="min-width: 100px">Action</th>
                                             </tr>

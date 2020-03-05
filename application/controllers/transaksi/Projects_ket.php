@@ -63,6 +63,15 @@ class Projects_ket extends CI_Controller
         }
     }
 
+    public function cek_projects($id) {
+        $project_ket =$this->M_Project_ket->find_first(["ID_Project"=>$id]);
+        if ($project_ket) {
+            return $this->update2($project_ket->ID_Project_Ket);
+        }else{
+            redirect(site_url('customers/track/order2/'). $id);
+            }
+    }
+
     public function create($id)
     {
         $project = $this->M_project->find_first(["id_project"=>$id]);
@@ -134,6 +143,34 @@ class Projects_ket extends CI_Controller
                 'pages' => 'transaksi/projects_ket/form',                
             );
             $this->load->view('layout', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('transaksi/project'));
+        }
+    }
+
+    public function update2($id)
+    {
+        $row = $this->M_Project_ket->get_by_id($id);
+
+        if ($row) {
+            $data = array(
+                'button' => 'Update',
+                'action' => site_url('transaksi/projects_ket/update_action'),
+                'Ket_Email' => set_value('Ket_Email', $row->Ket_Email),
+                'Email_Pengurus' => set_value('Email_Pengurus', $row->Email_Pengurus),
+                'No_Telp' => set_value('No_Telp', $row->No_Telp),
+                'Ket_Luas' => set_value('Ket_Luas', $row->Ket_Luas),
+                'Ket_Bidang_Usaha' => set_value('Ket_Bidang_Usaha', $row->Ket_Bidang_Usaha),
+                'Ket_Informasi' => set_value('Ket_Informasi', $row->Ket_Informasi),
+                'ID_Project_Ket' => set_value('ID_Project_Ket', $row->ID_Project_Ket),
+                'ID_Hdr_Project' => set_value('ID_Hdr_Project', $row->ID_Hdr_Project),
+                'ID_Project' => set_value('ID_Project', $row->ID_Project),
+                'Pass_Email' => set_value('Pass_Email', $row->Pass_Email),
+                'pages' => 'transaksi/projects_ket/read',
+                'status' => '2', // tidak bisa edit
+            );
+            $this->load->view('layout_customer', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('transaksi/project'));

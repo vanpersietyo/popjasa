@@ -1003,22 +1003,22 @@ $this->load->view('./template/head');
 
         function show_keterangan() {
             let id = $('[name="id_project"]').val();
-            window.location.href = "<?php echo site_url('/customers/track/show_keterangan/'); ?>" + id;
+            window.location.href = "<?php echo site_url('/transaksi/projects_ket/cek_projects/'); ?>" + id;
         }
 
         function show_izin() {
             let id = $('[name="id_project"]').val();
-            window.location.href = "<?php echo site_url('/customers/track/show_izin/'); ?>" + id;
+            window.location.href = "<?php echo site_url('/transaksi/projects_izin/cek_projects/'); ?>" + id;
         }
 
         function show_uraian() {
             let id = $('[name="id_project"]').val();
-            window.location.href = "<?php echo site_url('/customers/track/show_uraian/'); ?>" + id;
+            window.location.href = "<?php echo site_url('/transaksi/project_uraian/cek_projects/'); ?>" + id;
         }
 
         function show_terima() {
             let id = $('[name="id_project"]').val();
-            window.location.href = "<?php echo site_url('/customers/track/show_terima/'); ?>" + id;
+            window.location.href = "<?php echo site_url('/transaksi/project_terima/cek_projects/'); ?>" + id;
         }
 
         function confirm_project($id) {

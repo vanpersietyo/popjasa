@@ -78,6 +78,7 @@ label {
                         <th width="5%"></th>
                         <th>ID Customer</th>
                         <th>Nama Customer</th>
+                        <th>Perusahaan</th>
                         <th>Omzet</th>
                         <th>Jml Bayar</th>
                         <th>Kurang Bayar</th>
@@ -145,7 +146,6 @@ $(document).ready(function() {
     $('.datepicker').datepicker({
         autoclose: true,
         format: "yyyy-mm-dd",
-        todayHighlight: true,
         orientation: "top auto",
         todayBtn: true,
         todayHighlight: true,

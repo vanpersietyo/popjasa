@@ -91,7 +91,7 @@ class FixAsset_hdr extends CI_Controller
                 'button' => 'Update',
                 'action' => site_url('transaksi/fixAsset_hdr/update_action'),
                 'TrNo' => set_value('TrNo', $row->TrNo),
-                'Tgl' => set_value('Tgl', $row->Tgl),
+                'Tgl' => set_value('Tgl', strtoupper(date("d-m-Y", strtotime($row->Tgl)))),
                 'TrManualRef' => set_value('TrManualRef', $row->TrManualRef),
                 'pages' => 'trs_fix_asset_hdr/trs_fix_asset_hdr_form',
             );
@@ -140,8 +140,8 @@ class FixAsset_hdr extends CI_Controller
 
     public function _rules()
     {
-        $this->form_validation->set_rules('Tgl', 'tgl', 'trim|required');
-        $this->form_validation->set_rules('TrManualRef', 'trmanualref', 'trim');
+        $this->form_validation->set_rules('Tgl', 'Tanggal', 'trim|required');
+        $this->form_validation->set_rules('TrManualRef', 'Keterangan', 'trim');
 
         $this->form_validation->set_rules('TrNo', 'TrNo', 'trim');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

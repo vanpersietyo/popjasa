@@ -45,29 +45,9 @@ $this->load->view('template/head');
                                        value="<?php echo $Lokasi; ?>"/>
                             </div>
                             <div class="form-group">
-                                <label for="datetime">Date Akuisisi <?php echo form_error('Date_Akuisisi') ?></label>
+                                <label for="datetime">Tanggal Pembelian <?php echo form_error('Date_Akuisisi') ?></label>
                                 <input type="text" class="form-control datepicker" name="Date_Akuisisi" id="Date_Akuisisi"
-                                       placeholder="Date Akuisisi" value="<?php echo $Date_Akuisisi; ?>"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="datetime">Date FA <?php echo form_error('Date_FA') ?></label>
-                                <input type="text" class="form-control datepicker" name="Date_FA" id="Date_FA"
-                                       placeholder="Date FA" value="<?php echo $Date_FA; ?>"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="datetime">Date Disposed <?php echo form_error('Date_Disposed') ?></label>
-                                <input type="text" class="form-control datepicker" name="Date_Disposed" id="Date_Disposed"
-                                       placeholder="Date Disposed" value="<?php echo $Date_Disposed; ?>"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="varchar">Penerima <?php echo form_error('Penerima') ?></label>
-                                <input type="text" class="form-control" name="Penerima" id="Penerima"
-                                       placeholder="Penerima" value="<?php echo $Penerima; ?>"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="varchar">Harga <?php echo form_error('Harga') ?></label>
-                                <input type="text" class="form-control" name="Harga" id="Harga"
-                                       placeholder="Harga" value="<?php echo $Harga; ?>"/>
+                                       placeholder="Tanggal Pembelian" value="<?php echo $Date_Akuisisi; ?>"/>
                             </div>
                             <input type="hidden" name="Fa_ID" value="<?php echo $Fa_ID; ?>"/>
                             <button type="submit" class="btn btn-primary"><?php echo $button ?></button>
@@ -98,3 +78,24 @@ $this->load->view('template/foot');
 </script>
 
 
+<!--                            Remark tanggal 04-03-2020, tidak digunakan-->
+<!--                            <div class="form-group">-->
+<!--                                <label for="datetime">Date FA --><?php //echo form_error('Date_FA') ?><!--</label>-->
+<!--                                <input type="text" class="form-control datepicker" name="Date_FA" id="Date_FA"-->
+<!--                                       placeholder="Date FA" value="--><?php //echo $Date_FA; ?><!--"/>-->
+<!--                            </div>-->
+<!--                            <div class="form-group">-->
+<!--                                <label for="datetime">Date Disposed --><?php //echo form_error('Date_Disposed') ?><!--</label>-->
+<!--                                <input type="text" class="form-control datepicker" name="Date_Disposed" id="Date_Disposed"-->
+<!--                                       placeholder="Date Disposed" value="--><?php //echo $Date_Disposed; ?><!--"/>-->
+<!--                            </div>-->
+<!--                            <div class="form-group">-->
+<!--                                <label for="varchar">Penerima --><?php //echo form_error('Penerima') ?><!--</label>-->
+<!--                                <input type="text" class="form-control" name="Penerima" id="Penerima"-->
+<!--                                       placeholder="Penerima" value="--><?php //echo $Penerima; ?><!--"/>-->
+<!--                            </div>-->
+<!--                            <div class="form-group">-->
+<!--                                <label for="varchar">Harga --><?php //echo form_error('Harga') ?><!--</label>-->
+<!--                                <input type="text" class="form-control" name="Harga" id="Harga"-->
+<!--                                       placeholder="Harga" value="--><?php //echo $Harga; ?><!--"/>-->
+<!--                            </div>-->

@@ -71,9 +71,9 @@ class Fix_assets extends CI_Controller
                 $row[] = $no;
                 $row[] = $detail->Fa_ID;
                 $row[] = $detail->Nama_FA;
-                $row[] = $detail->Date_FA;
-                $row[] = number_format($detail->Harga);
-                $row[] = '<a class="btn btn-sm btn-success" href="javascript:void(0)" title="Tambah Items" onclick="pilih_fix_asset(' . "'" . $detail->Fa_ID . "','" . $detail->Nama_FA . "','" . $detail->Date_FA ."','" . $detail->Harga ."'" . ')"><i class="ft-plus-square"></i></a>';
+                $row[] = strtoupper(date("d-m-Y", strtotime($detail->Date_Akuisisi)));
+//                $row[] = number_format($detail->Harga);
+                $row[] = '<a class="btn btn-sm btn-success" href="javascript:void(0)" title="Tambah Items" onclick="pilih_fix_asset(' . "'" . $detail->Fa_ID . "','" . $detail->Nama_FA . "','" . $detail->Date_Akuisisi ."'" . ')"><i class="ft-plus-square"></i></a>';
 
                 $data[] = $row;
             }
@@ -119,12 +119,13 @@ class Fix_assets extends CI_Controller
             'Divisi' => set_value('Divisi'),
             'Lokasi' => set_value('Lokasi'),
             'Cabang' => set_value('Cabang'),
-            'Register_Date' => set_value('Register_Date'),
+//              Remark tanggal 04-03-2020, tidak digunakan By @AfesOkta
+//            'Register_Date' => set_value('Register_Date'),
             'Date_Akuisisi' => set_value('Date_Akuisisi'),
-            'Date_FA' => set_value('Date_FA'),
-            'Date_Disposed' => set_value('Date_Disposed'),
-            'Penerima' => set_value('Penerima'),
-            'Harga' => set_value('Harga'),
+//            'Date_FA' => set_value('Date_FA'),
+//            'Date_Disposed' => set_value('Date_Disposed'),
+//            'Penerima' => set_value('Penerima'),
+//            'Harga' => set_value('Harga'),
         );
         $this->load->view('master/fix_assets/form', $data);
     }
@@ -142,12 +143,13 @@ class Fix_assets extends CI_Controller
                 'Divisi' => $this->input->post('Divisi', TRUE),
                 'Lokasi' => $this->input->post('Lokasi', TRUE),
                 'Cabang' => $this->input->post('Cabang', TRUE),
-                'Register_Date' => $this->input->post('Register_Date', TRUE),
                 'Date_Akuisisi' => $this->input->post('Date_Akuisisi', TRUE),
-                'Date_FA' => $this->input->post('Date_FA', TRUE),
-                'Date_Disposed' => $this->input->post('Date_Disposed', TRUE),
-                'Penerima' => $this->input->post('Penerima', TRUE),
-                'Harga' => $this->input->post('Harga', TRUE),
+//              Remark tanggal 04-03-2020, tidak digunakan By @AfesOkta
+//                'Register_Date' => $this->input->post('Register_Date', TRUE),
+//                'Date_FA' => $this->input->post('Date_FA', TRUE),
+//                'Date_Disposed' => $this->input->post('Date_Disposed', TRUE),
+//                'Penerima' => $this->input->post('Penerima', TRUE),
+//                'Harga' => $this->input->post('Harga', TRUE),
             );
 
             $this->M_Fix_assets->insert($data);
@@ -170,11 +172,12 @@ class Fix_assets extends CI_Controller
                 'Divisi' => set_value('Divisi', $row->Divisi),
                 'Lokasi' => set_value('Lokasi', $row->Lokasi),
                 'Date_Akuisisi' => set_value('Date_Akuisisi', $row->Date_Akuisisi),
-                'Date_FA' => set_value('Date_FA', $row->Date_FA),
-                'Date_Disposed' => set_value('Date_Disposed', $row->Date_Disposed),
-                'Penerima' => set_value('Penerima', $row->Penerima),
+//              Remark tanggal 04-03-2020, tidak digunakan By @AfesOkta
+//                'Date_FA' => set_value('Date_FA', $row->Date_FA),
+//                'Date_Disposed' => set_value('Date_Disposed', $row->Date_Disposed),
+//                'Penerima' => set_value('Penerima', $row->Penerima),
+//                'Harga' => set_value('Harga', $row->Harga),
                 'pages' => 'master/fix_assets/form',
-                'Harga' => set_value('Harga', $row->Harga),
             );
             $this->load->view('layout', $data);
         } else {
@@ -196,10 +199,11 @@ class Fix_assets extends CI_Controller
                 'Divisi' => $this->input->post('Divisi', TRUE),
                 'Lokasi' => $this->input->post('Lokasi', TRUE),
                 'Date_Akuisisi' => $this->input->post('Date_Akuisisi', TRUE),
-                'Date_FA' => $this->input->post('Date_FA', TRUE),
-                'Date_Disposed' => $this->input->post('Date_Disposed', TRUE),
-                'Penerima' => $this->input->post('Penerima', TRUE),
-                'Harga' => $this->input->post('Harga', TRUE),
+//              Remark tanggal 04-03-2020, tidak digunakan By @AfesOkta
+//                'Date_FA' => $this->input->post('Date_FA', TRUE),
+//                'Date_Disposed' => $this->input->post('Date_Disposed', TRUE),
+//                'Penerima' => $this->input->post('Penerima', TRUE),
+//                'Harga' => $this->input->post('Harga', TRUE),
             );
 
             $this->M_Fix_assets->update($this->input->post('Fa_ID', TRUE), $data);
@@ -228,9 +232,10 @@ class Fix_assets extends CI_Controller
         $this->form_validation->set_rules('Divisi', 'divisi', 'trim|required');
         $this->form_validation->set_rules('Lokasi', 'lokasi', 'trim|required');
         $this->form_validation->set_rules('Date_Akuisisi', 'date akuisisi', 'trim|required');
-        $this->form_validation->set_rules('Date_FA', 'date fa', 'trim|required');
-        $this->form_validation->set_rules('Date_Disposed', 'date disposed', 'trim|required');
-        $this->form_validation->set_rules('Penerima', 'penerima', 'trim|required');
+//      Remark tanggal 04-03-2020, tidak digunakan By @AfesOkta
+//        $this->form_validation->set_rules('Date_FA', 'date fa', 'trim|required');
+//        $this->form_validation->set_rules('Date_Disposed', 'date disposed', 'trim|required');
+//        $this->form_validation->set_rules('Penerima', 'penerima', 'trim|required');
 
         $this->form_validation->set_rules('Fa_ID', 'Fa_ID', 'trim');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

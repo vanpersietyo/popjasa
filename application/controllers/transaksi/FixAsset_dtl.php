@@ -35,7 +35,7 @@ class FixAsset_dtl extends CI_Controller
             $row = array();
 
             $row[] = '<h5 class="text-bold-500">' . $d->Fa_Id;
-            $row[] = '<h5 class="text-bold-500">' . $d->Date_penyusutan;
+            $row[] = '<h5 class="text-bold-500">' . strtoupper(date("d-m-Y", strtotime($d->Date_penyusutan)));
             $row[] = '<h5 class="text-bold-500">' . number_format($d->Hrg_beli);
             $row[] = '<h5 class="text-bold-500">' . $d->Estimasi;
             $row[] = '<h5 class="text-bold-500">' . number_format($d->Penyusutan_thn);
@@ -124,7 +124,7 @@ class FixAsset_dtl extends CI_Controller
                 'Hrg_beli' => $this->input->post('Hrg_beli', TRUE),
                 'Penyusutan_thn' => $penyusutan,
                 'Penyusutan_bln' => $penyusutan / 12,
-                'Pembulatan' => round(($penyusutan / 12), 4),
+                'Pembulatan' => round(($penyusutan / 12), 2),
                 'Added_by' => $this->session->userdata('yangLogin'),
                 'Entry_time' => date('Y-m-d H:i:s'),
                 'TrNo' => $trNo,
@@ -149,13 +149,13 @@ class FixAsset_dtl extends CI_Controller
                 'Line_No' => set_value('TrNo', $row->Line_No),
                 'Fa_Id' => set_value('Fa_Id', $row->Fa_Id),
                 'Jenis' => set_value('Jenis', $row->Jenis),
-                'Date_beli' => set_value('Date_beli', $row->Date_beli),
+                'Date_beli' => set_value('Tgl', strtoupper(date("d-m-Y", strtotime($row->Date_beli)))),
                 'Estimasi' => set_value('Estimasi', $row->Estimasi),
-                'Date_penyusutan' => set_value('Date_penyusutan', $row->Date_penyusutan),
-                'Hrg_beli' => set_value('Hrg_beli', $row->Hrg_beli),
-                'Penyusutan_thn' => set_value('Penyusutan_thn', $row->Penyusutan_thn),
-                'Penyusutan_bln' => set_value('Penyusutan_bln', $row->Penyusutan_bln),
-                'Pembulatan' => set_value('Pembulatan', $row->Pembulatan),
+                'Date_penyusutan' => set_value('Tgl', strtoupper(date("d-m-Y", strtotime($row->Date_penyusutan)))),
+                'Hrg_beli' => set_value('Hrg_beli',  number_format($row->Hrg_beli)),
+                'Penyusutan_thn' => set_value('Penyusutan_thn', number_format($row->Penyusutan_thn)),
+                'Penyusutan_bln' => set_value('Penyusutan_bln', number_format($row->Penyusutan_bln)),
+                'Pembulatan' => set_value('Pembulatan', number_format($row->Pembulatan)),
                 'pages' => 'trs_fix_asset_dtl/trs_fix_asset_dtl_form',
             );
             $this->load->view('layout', $data);
@@ -183,7 +183,7 @@ class FixAsset_dtl extends CI_Controller
                 'Hrg_beli' => $this->input->post('Hrg_beli', TRUE),
                 'Penyusutan_thn' => $penyusutan,
                 'Penyusutan_bln' => $penyusutan / 12,
-                'Pembulatan' => round(($penyusutan / 12), 4),
+                'Pembulatan' => round(($penyusutan / 12), 2),
                 'Changed_by' => $this->session->userdata('yangLogin'),
                 'Last_Modified' => date('Y-m-d H:i:s'),
             );
@@ -204,9 +204,9 @@ class FixAsset_dtl extends CI_Controller
     {
 
         $this->form_validation->set_rules('Jenis', 'jenis', 'trim|required');
-        $this->form_validation->set_rules('Date_beli', 'date beli', 'trim|required');
+        $this->form_validation->set_rules('Date_beli', 'Tanggal beli', 'trim|required');
         $this->form_validation->set_rules('Estimasi', 'estimasi', 'trim|required');
-        $this->form_validation->set_rules('Date_penyusutan', 'date penyusutan', 'trim|required');
+        $this->form_validation->set_rules('Date_penyusutan', 'Tanggal penyusutan', 'trim|required');
         $this->form_validation->set_rules('Hrg_beli', 'hrg beli', 'trim|required|numeric');
 
         $this->form_validation->set_rules('TrNo', 'TrNo', 'trim');

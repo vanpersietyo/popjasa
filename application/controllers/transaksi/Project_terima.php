@@ -144,13 +144,44 @@ class Project_terima extends CI_Controller
                 'ID_Project'        => set_value('ID_Project', $row->ID_Project),
                 'jml_ktp'           => set_value('jml_ktp', $row->jml_ktp),
                 'pages'             => 'transaksi/project_terima/form',
-                'list_ktp'          => $this->M_Project_terima_ktp->find([M_Project_terima_ktp::id_project => $row->ID_Project])
+                'list_ktp'          => $this->M_Project_terima_ktp->find([M_Project_terima_ktp::id_project => $row->ID_Project]),
 
         );
             $this->load->view('layout', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('transaksi/project/'));
+        }
+    }
+
+    public function update2($id)
+    {
+        $row = $this->M_Project_terima->get_by_id($id);
+
+        if ($row) {
+            $data = array(
+                'button'            => 'Update',
+                'action'            => site_url('transaksi/project_terima/update_action'),
+                'bool_ktp'          => set_value('bool_ktp', $row->bool_ktp),
+                'bool_npwp'         => set_value('bool_npwp', $row->bool_npwp),
+                'bool_sertifikat'   => set_value('bool_sertifikat', $row->bool_sertifikat),
+                'bool_imb'          => set_value('bool_imb', $row->bool_imb),
+                'bool_stempel'      => set_value('bool_stempel', $row->bool_stempel),
+                'jml_materai'       => set_value('jml_materai', $row->jml_materai),
+                'bool_sk_domisili'  => set_value('bool_sk_domisili', $row->bool_sk_domisili),
+                'bool_surat_sewa'   => set_value('bool_surat_sewa', $row->bool_surat_sewa),
+                'ID_Project_terima' => set_value('ID_Project_terima', $row->ID_Project_terima),
+                'ID_Hdr_Project'    => set_value('ID_Hdr_Project', $row->ID_Hdr_Project),
+                'ID_Project'        => set_value('ID_Project', $row->ID_Project),
+                'jml_ktp'           => set_value('jml_ktp', $row->jml_ktp),
+                'pages'             => 'transaksi/project_terima/read',
+                'list_ktp'          => $this->M_Project_terima_ktp->find([M_Project_terima_ktp::id_project => $row->ID_Project]),
+
+            );
+            $this->load->view('layout_customer', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('customers/track/order2/'). $id);
         }
     }
 
@@ -272,6 +303,17 @@ class Project_terima extends CI_Controller
             return $this->create_terima($id);
         }
     }
+
+    public function cek_projects($id)
+    {
+        $project_ket = $this->M_Project_terima->find_first(["id_project" => $id]);
+        if ($project_ket) {
+            return $this->update2($project_ket->ID_Project_terima);
+        }else {
+            redirect(site_url('customers/track/order2/'). $id);
+        }
+    }
+
 
     public function ajax_edit($id)
     {
