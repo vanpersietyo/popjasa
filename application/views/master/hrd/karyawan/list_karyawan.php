@@ -75,7 +75,7 @@ label {
                         <th>Jenis Kelamin</th>
                         <!-- <th>Keterangan</th> -->
                         <th>Status</th>
-                        <th>Tgl Dibuat</th>
+                        <th>Tgl Mulai Bekerja</th>
                         <th>Operator</th>
                         <th>Pengaturan</th>
                       </tr>
@@ -207,6 +207,7 @@ function edit_person(id)
             $('[name="id"]').val(data.id_karyawan);
             $('[name="id_karyawan2"]').val(data.id_karyawan);
             $('[name="nama_karyawan"]').val(data.nama_karyawan);
+            $('[name="tgl_mulai_bekerja"]').val(data.tgl_mulai_bekerja);
             $('[name="jns_kelamin"]').val(data.jns_kelamin);
             $('[name="status_karyawan"]').val(data.status_karyawan);
             $('[name="id_jabatan"]').val(data.id_jabatan);
@@ -371,6 +372,11 @@ function delete_person(id)
                                  <input type="hidden" name="id"/>
                                   <div class="NOTIF_ERROR_nama_karyawan"></div>
                              </div>
+                             <label class="control-label col-md-3">Tgl Mulai Bekerja</label>
+                             <div class="col-md-12">
+                                 <input name="tgl_mulai_bekerja" placeholder="Tgl Mulai Bekerja .." class="form-control" type="date">
+                                  <div class="NOTIF_ERROR_tgl_mulai_bekerja"></div>
+                             </div>
                              <div class="col-md-12">
                              <label class="control-label col-md-3">Pilih Jenis Kelamin</label>
                                  <select class="form-control" name="jns_kelamin" required>
@@ -457,6 +463,11 @@ function delete_person(id)
                                  <input name="nama_karyawan" placeholder="Nama Karyawn .." class="form-control" type="text" disabled>
                                  <input type="hidden" name="id"/>
                                   <div class="NOTIF_ERROR_nama_karyawan"></div>
+                             </div>
+                             <label class="control-label col-md-3">Tgl Mulai Bekerja</label>
+                             <div class="col-md-12">
+                                 <input name="tgl_mulai_bekerja" placeholder="Tgl Mulai Bekerja .." class="form-control" type="date">
+                                  <div class="NOTIF_ERROR_tgl_mulai_bekerja"></div>
                              </div>
                              <div class="col-md-12">
                              <label class="control-label col-md-3">Pilih Jenis Kelamin</label>

@@ -44,8 +44,10 @@ class Karyawan extends CI_Controller{
 		//	$row[] = '<h5 class="text-bold-500">'.$d->keterangan;
 			$row[] = $status;
 			// $row[] = '<h5 class="text-bold-500">'.$d->password;
-			$date=date("d/m/Y", strtotime($d->tgl_input));
-			$row[] = '<h5 class="text-bold-500">'.$date	;
+			$date2=date("d/m/Y", strtotime($d->tgl_mulai_bekerja));
+			// $date=date("d/m/Y", strtotime($d->tgl_input));
+			// $row[] = '<h5 class="text-bold-500">'.$date	;
+				$row[] = '<h5 class="text-bold-500">'.$date2	;
 			$row[] = '<h5 class="text-bold-500">'.$d->inputby;
 
 			//add html for action
@@ -90,6 +92,7 @@ class Karyawan extends CI_Controller{
 			'status_karyawan' => $this->input->post('status_karyawan'),
 			'jns_kelamin' => $this->input->post('jns_kelamin'),
 			'keterangan' => $this->input->post('keterangan'),
+			'tgl_mulai_bekerja' => date("Y-m-d", strtotime($this->input->post('tgl_mulai_bekerja'))),
 			'tgl_input' => date('Y-m-d H:i:s'),
 			'inputby' => $this->session->userdata('yangLogin'),
 			);
@@ -108,6 +111,7 @@ class Karyawan extends CI_Controller{
 			'status_karyawan' => $this->input->post('status_karyawan'),
 			'jns_kelamin' => $this->input->post('jns_kelamin'),
 			'keterangan' => $this->input->post('keterangan'),
+			'tgl_mulai_bekerja' => date("Y-m-d", strtotime($this->input->post('tgl_mulai_bekerja'))),
 			'tgl_input' => date('Y-m-d H:i:s'),
 			'inputby' => $this->session->userdata('yangLogin'),
 			);
@@ -161,6 +165,14 @@ class Karyawan extends CI_Controller{
 
 			if (empty($this->input->post('id_jabatan'))) {
 					$error                  = 'Jabatan Tidak Boleh Kosong';
+					$data['inputerror'][]   = 'id_jabatan';
+					$data['notiferror'][]   = $prefix.$error.$suffix;
+					$data['error_string'][] = $error;
+					$data['status']         = FALSE;
+			}
+
+			if (empty($this->input->post('tgl_mulai_bekerja'))) {
+					$error                  = 'Kolom ini tidak boleh kosong';
 					$data['inputerror'][]   = 'id_jabatan';
 					$data['notiferror'][]   = $prefix.$error.$suffix;
 					$data['error_string'][] = $error;
