@@ -1,104 +1,81 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_bank extends CI_Model {
+class M_cabang extends CI_Model {
 
 //Models
-    const kd_bank = "kd_bank";
-    const nm_bank = "nm_bank";
-    const st_data = "st_data";
-    const tgl_trans = "tgl_trans";
-    const operator = "operator";
-    const TABLE = "bank";
+    const kd_cabang = "kd_cabang";
+    const nm_cabang = "nm_cabang";
+    const status = "status";
+    const inputby = "inputby";
+    const tgl_input = "tgl_input";
+    const extra_field = "extra_field";
+    const TABLE = "m_cabang";
 
 //for inisialisasi.
-    public $kd_bank;
-    public $nm_bank;
-    public $st_data;
-    public $tgl_trans;
-    public $operator;
+    public $kd_cabang;
+    public $nm_cabang;
+    public $status;
+    public $inputby;
+    public $tgl_input;
+    public $extra_field;
 
-    var $table = 'bank';
-    var $primary_key = 'kd_bank';
-
+    var $table          = 'm_cabang';
+    var $primary_key    = 'kd_cabang';
 
     public function __construct()
     {
         parent::__construct();
         $this->load->database();
     }
+//CRUD
 
-    public function get_data(){
-        $query=$this->db->query("
-		select * from bank
-			");
-        return $query->result();
-    }
-
-    function get_ID(){
-        $tahun=date('Y');
-        $bulan=date('m');
-        $q = $this->db->query("select MAX(RIGHT(kd_bank,5)) as kd_max from bank");
-        $kd = "";
-        if($q->num_rows()>0){
-            foreach($q->result() as $k){
-                $tmp = ((int)$k->kd_max)+1;
-                $kd = sprintf("%05s",$tmp);
-            }
-        }else{
-            $kd = "00001";
-        }
-        return "BNK-$tahun$bulan".$kd;
-    }
-
-
-    function count_filtered(){
-        $query=$this->db->query("
-		select * from bank
-			");
-        return $query->num_rows();
-    }
-
-    public function count_all()
-    {
-        $cabang=$this->session->userdata('cabang');
-        $query=$this->db->query("
-		select * from bank
-			");
-        return $query->num_rows();
-    }
-
-    public function get_by_id($id)
-    {
-        $this->db->from('bank');
-        $this->db->where('kd_bank',$id);
-        $query = $this->db->get();
-
-        return $query->row();
-    }
-
+    /**
+     * @param $data
+     * @return bool
+     */
     public function save($data)
     {
         $this->db->insert('bank', $data);
-        return $this->db->insert_id();
+        return $this->find_first($data) ? true : false;
     }
 
+    /**
+     * @param $where
+     * @param $data
+     * @return mixed
+     */
     public function update($where, $data)
     {
         $this->db->update('bank', $data, $where);
         return $this->db->affected_rows();
     }
 
+    /**
+     * @param $id
+     */
     public function delete_by_id($id)
     {
-        $this->db->where('kd_bank', $id);
+        $this->db->where('KD_BANK', $id);
         $this->db->delete('bank');
+    }
+
+    /**
+     * @param int $id
+     * @return bool|M_cabang
+     */
+    public function get_by_id($id)
+    {
+        $this->db->from($this->table);
+        $this->db->where($this->primary_key,$id);
+        $query = $this->db->get();
+        return $query->num_rows() == 0 ? FALSE : $query->row();
     }
 
     /**
      * @param null|array|string $where
      * @param array $order
-     * @return array|bool|M_bank
+     * @return array|bool|M_cabang
      */
     public function find_first($where = null, $order = []){
         //cek order
@@ -116,7 +93,7 @@ class M_bank extends CI_Model {
     /**
      * @param null|array|string $where
      * @param array $order
-     * @return array|bool|M_bank
+     * @return array|bool|M_cabang
      */
     public function find($where = null, $order = []){
         //cek order
