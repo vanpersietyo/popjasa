@@ -7,6 +7,7 @@ class M_Trs_fix_asset_dtl extends CI_Model
 {
 
     public $table = 'trs_fix_asset_dtl';
+    public $table2 = 'v_fix_asset';
     public $id = 'TrNo';
     public $id2 = 'Line_No';
     public $order = 'DESC';
@@ -162,7 +163,11 @@ class M_Trs_fix_asset_dtl extends CI_Model
         return empty($result) ? FALSE : $data->result();
     }
 
-
+    function get_all_report()
+    {
+        $this->db->order_by($this->Fa_Id, $this->order);
+        return $this->db->get($this->table2)->result();
+    }
 }
 
 /* End of file M_Trs_fix_asset_dtl.php */
