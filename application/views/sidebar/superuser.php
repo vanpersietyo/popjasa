@@ -275,18 +275,14 @@
                             <div class="badge badge-pill badge-danger"></div>
                         </a>
                     </li>
-                    <!--            <li data-menu=""><a class="dropdown-item" href="-->
-                    <?php //echo site_url('report/labarugi')?><!--"-->
-                    <!--              data-toggle="dropdown"><i class="icon-calendar"></i>Detail Order<div class="badge badge-pill badge-danger"></div></a>-->
-                    <!--            </li>-->
-                    <!--            <li data-menu=""><a class="dropdown-item" href="-->
-                    <?php //echo site_url('report/labarugi')?><!--"-->
-                    <!--              data-toggle="dropdown"><i class="icon-calendar"></i>Analytics<div class="badge badge-pill badge-danger"></div></a>-->
-                    <!--            </li>-->
                     <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/cashflow') ?>"
                                         data-toggle="dropdown"><i class="icon-calendar"></i>Arus Kas / Cash Flow
                             <div class="badge badge-pill badge-danger"></div>
                         </a>
+                    </li>
+
+                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/rfixasset')?>"
+                                        data-toggle="dropdown"><i class="icon-calendar"></i>Fix Asset<div class="badge badge-pill badge-danger"></div></a>
                     </li>
                 </ul>
             </li>
