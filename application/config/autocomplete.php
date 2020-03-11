@@ -92,9 +92,11 @@
  * @property M_login            				$M_login
  * @property M_user             				$M_user
  * @property M_Customer         				$M_Customer
- * @property M_layanan $M_layanan
- * @property M_harga $M_harga
- * @property M_Fix_assets $M_Fix_assets
+ * @property M_layanan                          $M_layanan
+ * @property M_harga                            $M_harga
+ * @property M_Fix_assets                       $M_Fix_assets
+ * @property M_bank                             $M_bank
+ * @property M_cabang                           $M_cabang
  * Transaksi
  * @property M_project $M_project
  * @property M_Project_ket $M_Project_ket
