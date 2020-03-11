@@ -34,10 +34,10 @@ class   Auth extends CI_Controller {
 			$this->session->set_userdata('cabang',strtoupper($cabang->kd_cabang));
 			$this->session->set_userdata('nm_cabang',strtoupper($nm_cabang->nm_cabang));
 
-			if ($akses->akses='hrd') {
+			if ($akses->akses=='hrd') {
 				redirect('dashboard/hrd');
 			}elseif ($akses->akses=='sls') {
-				redirect('dashboard/sls');
+				redirect('dashboard');
 			}else {
 				redirect('dashboard');
 			}
