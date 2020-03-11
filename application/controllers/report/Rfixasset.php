@@ -65,7 +65,7 @@ class Rfixasset extends CI_Controller
         $pdf->Cell(35,12,'PENYUSUTAN/THN',1,0,'C');
         $pdf->Cell(35,12,'PENYUSUTAN/BLN',1,0,'C');
         $pdf->Cell(35,12,'PEMBULATAN',1,0,'C');
-        $pdf->Cell(10,12,'',1,1);
+//        $pdf->Cell(10,12,'',1,1);
         $list = $this->M_Trs_fix_asset_dtl->get_all_report();
         $i='1';
         foreach ($list as $row){
