@@ -4,12 +4,14 @@
 class Trans_tunjangan extends CI_Controller{
 	function __construct(){
 		parent::__construct();
+			$this->load->model('M_bank', 'M_bank');
 		$this->load->model('hrd/M_trans_tunjangan', 'M_trans_tunjangan');
 		$this->load->model('M_login');
 		$this->M_login->isLogin();
 	}
 
 	public function index(){
+		$data['bank']= $this->M_bank->get_data();
     $data['jabatan']= $this->M_trans_tunjangan->get_jabatan();
     $data['jabataan']= $this->M_trans_tunjangan->get_jabatan();
     $data['tunjangan']= $this->M_trans_tunjangan->get_tunjangan();
@@ -105,6 +107,7 @@ class Trans_tunjangan extends CI_Controller{
     $insert = array(
         'id_tunjangan' => $this->input->post('id_tunjangan'),
         'id_karyawan' => $this->input->post('id'),
+				'kd_bank' => $this->input->post('kd_bank'),
         'periode' => date('Ym'),
         'jumlah' => str_replace(".", "", $this->input->post('jumlah')),
         'keterangan' =>  $this->input->post('keterangan'),
@@ -218,6 +221,14 @@ class Trans_tunjangan extends CI_Controller{
 					$data['status']         = FALSE;
 			}
 
+			if (empty($this->input->post('kd_bank'))) {
+					$error                  = 'Akun Bank Tidak Boleh Kosong';
+					$data['inputerror'][]   = 'kd_bank';
+					$data['notiferror'][]   = $prefix.$error.$suffix;
+					$data['error_string'][] = $error;
+					$data['status']         = FALSE;
+			}
+
 		if($data['status'] === FALSE)
 		{
 			echo json_encode($data);
@@ -255,6 +266,13 @@ class Trans_tunjangan extends CI_Controller{
 			$data['notiferror'][]   = $prefix.$error.$suffix;
 			$data['error_string'][] = $error;
 			$data['status']         = FALSE;
+		}
+		if (empty($this->input->post('kd_bank'))) {
+				$error                  = 'Akun Bank Tidak Boleh Kosong';
+				$data['inputerror'][]   = 'kd_bank';
+				$data['notiferror'][]   = $prefix.$error.$suffix;
+				$data['error_string'][] = $error;
+				$data['status']         = FALSE;
 		}
 
 		if($data['status'] === FALSE)

@@ -26,9 +26,9 @@ class M_pembayaran_karyawan extends CI_Model {
 	public function get_detail(){
 		$user=$this->session->userdata('yangLogin');
 		$query=$this->db->query("
-		select b.id_karyawan,b.nama_karyawan,b.jns_kelamin,b.keterangan,b.tgl_input,b.inputby,b.status_karyawan,c.jumlah_bayar,c.tgl_input,c.input_by,c.jumlah_bayar,c.st_data,c.id_pmbyrn_krywn
-		from m_karyawan b,trs_hrd_pembayaran_karyawan c
-		where b.id_karyawan=c.id_karyawan and c.input_by='$user' and c.st_data=0
+		select b.id_karyawan,b.nama_karyawan,b.jns_kelamin,b.keterangan,b.tgl_input,b.inputby,b.status_karyawan,c.jumlah_bayar,c.tgl_input,c.input_by,c.jumlah_bayar,c.st_data,c.id_pmbyrn_krywn,d.nm_bank
+		from m_karyawan b,trs_hrd_pembayaran_karyawan c, bank d
+		where b.id_karyawan=c.id_karyawan and c.kd_bank=d.kd_bank and c.input_by='$user' and c.st_data=0
 			");
 		return $query->result();
 	}

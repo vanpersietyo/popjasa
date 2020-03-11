@@ -13,7 +13,10 @@ class Dashboard extends CI_Controller{
 	}
 
 	public function index(){
-	    $data['order']=$this->M_dir->tot_order();
+		if ($this->session->userdata('akses_user')=='hrd') {
+			$this->hrd();
+		}else{
+			$data['order']=$this->M_dir->tot_order();
         $data['progress']=$this->M_dir->tot_onprogress();
         $data['finish']=$this->M_dir->tot_finish();
 
@@ -74,6 +77,8 @@ class Dashboard extends CI_Controller{
 
 		$data['pages']='dashboard/chart';
 		$this->load->view('layout',$data);
+		}
+
 	}
 
 	public function hrd(){
