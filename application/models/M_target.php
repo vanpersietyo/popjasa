@@ -9,9 +9,10 @@ class M_target extends CI_Model {
 	}
 
 	public function get_user(){
+		$cabang=$this->session->userdata('cabang');
 		$query=$this->db->query("
-			select * 
-			from m_target
+			select *
+			from m_target where kd_cabang='$cabang'
 			");
 		return $query->result();
 	}
@@ -36,7 +37,7 @@ class M_target extends CI_Model {
 	function count_filtered()
 	{
 		$query=$this->db->query("
-			select * from m_target
+			select * from m_target where kd_cabang='$cabang'
 			");
 		return $query->num_rows();
 	}
@@ -44,6 +45,7 @@ class M_target extends CI_Model {
 	public function count_all()
 	{
 		$this->db->from('m_target');
+		$this->db->where('kd_cabang', $cabang);
 		return $this->db->count_all_results();
 	}
 

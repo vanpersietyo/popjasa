@@ -10,6 +10,9 @@ class Targetpencapaian extends CI_Controller{
 	}
 
 	public function index(){
+			$cabang=$this->session->userdata('cabang');
+			// var_dump($cabang);
+			// exit();
 		$data['pages']='master/target/list_target';
 		$this->load->view('layout',$data);
 	}
@@ -38,7 +41,7 @@ class Targetpencapaian extends CI_Controller{
 		}
 
 		$output = array(
-						
+
 						"recordsTotal" => $this->M_target->count_all(),
 						"recordsFiltered" => $this->M_target->count_filtered(),
 						"data" => $data,
@@ -61,6 +64,7 @@ class Targetpencapaian extends CI_Controller{
 		$bulan=date('MY');
 		$data = array(
 			'periode' => $bulan,
+			'kd_cabang' => $this->session->userdata('cabang'),
 			'jumlah_target' => $this->input->post('jumlah_target'),
 			'keterangan' => $this->input->post('keterangan'),
 			'tgl_input' => date('Y-m-d H:i:s'),
@@ -77,6 +81,7 @@ class Targetpencapaian extends CI_Controller{
 		//$this->_validate();
 		$data = array(
 			'jumlah_target' => $this->input->post('jumlah_target'),
+			'kd_cabang' => $this->session->userdata('cabang'),
 			'tgl_input' => date('Y-m-d H:i:s'),
 			'keterangan' => $this->input->post('keterangan'),
 			'inputby' => $this->session->userdata('yangLogin'),

@@ -173,21 +173,32 @@ class Pembayaran extends CI_Controller{
 	}
 	public function simpan()
 	{
+
 		//$this->_validate();
 		$kode=date('Ymds');
-		$data = array(
-			'id_pay' => $this->M_payment->get_ID('id_pay'),
-			'id_project' => $this->input->post('id_project'),
-			'tipe_pay' => $this->input->post('tipe_pay'),
-			'jumlah_pay' => str_replace(".", "", $this->input->post('jumlah_pay')),
-			'keterangan' => $this->input->post('keterangan'),
-			'tgl_input' => date('Y-m-d H:i:s'),
-			'input_by' => $this->session->userdata('yangLogin'),
-			);
+		$cek_project=$this->M_payment->cek_bayar($this->input->post('id_project'));
+		$omz=$cek_project->profit;
+		$byr=$cek_project->jumlah_byr;
+		$cek=$omz-$byr;
+		// var_dump($cek);
+		// exit();
+		if (str_replace(".", "", $this->input->post('jumlah_pay')) > $cek ) {
+				echo "<script>alert('Eror! Maaf Pembayaran sudah Lunas');history.go(-1);</script>";
+		}else{
+			$data = array(
+				'id_pay' => $this->M_payment->get_ID('id_pay'),
+				'id_project' => $this->input->post('id_project'),
+				'tipe_pay' => $this->input->post('tipe_pay'),
+				'jumlah_pay' => str_replace(".", "", $this->input->post('jumlah_pay')),
+				'keterangan' => $this->input->post('keterangan'),
+				'tgl_input' => date('Y-m-d H:i:s'),
+				'input_by' => $this->session->userdata('yangLogin'),
+				);
+			$insert = $this->M_payment->save($data);
+			redirect('transaksi/pembayaran/view_project/'.$cek_project->id_customer);
+		}
 
 
-		$insert = $this->M_payment->save($data);
-		redirect('transaksi/pembayaran');
 	}
 
 	public function ajax_edit_project($id)

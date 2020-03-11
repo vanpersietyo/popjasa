@@ -7,6 +7,7 @@ class Dashboard extends CI_Controller{
 		$this->load->model('M_login');
 		$this->load->model('dashboard/M_hrd', 'M_hrd');
         $this->load->model('dashboard/M_dir', 'M_dir');
+				$this->load->model('report/M_labarugi', 'M_labarugi');
 		$this->load->model('hrd/M_pembayaran_karyawan', 'M_pembayaran_karyawan');
 		$this->M_login->isLogin();
 	}
@@ -21,6 +22,56 @@ class Dashboard extends CI_Controller{
         $data['cust_lost']=$this->M_dir->cust_lost();
 
 		$data['target']=$this->M_login->target_today();
+		//omzet
+		$param=date('01-m-Y');
+		$param2=date('31-m-Y');
+		$TGL01=date("Y-m-d", strtotime($param));
+		$TGL02=date("Y-m-d", strtotime($param2));
+		$pj=$this->M_labarugi->uang_masuk($TGL01,$TGL02,'1');
+		foreach ($pj as $pj ) {
+				$SUMPOPJASA[]=$pj->jumlah_byr;
+		}
+		$jm=$this->M_labarugi->uang_masuk($TGL01,$TGL02,'2');
+		foreach ($jm as $jm ) {
+				$SUMJASAMURAH[]=$jm->jumlah_byr;
+		}
+		$data['omz_popjasa']=array_sum($SUMPOPJASA);
+			$data['omz_jasamurah']=array_sum($SUMJASAMURAH);
+			$data['omzet']=array_sum($SUMJASAMURAH)+array_sum($SUMPOPJASA);
+
+
+			$penjualan_days					= $this->M_dir->omzet_group_day();
+			$x=1;
+			$jml_penjualan 	= [];
+			$jum_data 		= [];
+			$tgl_penjualan 	= [];
+			foreach ($penjualan_days as $tgl) {
+				$date_period	= date('d', strtotime($tgl->PERIODE));
+				$tgl_penjualan[]= number_format($date_period);
+				$jml_penjualan[]= $tgl->OMZET;
+				$jum_data[]		= $x;
+				$x				= $x+1;
+			}
+
+			if (array_sum($jum_data)==1) {
+				$a = number_format($tgl_penjualan[0]);
+				$b = $jml_penjualan[0];
+			}else {
+				$a = implode(",",$tgl_penjualan);
+				$b = implode(",",$jml_penjualan);
+			}
+			$data['tgl_penjualan']=$a;
+			$data['jml_penjualan']=$b;
+
+			for ($i=1; $i <= 12; $i++){
+				$d_month 	= $i < 10 ? sprintf("%02d", $i) : $i;
+				$date_month	= date("Y-$d_month-00");
+				$omz_penjualan_month[]=$this->M_dir->omzet_group_month($date_month);
+			};
+
+			$data['omz_penjualan_month']	= implode(",",$omz_penjualan_month);
+
+
 		$data['pages']='dashboard/chart';
 		$this->load->view('layout',$data);
 	}
@@ -64,6 +115,46 @@ class Dashboard extends CI_Controller{
 						"data" => $data,
 				);
 		//output to json format
+		echo json_encode($output);
+	}
+
+	function ajax_penjualan_popjasa(){
+		$list 	= $this->M_dir->penjualan_popjasa();
+		$data 	= [];
+		$no		= 1;
+		foreach ($list as $d) {
+			$row 	= [];
+			$qty	= $d->QTY+0;
+			$row[] 	= $d->PERIODE;
+			$row[] 	= $qty;
+			$row[] 	= $d->OMZET;
+
+			$data[] = $row;
+		}
+
+		$output = [
+			"data"	=> $data,
+		];
+		echo json_encode($output);
+	}
+
+	function ajax_penjualan_jasamurah(){
+		$list 	= $this->M_dir->penjualan_jasamurah();
+		$data 	= [];
+		$no		= 1;
+		foreach ($list as $d) {
+			$row 	= [];
+			$qty	= $d->QTY+0;
+			$row[] 	= $d->PERIODE;
+			$row[] 	= $qty;
+			$row[] 	= $d->OMZET;
+
+			$data[] = $row;
+		}
+
+		$output = [
+			"data"	=> $data,
+		];
 		echo json_encode($output);
 	}
 
