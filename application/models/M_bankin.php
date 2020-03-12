@@ -129,13 +129,22 @@ class M_bankin extends CI_Model
 	function sum_rek_biaya()
 	{
 		$query = $this->db->query("
-    SELECT SUM(harga) AS TOT_REKBIAYA
-    FROM trs_detail_rekening_biaya
+    SELECT SUM(JUM_BIAYA) AS TOT_REKBIAYA
+    FROM trans_biaya_operasional_b
+    WHERE ST_DATA=1
     ");
 		return $query->row();
 	}
 
-
+	function sum_pembelian()
+	{
+		$query = $this->db->query("
+    SELECT SUM(JUMLAH_PEMBAYARAN) AS TOT_PEMBELIAN
+      FROM v_header_transaksi_pembelian
+      WHERE STATUS_PEMBELIAN>1
+    ");
+		return $query->row();
+	}
 
 
 }
