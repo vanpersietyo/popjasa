@@ -5,11 +5,13 @@ class Gaji extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->model('hrd/M_gaji', 'M_gaji');
+			$this->load->model('M_bank', 'M_bank');
 		$this->load->model('M_login');
 		$this->M_login->isLogin();
 	}
 
 	public function index(){
+			$data['bank']= $this->M_bank->get_data();
 		$data['jabatan']= $this->M_gaji->get_jabatan();
 		$data['jabataan']= $this->M_gaji->get_jabatan();
 		$data['pages']='master/hrd/gaji/list_gaji';
@@ -45,6 +47,7 @@ class Gaji extends CI_Controller{
 			$row[] = '<h5 class="text-bold-500">'.$d->nama_jabatan;
 			$row[] = $status;
       $row[] = '<h5 class="text-bold-500">'.number_format($d->jml_gaji);
+			  $row[] = '<h5 class="text-bold-500">'.$d->nm_bank;
 			// $row[] = '<h5 class="text-bold-500">'.$d->password;
 			$date=date("d/m/Y H:i", strtotime($d->updated_gaji));
 			$row[] = '<h5 class="text-bold-500">'.$date	;
@@ -130,6 +133,7 @@ class Gaji extends CI_Controller{
 		$data = array(
 			'jml_gaji' => str_replace(".", "", $this->input->post('jml_gaji')),
       'keterangan_gaji' => $this->input->post('keterangan'),
+			'kd_bank' => $this->input->post('kd_bank'),
 			'st_data' =>1,
 			'updated_gaji' => date('Y-m-d H:i:s'),
 			'updated_gaji_by' => $this->session->userdata('yangLogin')
@@ -138,6 +142,7 @@ class Gaji extends CI_Controller{
       $data_insert = array(
   			'jml_gaji' => str_replace(".", "", $this->input->post('jml_gaji')),
         'keterangan_gaji' => $this->input->post('keterangan'),
+				'kd_bank' => $this->input->post('kd_bank'),
         'id_karyawan' => $this->input->post('id'),
   			'updated_gaji' => date('Y-m-d H:i:s'),
   			'updated_gaji_by' => $this->session->userdata('yangLogin')

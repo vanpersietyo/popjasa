@@ -32,12 +32,59 @@ class Dashboard extends CI_Controller{
 		$TGL02=date("Y-m-d", strtotime($param2));
 		$pj=$this->M_labarugi->uang_masuk($TGL01,$TGL02,'1');
 		foreach ($pj as $pj ) {
-				$SUMPOPJASA[]=$pj->jumlah_byr;
+				$SUMPOPJASA[]=$pj->profit;
 		}
 		$jm=$this->M_labarugi->uang_masuk($TGL01,$TGL02,'2');
 		foreach ($jm as $jm ) {
-				$SUMJASAMURAH[]=$jm->jumlah_byr;
+				$SUMJASAMURAH[]=$jm->profit;
 		}
+		$gj=$this->M_labarugi->select_karyawan($TGL01,$TGL02,'1');
+		foreach ($gj as $gj ) {
+				$potongan=$this->M_labarugi->select_potongan($gj->id_karyawan);
+				$tunjangan=$this->M_labarugi->select_tunjangan($gj->id_karyawan);
+				$bonus=$this->M_labarugi->select_bonus($gj->id_karyawan);
+				$gaji=$gj->jml_gaji;
+				$thp=(($gaji+$bonus->bonus+$tunjangan->tunjangan)-$potongan->potongan);
+				$SUM_GAJI[]=$thp;
+		}
+		$uk=$this->M_labarugi->uang_keluar($TGL01,$TGL02);
+		foreach ($uk as $uk ) {
+				$SUMPENGELUARAN[]=$uk->pengeluaran;
+		}
+
+		$hpppj=$this->M_labarugi->uang_masuk($TGL01,$TGL02,'1');
+		foreach ($hpppj as $hpppj ) {
+				$SUMHPPPOPJASA[]=$hpppj->hpp;
+		}
+		$hppjm=$this->M_labarugi->uang_masuk($TGL01,$TGL02,'2');
+		foreach ($hppjm as $hppjm ) {
+				$SUMHHPPJASAMURAH[]=$hppjm->hpp;
+		}
+		$keluar=$this->M_labarugi->uang_keluar($TGL01,$TGL02);
+		foreach ($keluar as $keluar ) {
+				$uang_keluar=number_format($keluar->pengeluaran,0,",",".");
+				$jum_keluar[]=$keluar->pengeluaran;
+		}
+		$karyawan=$this->M_labarugi->select_karyawan();
+		foreach ($karyawan as $karyawan ) {
+				$potongan=$this->M_labarugi->select_potongan($karyawan->id_karyawan);
+				$tunjangan=$this->M_labarugi->select_tunjangan($karyawan->id_karyawan);
+				$bonus=$this->M_labarugi->select_bonus($karyawan->id_karyawan);
+				$gaji=$karyawan->jml_gaji;
+				$thp=(($gaji+$bonus->bonus+$tunjangan->tunjangan)-$potongan->potongan);
+				$SUM_thp[]=$thp;
+		}
+
+
+		$hji=array_sum($SUM_GAJI);
+		$pgl=array_sum($SUMPENGELUARAN);
+		$hhppji=array_sum($SUMHPPPOPJASA);
+		$phppgl=array_sum($SUMHHPPJASAMURAH);
+		$a=(array_sum($SUMPOPJASA)+array_sum($SUMJASAMURAH));
+		$b=(array_sum($jum_keluar)+array_sum($SUM_thp));
+		$laba=$a-$b;
+		$data['laba']=$laba;
+
 		$data['omz_popjasa']=array_sum($SUMPOPJASA);
 			$data['omz_jasamurah']=array_sum($SUMJASAMURAH);
 			$data['omzet']=array_sum($SUMJASAMURAH)+array_sum($SUMPOPJASA);
@@ -73,6 +120,7 @@ class Dashboard extends CI_Controller{
 			};
 
 			$data['omz_penjualan_month']	= implode(",",$omz_penjualan_month);
+
 
 
 		$data['pages']='dashboard/chart';

@@ -11,18 +11,18 @@ class M_gaji extends CI_Model {
 	public function get_user(){
 		$cabang=$this->session->userdata('cabang');
 		$query=$this->db->query("
-		select b.id_karyawan,b.nama_karyawan,c.nama_jabatan,b.jns_kelamin,b.keterangan,b.tgl_input,b.inputby,b.status_karyawan,b.jml_gaji,b.updated_gaji,updated_gaji_by
-		from m_karyawan b,m_jabatan c
-		where b.id_jabatan=c.id_jabatan and b.kd_cabang='$cabang'
+		select b.id_karyawan,b.nama_karyawan,c.nama_jabatan,b.jns_kelamin,b.keterangan,b.tgl_input,b.inputby,b.status_karyawan,b.jml_gaji,b.updated_gaji,updated_gaji_by,d.nm_bank
+		from m_karyawan b,m_jabatan c, bank d
+		where b.id_jabatan=c.id_jabatan and b.kd_bank=d.kd_bank and b.kd_cabang='$cabang'
 			");
 		return $query->result();
 	}
 
   public function get_history($id){
 		$query=$this->db->query("
-		select b.id_karyawan,b.nama_karyawan,b.jns_kelamin,b.keterangan,b.tgl_input,b.inputby,b.status_karyawan,c.jml_gaji,c.updated_gaji,c.updated_gaji_by
-		from m_karyawan b,trs_hrd_gaji c
-		where b.id_karyawan=c.id_karyawan and b.id_karyawan='$id'
+		select b.id_karyawan,b.nama_karyawan,b.jns_kelamin,b.keterangan,b.tgl_input,b.inputby,b.status_karyawan,c.jml_gaji,c.updated_gaji,c.updated_gaji_by,d.nm_bank
+		from m_karyawan b,trs_hrd_gaji c, bank d
+		where b.id_karyawan=c.id_karyawan and b.kd_bank=d.kd_bank and b.id_karyawan='$id'
 			");
 		return $query->result();
 	}

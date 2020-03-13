@@ -5,6 +5,7 @@ class Pengeluaran extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->model('M_trs_pengeluaran');
+			$this->load->model('M_bank', 'M_bank');
 		$this->load->model('M_login');
 		$this->M_login->isLogin();
 	}
@@ -116,6 +117,7 @@ class Pengeluaran extends CI_Controller{
 
   function detail($id){
     $data['id']=$id;
+		$data['bank']= $this->M_bank->get_data();
     $data['headers']=$this->M_trs_pengeluaran->get_by_id($id);
     $data['rekbiaya']=$this->M_trs_pengeluaran->get_mrekbiaya();
     $data['pages']='transaksi/pengeluaran/detail';
@@ -127,10 +129,11 @@ class Pengeluaran extends CI_Controller{
 		$kode=date('Ymds');
 		$data = array(
 			'id_dtlrekbiaya' => $this->M_trs_pengeluaran->get_ID_detail('id_trs_rekbiaya'),
-            'id_trs_rekbiaya' => $this->input->post('id_header'),
-            'id_rekbiaya' => $this->input->post('id_rekbiaya'),
-            'keterangan' => $this->input->post('keterangan'),
-            'harga' => str_replace(".", "", $this->input->post('harga')),
+      'id_trs_rekbiaya' => $this->input->post('id_header'),
+			'kd_bank' => $this->input->post('kd_bank'),
+      'id_rekbiaya' => $this->input->post('id_rekbiaya'),
+      'keterangan' => $this->input->post('keterangan'),
+      'harga' => str_replace(".", "", $this->input->post('harga')),
 			'tgl_input' => date('Y-m-d H:i:s'),
 			'inputby' => $this->session->userdata('yangLogin'),
 			);
@@ -153,6 +156,7 @@ class Pengeluaran extends CI_Controller{
 			$row[] = '<h5>'.$d->nm_rekbiaya;
 			$row[] = '<h5 class="text-bold-500">'.number_format($d->harga);
 			$row[] = '<h5 class="text-bold-500">'.$d->keterangan;
+			$row[] = '<h5 class="text-bold-500">'.$d->nm_bank;
 			$row[] = '<p class="text-bold-500">'.date("d/m/Y", strtotime($d->tgl_input));
 			$row[] = '<p class="text-bold-500">'.$d->inputby;
 

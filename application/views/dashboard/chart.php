@@ -108,8 +108,8 @@ data-menu="horizontal-menu" data-col="2-columns">
                           <div class="card-body">
                             <div class="media d-flex">
                               <div class="media-body text-left">
-                                <h3 class="text-white">13,480,000</h3>
-                                <h6 class="text-white">Laba Bersih</h6>
+                                <h3 class="text-white"><?= number_format($target->total_target-$omzet); ?></h3>
+                                <h6 class="text-white">Progres Target</h6>
                               </div>
                               <div>
                                 <i class="icon-heart white font-large-2 float-right"></i>

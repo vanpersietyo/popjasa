@@ -4,12 +4,14 @@
 class Trans_potongan extends CI_Controller{
 	function __construct(){
 		parent::__construct();
+			$this->load->model('M_bank', 'M_bank');
 		$this->load->model('hrd/M_trans_potongan', 'M_trans_potongan');
 		$this->load->model('M_login');
 		$this->M_login->isLogin();
 	}
 
 	public function index(){
+			$data['bank']= $this->M_bank->get_data();
     $data['jabatan']= $this->M_trans_potongan->get_jabatan();
     $data['jabataan']= $this->M_trans_potongan->get_jabatan();
     $data['potongan']= $this->M_trans_potongan->get_potongan();
@@ -72,6 +74,7 @@ class Trans_potongan extends CI_Controller{
       $row[] = '<h5 class="text-bold-500">'.$d->nama_karyawan;
       $row[] = $d->keterangan;
 			 $row[] = $d->jumlah;
+			  $row[] = $d->nm_bank;
 			 if ($d->st_data==1) {
 				 $row[] = '<a class="btn btn-sm btn-danger disabled" title="Tambah Piutang Karyawan" "><i class="ft-trash"></i></a>';
 			}else {
@@ -105,6 +108,7 @@ class Trans_potongan extends CI_Controller{
     $insert = array(
         'id_potongan' => $this->input->post('id_potongan'),
         'id_karyawan' => $this->input->post('id'),
+				'kd_bank' => $this->input->post('kd_bank'),
         'periode' => date('Ym'),
         'jumlah' => str_replace(".", "", $this->input->post('jumlah')),
         'keterangan' =>  $this->input->post('keterangan'),
@@ -166,6 +170,7 @@ class Trans_potongan extends CI_Controller{
 					$data['error_string'][] = $error;
 					$data['status']         = FALSE;
 			}
+
 
 		if($data['status'] === FALSE)
 		{

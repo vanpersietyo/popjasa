@@ -63,10 +63,11 @@ class M_trans_potongan extends CI_Model {
 		$m=date('m');
 		$y=date('Y');
 		$query=$this->db->query("
-    select a.id_trans_potongan,b.nama_karyawan,c.keterangan,a.jumlah,a.tgl_trans,a.operator,a.st_data
+    select a.id_trans_potongan,b.nama_karyawan,c.keterangan,a.jumlah,a.tgl_trans,a.operator,a.st_data,d.nm_bank,a.kd_bank
       from trs_hrd_potongan_karyawan a
       join m_karyawan b on a.id_karyawan=b.id_karyawan
       join m_potongan c on a.id_potongan=c.id_potongan
+			join bank d on a.kd_bank=d.kd_bank
 				where MONTH(a.tgl_trans) = '$m' and YEAR(a.tgl_trans)='$y'
 		");
 		return $query->result();

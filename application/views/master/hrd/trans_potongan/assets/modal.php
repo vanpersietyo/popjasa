@@ -78,6 +78,17 @@
                               </div>
 
                               <div class="col-md-12">
+                               <label for="issueinput5">Pilih Akun Bank</label>
+                               <select class="form-control" name="kd_bank" >
+                                  <option value=""> --- </option>
+                                  <?php foreach ($bank as $bank) { ?>
+                                    <option value="<?php echo $bank->kd_bank ?>"> <?php echo "$bank->nm_bank" ?> </option>
+                                  <?php }?>
+                                </select>
+                                <div class="NOTIF_ERROR_kd_bank"></div>
+                                </div>
+
+                              <div class="col-md-12">
                                 <br>
                                 <label for="issueinput5">Keterangan</label>
                                 <textarea name="keterangan" placeholder="Keterangan .." class="form-control" type="textarea"></textarea>

@@ -74,6 +74,7 @@ class Trans_tunjangan extends CI_Controller{
       $row[] = '<h5 class="text-bold-500">'.$d->nama_karyawan;
       $row[] = $d->keterangan;
 			 $row[] = $d->jumlah;
+			 $row[] = $d->kd_bank;
 			 if ($d->st_data==1) {
 				 $row[] = '<a class="btn btn-sm btn-danger disabled" title="Tambah Piutang Karyawan" "><i class="ft-trash"></i></a>';
 			}else {

@@ -48,6 +48,7 @@
                         <th>Nama Karyawan</th>
                         <th>Tunjangan</th>
                         <th>Jumlah</th>
+                          <th>Akun Bank</th>
                         <th></th>
                       </tr>
                     </thead>
@@ -57,7 +58,7 @@
                     <tfoot>
                       <tr>
                           <th colspan="2"><h5 class="text-bold-500" align="right">Total Tunjangan:<h5></th>
-                          <th colspan="2"></th>
+                          <th colspan="3"></th>
                       </tr>
                   </tfoot>
 

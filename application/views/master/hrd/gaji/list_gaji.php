@@ -79,6 +79,7 @@
                         <th>Jabatan</th>
                         <th>Status</th>
                         <th>Gaji</th>
+                        <th>Acc Bank</th>
                         <th>Tgl Pembaruan</th>
                         <th>Operator</th>
 
@@ -187,6 +188,8 @@ function clear_all_error()
     $('[name="jns_kelamin"]').removeClass('border-danger');
     $('[name="status_karyawan"]').removeClass('border-danger');
     $('[name="id_jabatan"]').removeClass('border-danger');
+    $('[name="kd_bank"]').removeClass('border-danger');
+    $('[class="NOTIF_ERROR_kd_bank"]').html('');
     $('[class="NOTIF_ERROR_nama_karyawan"]').html('');
     $('[class="NOTIF_ERROR_jns_kelamin"]').html('');
     $('[class="NOTIF_ERROR_status_karyawan"]').html('');
@@ -214,6 +217,7 @@ function edit_person(id)
             $('[name="jns_kelamin"]').val(data.jns_kelamin);
             $('[name="status_karyawan"]').val(data.status_karyawan);
             $('[name="id_jabatan"]').val(data.id_jabatan);
+            $('[name="kd_bank"]').val(data.kd_bank);
             $('[name="jml_gaji"]').val(data.jml_gaji);
             $('[name="updated_gaji"]').val(data.updated_gaji);
             $('[name="updated_gaji_by"]').val(data.updated_gaji_by);
@@ -364,6 +368,17 @@ function detail(ID){
                                 <input type="text" name="jml_gaji" class="form-control" id="tanpa-rupiah" required="">
                                    <div class="NOTIF_ERROR_jml_gaji"></div>
                               </div>
+
+                              <div class="col-md-12">
+                               <label for="issueinput5">Pilih Akun Bank</label>
+                               <select class="form-control" name="kd_bank" >
+                                  <option value=""> --- </option>
+                                  <?php foreach ($bank as $bank) { ?>
+                                    <option value="<?php echo $bank->kd_bank ?>"> <?php echo "$bank->nm_bank" ?> </option>
+                                  <?php }?>
+                                </select>
+                                <div class="NOTIF_ERROR_kd_bank"></div>
+                                </div>
 
                               <div class="col-md-12">
                                 <label class="control-label col-md-3">Keterangan</label>

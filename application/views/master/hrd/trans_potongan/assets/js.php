@@ -78,6 +78,7 @@ $(document).ready(function() {
            { mData: '1' },
            { mData: '2', render: $.fn.dataTable.render.number( ',', '.', 0, '' ) },
             { mData: '3' },
+              { mData: '4' },
        ],
 
        rowGroup: {

@@ -3,7 +3,7 @@ role="navigation" data-menu="menu-wrapper">
   <div class="navbar-container main-menu-content" data-menu="menu-container">
     <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
       <li class=" nav-item pull-up" data-menu="">
-       <a class="nav-link" href="<?php echo site_url('dashboard/hrd')?>"><i class="la la-dashboard"></i>
+       <a class="nav-link" href="<?php echo site_url('dashboard')?>"><i class="la la-dashboard"></i>
          <span>Dashboard</span>
        </a>
       </li>
