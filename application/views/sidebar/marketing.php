@@ -1,4 +1,4 @@
-<div class="header-navbar navbar-expand-sm navbar navbar-horizontal navbar-fixed navbar-static-top navbar-dark navbar-without-dd-arrow navbar-shadow"
+ <div class="header-navbar navbar-expand-sm navbar navbar-horizontal navbar-fixed navbar-static-top navbar-dark navbar-without-dd-arrow navbar-shadow"
 role="navigation" data-menu="menu-wrapper">
   <div class="navbar-container main-menu-content" data-menu="menu-container">
     <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
@@ -87,7 +87,15 @@ role="navigation" data-menu="menu-wrapper">
 
       <li class="dropdown nav-item pull-up" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="ft-file-text"></i><span>Report</span> </a>
         <ul class="dropdown-menu">
-         </li>
+            <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i class="ft-chevron-right"></i>Produk</a>
+                <ul class="dropdown-menu">
+                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/kategori_produk')?>" data-toggle="dropdown"><i class="ft-chevrons-right"></i>Kategori Produk</a></li>
+                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/ukuran_produk')?>" data-toggle="dropdown"><i class="ft-chevrons-right"></i>Ukuran Produk</a></li>
+                </ul>
+            </li>
+            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/biayapengeluaran')?>"
+              data-toggle="dropdown"><i class="icon-calendar"></i>Biaya Pengeluaran<div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti')?></div></a>
+            </li>
             <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/biayapengeluaran')?>"
               data-toggle="dropdown"><i class="icon-calendar"></i>Biaya Pengeluaran<div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti')?></div></a>
             </li>

@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="#" id="form" class="form-horizontal" onsubmit="save()">
+                <form action="javascript:void(0)" id="form" class="form-horizontal" onsubmit="save()">
                     <div class="form-body">
                         <div class="form-body">
                             <div class="form-group">

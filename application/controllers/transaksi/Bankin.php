@@ -26,42 +26,32 @@ class Bankin extends CI_Controller
 
     public function ajax_data()
     {
-        $this->load->helper('url');
-        $list = $this->M_bankin->get_user();
+        $list = $this->M_bankin->find();
         $data = array();
-        foreach ($list as $d) {
-            $row = array();
-            if ($d->ST_DATA == 1) {
+
+        if($list){
+            /** @var M_bankin $d */
+            foreach ($list as $d) {
+                $row = array();
+
                 $row[] = '<button type="button" class="btn btn-blue bg-accent-4 dropdown-toggle btn-sm" data-toggle="dropdown"
-														aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
-														<div class="dropdown-menu">
-															<a class="dropdown-item"  href="javascript:void(0)" onclick="edit_person(' . "'" . $d->ID_TRANS . "'" . ')"><i class="ft-edit"></i> Edit Data</a>
-															<a class="dropdown-item" href="javascript:void(0)" onclick="lookup(' . "'" . $d->ID_TRANS . "'" . ')"><i class="ft-file"></i> View Data</a>
-														</div>';
-            } else {
-                $row[] = '<button type="button" class="btn btn-blue bg-accent-4 dropdown-toggle btn-sm" data-toggle="dropdown"
-															aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
-															<div class="dropdown-menu">
-                              	<a class="dropdown-item" href="javascript:void(0)" onclick="konfirmasi(' . "'" . $d->ID_TRANS . "'" . ')"><i class="fa fa-check info"></i><b class="info"> Konfirmasi Data</b></a>
-																<a class="dropdown-item"  href="javascript:void(0)" onclick="edit_person(' . "'" . $d->ID_TRANS . "'" . ')"><i class="ft-edit"></i> Edit Data</a>
-																<a class="dropdown-item" href="javascript:void(0)" onclick="delete_person(' . "'" . $d->ID_TRANS . "'" . ')"><i class="ft-trash"></i> Hapus Data</a>
-																<a class="dropdown-item" href="javascript:void(0)" onclick="lookup(' . "'" . $d->ID_TRANS . "'" . ')"><i class="ft-file"></i> View Data</a>
-															</div>';
+                                                        aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
+                                                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="javascript:void(0)" onclick="konfirmasi(' . "'" . $d->ID_TRANS . "'" . ')"><i class="fa fa-check info"></i><b class="info"> Konfirmasi Data</b></a>
+                                                            <a class="dropdown-item"  href="javascript:void(0)" onclick="edit_person(' . "'" . $d->ID_TRANS . "'" . ')"><i class="ft-edit"></i> Edit Data</a>
+                                                            <a class="dropdown-item" href="javascript:void(0)" onclick="delete_person(' . "'" . $d->ID_TRANS . "'" . ')"><i class="ft-trash"></i> Hapus Data</a>
+                                                        </div>';
+                $row[] = $d->ID_TRANS;
+                $row[] = $d->KD_BANK;
+                $row[] = number_format($d->SLD_MASUK);
+                $row[] = $d->KETERANGAN;
+                $row[] = Conversion::convert_date($d->TGL_TRANS,'d-m-Y');
+                $row[] = $d->ID_OPR;
+
+                $data[] = $row;
             }
-            $row[] = $d->ID_TRANS;
-            $row[] = $d->KD_BANK;
-            $row[] = number_format($d->SLD_MASUK);
-            $row[] = $d->KETERANGAN;
-            $row[] = strtoupper(date("d-m-Y", strtotime($d->TGL_BUAT)));
-            $row[] = $d->ID_OPR;
-
-            $data[] = $row;
         }
-
         $output = array(
-
-            "recordsTotal" => $this->M_bankin->count_all(),
-            "recordsFiltered" => $this->M_bankin->count_filtered(),
             "data" => $data,
         );
         echo json_encode($output);
@@ -77,20 +67,17 @@ class Bankin extends CI_Controller
     public function ajax_add()
     {
         $this->_validate();
-        $kode = date('Ymds');
         $data = array(
-            'ID_TRANS' => $this->M_bankin->get_ID(),
-            'KD_BANK' => $this->input->post('KD_BANK'),
-            'SLD_MASUK' => str_replace(".", "", $this->input->post('SLD_MASUK')),
-            'ST_DATA' => 0,
-            'TGL_BUAT' => strtoupper(date("Y-m-d H:i:s", strtotime($this->input->post('TGL_BUAT')))) ?: date("Y-m-d H:i:s"),
-            'KETERANGAN' => $this->input->post('KETERANGAN'),
-            'TGL_TRANS' => date('Y-m-d H:i:s'),
-            'ID_OPR' => $this->session->userdata('yangLogin'),
+            'ID_TRANS'      => $this->M_bankin->get_ID(),
+            'KD_BANK'       => $this->input->post('KD_BANK'),
+            'SLD_MASUK'     => str_replace(".", "", $this->input->post('SLD_MASUK')),
+            'ST_DATA'       => 0,
+            'TGL_BUAT'      => date("Y-m-d H:i:s"),
+            'KETERANGAN'    => $this->input->post(M_bankin::KETERANGAN),
+            'TGL_TRANS'     => Conversion::convert_date($this->input->post(M_bankin::TGL_TRANS),'Y-m-d'),
+            'ID_OPR'        => $this->session->userdata('yangLogin'),
         );
-
-        $insert = $this->M_bankin->save($data);
-
+        $this->M_bankin->save($data);
         echo json_encode(array("status" => TRUE));
     }
 

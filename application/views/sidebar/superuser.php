@@ -80,6 +80,12 @@
                     <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/pengeluaran') ?>"
                                         data-toggle="dropdown"><i class="la la-money"></i>Pengeluaran Bulanan</a>
                     </li>
+                    <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i class="la la-money"></i>Kas</a>
+                        <ul class="dropdown-menu">
+                            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/bankin')?>" data-toggle="dropdown"><i class="ft-chevron-right"></i>Kas Masuk</a></li>
+                            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/ukuran_produk')?>" data-toggle="dropdown"><i class="ft-chevron-right"></i>Kas Keluar</a></li>
+                        </ul>
+                    </li>
                     <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/progress') ?>"
                                         data-toggle="dropdown"><i class="la la-bar-chart"></i>Progress Project</a>
                     </li>
@@ -154,14 +160,6 @@
                                 class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i
                                     class="icon-folder"></i>Operational</a>
                         <ul class="dropdown-menu">
-                            <!--             <li data-menu=""><a class="dropdown-item" href="-->
-                            <?php //echo site_url('master/customer')?><!--"-->
-                            <!--               data-toggle="dropdown"><i class="icon-diamond"></i>Customer</a>-->
-                            <!--             </li>-->
-                            <!--             <li data-menu=""><a class="dropdown-item" href="-->
-                            <?php //echo site_url('master/supplier')?><!--"-->
-                            <!--               data-toggle="dropdown"><i class="icon-star"></i>Notaris</a>-->
-                            <!--             </li>-->
                             <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/agen') ?>"
                                                 data-toggle="dropdown"><i class="icon-moustache"></i>Agen</a>
                             </li>

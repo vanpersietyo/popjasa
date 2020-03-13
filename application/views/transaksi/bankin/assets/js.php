@@ -25,11 +25,9 @@
         });
     });
 
-
-
-
     function add_person(){
         save_method = 'add';
+        $('[name="KD_BANK"]').val('').trigger('change');
         $('#form')[0].reset(); // reset form on modals
         $('.form-group').removeClass('has-error'); // clear error class
         $('.help-block').empty(); // clear error string
@@ -54,7 +52,7 @@
             success: function(data)
             {
                 $('[name="id"]').val(data.ID_TRANS);
-                $('[name="KD_BANK"]').val(data.KD_BANK);
+                $('[name="KD_BANK"]').val(data.KD_BANK).trigger('change');
                 $('[name="SLD_KELUAR"]').val(data.SLD_KELUAR);
                 $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
                 $('.modal-title').text('Edit Supplier'); // Set title to Bootstrap modal title
@@ -115,7 +113,7 @@
         //  $('#btnSave').attr('disabled',true); //set button disable
         var url;
 
-        if(save_method == 'add') {
+        if(save_method === 'add') {
             url = "<?php echo site_url('transaksi/bankin/ajax_add')?>";
         } else {
             url = "<?php echo site_url('transaksi/bankin/ajax_update')?>";
