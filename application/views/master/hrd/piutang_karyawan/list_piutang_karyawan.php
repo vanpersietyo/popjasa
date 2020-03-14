@@ -112,7 +112,8 @@
                     <thead>
                       <tr>
                         <th>Nama Karyawan</th>
-                        <th>Jumlah Piutang</th>
+                        <th>Jml Piutang</th>
+                        <th>Acc Bank</th>
                         <th>operator</th>
                         <th></th>
                       </tr>
@@ -123,7 +124,8 @@
                     <tfoot>
                       <tr>
                           <th colspan="1"><h5 class="text-bold-500" align="right">Total Piutang:<h5></th>
-                          <th colspan="2"></th>
+                          <th colspan="3"></th>
+                          <th ></th>
                       </tr>
                   </tfoot>
 
@@ -233,6 +235,7 @@ $(document).ready(function() {
            { mData: '1', render: $.fn.dataTable.render.number( ',', '.', 0, '' ) },
            { mData: '2' },
             { mData: '3' },
+            { mData: '4' },
        ],
 
     });
@@ -288,6 +291,8 @@ function clear_all_error()
 {
     $('[name="jml_piutang"]').removeClass('border-danger');
     $('[class="NOTIF_ERROR_jml_piutang"]').html('');
+    $('[name="kd_bank"]').removeClass('border-danger');
+    $('[class="NOTIF_ERROR_kd_bank"]').html('');
 
 }
 
@@ -497,6 +502,17 @@ function delete_person(id)
                                 <input type="text" name="jml_piutang" class="form-control" id="tanpa-rupiah" required="" >
                                    <div class="NOTIF_ERROR_jml_piutang"></div>
                               </div>
+
+                              <div class="col-md-12">
+                               <label for="issueinput5">Pilih Akun Bank</label>
+                               <select class="form-control" name="kd_bank" >
+                                  <option value=""> --- </option>
+                                  <?php foreach ($bank as $bank) { ?>
+                                    <option value="<?php echo $bank->kd_bank ?>"> <?php echo "$bank->nm_bank" ?> </option>
+                                  <?php }?>
+                                </select>
+                                <div class="NOTIF_ERROR_kd_bank"></div>
+                                </div>
 
                               <div class="col-md-12">
                                 <br>

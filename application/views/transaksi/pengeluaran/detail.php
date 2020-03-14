@@ -71,8 +71,9 @@
                       <tr>
                         <th width="10%">Nama Rek. Biaya</th>
                         <th width="10%">Jml Pengeluaran</th>
-                        <th width="30%">keterangan</th>
-                        <th width="15%">Tgl Dibuat</th>
+                        <th width="25%">keterangan</th>
+                        <th width="10%">Acc Bank</th>
+                        <th width="10%">Tgl Dibuat</th>
                         <th width="10%">InputBy</th>
                         <th width="5%"></th>
                       </tr>
@@ -83,7 +84,7 @@
 
                   </table>
                 </div>
-              
+
                 <!--/ Invoices table -->
               </div>
             </div>
@@ -385,6 +386,18 @@ function detail(id)
                                <input type="text" id="tanpa-rupiah" class="form-control form-control-lg input-lg" name="harga" placeholder="" aria-describedby="basic-addon3">
                              </div>
                             </div>
+
+                            <div class="col-md-12">
+                             <label for="issueinput5">Pilih Akun Bank</label>
+                             <select class="form-control" name="kd_bank" >
+                                <option value=""> --- </option>
+                                <?php foreach ($bank as $bank) { ?>
+                                  <option value="<?php echo $bank->kd_bank ?>"> <?php echo "$bank->nm_bank" ?> </option>
+                                <?php }?>
+                              </select>
+                              <div class="NOTIF_ERROR_kd_bank"></div>
+                              </div>
+
                             <div class="col-12 mb-2">
                                <label for="issueinput5">Keterangan</label>
                                <div class="input-group">

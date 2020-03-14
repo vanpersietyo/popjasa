@@ -47,9 +47,11 @@ class M_piutang_karyawan extends CI_Model {
 	public function get_detail(){
 		$user=$this->session->userdata('yangLogin');
 		$query=$this->db->query("
-		select b.id_karyawan,b.nama_karyawan,b.jns_kelamin,b.keterangan,b.tgl_input,b.inputby,b.status_karyawan,c.jumlah_piutang,c.tgl_input,c.input_by,c.jumlah_bayar,c.st_data,c.id_piut_krywn
-		from m_karyawan b,trs_hrd_piutang_karyawan c
-		where b.id_karyawan=c.id_karyawan and c.input_by='$user' and c.st_data=0
+		select b.id_karyawan,b.nama_karyawan,b.jns_kelamin,b.keterangan,b.tgl_input,b.inputby,b.status_karyawan,c.jumlah_piutang,c.tgl_input,c.input_by,c.jumlah_bayar,c.st_data,c.id_piut_krywn,d.nm_bank
+		from m_karyawan b
+		JOIN trs_hrd_piutang_karyawan c ON  b.id_karyawan=c.id_karyawan
+		JOIN bank d ON c.KD_BANK=d.KD_BANK
+		where c.input_by='$user' and c.st_data=0
 			");
 		return $query->result();
 	}
@@ -89,6 +91,7 @@ class M_piutang_karyawan extends CI_Model {
 		$query=$this->db->query("
 		select *
 		from kartu_piutang_karyawan
+		where id_karyawan='$id'
 			");
 		return $query->result();
 	}

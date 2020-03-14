@@ -17,7 +17,7 @@
 
 		function target_today(){
 			$date=date('MY');
-			$query=$this->db->query("select * from m_target where periode='$date'");
+			$query=$this->db->query("select sum(jumlah_target) as total_target from m_target where periode='$date'");
 			return $query->row();
 		}
 

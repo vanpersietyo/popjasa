@@ -225,8 +225,10 @@ data-menu="horizontal-menu" data-col="2-columns">
 
   <?php if ($this->session->userdata('akses_user')=='hrd' | $this->session->userdata('akses_user')=='HRD') {
     $this->load->view('sidebar/hrd');
-  }elseif ($this->session->userdata('akses_user')=='sls' | $this->session->userdata('akses_user')=='SLS') {
-    $this->load->view('sidebar/sales');
+  }elseif ($this->session->userdata('akses_user')=='mrkt' | $this->session->userdata('akses_user')=='MRKT') {
+    $this->load->view('sidebar/marketing');
+  }elseif ($this->session->userdata('akses_user')=='ops' | $this->session->userdata('akses_user')=='OPS') {
+    $this->load->view('sidebar/operational');
   }elseif ($this->session->userdata('akses_user')=='su' | $this->session->userdata('akses_user')=='SU') {
     $this->load->view('sidebar/superuser');
   }?>

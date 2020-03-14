@@ -11,9 +11,10 @@ class M_karyawan extends CI_Model {
 	public function get_user(){
 		$cabang=$this->session->userdata('cabang');
 		$query=$this->db->query("
-		select b.id_karyawan,b.nama_karyawan,c.nama_jabatan,b.jns_kelamin,b.keterangan,b.tgl_input,b.inputby,b.status_karyawan,b.st_data
+		select b.id_karyawan,b.nama_karyawan,c.nama_jabatan,b.jns_kelamin,b.keterangan,b.tgl_input,b.inputby,b.status_karyawan,b.st_data,b.tgl_mulai_bekerja
 		from m_karyawan b,m_jabatan c
 		where b.id_jabatan=c.id_jabatan and b.kd_cabang='$cabang'
+		order by b.tgl_input asc
 			");
 		return $query->result();
 	}

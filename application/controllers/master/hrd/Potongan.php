@@ -5,10 +5,12 @@ class Potongan extends CI_Controller{
 
 		$this->load->model('M_login');
 		$this->M_login->isLogin();
+
 		$this->load->model('hrd/M_potongan', 'M_potongan');
 	}
 
 	public function index(){
+		
 		$data['pages']='master/hrd/potongan/list_potongan';
 		$this->load->view('layout',$data);
 	}

@@ -143,5 +143,12 @@ class M_payment extends CI_Model {
 		$this->db->delete('trs_project');
 	}
 
+	function cek_bayar($id){
+		$query=$this->db->query(
+			"SELECT * FROM v_paybyproject where id_project='$id'"
+		);
+		return $query->row();
+	}
+
 
 }

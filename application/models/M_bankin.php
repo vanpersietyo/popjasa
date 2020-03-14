@@ -129,13 +129,70 @@ class M_bankin extends CI_Model
 	function sum_rek_biaya()
 	{
 		$query = $this->db->query("
-    SELECT SUM(harga) AS TOT_REKBIAYA
-    FROM trs_detail_rekening_biaya
+    SELECT SUM(JUM_BIAYA) AS TOT_REKBIAYA
+    FROM trans_biaya_operasional_b
+    WHERE ST_DATA=1
+    ");
+		return $query->row();
+	}
+
+	function sum_pembelian()
+	{
+		$query = $this->db->query("
+    SELECT SUM(JUMLAH_PEMBAYARAN) AS TOT_PEMBELIAN
+      FROM v_header_transaksi_pembelian
+      WHERE STATUS_PEMBELIAN>1
     ");
 		return $query->row();
 	}
 
 
+    /**
+     * @param null|array|string $where
+     * @param array $order
+     * @return array|bool|M_bankin
+     */
+    public function find_first($where = null, $order = []){
+        //cek order
+        if($order){
+            foreach ($order as $key => $value) {
+                $this->db->order_by($key,$value);
+            }
+        }
+        //cek where
+        $data = $where ? $this->db->get_where($this->table, $where) : $this->db->get($this->table);
+        $result	= $data->num_rows();
+        return empty($result) ? FALSE : $data->row();
+    }
 
+    /**
+     * @param null|array|string $where
+     * @param array $order
+     * @return array|bool|M_bankin
+     */
+    public function find($where = null, $order = []){
+        //cek order
+        if($order){
+            foreach ($order as $key => $value) {
+                $this->db->order_by($key,$value);
+            }
+        }
+        //cek where
+        $data = $where ? $this->db->get_where($this->table, $where) : $this->db->get($this->table);
+        $result	= $data->num_rows();
+        //return
+        return empty($result) ? FALSE : $data->result();
+    }
 
+    /**
+     * @param null $where
+     * @param array $order
+     * @return int
+     */
+    public function count($where = null){
+        //cek where
+        $data = $where ? $this->db->get_where($this->table, $where) : $this->db->get($this->table);
+        //return
+        return $data->num_rows();
+    }
 }

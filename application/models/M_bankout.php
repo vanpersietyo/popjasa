@@ -250,7 +250,15 @@ class M_bankout extends CI_Model {
 			return $query->result();
 		}
 
-
+		function get_count_pemasukan(){
+			$query=$this->db->query("
+			SELECT B.KD_TRANS,B.NM_OUTLET,B.TOTAL_PENJUALAN,B.TOTAL_PEMBAYARAN,B.PIUTANG_PENJUALAN,A.NM_BANK,A.TGL_PEMBAYARAN
+				FROM v_trans_pembayaran_penjualan A
+				JOIN v_header_trans_penjualan B ON B.ID_TRANS=A.ID_TRANS_PENJUALAN
+				ORDER BY NM_BANK
+			");
+			return $query->num_rows();
+		}
 
 
 }

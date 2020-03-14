@@ -145,6 +145,8 @@ class Track extends CI_Controller
             'Last_Mofidified' => $row->Last_Mofidified,
             'id' =>$id
         );
+        // var_dump($data);
+        // exit();
         $this->load->view('customer/show_keterangan', $data);
     }
 

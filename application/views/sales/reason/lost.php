@@ -167,7 +167,7 @@ function add_person()
     $('.form-group').removeClass('has-error'); // clear error class
     $('.help-block').empty(); // clear error string
     $('#modal_form').modal('show'); // show bootstrap modal
-    $('.modal-title').text('Tambah User Baru'); // Set Title to Bootstrap modal title
+    $('.modal-title').text('Tambah Lost Reason Baru'); // Set Title to Bootstrap modal title
 
 }
 

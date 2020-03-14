@@ -68,7 +68,7 @@ class Jabatan extends CI_Controller{
 		$kode=date('Ymds');
 		$data = array(
 			'id_jabatan' => $this->input->post('id_jabatan'),
-			'nama_jabatan' => $this->input->post('nama_karyawan'),
+			'nama_jabatan' => $this->input->post('nama_jabatan'),
 			'keterangan' => $this->input->post('keterangan'),
 			'tgl_input' => date('Y-m-d H:i:s'),
 			'inputby' => $this->session->userdata('yangLogin'),

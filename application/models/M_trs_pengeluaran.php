@@ -31,9 +31,10 @@ class M_trs_pengeluaran extends CI_Model {
   function get_datatables_detail($id)
 	{
 		$query = $this->db->query("
-        SELECT A.*,B.nm_rekbiaya
+        SELECT A.*,B.nm_rekbiaya,c.nm_bank
         FROM trs_detail_rekening_biaya A
         JOIN m_rekening_biaya B ON A.id_rekbiaya=B.id_rekbiaya
+				JOIN bank c ON A.kd_bank=c.kd_bank
         where id_trs_rekbiaya='$id'
         ");
 		return $query->result();

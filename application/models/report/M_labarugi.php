@@ -39,7 +39,7 @@ class M_labarugi extends CI_Model {
         $query=$this->db->query("
 		SELECT *
 		FROM m_karyawan
-		WHERE kd_cabang='$cabang'
+		WHERE kd_cabang='$cabang' and status_karyawan=1
 			");
         return $query->result();
     }

@@ -5,11 +5,13 @@ class Pembayaran_karyawan extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->model('hrd/M_pembayaran_karyawan', 'M_pembayaran_karyawan');
+		$this->load->model('M_bank', 'M_bank');
 		$this->load->model('M_login');
 		$this->M_login->isLogin();
 	}
 
 	public function index(){
+		$data['bank']= $this->M_bank->get_data();
     $data['jabatan']= $this->M_pembayaran_karyawan->get_jabatan();
     $data['jabataan']= $this->M_pembayaran_karyawan->get_jabatan();
 		$data['pages']='master/hrd/pembayaran_karyawan/list_pembayaran_karyawan';
@@ -84,6 +86,7 @@ class Pembayaran_karyawan extends CI_Controller{
 
       $row[] = '<h5 class="text-bold-500">'.$d->nama_karyawan;
       $row[] = $d->jumlah_bayar;
+			 $row[] = '<h5 class="text-bold-500">'.$d->nm_bank;
 			 $row[] = '<h5 class="text-bold-500">'.$d->input_by;
 			 $row[] = '<a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Tambah Piutang Karyawan" onclick="delete_person('."'".$d->id_pmbyrn_krywn."'".')"><i class="ft-trash"></i></a>';
 
@@ -129,6 +132,7 @@ class Pembayaran_karyawan extends CI_Controller{
   			'id_pmbyrn_krywn' => $this->M_pembayaran_karyawan->get_ID('id_karyawan'),
         'id_karyawan' => $this->input->post('id'),
         'jumlah_bayar' => str_replace(".", "", $this->input->post('jml_bayar')),
+				'kd_bank' => $this->input->post('kd_bank'),
         'keterangan' =>  $this->input->post('keterangan'),
         'tgl_input' => date('Y-m-d'),
         'input_by' => $this->session->userdata('yangLogin'),
@@ -141,6 +145,7 @@ class Pembayaran_karyawan extends CI_Controller{
         'jumlah' => str_replace(".", "", $this->input->post('jml_bayar')),
 				'st_kartu'=>'D',
         'note_kartu' =>  $this->input->post('keterangan'),
+				'kd_bank' => $this->input->post('kd_bank'),
         'tgl_buat' => date('Y-m-d H:i:s'),
         'id_opr' => $this->session->userdata('yangLogin')
   			);
@@ -280,6 +285,13 @@ class Pembayaran_karyawan extends CI_Controller{
 			if (empty($this->input->post('jml_bayar'))) {
 					$error                  = 'Jumlah bayar Tidak Boleh Kosong';
 					$data['inputerror'][]   = 'jml_bayar';
+					$data['notiferror'][]   = $prefix.$error.$suffix;
+					$data['error_string'][] = $error;
+					$data['status']         = FALSE;
+			}
+			if (empty($this->input->post('kd_bank'))) {
+					$error                  = 'Acc Bank Tidak Boleh Kosong';
+					$data['inputerror'][]   = 'kd_bank';
 					$data['notiferror'][]   = $prefix.$error.$suffix;
 					$data['error_string'][] = $error;
 					$data['status']         = FALSE;

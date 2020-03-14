@@ -2,6 +2,26 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_bank extends CI_Model {
+
+//Models
+    const kd_bank = "kd_bank";
+    const nm_bank = "nm_bank";
+    const st_data = "st_data";
+    const tgl_trans = "tgl_trans";
+    const operator = "operator";
+    const TABLE = "bank";
+
+//for inisialisasi.
+    public $kd_bank;
+    public $nm_bank;
+    public $st_data;
+    public $tgl_trans;
+    public $operator;
+
+    var $table = 'bank';
+    var $primary_key = 'kd_bank';
+
+
     public function __construct()
     {
         parent::__construct();
@@ -14,7 +34,6 @@ class M_bank extends CI_Model {
 			");
         return $query->result();
     }
-
 
     function get_ID(){
         $tahun=date('Y');
@@ -76,5 +95,53 @@ class M_bank extends CI_Model {
         $this->db->delete('bank');
     }
 
+    /**
+     * @param null|array|string $where
+     * @param array $order
+     * @return array|bool|M_bank
+     */
+    public function find_first($where = null, $order = []){
+        //cek order
+        if($order){
+            foreach ($order as $key => $value) {
+                $this->db->order_by($key,$value);
+            }
+        }
+        //cek where
+        $data = $where ? $this->db->get_where($this->table, $where) : $this->db->get($this->table);
+        $result	= $data->num_rows();
+        return empty($result) ? FALSE : $data->row();
+    }
+
+    /**
+     * @param null|array|string $where
+     * @param array $order
+     * @return array|bool|M_bank
+     */
+    public function find($where = null, $order = []){
+        //cek order
+        if($order){
+            foreach ($order as $key => $value) {
+                $this->db->order_by($key,$value);
+            }
+        }
+        //cek where
+        $data = $where ? $this->db->get_where($this->table, $where) : $this->db->get($this->table);
+        $result	= $data->num_rows();
+        //return
+        return empty($result) ? FALSE : $data->result();
+    }
+
+    /**
+     * @param null $where
+     * @param array $order
+     * @return int
+     */
+    public function count($where = null){
+        //cek where
+        $data = $where ? $this->db->get_where($this->table, $where) : $this->db->get($this->table);
+        //return
+        return $data->num_rows();
+    }
 
 }

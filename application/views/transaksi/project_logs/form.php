@@ -37,7 +37,7 @@ $this->load->view('template/head');
                                 <div class="form-group">
                                     <label for="date">Tgl Log <?php echo form_error('tgl_log') ?></label>
                                     <input type="text" class="form-control datepicker" name="tgl_log" id="tgl_log"
-                                           placeholder="Tgl Log" value="<?php echo $tgl_log; ?>"/>
+                                           placeholder="Tgl Log" value="<?php echo $tgl_log; ?>" autocomplete="off"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="keterangan">Keterangan <?php echo form_error('keterangan') ?></label>

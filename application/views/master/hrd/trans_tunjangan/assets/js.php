@@ -78,6 +78,7 @@ $(document).ready(function() {
            { mData: '1' },
            { mData: '2', render: $.fn.dataTable.render.number( ',', '.', 0, '' ) },
             { mData: '3' },
+            { mData: '4' },
        ],
 
        rowGroup: {
@@ -137,6 +138,8 @@ function clear_all_error()
 {
     $('[name="jml_bayar"]').removeClass('border-danger');
     $('[class="NOTIF_ERROR_jml_bayar"]').html('');
+    $('[name="kd_bank"]').removeClass('border-danger');
+    $('[class="NOTIF_ERROR_kd_bank"]').html('');
 }
 
 function edit_person(id)

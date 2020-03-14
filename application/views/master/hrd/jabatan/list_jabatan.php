@@ -156,7 +156,7 @@ function add_person()
     $('.form-group').removeClass('has-error'); // clear error class
     $('.help-block').empty(); // clear error string
     $('#modal_form').modal('show'); // show bootstrap modal
-    $('.modal-title').text('Tambah Karyawan Baru'); // Set Title to Bootstrap modal title
+    $('.modal-title').text('Tambah Jabatan Baru'); // Set Title to Bootstrap modal title
 
 }
 
@@ -217,7 +217,7 @@ function lookup(id)
             $('[name="nama_jabatan"]').val(data.nama_jabatan);
             $('[name="keterangan"]').val(data.keterangan);
             $('#modal_lookup').modal('show'); // show bootstrap modal when complete loaded
-            $('.modal-title').text('Edit Karyawan'); // Set title to Bootstrap modal title
+            $('.modal-title').text('Edit Jabatan'); // Set title to Bootstrap modal title
         },
         error: function (jqXHR, textStatus, errorThrown)
         {

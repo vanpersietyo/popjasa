@@ -44,7 +44,7 @@ class M_project extends CI_Model {
       SELECT a.id_project,a.id_layanan,c.nama_layanan,d.harga,a.id_customer,b.nm_customer,a.harga_jual,a.keterangan,a.input_by,a.tgl_input,a.st_data
       FROM trs_project a,m_customer b, m_layanan c, m_harga_layanan d
       WHERE a.id_customer=b.id_customer AND a.id_layanan=c.id_layanan AND a.id_layanan=d.id_layanan AND a.id_hdr_project='$id'
-      ORDER BY a.tgl_input asc 
+      ORDER BY a.tgl_input asc
 			");
 		return $query->result();
 	}
@@ -54,7 +54,7 @@ class M_project extends CI_Model {
 				select a.id_hdr_project,a.nm_project,a.kd_cabang,a.id_customer,b.nm_customer,a.jml_penjualan,a.keterangan,a.input_by,a.tgl_input,a.st_data
 				from trs_project_hdr a
 				JOIN m_customer b ON a.id_customer=b.id_customer
-				  ORDER BY a.tgl_input asc 
+				  ORDER BY a.tgl_input asc
 			");
 		return $query->result();
 	}
@@ -64,7 +64,7 @@ class M_project extends CI_Model {
 				select a.id_hdr_project,a.kd_cabang,a.id_customer,b.nm_customer,a.jml_penjualan,a.keterangan,a.input_by,a.tgl_input,a.st_data
 				from trs_project_hdr a
 				JOIN m_customer b ON a.id_customer=b.id_customer and a.st_data=1
-				  ORDER BY a.tgl_input desc 
+				  ORDER BY a.tgl_input desc
 			");
 		return $query->result();
 	}
@@ -85,9 +85,12 @@ class M_project extends CI_Model {
 
 	public function get_projectid($id){
 		$query=$this->db->query("
-      SELECT a.id_project,a.id_layanan,c.nama_layanan,d.harga,a.id_customer,b.nm_customer,a.harga_jual,a.keterangan,a.input_by,a.tgl_input
-      FROM trs_project a,m_customer b, m_layanan c, m_harga_layanan d
-      WHERE a.id_customer=b.id_customer AND a.id_layanan=c.id_layanan AND a.id_layanan=d.id_layanan AND a.id_project='$id'
+    SELECT a.id_project,a.id_layanan,c.nama_layanan,d.harga,a.id_customer,b.nm_customer,a.harga_jual,a.keterangan,a.input_by,a.tgl_input,a.st_data
+    FROM trs_project a
+    JOIN m_customer b ON a.id_customer=b.id_customer
+    JOIN m_layanan c ON a.id_layanan=c.id_layanan
+    LEFT JOIN m_harga_layanan d ON a.id_layanan=d.id_layanan
+    WHERE a.id_project='$id'
 			");
 		return $query->row();
 	}
@@ -346,9 +349,12 @@ class M_project extends CI_Model {
     public function get_user_project($id)
     {
         $query = $this->db->query("
-      SELECT a.id_project,a.id_layanan,c.nama_layanan,d.harga,a.id_customer,b.nm_customer,a.harga_jual,a.keterangan,a.input_by,a.tgl_input,a.st_data
-      FROM trs_project a,m_customer b, m_layanan c, m_harga_layanan d
-      WHERE a.id_customer=b.id_customer AND a.id_layanan=c.id_layanan AND a.id_layanan=d.id_layanan AND a.id_project='$id'
+        SELECT a.id_project,a.id_layanan,c.nama_layanan,d.harga,a.id_customer,b.nm_customer,a.harga_jual,a.keterangan,a.input_by,a.tgl_input,a.st_data
+          FROM trs_project a
+          JOIN m_customer b ON a.id_customer=b.id_customer
+          JOIN m_layanan c ON a.id_layanan=c.id_layanan
+          LEFT JOIN m_harga_layanan d ON a.id_layanan=d.id_layanan
+          WHERE a.id_project='PRO20200300001'
 			");
         return $query->result();
     }
