@@ -15,10 +15,10 @@
                         <div class="form-body">
                             <div class="form-group">
                                 <div class="row">
-                                    <input type="hidden" name="id"/>
+                                    <input type="hidden" name="<?=M_bankout::ID_TRANS?>"/>
                                     <div class="col-md-12">
                                         <label for="projectinput2">Pilih Akun Bank</label>
-                                        <select class="select2 form-control block" id="responsive_single" name="KD_BANK"
+                                        <select class="select2 form-control block" id="responsive_single" name="<?=M_bankout::KD_BANK?>"
                                                 style="width: 100%" required>
                                             <option value="" class="disabled">Pilih Akun Bank</option>
                                             <?php /** @var M_bank[] $bank */
@@ -30,7 +30,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label class="control-label">Nominal Kas Keluar</label>
-                                        <input name="SLD_KELUAR" placeholder="Jml Saldo Keluar .." id="tanpa-rupiah"
+                                        <input name="<?=M_bankout::SLD_KELUAR?>" placeholder="Jml Saldo Keluar .." id="tanpa-rupiah"
                                                class="form-control" type="text">
                                         <div class="NOTIF_ERROR_SLD_KELUAR"></div>
                                     </div>
@@ -42,14 +42,14 @@
                                                 </button>
                                             </div>
                                             <input data-role="date" type='text' class="datepicker form-control"
-                                                   name="TGL_BUAT" required autocomplete="off"/>
+                                                   name="<?=M_bankout::TGL_TRANS?>" required autocomplete="off"/>
 
                                         </div>
                                         <div class="NOTIF_ERROR_TGL_BUAT"></div>
                                     </div>
                                     <div class="col-md-12">
                                         <label class="control-label">Keterangan</label>
-                                        <input name="KETERANGAN" placeholder="Keterangan Saldo Keluar .."
+                                        <input name="<?=M_bankout::KETERANGAN?>" placeholder="Keterangan Saldo Keluar .."
                                                id="tanpa-rupiah" class="form-control" type="text">
                                         <div class="NOTIF_ERROR_KETERANGAN"></div>
                                     </div>
@@ -84,61 +84,8 @@
     </div>
 </div>
 
-<!-- Bootstrap modal lookup-->
-<div class="modal animated pulse text-left" id="modal_lookup" role="dialog" aria-labelledby="myModalLabel17"
-     aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-info">
-                <h4 class="modal-title text-bold-500 white"><i class="la la-pencil-square"></i> Tambah User Baru</h4>
-                <button type="button" class="close white" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="#" class="form-horizontal">
-                    <div class="form-body">
-                        <div class="form-body">
-                            <div class="form-group">
-                                <div class="row">
-
-                                    <div class="col-md-12">
-                                        <label class="control-label">Kode Bank</label>
-                                        <input name="KD_BANK" placeholder="Kode Bank" class="form-control" type="text"
-                                               readonly>
-                                        <input type="hidden" name="id"/>
-                                        <div class="NOTIF_ERROR_KD_BANK"></div>
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <label class="control-label">Jumlah Saldo Keluar</label>
-                                        <input name="SLD_KELUAR" placeholder="Jml Saldo Keluar .." id="tanpa-rupiah2"
-                                               class="form-control" type="text" readonly>
-                                        <div class="NOTIF_ERROR_SLD_KELUAR"></div>
-                                    </div>
-                                </div>
-                            </div>
-                </form>
-                <div class="row">
-                    <div class="col-md-12">
-                        <!-- Block level buttons with icon -->
-                        <div class="form-group">
-                            <button type="button" class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up"
-                                    data-dismiss="modal">
-                                Tutup
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js') ?>"></script>
-<!-- END PAGE LEVEL JS-->
 <script src="<?php echo base_url('assets/app-assets/js/scripts/navs/navs.js') ?>" type="text/javascript"></script>
-<!-- Bootstrap modal insert-->
 <script src="<?php echo base_url('assets/app-assets/vendors/js/forms/select/select2.full.min.js') ?>"
         type="text/javascript"></script>
 <script src="<?php echo base_url('assets/app-assets/js/scripts/forms/select/form-select2.js') ?>"

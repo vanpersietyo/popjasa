@@ -80,10 +80,17 @@
                     <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/pengeluaran') ?>"
                                         data-toggle="dropdown"><i class="la la-money"></i>Pengeluaran Bulanan</a>
                     </li>
-                    <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i class="la la-money"></i>Kas</a>
+                    <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a
+                                class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i
+                                    class="la la-money"></i>Kas</a>
                         <ul class="dropdown-menu">
-                            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/bankin')?>" data-toggle="dropdown"><i class="ft-chevron-right"></i>Kas Masuk</a></li>
-                            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/ukuran_produk')?>" data-toggle="dropdown"><i class="ft-chevron-right"></i>Kas Keluar</a></li>
+                            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/keuangan/bankin') ?>"
+                                                data-toggle="dropdown"><i class="ft-chevron-right"></i>Kas Masuk</a>
+                            </li>
+                            <li data-menu=""><a class="dropdown-item"
+                                                href="<?php echo site_url('transaksi/keuangan/bankout') ?>"
+                                                data-toggle="dropdown"><i class="ft-chevron-right"></i>Kas Keluar</a>
+                            </li>
                         </ul>
                     </li>
                     <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/progress') ?>"
@@ -279,8 +286,10 @@
                         </a>
                     </li>
 
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/rfixasset')?>"
-                                        data-toggle="dropdown"><i class="icon-calendar"></i>Fix Asset<div class="badge badge-pill badge-danger"></div></a>
+                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/rfixasset') ?>"
+                                        data-toggle="dropdown"><i class="icon-calendar"></i>Fix Asset
+                            <div class="badge badge-pill badge-danger"></div>
+                        </a>
                     </li>
                 </ul>
             </li>

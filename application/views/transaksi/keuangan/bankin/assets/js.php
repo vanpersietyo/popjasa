@@ -1,6 +1,5 @@
-
 <script src="<?php echo base_url('assets/app-assets/vendors/js/vendors.min.js') ?>" type="text/javascript"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/ui/jquery.sticky.js') ?>"></script>
+<script src="<?php echo base_url('assets/app-assets/vendors/js/ui/jquery.sticky.js') ?>" type="text/javascript" ></script>
 <script src="<?php echo base_url('assets/app-assets/vendors/js/tables/datatable/datatables.min.js') ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('assets/app-assets/js/core/app-menu.js') ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('assets/app-assets/js/core/app.js') ?>" type="text/javascript"></script>
@@ -13,15 +12,44 @@
     var data_customer;
 
     $(document).ready(function() {
-
-        //datatables
         table = $('#table').DataTable({
-            // Load data for the table's content from an Ajax source
-
             "ajax": {
-                "url": "<?php echo site_url('transaksi/bankin/ajax_data')?>",
+                "url": "<?php echo site_url('transaksi/keuangan/bankin/ajax_data')?>",
                 "type": "POST"
             },
+            "columnDefs": [
+                {
+                    "searchable": false,
+                    "orderable" : false,
+                    "targets"   : 0
+                },{
+                    "visible": false,
+                    "targets": 6
+                },
+            ],
+            "columns": [
+                { mData: '0' },
+                { mData: '1' },
+                { mData: '2' },
+                { mData: '3' },
+                { mData: '4', render: $.fn.dataTable.render.number( ',', '.', 0, 'Rp. ' ),class:'text-right'},
+                { mData: '5' },
+                { mData: '6' },
+                { mData: '7' },
+            ],
+            order : [[6,'asc']],
+            drawCallback: function(e) {
+                var c = this.api(),
+                    r = c.rows({
+                        page: "current"
+                    }).nodes(),
+                    i = null;
+                c.column(6, {
+                    page: "current"
+                }).data().each(function(e, c) {
+                    i !== e && ($(r).eq(c).before('<tr class="group"><td colspan="8">' + e + "</td></tr>"), i = e)
+                })
+            }
         });
     });
 
@@ -31,10 +59,11 @@
         $('#form')[0].reset(); // reset form on modals
         $('.form-group').removeClass('has-error'); // clear error class
         $('.help-block').empty(); // clear error string
+        $('.form-control').prop('disabled',false); // clear error string
+        $('#btnSave').prop('disabled',false); // clear error string
         $('#modal_form').modal('show'); // show bootstrap modal
         $('.modal-title').text('Tambah Transaksi Kas Masuk'); // Set Title to Bootstrap modal title
     }
-
 
     function edit_person(id)
     {
@@ -42,20 +71,21 @@
         $('#form')[0].reset(); // reset form on modals
         $('.form-group').removeClass('has-error'); // clear error class
         $('.help-block').empty(); // clear error string
-
-
         //Ajax Load data from ajax
         $.ajax({
-            url : "<?php echo site_url('transaksi/bankin/ajax_edit')?>/" + id,
+            url : "<?php echo site_url('transaksi/keuangan/bankin/ajax_edit')?>/" + id,
             type: "GET",
             dataType: "JSON",
             success: function(data)
             {
-                $('[name="id"]').val(data.ID_TRANS);
-                $('[name="KD_BANK"]').val(data.KD_BANK).trigger('change');
-                $('[name="SLD_KELUAR"]').val(data.SLD_KELUAR);
+                $('[name="<?=M_bankin::ID_TRANS;?>"]').val(data.<?=M_bankin::ID_TRANS;?>);
+                $('[name="<?=M_bankin::KD_BANK;?>"]').val(data.<?=M_bankin::KD_BANK;?>).trigger('change').prop('disabled',false);
+                $('[name="<?=M_bankin::SLD_MASUK;?>"]').val(formatRupiah(data.<?=M_bankin::SLD_MASUK;?>)).prop('disabled',false);
+                $('[name="<?=M_bankin::KETERANGAN;?>"]').val(data.<?=M_bankin::KETERANGAN;?>).prop('disabled',false);
+                $('[name="<?=M_bankin::TGL_TRANS;?>"]').val(formatDate(data.<?=M_bankin::TGL_TRANS;?>,'2')).prop('disabled',false);
+                $('#btnSave').prop('disabled',false);
                 $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
-                $('.modal-title').text('Edit Supplier'); // Set title to Bootstrap modal title
+                $('.modal-title').text('Edit Kas Masuk ' + data.<?=M_bankin::ID_TRANS;?>); // Set title to Bootstrap modal title
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
@@ -66,24 +96,23 @@
 
     function lookup(id)
     {
-        save_method = 'update';
         $('#form')[0].reset(); // reset form on modals
         $('.form-group').removeClass('has-error'); // clear error class
         $('.help-block').empty(); // clear error string
-
-
         //Ajax Load data from ajax
         $.ajax({
-            url : "<?php echo site_url('transaksi/bankin/ajax_edit')?>/" + id,
+            url : "<?php echo site_url('transaksi/keuangan/bankin/ajax_edit')?>/" + id,
             type: "GET",
             dataType: "JSON",
             success: function(data)
             {
-                $('[name="id"]').val(data.ID_TRANS);
-                $('[name="KD_BANK"]').val(data.KD_BANK);
-                $('[name="SLD_KELUAR"]').val(data.SLD_KELUAR);
-                $('#modal_lookup').modal('show'); // show bootstrap modal when complete loaded
-                $('.modal-title').text('View Data'); // Set title to Bootstrap modal title
+                $('[name="<?=M_bankin::KD_BANK;?>"]').val(data.<?=M_bankin::KD_BANK;?>).trigger('change').prop('disabled',true);
+                $('[name="<?=M_bankin::SLD_MASUK;?>"]').val(formatRupiah(data.<?=M_bankin::SLD_MASUK;?>)).prop('disabled',true);
+                $('[name="<?=M_bankin::KETERANGAN;?>"]').val(data.<?=M_bankin::KETERANGAN;?>).prop('disabled',true);
+                $('[name="<?=M_bankin::TGL_TRANS;?>"]').val(formatDate(data.<?=M_bankin::TGL_TRANS;?>,'2')).prop('disabled',true);
+                $('#btnSave').prop('disabled',true);
+                $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
+                $('.modal-title').text('Lihat Kas Masuk ' + data.<?=M_bankin::ID_TRANS;?>); // Set title to Bootstrap modal title
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
@@ -92,7 +121,6 @@
         });
     }
 
-
     function reload_table()
     {
         table.ajax.reload(null,false); //reload datatable ajax
@@ -100,9 +128,8 @@
 
     function clear_all_error()
     {
-        $('[name="KD_BANK"]').removeClass('border-danger');
+        $('.form-control').removeClass('border-danger');
         $('[class="NOTIF_ERROR_KD_BANK"]').html('');
-        $('[name="SLD_MASUK"]').removeClass('border-danger');
         $('[class="NOTIF_ERROR_SLD_MASUK"]').html('');
     }
 
@@ -114,9 +141,9 @@
         var url;
 
         if(save_method === 'add') {
-            url = "<?php echo site_url('transaksi/bankin/ajax_add')?>";
+            url = "<?php echo site_url('transaksi/keuangan/bankin/ajax_add')?>";
         } else {
-            url = "<?php echo site_url('transaksi/bankin/ajax_update')?>";
+            url = "<?php echo site_url('transaksi/keuangan/bankin/ajax_update')?>";
         }
 
         // ajax adding data to database
@@ -170,7 +197,7 @@
         {
             // ajax delete data to database
             $.ajax({
-                url : "<?php echo site_url('transaksi/bankin/ajax_delete')?>/"+id,
+                url : "<?php echo site_url('transaksi/keuangan/bankin/ajax_delete')?>/"+id,
                 type: "POST",
                 dataType: "JSON",
                 success: function(data)
@@ -189,14 +216,13 @@
         }
     }
 
-
     function konfirmasi(id)
     {
         if(confirm('Anda Yakin Akan Konfirmasi Data?'))
         {
             // ajax delete data to database
             $.ajax({
-                url : "<?php echo site_url('transaksi/bankin/ajax_konfirmasi')?>/"+id,
+                url : "<?php echo site_url('transaksi/keuangan/bankin/ajax_konfirmasi')?>/"+id,
                 type: "POST",
                 dataType: "JSON",
                 success: function(data)
@@ -215,18 +241,29 @@
         }
     }
 
+    function formatDate($date,$type = '1') {
+        if ($date === '0000-00-00 00:00:00') {
+            return '';
+        }
+        let date = new Date($date);
+        let m = (date.getMonth() + 1).toString().padStart(2, '0');
+        let d = date.getDate().toString().padStart(2, '0');
+        let y = date.getFullYear();
+        let h = date.getHours().toString().padStart(2, '0');
+        let i = date.getMinutes().toString().padStart(2, '0');
+        let s = date.getSeconds().toString().padStart(2, '0');
 
-    function pemasukan() {
-        location.replace("<?php echo site_url('transaksi/bankin/detail_total_pemasukan')?>");
+        if ($type === '1') {
+            return d + "-" + m + "-" + y + " " + h + ":" + i + ":" + s;
+        } else if ($type === '2') {
+            return d + "-" + m + "-" + y;
+        }else if ($type === '3') {
+            return y + "-" + m + "-" + d;
+        }else if ($type === '4') {
+            return h + ":" + i;
+        }
     }
 
-    function pengeluaran() {
-        location.replace("<?php echo site_url('transaksi/bankin/detail_total_pengeluaran')?>");
-    }
-
-    function bankin() {
-        location.replace("<?php echo site_url('transaksi/bankin')?>");
-    }
 </script>
 <script src="<?php echo base_url('assets/app-assets/vendors/js/extensions/sweetalert.min.js') ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('assets/app-assets/js/scripts/extensions/sweet-alerts.js') ?>" type="text/javascript"></script>

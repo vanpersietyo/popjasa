@@ -5,47 +5,52 @@ class Bankin extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('M_bankin', 'M_bankin');
-		$this->load->model('M_bankout', 'M_bankout');
+		$this->load->model('transaksi/keuangan/M_bankin', 'M_bankin');
+		$this->load->model('transaksi/keuangan/M_bankout', 'M_bankout');
 		$this->load->model('M_bank', 'M_bank');
 		$this->load->model('M_login');
 	}
 
-//	public function index()
-//	{
-//		$data['bank']   = $this->M_bank->get_data();
-//		$data['pages']  = 'transaksi/bankin/list_bankin';
-//		$this->load->view('layout', $data);
-//	}
     public function index()
     {
         $data['bank']       = $this->M_bank->find();
-        $data['pages']      = 'transaksi/bankin/list_bankin';
+        $data['pages']      = 'transaksi/keuangan/bankin/list_bankin';
         $this->load->view('layout', $data);
     }
 
     public function ajax_data()
     {
-        $list = $this->M_bankin->find();
+        $list = $this->M_bankin->find([],[M_bankin::TGL_TRANS => 'desc']);
         $data = array();
 
         if($list){
             /** @var M_bankin $d */
             foreach ($list as $d) {
-                $row = array();
-
-                $row[] = '<button type="button" class="btn btn-blue bg-accent-4 dropdown-toggle btn-sm" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
-                                                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="javascript:void(0)" onclick="konfirmasi(' . "'" . $d->ID_TRANS . "'" . ')"><i class="fa fa-check info"></i><b class="info"> Konfirmasi Data</b></a>
-                                                            <a class="dropdown-item"  href="javascript:void(0)" onclick="edit_person(' . "'" . $d->ID_TRANS . "'" . ')"><i class="ft-edit"></i> Edit Data</a>
-                                                            <a class="dropdown-item" href="javascript:void(0)" onclick="delete_person(' . "'" . $d->ID_TRANS . "'" . ')"><i class="ft-trash"></i> Hapus Data</a>
-                                                        </div>';
+                $row        = array();
+                $konfirmasi = $d->ST_DATA ? "<span class='badge badge-success'>SUDAH KONFIRMASI</span>"
+                    :
+                    "<span class='badge badge-danger'>BELUM KONFIRMASI</span>";
+                $button     = $d->ST_DATA ?
+                    '<button type="button" class="btn btn-blue bg-accent-4 dropdown-toggle btn-sm" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="javascript:void(0)" onclick="lookup(' . "'" . $d->ID_TRANS . "'" . ')"><i class="ft-edit"></i> Lihat Data</a>
+                        </div>'
+                    :
+                        '<button type="button" class="btn btn-blue bg-accent-4 dropdown-toggle btn-sm" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="javascript:void(0)" onclick="konfirmasi(' . "'" . $d->ID_TRANS . "'" . ')"><i class="ft-check"></i> Konfirmasi Data</a>
+                            <a class="dropdown-item" href="javascript:void(0)" onclick="edit_person(' . "'" . $d->ID_TRANS . "'" . ')"><i class="ft-edit"></i> Edit Data</a>
+                            <a class="dropdown-item" href="javascript:void(0)" onclick="delete_person(' . "'" . $d->ID_TRANS . "'" . ')"><i class="ft-trash"></i> Hapus Data</a>
+                        </div>';
+                $row[] = $button;
                 $row[] = $d->ID_TRANS;
-                $row[] = $d->KD_BANK;
-                $row[] = number_format($d->SLD_MASUK);
-                $row[] = $d->KETERANGAN;
                 $row[] = Conversion::convert_date($d->TGL_TRANS,'d-m-Y');
+                $row[] = $d->KD_BANK;
+                $row[] = $d->SLD_MASUK;
+                $row[] = $d->KETERANGAN;
+                $row[] = $konfirmasi;
                 $row[] = $d->ID_OPR;
 
                 $data[] = $row;
@@ -85,12 +90,13 @@ class Bankin extends CI_Controller
     {
         $this->_validate();
         $data = array(
-            'KD_BANK' => $this->input->post('KD_BANK'),
-            'SLD_MASUK' => str_replace(".", "", $this->input->post('SLD_MASUK')),
-            'TGL_BUAT' => strtoupper(date("Y-m-d H:i:s", strtotime($this->input->post('TGL_BUAT')))),
-            'KETERANGAN' => $this->input->post('KETERANGAN'),
+            M_bankin::KD_BANK       => $this->input->post('KD_BANK'),
+            M_bankin::SLD_MASUK     => str_replace(".", "", $this->input->post('SLD_MASUK')),
+            M_bankin::TGL_TRANS     => Conversion::convert_date($this->input->post(M_bankin::TGL_TRANS),'Y-m-d'),
+            M_bankin::KETERANGAN    => $this->input->post(M_bankin::KETERANGAN)
         );
-        $this->M_bankin->update(array('ID_TRANS' => $this->input->post('id')), $data);
+        $id = $this->input->post(M_bankin::ID_TRANS);
+        $this->M_bankin->update([M_bankin::ID_TRANS => $id],$data);
         echo json_encode(array("status" => TRUE));
     }
 
@@ -102,7 +108,6 @@ class Bankin extends CI_Controller
 
     public function ajax_konfirmasi($id)
     {
-        //  $this->_validate();
         $data = array(
             'ST_DATA' => 1,
         );
@@ -120,6 +125,7 @@ class Bankin extends CI_Controller
         //validasi input
         $this->form_validation->set_rules(M_bankin::KD_BANK, 'Kode Bank', 'required|trim');
         $this->form_validation->set_rules(M_bankin::SLD_MASUK, 'Saldo Masuk', 'required|trim');
+        $this->form_validation->set_rules(M_bankin::TGL_TRANS, 'Tanggal Transaksi', 'required|trim');
 
         if ($this->form_validation->run() == FALSE){
             $data['status'] = FALSE;
