@@ -4,21 +4,13 @@ class Bankout extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->model('transaksi/keuangan/M_bankout', 'M_bankout');
-    $this->load->model('master/M_bank', 'M_bank');
+        $this->load->model('M_bank');
 		$this->load->model('M_login');
-		$this->conversion->roleAndPermissionsACL();
 	}
 
 	public function index(){
-    $rek_biaya=$this->M_bankout->sum_rek_biaya();
-    $pembelian=$this->M_bankout->sum_pembelian();
-		$saldo=$this->M_bankout->sum_saldo();
-		$bank_in=$this->M_bankout->sum_saldo_bi();
-    $data['pengeluaran']=($rek_biaya->TOT_REKBIAYA+$pembelian->TOT_PEMBELIAN);
-    $data['sum_bankout']=$this->M_bankout->sum_pengeluaran();
-		$data['sum_saldo']=($saldo->SALDO+$bank_in->SALDO);
-    $data['bank']=$this->M_bank->get_user();
-		$data['pages']='transaksi/keuangan/bankout/list_bankout';
+        $data['bank']   = $this->M_bank->find();
+		$data['pages']  = 'transaksi/keuangan/bankout/list_bankout';
 		$this->load->view('layout',$data);
 	}
 

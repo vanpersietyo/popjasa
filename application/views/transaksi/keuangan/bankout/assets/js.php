@@ -1,11 +1,10 @@
-
-  <script src="<?php echo base_url('assets/app-assets/vendors/js/vendors.min.js') ?>" type="text/javascript"></script>
-  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/ui/jquery.sticky.js') ?>"></script>
-  <script src="<?php echo base_url('assets/app-assets/vendors/js/tables/datatable/datatables.min.js') ?>" type="text/javascript"></script>
-  <script src="<?php echo base_url('assets/app-assets/js/core/app-menu.js') ?>" type="text/javascript"></script>
-  <script src="<?php echo base_url('assets/app-assets/js/core/app.js') ?>" type="text/javascript"></script>
-  <script src="<?php echo base_url('assets/app-assets/js/scripts/customizer.js') ?>" type="text/javascript"></script>
-  <script src="<?php echo base_url('assets/app-assets/js/scripts/tables/datatables/datatable-basic.js') ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/app-assets/vendors/js/vendors.min.js') ?>" type="text/javascript"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/ui/jquery.sticky.js') ?>"></script>
+<script src="<?php echo base_url('assets/app-assets/vendors/js/tables/datatable/datatables.min.js') ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/app-assets/js/core/app-menu.js') ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/app-assets/js/core/app.js') ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/app-assets/js/scripts/customizer.js') ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/app-assets/js/scripts/tables/datatables/datatable-basic.js') ?>" type="text/javascript"></script>
 
 <script type="text/javascript">
 
@@ -13,11 +12,25 @@ var save_method; //for save method string
 var data_customer;
 
 $(document).ready(function() {
+    $('.datepicker').datepicker({
+        autoclose: true,
+        format: "dd-mm-yyyy",
+        todayHighlight: true,
+        orientation: "top auto",
+        todayBtn: true,
+    });
 
-    //datatables
+    $('.datepicker2').datepicker({
+        autoclose: true,
+        format: "dd-mm-yyyy",
+        todayHighlight: true,
+        orientation: "top auto",
+        todayBtn: true,
+    });
+
+    $(".datepicker").datepicker('setDate', new Date());
+
     table = $('#table').DataTable({
-        // Load data for the table's content from an Ajax source
-
         "ajax": {
             "url": "<?php echo site_url('transaksi/keuangan/bankout/ajax_data')?>",
             "type": "POST"
@@ -25,18 +38,14 @@ $(document).ready(function() {
     });
 });
 
-
-
-
 function add_person(){
     save_method = 'add';
     $('#form')[0].reset(); // reset form on modals
     $('.form-group').removeClass('has-error'); // clear error class
     $('.help-block').empty(); // clear error string
     $('#modal_form').modal('show'); // show bootstrap modal
-    $('.modal-title').text('Tambah Master Bank Baru'); // Set Title to Bootstrap modal title
+    $('.modal-title').text('Tambah Kas Keluar'); // Set Title to Bootstrap modal title
 }
-
 
 function edit_person(id)
 {
@@ -44,8 +53,6 @@ function edit_person(id)
     $('#form')[0].reset(); // reset form on modals
     $('.form-group').removeClass('has-error'); // clear error class
     $('.help-block').empty(); // clear error string
-
-
     //Ajax Load data from ajax
     $.ajax({
         url : "<?php echo site_url('transaksi/keuangan/bankout/ajax_edit')?>/" + id,
@@ -72,8 +79,6 @@ function lookup(id)
     $('#form')[0].reset(); // reset form on modals
     $('.form-group').removeClass('has-error'); // clear error class
     $('.help-block').empty(); // clear error string
-
-
     //Ajax Load data from ajax
     $.ajax({
         url : "<?php echo site_url('transaksi/keuangan/bankout/ajax_edit')?>/" + id,
@@ -115,11 +120,9 @@ function clear_all_error()
 function save()
 {
     clear_all_error();
-    //$('#btnSave').text('saving...'); //change button text
-  //  $('#btnSave').attr('disabled',true); //set button disable
     var url;
 
-    if(save_method == 'add') {
+    if(save_method === 'add') {
         url = "<?php echo site_url('transaksi/keuangan/bankout/ajax_add')?>";
     } else {
         url = "<?php echo site_url('transaksi/keuangan/bankout/ajax_update')?>";
@@ -232,7 +235,6 @@ function pengeluaran() {
 function bankout() {
   location.replace("<?php echo site_url('transaksi/keuangan/bankout')?>");
 }
-
 
 </script>
 <script src="<?php echo base_url('assets/app-assets/vendors/js/extensions/sweetalert.min.js') ?>" type="text/javascript"></script>
