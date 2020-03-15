@@ -12,7 +12,8 @@ class M_bankin extends CI_Model
 	const ST_DATA = "ST_DATA";
 	const TGL_TRANS = "TGL_TRANS";
 	const KETERANGAN = "KETERANGAN";
-	const TABLE = "trans_bank_in";
+    const KD_CABANG = "KD_CABANG";
+    const TABLE = "trans_bank_in";
 
 //for inisialisasi.
 	public $ID_TRANS;
@@ -22,6 +23,7 @@ class M_bankin extends CI_Model
 	public $ID_OPR;
 	public $ST_DATA;
 	public $TGL_TRANS;
+	public $KD_CABANG;
 	public $KETERANGAN;
 
 	var $table = 'trans_bank_in';

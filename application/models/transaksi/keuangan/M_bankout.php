@@ -12,6 +12,7 @@ class M_bankout extends CI_Model
     const ST_DATA = "ST_DATA";
     const KETERANGAN = "KETERANGAN";
     const TGL_TRANS = "TGL_TRANS";
+    const KD_CABANG = "KD_CABANG";
     const TABLE = "trans_bank_out";
 
 //for inisialisasi.
@@ -22,6 +23,7 @@ class M_bankout extends CI_Model
     public $ID_OPR;
     public $ST_DATA;
     public $KETERANGAN;
+    public $KD_CABANG;
     public $TGL_TRANS;
 
     var $table = 'trans_bank_out';

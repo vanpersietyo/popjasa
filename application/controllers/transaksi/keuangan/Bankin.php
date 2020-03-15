@@ -73,14 +73,15 @@ class Bankin extends CI_Controller
     {
         $this->_validate();
         $data = array(
-            'ID_TRANS'      => $this->M_bankin->get_ID(),
-            'KD_BANK'       => $this->input->post('KD_BANK'),
-            'SLD_MASUK'     => str_replace(".", "", $this->input->post('SLD_MASUK')),
-            'ST_DATA'       => 0,
-            'TGL_BUAT'      => date("Y-m-d H:i:s"),
-            'KETERANGAN'    => $this->input->post(M_bankin::KETERANGAN),
-            'TGL_TRANS'     => Conversion::convert_date($this->input->post(M_bankin::TGL_TRANS),'Y-m-d'),
-            'ID_OPR'        => $this->session->userdata('yangLogin'),
+            M_bankin::ID_TRANS  => $this->M_bankin->get_ID(),
+            M_bankin::KD_BANK   => $this->input->post('KD_BANK'),
+            M_bankin::SLD_MASUK => str_replace(".", "", $this->input->post('SLD_MASUK')),
+            M_bankin::ST_DATA   => 0,
+            M_bankin::TGL_BUAT  => date("Y-m-d H:i:s"),
+            M_bankin::KETERANGAN=> $this->input->post(M_bankin::KETERANGAN),
+            M_bankin::TGL_TRANS => Conversion::convert_date($this->input->post(M_bankin::TGL_TRANS),'Y-m-d'),
+            M_bankin::ID_OPR    => $this->session->userdata('yangLogin'),
+            M_bankin::KD_CABANG => $this->session->userdata('cabang')
         );
         $this->M_bankin->save($data);
         echo json_encode(array("status" => TRUE));

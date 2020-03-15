@@ -76,14 +76,15 @@ class Bankout extends CI_Controller
     {
         $this->_validate();
         $data = [
-            'ID_TRANS'      => $this->M_bankout->get_ID(),
-            'KD_BANK'       => $this->input->post('KD_BANK'),
-            'SLD_KELUAR'    => str_replace(".", "", $this->input->post('SLD_KELUAR')),
-            'TGL_TRANS'     => Conversion::convert_date($this->input->post(M_bankout::TGL_TRANS),'Y-m-d'),
-            'ST_DATA'       => 0,
-            'TGL_BUAT'      => date("Y-m-d H:i:s"),
-            'KETERANGAN'    => $this->input->post('KETERANGAN'),
-            'ID_OPR'        => $this->session->userdata('yangLogin'),
+            M_bankout::ID_TRANS     => $this->M_bankout->get_ID(),
+            M_bankout::KD_BANK      => $this->input->post('KD_BANK'),
+            M_bankout::SLD_KELUAR   => str_replace(".", "", $this->input->post('SLD_KELUAR')),
+            M_bankout::TGL_TRANS    => Conversion::convert_date($this->input->post(M_bankout::TGL_TRANS),'Y-m-d'),
+            M_bankout::ST_DATA      => 0,
+            M_bankout::TGL_BUAT     => date("Y-m-d H:i:s"),
+            M_bankout::KETERANGAN   => $this->input->post('KETERANGAN'),
+            M_bankout::ID_OPR       => $this->session->userdata('yangLogin'),
+            M_bankout::KD_CABANG    => $this->session->userdata('cabang')
         ];
         $this->M_bankout->save($data);
 

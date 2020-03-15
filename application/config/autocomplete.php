@@ -108,6 +108,10 @@
  * @property M_Trs_asset            $M_Trs_asset
  * @property M_bankin               $M_bankin
  * @property M_bankout              $M_bankout
+ *
+ *  * Report
+ * @property M_v_rekapitulasi_cashflow  $M_v_rekapitulasi_cashflow
+ *
  * Custom  Libraries
  * @property Unirest $unirest
  * @property Conversion $conversion
