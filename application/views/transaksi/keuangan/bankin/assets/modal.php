@@ -30,7 +30,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label class="control-label">Jumlah Saldo Masuk</label>
-                                        <input autocomplete="off" name="SLD_MASUK" placeholder="Jml Saldo Keluar .."
+                                        <input autocomplete="off" name="SLD_MASUK" placeholder="Jml Saldo Masuk .."
                                                id="tanpa-rupiah" class="form-control" type="text">
                                         <div class="NOTIF_ERROR_SLD_MASUK"></div>
                                     </div>
@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <label class="control-label">Keterangan</label>
-                                        <input name="KETERANGAN" placeholder="Keterangan Saldo Keluar .."
+                                        <input name="KETERANGAN" placeholder="Keterangan Saldo Masuk .."
                                                id="tanpa-rupiah" class="form-control" type="text">
                                         <div class="NOTIF_ERROR_KETERANGAN"></div>
                                     </div>
