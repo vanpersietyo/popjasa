@@ -149,7 +149,7 @@ class Cashflow extends CI_Controller {
 
         $order		= [M_v_rekapitulasi_cashflow::TGL => 'ASC',M_v_rekapitulasi_cashflow::ID_TRANS => 'ASC'];
         $ringkasan	= $this->M_v_rekapitulasi_cashflow->select([
-            "column"	=> "SUM(NOMINAL) as TOTAL, KD_BANK, NM_BANK",
+            "column"	=> "sum(IF(TIPE='DEBET',NOMINAL,0-NOMINAL)) as TOTAL, KD_BANK, NM_BANK",
             "where"		=> $where,
             "group"		=> M_v_rekapitulasi_cashflow::KD_BANK,
         ]);

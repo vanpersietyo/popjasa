@@ -42,8 +42,8 @@ $tgl_saldo_awal =  date('d-m-Y', strtotime(Conversion::convert_date($tgl_awal, "
                     <tr>
                         <th class="border-dobel size-header" rowspan="2" style="width: 3%"><span class="header">NO</span></th>
                         <th class="border-dobel size-header" rowspan="2" style="width: 3%"><span class="header">TANGGAL</span></th>
-                        <th class="border-dobel size-header" rowspan="2" style="width: 5%"><span class="header">TRANSAKSI</span></th>
-                        <th class="border-dobel size-header" rowspan="2" style="width: 23%"><span class="header">URAIAN</span></th>
+                        <th class="border-dobel size-header" rowspan="2" style="width: 6%"><span class="header">TRANSAKSI</span></th>
+                        <th class="border-dobel size-header" rowspan="2" style="width: 22%"><span class="header">URAIAN</span></th>
                         <th class="border-dobel size-header" rowspan="2" style="width: 4%"><span class="header">OPERATOR</span></th>
                         <th class="size-header" colspan="2" style="width: 10%"><span class="header">ARUS KAS</span></th>
                         <th class="border-dobel size-header" rowspan="2" style="width: 10%"><span class="header">BANK</span></th>

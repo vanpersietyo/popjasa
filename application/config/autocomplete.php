@@ -97,20 +97,23 @@
  * @property M_Fix_assets                       $M_Fix_assets
  * @property M_bank                             $M_bank
  * @property M_cabang                           $M_cabang
+ *
  * Transaksi
- * @property M_project              $M_project
- * @property M_Project_ket          $M_Project_ket
- * @property M_Project_izin         $M_Project_izin
- * @property M_Project_uraian       $M_Project_uraian
- * @property M_Project_terima       $M_Project_terima
- * @property M_Project_terima_ktp   $M_project_terima_ktp
- * @property M_Project_logs         $M_Project_logs
- * @property M_Trs_asset            $M_Trs_asset
- * @property M_bankin               $M_bankin
- * @property M_bankout              $M_bankout
+ * @property M_project                          $M_project
+ * @property M_Project_ket                      $M_Project_ket
+ * @property M_Project_izin                     $M_Project_izin
+ * @property M_Project_uraian                   $M_Project_uraian
+ * @property M_Project_terima                   $M_Project_terima
+ * @property M_Project_terima_ktp               $M_project_terima_ktp
+ * @property M_Project_logs                     $M_Project_logs
+ * @property M_Trs_asset                        $M_Trs_asset
+ * @property M_bankin                           $M_bankin
+ * @property M_bankout                          $M_bankout
+ * @property M_trs_pengeluaran                  $M_trs_pengeluaran
+ * @property M_trs_detail_rekening_biaya        $M_trs_detail_rekening_biaya
  *
  *  * Report
- * @property M_v_rekapitulasi_cashflow  $M_v_rekapitulasi_cashflow
+ * @property M_v_rekapitulasi_cashflow          $M_v_rekapitulasi_cashflow
  *
  * Custom  Libraries
  * @property Unirest $unirest
