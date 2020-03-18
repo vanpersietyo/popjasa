@@ -123,11 +123,6 @@ $tgl_saldo_awal =  date('d-m-Y', strtotime(Conversion::convert_date($tgl_awal, "
 		<tr>
 			<td colspan="5" style="height: 10px"></td>
 		</tr>
-<!--		<tr>-->
-<!--			<td colspan="2"></td>-->
-<!--			<td colspan="3" class="size-14 fontBold">RINGKASAN</td>-->
-<!--		</tr>-->
-
 		<tr>
 			<td colspan="2"></td>
 			<td class="size-header fontBold size-13">SALDO AWAL <?php echo $tgl_saldo_awal;?></td>

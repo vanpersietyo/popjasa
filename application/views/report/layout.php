@@ -1,16 +1,9 @@
 <!DOCTYPE html>
 <html lang="id-ID">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="google" content="notranslate">
-    <meta name=apple-mobile-web-app-capable content=yes>
-    <meta name=apple-mobile-web-app-status-bar-style content=#207CCA>
-    <meta name="theme-color" content="#207CCA">
     <meta property="og:title" content="<?php echo $title;?>"/>
     <meta property="og:description" content="<?php echo $title;?>"/>
     <title><?php echo $title;?></title>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <style>
         @media all {

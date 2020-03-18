@@ -1,6 +1,7 @@
 <?php
 
-use TelegramBot\Api\BotApi;
+use Mpdf\Mpdf;
+use Mpdf\MpdfException;
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
@@ -151,107 +152,28 @@ class Generate extends CI_Controller
 		}
 	}
 
-	public function tes(){
-	    $this->load->library('PDF_AutoPrint');
-
-        $pdf = new PDF_AutoPrint();
-        $pdf->AddPage();
-        $pdf->SetFont('Arial', '', 20);
-        $pdf->Text(90, 50, 'Print me!');
-        $pdf->AutoPrint();
-        $pdf->Output();
-	}
-
-	public function tes_telegram(){
-		$tes = $this->db->get('teasa');
-//        https://api.telegram.org/bot710184082:AAHnSUgubt6_b_fF0dlxOxRxJMVYU5rwEK4/getUpdates
-	}
-
-	public function tes_pusher(){
-		$this->load->library('Pusher');
-		var_dump($this->pusher->initialize());
-	}
-
-	public function tes_try($number){
-		try {
-			$this->checkNum($number);
-			//If the exception is thrown, this text will not be shown
-			echo 'If you see this, the number is 1 or below';
-		}
-
-		//catch exception
-		catch(Exception $e) {
-			echo 'Message: ' .$e->getMessage().' - '.$e->getCode();
-		}
-	}
-
-	/**
-	 * @param $number
-	 * @return bool
-	 * @throws Exception
-	 */
-	private function checkNum($number)
-	{
-		if($number>1) {
-			throw new Exception("Value must be 1 or below",'404');
-		}
-		return true;
-	}
-
-	public function template(){
-	    $data = [
-	        'link'      => $this->conversion->getController('template_tes',TRUE),
-        ];
-	    $this->load->view('template/layout',$data);
-    }
-
-    public function template_tes(){
-        $pages = 'tes/tes';
-	    echo $this->load->view($pages,'',true);
-	}
-    public function template_tes_2(){
-        $pages = 'tes/tes2';
-	    echo $this->load->view($pages,'',true);
-	}
-
-    public function js(){
-	    $data = [
-	        'pages' => 'tes/js'
-        ];
-        $this->load->view('template/layout',$data);
-    }
-
-    public function get_data($id){
-	    $this->load->model('master/M_user');
-	    $user = $this->M_user->get_by_id($id);
-	    echo json_encode($user);
-    }
-
     public function tes_pdf(){
-		$this->load->library('report');
-//		$this->report->paper('','tes/tes_pdf','A4','','');
-		$var = [
-			'page'          => 'tes/tes_pdf',
-			'size'          => 'A4',
-			'orientation'   => 'portrait',
-			'data'          => ''
-		];
-
-		$this->load->view('template/paper/full_page',$var);
-
-	}
-
-	public function tes_curl(){
-		$url = '';
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
-		$html = curl_exec($ch);
-		$data = curl_exec($ch);
-		curl_close($ch);
-		return $data;
-	}
+        try {
+            $mpdf = new Mpdf([
+                'mode' => 'utf-8',
+                'format' => 'Folio-L',
+                'orientation' => 'L'
+            ]);
+        } catch (MpdfException $e) {
+            echo 'error pdf';
+        }
+        $html = $this->load->view('html_to_pdf',[],true);
+        try {
+            $mpdf->WriteHTML($html);
+        } catch (MpdfException $e) {
+            echo 'error write';
+        }
+        try {
+            $mpdf->Output();
+        } catch (MpdfException $e) {
+            echo 'error output';
+        }
+    }
 }
 
 /* End of file Level.php */

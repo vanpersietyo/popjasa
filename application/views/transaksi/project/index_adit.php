@@ -167,7 +167,7 @@
     }
 
     function invoice(id) {
-        window.open("<?php echo site_url('transaksi/project/cetak_invoice')?>/"+id);
+        window.open("<?php echo site_url('report/sales/invoice/cetak')?>/"+id);
     }
 
 
