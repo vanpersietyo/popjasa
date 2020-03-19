@@ -63,15 +63,17 @@ class Labarugi extends CI_Controller {
         $pdf->SetFont('Arial','B',8);
         $pj=$this->M_labarugi->uang_masuk($TGL01,$TGL02,'1');
         foreach ($pj as $pj ) {
-            $SUMPOPJASA[]=$pj->jumlah_byr;
+            $SUMPOPJASA[]=$pj->profit;
         }
         $jm=$this->M_labarugi->uang_masuk($TGL01,$TGL02,'2');
         foreach ($jm as $jm ) {
-            $SUMJASAMURAH[]=$jm->jumlah_byr;
+            $SUMJASAMURAH[]=$jm->profit;
         }
         $pjs=array_sum($SUMPOPJASA);
         $jsmrh=array_sum($SUMJASAMURAH);
         $total_semua=array_sum($SUMJASAMURAH)+array_sum($SUMPOPJASA);
+//        var_dump($pjs);
+//        exit();
         //value
         $pdf->Cell(40,5,'RINCIAN PEMASUKAN :',0,1,'L');
         $pdf->Cell(10,5,'',0,1);
