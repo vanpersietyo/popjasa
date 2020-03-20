@@ -85,28 +85,16 @@ role="navigation" data-menu="menu-wrapper">
         </ul>
       </li>
 
-      <li class="dropdown nav-item pull-up" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="ft-file-text"></i><span>Report</span> </a>
+      <li class="dropdown nav-item pull-up" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="ft-file-text"></i><span>Laporan</span> </a>
         <ul class="dropdown-menu">
-            <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i class="ft-chevron-right"></i>Produk</a>
-                <ul class="dropdown-menu">
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/kategori_produk')?>" data-toggle="dropdown"><i class="ft-chevrons-right"></i>Kategori Produk</a></li>
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/ukuran_produk')?>" data-toggle="dropdown"><i class="ft-chevrons-right"></i>Ukuran Produk</a></li>
-                </ul>
-            </li>
             <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/biayapengeluaran')?>"
-              data-toggle="dropdown"><i class="icon-calendar"></i>Biaya Pengeluaran<div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti')?></div></a>
-            </li>
-            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/biayapengeluaran')?>"
-              data-toggle="dropdown"><i class="icon-calendar"></i>Biaya Pengeluaran<div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti')?></div></a>
+              data-toggle="dropdown"><i class="icon-calendar"></i>Laporan Biaya Pengeluaran<div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti')?></div></a>
             </li>
             <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/omzet')?>"
-              data-toggle="dropdown"><i class="icon-calendar"></i>Project<div class="badge badge-pill badge-danger"></div></a>
-            </li>
-            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/piutangoutstanding')?>"
-              data-toggle="dropdown"><i class="icon-calendar"></i>Piutang Outstanding<div class="badge badge-pill badge-danger"></div></a>
+              data-toggle="dropdown"><i class="icon-calendar"></i>Laporan Penjualan<div class="badge badge-pill badge-danger"></div></a>
             </li>
             <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/labarugi')?>"
-              data-toggle="dropdown"><i class="icon-calendar"></i>Laba Rugi<div class="badge badge-pill badge-danger"></div></a>
+              data-toggle="dropdown"><i class="icon-calendar"></i>Laporan Laba Rugi<div class="badge badge-pill badge-danger"></div></a>
             </li>
         </ul>
       </li>

@@ -49,11 +49,11 @@
                                 <ul class="nav nav-tabs nav-underline no-hover-bg">
                                     <li class="nav-item">
                                         <a class="nav-link" id="home-tab3" data-toggle="tab" href="#home3" aria-controls="home3"
-                                           aria-expanded="true">List Project</a>
+                                           aria-expanded="true">Laporan Penjualan Berdasarkan Produk</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link active" id="profile-tab3" data-toggle="tab" href="#profile3" aria-controls="profile3"
-                                           aria-expanded="false">Project / Customers</a>
+                                           aria-expanded="false">Laporan Penjualan Berdasarkan Customer</a>
                                     </li>
 
 
@@ -62,7 +62,7 @@
                                     <div role="tabpanel" class="tab-pane" id="home3" aria-labelledby="home-tab3" aria-expanded="true">
                                         <form method="post" target="print_popup" action="<?php echo site_url('report/omzet/cetak') ?>" onsubmit="window.open('about:blank','print_popup','width=1000,height=800');">
                                             <div class="form-body">
-                                                <h4 class="form-section"><i class="ft-clipboard"></i> Laporan All Project</h4>
+                                                <h4 class="form-section"><i class="ft-clipboard"></i> Laporan Penjualan Berdasarkan Produk</h4>
                                                 <div class="row">
                                                     <div class="col-6 mb-2">
                                                         <div class="form-group">
@@ -99,7 +99,7 @@
                                          aria-expanded="false">
                                         <form method="post" target="print_popup" action="<?php echo site_url('report/omzet/cetak') ?>" onsubmit="window.open('about:blank','print_popup','width=1000,height=800');">
                                             <div class="form-body">
-                                                <h4 class="form-section"><i class="ft-clipboard"></i> Laporan Log Biaya Pengeluaran</h4>
+                                                <h4 class="form-section"><i class="ft-clipboard"></i> Laporan Penjualan Berdasarkan Customer</h4>
                                                 <div class="row">
                                                     <div class="col-6 mb-2">
                                                         <div class="form-group">

@@ -174,9 +174,10 @@ label {
                                              <label for="projectinput2">Tipe Pembayaran</label>
                                                <select class="select2 form-control block" id="responsive_single" name="tipe_pay" style="width: 100%" required>
                                                  <option value="" class="disabled">-----</option>
-                                                  <option value="cash" >Cash</option>
-                                                  <option value="tf_bca" >Transfer BCA</option>
-                                                  <option value="tf_mandiri" >Transfer Mandiri</option>
+                                                   <?php foreach ($bank as $bank) { ?>
+                                                       <option value="<?php echo $bank->kd_bank ?>"> <?php echo "$bank->nm_bank" ?> </option>
+                                                   <?php }?>
+
                                                </select>
                                              </div>
                                            </div>

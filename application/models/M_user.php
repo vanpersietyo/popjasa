@@ -13,9 +13,9 @@ class M_user extends CI_Model {
 
 	public function get_user(){
 		$query=$this->db->query("
-			select * 
-			from m_user a,m_karyawan b 
-			where a.id_karyawan=b.id_karyawan
+			select a.*,b.nama_karyawan 
+			from m_user a
+			left join m_karyawan b  on  a.id_karyawan=b.id_karyawan
 			");
 		return $query->result();
 	}

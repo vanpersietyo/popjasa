@@ -3,7 +3,7 @@ $this->load->view('./template/head');
 ?>
     <div class="content-header row">
         <div class="content-header-left col-md-6 col-12 mb-2">
-            <h3 class="content-header-title">Log's Project List</h3>
+            <h3 class="content-header-title">Progress Project List</h3>
             <div class="row breadcrumbs-top">
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb">
@@ -31,7 +31,7 @@ $this->load->view('./template/head');
                 <div class="card">
                     <div class="card-content">
                         <div class="card-body">
-                            <h5 class="content-header-title">Log's Project List</h5>
+                            <h5 class="content-header-title">Progress Project List</h5>
                             <br>
 
                             <div class="table-responsive">
