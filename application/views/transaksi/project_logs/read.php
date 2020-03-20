@@ -12,11 +12,11 @@
 <h2 style="margin-top:0px">Trs_project_logs Read</h2>
 <table class="table">
     <tr>
-        <td>Status Log</td>
+        <td>Status Progress</td>
         <td><?php echo $Status_log; ?></td>
     </tr>
     <tr>
-        <td>Tgl Log</td>
+        <td>Tgl Progress</td>
         <td><?php echo $tgl_log; ?></td>
     </tr>
     <tr>

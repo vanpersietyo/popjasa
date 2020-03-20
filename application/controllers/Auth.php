@@ -50,7 +50,7 @@ class   Auth extends CI_Controller {
 	}
 
 	function logout(){
-		$this->output->delete_cache();
+		    $this->output->delete_cache();
 			$this->load->library('session');
 			$this->session->sess_destroy();
 			redirect('auth');

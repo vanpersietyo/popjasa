@@ -236,7 +236,7 @@
 
             <li class="dropdown nav-item pull-up" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
                                                                           data-toggle="dropdown"><i
-                            class="ft-file-text"></i><span>Report</span> </a>
+                            class="ft-file-text"></i><span>Laporan</span> </a>
                 <ul class="dropdown-menu">
                     <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a
                                 class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i
@@ -244,50 +244,50 @@
                         <ul class="dropdown-menu">
                             <li data-menu=""><a class="dropdown-item"
                                                 href="<?php echo site_url('report/hrd/absensi') ?>"
-                                                data-toggle="dropdown"><i class="la la-file"></i>Kehadiran Karyawan
+                                                data-toggle="dropdown"><i class="la la-file"></i>Laporan Kehadiran Karyawan
                                     <div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti') ?></div>
                                 </a>
                             </li>
                             <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/hrd/gaji') ?>"
-                                                data-toggle="dropdown"><i class="la la-file"></i>Gaji Karyawan
+                                                data-toggle="dropdown"><i class="la la-file"></i>Laporan Gaji Karyawan
                                     <div class="badge badge-pill badge-danger"></div>
                                 </a>
                             </li>
                             <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/hrd/cuti') ?>"
-                                                data-toggle="dropdown"><i class="la la-file"></i>Ketidakhadiran Karyawan
+                                                data-toggle="dropdown"><i class="la la-file"></i>Laporan Ketidak Hadiran Karyawan
                                     <div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti') ?></div>
                                 </a>
                             </li>
                         </ul>
                     </li>
                     <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/biayapengeluaran') ?>"
-                                        data-toggle="dropdown"><i class="icon-calendar"></i>Biaya Pengeluaran
+                                        data-toggle="dropdown"><i class="icon-calendar"></i>Laporan Biaya Pengeluaran
                             <div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti') ?></div>
                         </a>
                     </li>
                     <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/omzet') ?>"
-                                        data-toggle="dropdown"><i class="icon-calendar"></i>Project
+                                        data-toggle="dropdown"><i class="icon-calendar"></i>Laporan Penjualan
                             <div class="badge badge-pill badge-danger"></div>
                         </a>
                     </li>
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/piutangoutstanding') ?>"
-                                        data-toggle="dropdown"><i class="icon-calendar"></i>Piutang Outstanding
-                            <div class="badge badge-pill badge-danger"></div>
-                        </a>
-                    </li>
+<!--                    <li data-menu=""><a class="dropdown-item" href="--><?php //echo site_url('report/piutangoutstanding') ?><!--"-->
+<!--                                        data-toggle="dropdown"><i class="icon-calendar"></i>Piutang Outstanding-->
+<!--                            <div class="badge badge-pill badge-danger"></div>-->
+<!--                        </a>-->
+<!--                    </li>-->
                     <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/labarugi') ?>"
-                                        data-toggle="dropdown"><i class="icon-calendar"></i>Laba Rugi
+                                        data-toggle="dropdown"><i class="icon-calendar"></i>Laporan Laba Rugi
                             <div class="badge badge-pill badge-danger"></div>
                         </a>
                     </li>
                     <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/cashflow') ?>"
-                                        data-toggle="dropdown"><i class="icon-calendar"></i>Arus Kas / Cash Flow
+                                        data-toggle="dropdown"><i class="icon-calendar"></i>Laporan Arus Kas / Cash Flow
                             <div class="badge badge-pill badge-danger"></div>
                         </a>
                     </li>
 
                     <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/rfixasset') ?>"
-                                        data-toggle="dropdown"><i class="icon-calendar"></i>Fix Asset
+                                        data-toggle="dropdown"><i class="icon-calendar"></i>Laporan Asset
                             <div class="badge badge-pill badge-danger"></div>
                         </a>
                     </li>

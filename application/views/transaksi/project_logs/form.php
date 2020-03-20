@@ -5,7 +5,7 @@ $this->load->view('template/head');
           rel="stylesheet">
     <div class="content-header row">
         <div class="content-header-left col-md-6 col-12 mb-2">
-            <h3 class="content-header-title">Log's Project</h3>
+            <h3 class="content-header-title">Progress Project</h3>
             <div class="row breadcrumbs-top">
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb">
@@ -22,7 +22,7 @@ $this->load->view('template/head');
                 <div class="card">
                     <div class="card-content">
                         <div class="card-body">
-                            <h2 style="margin-top:0px">Log's Project <?php echo $button ?></h2>
+                            <h2 style="margin-top:0px">Progress Project <?php echo $button ?></h2>
                             <form action="<?php echo $action; ?>" method="post">
                                 <div class="form-group">
                                     <label for="smallint">Status Log <?php echo form_error('Status_log') ?></label>

@@ -49,7 +49,7 @@ class Biayapengeluaran extends CI_Controller {
         $pdf->SetFont('Times','B',16);
         // mencetak string
         $sysdate=date('d/m/Y H:i');
-        $pdf->Cell(0,7,"LAPORAN REKAPITULASI BIAYA PENGELUARAN",0,2,'C');
+        $pdf->Cell(0,7,"LAPORAN BIAYA PENGELUARAN",0,2,'C');
         $pdf->Cell(0,5,"POPJASA",0,2,'C');
         $pdf->SetFont('Times','B',8);
         $pdf->Cell(10,5,'',0,1);
@@ -110,7 +110,7 @@ class Biayapengeluaran extends CI_Controller {
         $pdf->SetFont('Times','B',16);
         // mencetak string
         $sysdate=date('d/m/Y H:i');
-        $pdf->Cell(0,7,"LAPORAN LOG BIAYA PENGELUARAN",0,2,'C');
+        $pdf->Cell(0,7,"LAPORAN DETAIL BIAYA PENGELUARAN",0,2,'C');
         $pdf->Cell(0,5,"POPJASA",0,2,'C');
         $pdf->SetFont('Times','B',8);
         $pdf->Cell(10,5,'',0,1);

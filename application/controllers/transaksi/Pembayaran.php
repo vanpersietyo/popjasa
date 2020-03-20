@@ -6,6 +6,7 @@ class Pembayaran extends CI_Controller{
 		parent::__construct();
 		$this->load->model('M_Customer');
 		$this->load->model('M_project');
+        $this->load->model('M_bank', 'M_bank');
 		$this->load->model('M_payment');
 		$this->load->model('M_login');
 		$this->M_login->isLogin();
@@ -161,6 +162,7 @@ class Pembayaran extends CI_Controller{
 	//pembayaran
 	function bayar($id){
 		$data['id_project']=$id;
+        $data['bank']= $this->M_bank->get_data();
 		$data['project']=$this->M_project->get_projectid($id);
 		$data['tot_bayar']=$this->M_payment->get_totalbayar($id);
 		$data['jml_project']=$this->M_payment->get_harga($id);

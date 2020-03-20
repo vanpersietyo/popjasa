@@ -48,7 +48,7 @@ class Omzet extends CI_Controller {
         $pdf->SetFont('Times','B',16);
         // mencetak string
         $sysdate=date('d/m/Y H:i');
-        $pdf->Cell(0,7,"LAPORAN PENJUALAN BY CUSTOMER",0,2,'C');
+        $pdf->Cell(0,7,"LAPORAN PENJUALAN BERDASARKAN CUSTOMER",0,2,'C');
         $pdf->Cell(0,5,"POPJASA",0,2,'C');
         $pdf->SetFont('Times','B',8);
         $pdf->Cell(10,5,'',0,1);
@@ -121,7 +121,7 @@ class Omzet extends CI_Controller {
         $pdf->SetFont('Times','B',16);
         // mencetak string
         $sysdate=date('d/m/Y H:i');
-        $pdf->Cell(0,7,"LAPORAN LOG PROJECT",0,2,'C');
+        $pdf->Cell(0,7,"LAPORAN PENJUALAN BERDASARKAN PRODUK",0,2,'C');
         $pdf->Cell(0,5,"POPJASA",0,2,'C');
         $pdf->SetFont('Times','B',8);
         $pdf->Cell(10,5,'',0,1);
@@ -154,7 +154,7 @@ class Omzet extends CI_Controller {
             $pdf->Cell(20,5,number_format($penjualan->jml_order),1,0,'R');
             $pdf->Cell(20,5,number_format($penjualan->profit),1,0,'R');
             $pdf->Cell(20,5,number_format($penjualan->jumlah_byr),1,0,'R');
-            $pdf->Cell(20,5,number_format(($penjualan->profit-$row->jumlah_byr)),1,0,'R');
+            $pdf->Cell(20,5,number_format(($penjualan->profit)-($penjualan->jumlah_byr)),1,0,'R');
 
             $sum_e[]=$penjualan->profit;
             $sum_f[]=$penjualan->jumlah_byr;

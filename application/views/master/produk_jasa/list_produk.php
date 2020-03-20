@@ -72,7 +72,7 @@ label {
                         <th>ID Jasa</th>
                         <th>Nama Jasa</th>
                         <th>Jenis Jasa</th>
-                        <th>Keterangan</th>
+                        <th>Yang di dapat</th>
                         <th>Tgl Dibuat</th>
                         <th>Operator</th>
                         <th>Pengaturan</th>

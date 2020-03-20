@@ -41,19 +41,19 @@
                 <div class="col-xl-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Report Biaya Pengeluaran</h4>
+                            <h4 class="card-title">Laporan Biaya Pengeluaran</h4>
                         </div>
                         <div class="card-content">
                             <div class="card-body">
-                                <p>Berikut Merupakan Laporan Pengeluaran</p>
+                                <p>Berikut Merupakan Laporan Biaya Pengeluaran</p>
                                 <ul class="nav nav-tabs nav-underline no-hover-bg">
                                     <li class="nav-item">
                                         <a class="nav-link" id="home-tab3" data-toggle="tab" href="#home3" aria-controls="home3"
-                                           aria-expanded="true">Rekapitulasi Pengeluaran</a>
+                                           aria-expanded="true">Laporan Biaya Pengeluaran</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link active" id="profile-tab3" data-toggle="tab" href="#profile3" aria-controls="profile3"
-                                           aria-expanded="false">Log Pengeluaran</a>
+                                           aria-expanded="false">Laporan Detail Biaya Pengeluaran</a>
                                     </li>
 
 
@@ -99,7 +99,7 @@
                                          aria-expanded="false">
                                         <form method="post" target="print_popup" action="<?php echo site_url('report/biayapengeluaran/cetak') ?>" onsubmit="window.open('about:blank','print_popup','width=1000,height=800');">
                                             <div class="form-body">
-                                                <h4 class="form-section"><i class="ft-clipboard"></i> Laporan Log Biaya Pengeluaran</h4>
+                                                <h4 class="form-section"><i class="ft-clipboard"></i> Laporan Detail Biaya Pengeluaran</h4>
                                                 <div class="row">
                                                     <div class="col-6 mb-2">
                                                         <div class="form-group">
