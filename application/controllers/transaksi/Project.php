@@ -296,8 +296,14 @@ class Project extends CI_Controller
         foreach ($list as $d) {
             $row = array();
             $row[] = '<h5 class="text-bold-500">' . $d->nama_layanan;
-            $row[] = $d->harga;
-            $row[] = $d->harga_jual;
+            if ($this->session->userdata('akses_user')=='OPS' | $this->session->userdata('akses_user')=='ops'){
+                $row[] = $d->keterangan;
+                //$row[] = $d->keterangan;
+            }else{
+                $row[] = $d->harga;
+                $row[] = $d->harga_jual;
+            }
+
             $date = date("d/m/Y", strtotime($d->tgl_input));
             //$row[] = '<h5 class="text-bold-500">'.$date	;
 
@@ -556,6 +562,7 @@ class Project extends CI_Controller
                 $row[] = '<button type="button" class="btn btn-dark dropdown-toggle btn-sm" data-toggle="dropdown"
 															aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
 															<div class="dropdown-menu">
+															<a class="dropdown-item"  href="javascript:void(0)" onclick="reconfirm_project(' . "'" . $d->id_project . "'" . ')"><i class="ft-x"></i> Batalkan Confirm Project</a>
 															<a class="dropdown-item"  href="javascript:void(0)" onclick="create(' . "'" . $d->id_project . "'" . ')"><i class="ft-file"></i> Lihat Project</a>
 															<a class="dropdown-item"  href="javascript:void(0)" onclick="invoice(' . "'" . $d->id_project . "'" . ')"><i class="ft-printer"></i> Cetak Invoice</a>
 															</div>';
@@ -652,6 +659,17 @@ class Project extends CI_Controller
     {        
         $detail = array(
             'st_data' => 1,
+            'id_project' => $id,
+        );
+        $this->M_project->update(array('id_project' => $id), $detail);
+
+        echo json_encode(array("status" => TRUE));
+    }
+
+    public function reconfirm($id)
+    {
+        $detail = array(
+            'st_data' => 0,
             'id_project' => $id,
         );
         $this->M_project->update(array('id_project' => $id), $detail);

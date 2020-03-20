@@ -141,6 +141,30 @@
         }
     }
 
+    function reconfirm_project($id) {
+        if(confirm('Are you sure cancel confirm this data?'))
+        {
+            // ajax delete data to database
+            $.ajax({
+                url : "<?php echo site_url('transaksi/project/reconfirm')?>/"+$id,
+                type: "POST",
+                dataType: "JSON",
+                success: function(data)
+                {
+                    //if success reload ajax table
+                    $('#modal_form').modal('hide');
+                    reload_table();
+                    swal("Good Job !", "Data Berhasil Diupdate !", "success");
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    swal("Upps Sorry !", "Data Gagal Diupdate !", "warning");
+                }
+            });
+
+        }
+    }
+
     function delete_project(id)
     {
         if(confirm('Are you sure delete this data?'))

@@ -66,7 +66,9 @@ label {
                         <th width="5%"></th>
                         <th>ID Project</th>
                         <th>Nama Customer</th>
-                        <th>Jumlah Penjualan</th>
+                          <?php if ($this->session->userdata('akses_user')!='OPS'){ ?>
+                              <th>Jumlah Penjualan</th>
+                          <?php } ?>
                         <th>Status</th>
                         <th>Tgl</th>
                         <th>Operator</th>

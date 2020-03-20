@@ -125,7 +125,7 @@
                                     <label>Status Perusahaan</label>
                                     <select class="form-control" name="st_project" >
                                         <option value="1">POP JASA</option>
-                                        <option value="2">JASA MURAH</option>
+                                        <option value="2">JASAMURAH</option>
                                     </select>
                                 </div>
                                 <div class="col-md-12">

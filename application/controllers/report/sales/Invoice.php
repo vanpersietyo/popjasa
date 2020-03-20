@@ -33,7 +33,12 @@ class Invoice extends CI_Controller {
 						// membuat halaman baru
 						$pdf->AddPage('P');
 						// setting jenis font yang akan digunakan
+        if($hdr->st_project==1){
             $pdf->Image(base_url().'assets/app-assets/vendors/logo/popjasa.png',180,12,0,20);
+        }else{
+            $pdf->Image(base_url().'assets/app-assets/vendors/logo/jasamurah.png',115,12,0,20);
+        }
+
             $pdf->SetFont('Arial','B',10);
 	            // $pdf->Cell(0,7,"POP JASA , Solusi Perijinan Usaha Anda (Senin - Sabtu Jam 09:00 - 17:00)",0,2,'R');
             $pdf->SetFont('Arial','B',8);
@@ -125,7 +130,12 @@ class Invoice extends CI_Controller {
 										$pdf->SetFont('Arial','B',12);
 										$pdf->Cell(0,20,"TERIMA KASIH",0,2,'C');
 										$pdf->SetFont('Arial','B',10);
-										$pdf->Cell(0,5,"POPJASA SURABAYA",0,2,'C');
+										if($hdr->st_project==1){
+                                            $pdf->Cell(0,5,"POPJASA SURABAYA",0,2,'C');
+                                        }else{
+                                            $pdf->Cell(0,5,"JASAMURAH SURABAYA",0,2,'C');
+                                        }
+
 											$pdf->SetFont('Arial','B',7);
 										$pdf->Cell(0,5,"Ruko Mezzanine, Blok A No.20, Nginden Jangkungan, Kec Sukolilo, Kota Surabaya, Jawa Timur 60118",0,1,'C');
 											$pdf->SetFont('Arial','B',8);
