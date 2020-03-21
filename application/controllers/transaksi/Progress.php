@@ -50,18 +50,32 @@ class Progress extends CI_Controller{
             } else {
                 $status = '<h5 class="text-bold-500 text-red">Not Confirmed';
             }
-
-            $row[] = '<button type="button" class="btn btn-dark dropdown-toggle btn-sm" data-toggle="dropdown"
+            if ($this->session->userdata('akses_user')=='OPS' | $this->session->userdata('akses_user')=='ops'){
+                $row[] = '<button type="button" class="btn btn-dark dropdown-toggle btn-sm" data-toggle="dropdown"
+														aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
+														<div class="dropdown-menu">
+														<a class="dropdown-item"  href="javascript:void(0)" onclick="update_track(' . "'" . $d->id_project . "'" . ')"><i class="ft-share-2"></i> Update Progress</a>
+														</div>';
+            }else{
+                $row[] = '<button type="button" class="btn btn-dark dropdown-toggle btn-sm" data-toggle="dropdown"
 														aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
 														<div class="dropdown-menu">
 														<a class="dropdown-item"  href="javascript:void(0)" onclick="create(' . "'" . $d->id_project . "'" . ')"><i class="ft-file"></i> Lihat Project</a>
 														<a class="dropdown-item"  href="javascript:void(0)" onclick="invoice(' . "'" . $d->id_project . "'" . ')"><i class="ft-printer"></i> Cetak Invoice</a>
 														<a class="dropdown-item"  href="javascript:void(0)" onclick="update_track(' . "'" . $d->id_project . "'" . ')"><i class="ft-share-2"></i> Update Progress</a>
 														</div>';
+            }
+
+
 
             $row[] = '<h5 class="text-bold-500">' . $d->id_project;
             $row[] = '<h5 class="text-bold-500">' . $d->nm_customer;
-            $row[] = '<h5 class="text-bold-500">' . number_format($d->harga_jual);
+            if ($this->session->userdata('akses_user')=='OPS' | $this->session->userdata('akses_user')=='ops'){
+
+            }else{
+                $row[] = '<h5 class="text-bold-500">' . number_format($d->harga_jual);
+            }
+
             $date = date("d/m/Y", strtotime($d->tgl_input));
             $row[] = $status;
             $row[] = '<h5 class="text-bold-500">' . $date;
@@ -86,5 +100,10 @@ class Progress extends CI_Controller{
 	function save_minuta(){
 		echo "sukses";
 	}
+
+	function cetak($id){
+        $data['dokumen'] = $this->M_project->get_dokumen($id);
+        var_dump($data);
+    }
 
 }

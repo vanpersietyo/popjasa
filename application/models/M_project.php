@@ -349,14 +349,28 @@ class M_project extends CI_Model {
     public function get_user_project($id)
     {
         $query = $this->db->query("
-        SELECT a.id_project,a.id_layanan,c.nama_layanan,d.harga,a.id_customer,b.nm_customer,a.harga_jual,a.keterangan,a.input_by,a.tgl_input,a.st_data
+        SELECT a.id_project,a.id_layanan,c.nama_layanan,d.harga,a.id_customer,b.nm_customer,a.harga_jual,a.keterangan,a.input_by,a.tgl_input,a.st_data,c.keterangan
           FROM trs_project a
           JOIN m_customer b ON a.id_customer=b.id_customer
           JOIN m_layanan c ON a.id_layanan=c.id_layanan
           LEFT JOIN m_harga_layanan d ON a.id_layanan=d.id_layanan
-          WHERE a.id_project='PRO20200300001'
+          WHERE a.id_project='$id'
 			");
         return $query->result();
+    }
+
+    function get_dokumen($id){
+        $query = $this->db->query("
+                SELECT *
+                FROM trs_project tp 
+                LEFT JOIN trs_project_terima  AS trm ON (trm.ID_Project = tp.id_project )
+                LEFT JOIN trs_project_uraian AS ur ON (ur.ID_Project = tp.id_project )
+                LEFT JOIN trs_projects_izin AS iz ON (iz.ID_Project = tp.id_project )
+                LEFT JOIN trs_projects_Ket  AS kt ON (kt.ID_Project  = tp.id_project )
+                WHERE tp.`id_project`='$id'
+			");
+        return $query->row();
+
     }
 
 }

@@ -146,24 +146,37 @@
                             <div class="card-body">
                                 <!-- Invoices List table -->
                                 <div class="table-responsive">
-                                    <table id="table2" class="table table-striped table-bordered sourced-data">
+                                    <?php if ($this->session->userdata('akses_user')!='OPS'){
+                                        $id_table='table2';
+                                    }else{
+                                        $id_table='tableops';
+                                    } ?>
+                                    <table id="<?= $id_table ?>" class="table table-striped table-bordered sourced-data">
                                         <thead>
                                         <tr>
-                                            <th>Nama <?php echo $status ?></th>
-                                            <th>Harga Pokok</th>
-                                            <th>Harga Jual</th>
+                                            <th>Nama</th>
+                                            <?php if ($this->session->userdata('akses_user')!='OPS'){ ?>
+                                                <th>Harga Pokok</th>
+                                                <th>Harga Jual</th>
+                                            <?php }else{ ?>
+                                                <th>Yang Di Dapat</th>
+                                            <?php } ?>
                                             <th></th>
                                         </tr>
                                         </thead>
                                         <tbody>
 
                                         </tbody>
+                                        <?php if ($this->session->userdata('akses_user')!='OPS'){ ?>
+                                            <tfoot>
+                                            <th colspan="1">Total Harga Jual</th>
+                                            <th colspan="3"></th>
 
-                                        <tfoot>
-                                        <th colspan="1">Total Harga Jual</th>
-                                        <th colspan="3"></th>
+                                            </tfoot>
+                                        <?php }else{ ?>
 
-                                        </tfoot>
+                                        <?php } ?>
+
 
                                     </table>
                                 </div>
@@ -210,6 +223,12 @@
                                         <div class="form-group">
                                             <button type="button" class="btn mb-1 btn-dark  btn-block pull-up"
                                                     onclick="show_terima()"><a>&nbsp;Formulir Terima </a></button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-6">
+                                        <div class="form-group">
+                                            <button type="button" class="btn mb-1 btn-dark  btn-block pull-up"
+                                                    onclick="cetak()"><a>&nbsp;Cetak Dokumen </a></button>
                                         </div>
                                     </div>
                                 </div>
@@ -877,7 +896,6 @@
                 "url": "<?php echo site_url('transaksi/project/ajax_project2/' . $id_header)?>",
                 "type": "POST"
             },
-
             "footerCallback": function (row, data, start, end, display) {
                 var api = this.api(), data;
 
@@ -918,10 +936,29 @@
                 {mData: '3'},
             ],
 
+
+
+
         });
 
     });
 
+    $(document).ready(function () {
+        table2 = $('#tableops').DataTable({
+
+
+            // Load data for the table's content from an Ajax source
+            "ajax": {
+                "url": "<?php echo site_url('transaksi/project/ajax_project2/' . $id_header)?>",
+                "type": "POST"
+            },
+
+
+
+
+        });
+
+    });
     function reload_table() {
         table.ajax.reload(null, false);
         table2.ajax.reload(null, false); //reload datatable ajax
@@ -954,6 +991,12 @@
         //     alert('Error get data from ajax');
         // }
         // });
+    }
+
+    function cetak() {
+
+        let id = $('[name="id_project"]').val();
+        window.location.href = "<?php echo site_url('/transaksi/progress/cetak/'); ?>" + id;
     }
 
     function show_izin() {
