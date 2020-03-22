@@ -172,28 +172,29 @@ class Generate extends CI_Controller
         $mpdf->Output();
     }
 
-    public function tes_pdf_2(){
+    public function tes_pdf_2($id){
         $mpdf = new Mpdf([
             'mode' => 'utf-8',
             'format' => 'A4-L',
             'orientation' => 'L'
         ]);
-        $html = $this->load->view('html_to_pdf_2', [], true);
+        $data['dokumen'] = $this->M_project->get_dokumen($id);
+        $html = $this->load->view('html_to_pdf_2', $data, true);
         $mpdf->WriteHTML($html);
         $mpdf->Output();
     }
 
     public function dok_progress($id){
-//        $mpdf = new Mpdf([
-//            'mode' => 'utf-8',
-//            'format' => 'A4-L',
-//            'orientation' => 'L'
-//        ]);
+        $mpdf = new Mpdf([
+            'mode' => 'utf-8',
+            'format' => 'A4-L',
+            'orientation' => 'L'
+        ]);
         $data['dokumen'] = $this->M_project->get_dokumen($id);
-        $this->load->view('report/progress', $data);
-//        $html = $this->load->view('report/progress', $data, true);
-//        $mpdf->WriteHTML($html);
-//        $mpdf->Output();
+        //$this->load->view('report/progress', $data);
+        $html = $this->load->view('report/progress',$data,true);
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
     }
 
 

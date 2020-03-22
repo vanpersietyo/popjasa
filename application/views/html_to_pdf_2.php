@@ -72,151 +72,86 @@
             <table width="100%">
                 <thead style="font-weight: bold">
                 <tr>
-                    <th class="fontLeft" style="width: 90%">
-                        <h3>LAPORAN RUGI LABA</h3>
-                        <h4>KELOMPOK PENDAMPINGAN BISNIS</h4>
-                        <table>
-                            <tr>
-                                <td><h5>Periode</h5></td>
-                                <td><h5>: April - 2020</h5></td>
-                            </tr>
-                            <tr>
-                                <td><h5>Tgl Cetak</h5></td>
-                                <td><h5>: 22/03/2020 - 11:58</h5></td>
-                            </tr>
-                            <tr>
-                                <td><h5>Operator</h5></td>
-                                <td><h5>: IZAM</h5></td>
-                            </tr>
-                        </table>
-                    </th>
                     <th class="fontRight" style="width: 10%">
                         <img width="75px" height="75px" src="<?php echo base_url('assets/app-assets/vendors/logo/popjasa.png');?>" alt="logo">
                     </th>
+                    <th class="fontCenter" style="width: 90%">
+                        <h2 align="center">BLANKO PERSYARATAN PERIJINAN USAHA</h2>
+                        <h3 align="center"><?= $dokumen->nm_customer ?></h3>
+                    </th>
+
                 </tr>
                 </thead>
             </table>
             <br>
             <br>
             <!--PENDAPATAN-->
-            <table style="width: 100%">
-                <thead>
+            <table width="100%" border="1" class="strong">
+                <thead style="font-weight: bold">
                 <tr>
-                    <th class="fontLeft header_section" style="width:350px">PENDAPATAN : </th>
-                    <th class="fontRight header_section" style="width:20px"></th>
-                    <th style="width: 150px"></th>
-                    <th style="width: 10px"></th>
-                    <th style="width: 150px"></th>
-                    <th style="width: 10px"></th>
-                    <th style="width: 150px"></th>
+                    <th class="" style="width: 30%">KETERANGAN</th>
+                    <th class="" style="width: 20%">JENIS IJIN</th>
+                    <th class="" style="width: 30%">URAIAN</th>
+                    <th class="" style="width: 30%">TELAH DITERIMA</th>
                 </tr>
                 </thead>
                 <tbody>
-                <!-- PENDAPATAN -->
                 <tr>
-                    <td colspan="7">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td colspan="2">Penjualan Bruto </td>
-                    <td ></td>
-                    <td class="fontRight">&nbsp;&nbsp;Rp.</td>
-                    <td class="fontRight">0</td>
-                    <td colspan="2"></td>
-                </tr>
-                <tr>
-                    <td colspan="2">Retur Penjualan</td>
-                    <td ></td>
-                    <td class="fontRight border_bottom">&nbsp;&nbsp;Rp.</td>
-                    <td class="fontRight border_bottom">0</td>
-                    <td>(-)</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td colspan="5"></td>
-                    <td class="fontRight fontBold size-16">&nbsp;&nbsp;Rp.</td>
-                    <td class="fontRight fontBold size-16">0</td>
-                </tr>
+                    <!--keterangan-->
+                    <td>
+                        <br>EMAIL USAHA : <br> <?= $dokumen->Ket_Email ?> <br>
+                        <br>PASSWORD : <br>  <?= $dokumen->Pass_Email ?><br>
+                        <br>EMAIL DAN NO TELP MASING MASING PENGURUS: <br>  <?= "$dokumen->Email_Pengurus / $dokumen->No_telp" ?><br>
+                        <br>LUASAN TEMPAT USAHA : <br>  <?= $dokumen->Ket_Luas ?><br>
+                        <br>BIDANG USAHA : <br>  <?= $dokumen->Ket_Bidang_Usaha ?><br>
+                        <br>BIDANG USAHA UTAMA : <br>  <?=$dokumen->Ket_Bidang_Usaha_Utama ?><br>
+                        <br> MENGETAHUI <B>POPJASA</B> DARI : <br> <?= $dokumen->Ket_Informasi ?><br>
 
-                <!-- HPP -->
-                <tr>
-                    <th class="fontLeft header_section">HARGA POKOK PENJUALAN : </th>
-                    <th class="fontRight header_section">0%</th>
-                    <th colspan="5"></th>
-                </tr>
-                <tr>
-                    <td colspan="7">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>HPP Bruto </td>
-                    <td class="fontRight">&nbsp;&nbsp;Rp.</td>
-                    <td class="fontRight">0</td>
-                    <td colspan="4"></td>
-                </tr>
-                <tr>
-                    <td>HPP Retur</td>
-                    <td class="fontRight border_bottom">&nbsp;&nbsp;Rp.</td>
-                    <td class="fontRight border_bottom">0</td>
-                    <td colspan="3">(-)</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td colspan="3"></td>
-                    <td class="fontRight fontBold">&nbsp;&nbsp;Rp.</td>
-                    <td class="fontRight fontBold">0</td>
-                    <td colspan="2"></td>
-                </tr>
+                    </td>
+                    <!--izin-->
+                    <td>
+                        <br>AKTA NOTARIS : <br> <?= $dokumen->Izin_Akta_Notaris ?> <br>
+                        <br>PENGESAHAN : <br> <?= $dokumen->Bool_Izin_Pengesahan ?> <br>
+                        <br>NPWP PRIBADI : <br> <?= $dokumen->Bool_NPWP ?> <br>
+                        <br>NPWP (dikirim) PERUSAHAAN : <br> <?= $dokumen->Bool_NPWP_Perusahaan ?> <br>
+                        <br>SKT NPWP (dikirim) : <br> <?= $dokumen->Bool_SKT_Perusahaan ?> <br>
+                        <br>SIUP & TDP (NIB) : <br> <?= $dokumen->Bool_SIUP_TDP ?> <br>
+                        <br>REGISTRASI : <br> <?= $dokumen->Bool_Registrasi ?> <br>
+                        <br>PKP : <br> <?= $dokumen->Bool_PKP ?> <br>
+                        <br>S.K. DOMISILI : <br> <?= $dokumen->Bool_SK_Domisili ?> <br>
+                        <br>Lain-lain : <br> <?= $dokumen->Izin_Lain ?> <br>
+                    </td>
 
-                <!-- GAJI -->
-                <tr>
-                    <th class="fontLeft header_section">BIAYA GAJI : </th>
-                    <th class="fontRight header_section">0%</th>
-                    <th colspan="5"></th>
-                </tr>
-                <tr>
-                    <td colspan="7">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td colspan="3"></td>
-                    <td class="fontRight fontBold">&nbsp;&nbsp;Rp.</td>
-                    <td class="fontRight fontBold">0</td>
-                    <td colspan="2"></td>
-                </tr>
+                    <!--URAIAN -->
+                    <td>
+                        <br>NAMA PERUSAHAAN : <br> <?= $dokumen->nm_perusahaan ?> <br>
+                        <br>MODAL DASAR : <br> Rp. <?= number_format($dokumen->modal) ?> <br>
+                        <br>MODAL DISETOR : <br> Rp. <?= number_format($dokumen->modal_disetor) ?> <br>
+                        <br>PRESENTASE PEMBAGIAN SAHAM : <br> <?= $dokumen->presentase_shm ?> <br>
+                        <br>HARGA TIAP SAHAM : <br> <?= $dokumen->hrg_saham ?> <br>
+                        <br>NO TELP: <br> <?= $dokumen->No_Telp ?> <br>
+                        <br>NO FAX : <br> <?= $dokumen->No_Fax ?> <br>
+                        <br>KEL  : <br> <?= $dokumen->kelurahan ?> <br>
+                        <br>KOTA/KABUPATEN  : <br> <?= "$dokumen->kota / $dokumen->kabupaten" ?> <br>
+                    </td>
 
-                <!-- OPERASIONAL -->
-                <tr>
-                    <th class="fontLeft header_section">BIAYA OPERASIONAL : </th>
-                    <th class="fontRight header_section">0%</th>
-                    <th colspan="5"></th>
-                </tr>
-                <tr>
-                    <td colspan="7">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td colspan="3"></td>
-                    <td class="fontRight fontBold">&nbsp;&nbsp;Rp.</td>
-                    <td class="fontRight fontBold">0</td>
-                    <td colspan="2"></td>
-                </tr>
+                    <!--DITERIMA -->
+                    <td>
+                        <br>NO KTP  : <br> <?= $dokumen->bool_ktp ?> <br>
+                        <br>NAMA KTP : <br> <?= $dokumen->Ket_Email ?> <br>
+                        <br>NPWP PRIBADI (SEMUA PENGURUS)  : <br> <?= $dokumen->bool_npwp ?> <br>
+                        <br>SERTIFIKAT T. USAHA : <br> <?= $dokumen->Ket_Email ?> <br>
+                        <br>IMB (IJIN MENDIRIKAN BANGUNAN) : <br> <?= $dokumen->bool_imb ?> <br>
+                        <br>STEMPEL: <br> <?= $dokumen->bool_stempel ?> <br>
+                        <br>MATERAI : <br> <?= $dokumen->jml_materai ?> <br>
+                        <br>S.K. DOMISILI  : <br> <?= $dokumen->bool_sk_domisili ?> <br>
+                        <br>SURAT SEWA  : <br> <?= $dokumen->bool_surat_sewa ?> <br>
+                    </td>
 
-                <!-- TOTAL PENGELUARAN-->
-                <tr>
-                    <th colspan="5"></th>
-                    <th style="width: 10px" class="border_bottom fontBold fontRight size-16">&nbsp;&nbsp;Rp.</th>
-                    <th style="width: 150px" class="border_bottom fontBold fontRight size-16">0</th>
-                </tr>
-                <tr>
-                    <td colspan="7">&nbsp;</td>
-                </tr>
-                <!-- PENDAPATAN BERSIH -->
-                <tr>
-                    <th class="fontLeft header_section">PENDAPATAN / LABA BERSIH </th>
-                    <th class="fontRight header_section">0%</th>
-                    <th colspan="3"></th>
-                    <th class="fontBold size-18">&nbsp;&nbsp;Rp.</th>
-                    <th class="fontBold fontRight size-18">0</th>
                 </tr>
                 </tbody>
             </table>
+
         </td>
     </tr>
 </table>

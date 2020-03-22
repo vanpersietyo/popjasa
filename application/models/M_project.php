@@ -361,7 +361,7 @@ class M_project extends CI_Model {
 
     function get_dokumen($id){
         $query = $this->db->query("
-               SELECT cs.`nm_customer`,cs.`kota_customer`,kt.*, iz.*,ur.*,trm.*
+               SELECT cs.`nm_customer`,cs.`kota_customer`,kt.*, iz.*,ur.*,trm.*,tp.*
                 FROM trs_project tp 
                 LEFT JOIN trs_project_terima  AS trm ON (trm.ID_Project = tp.id_project )
                 LEFT JOIN trs_project_uraian AS ur ON (ur.ID_Project = tp.id_project )

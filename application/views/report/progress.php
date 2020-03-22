@@ -72,14 +72,26 @@
             <table width="100%">
                 <thead style="font-weight: bold">
                 <tr>
-                    <th class="" style="width: 10%">
-                        <img width="75px" height="75px" src="<?php echo base_url('assets/app-assets/vendors/logo/popjasa.png');?>" alt="logo">
-                    </th>
-                    <th class="fontCenter style="width: 90%">
-                        <h2 align="center">BLANKO PERSYARATAN PERIJINAN USAHA</h2>
-                        <h3 align="center"><?= $dokumen->nm_customer ?></h3>
-<!--                        <h3 align="center">--><?//= $dokumen->kota_customer ?><!--</h3>-->
-                    </th>
+
+                        <?php if ($dokumen->st_project==1) { ?>
+                             <th class="fontRight" style="width: 10%">
+                                <img width="75px" height="75px" src="<?php echo base_url('assets/app-assets/vendors/logo/popjasa.png');?>" alt="logo">
+                             </th>
+                            <th class="fontCenter" style="width: 90%">
+                                <h2 align="center">BLANKO PERSYARATAN PERIJINAN USAHA</h2>
+                                <h3 align="center"><?= $dokumen->nm_customer ?></h3>
+                            </th>
+                        <?php } else { ?>
+                            <th class="fontLeft" style="width: 25%">
+                                <img width="20%" src="<?php echo base_url('assets/app-assets/vendors/logo/jasamurah.png');?>" alt="logo">
+                            </th>
+                            <th class="fontCenter" style="width: 85%">
+                                <h2 align="center">BLANKO PERSYARATAN PERIJINAN USAHA</h2>
+                                <h3 align="center"><?= $dokumen->nm_customer ?></h3>
+                            </th>
+                        <?php } ?>
+
+
 
                 </tr>
                 </thead>
@@ -152,25 +164,7 @@
                 </tr>
                 </tbody>
             </table>
-            <table width="100%">
-                <thead style="font-weight: bold">
-                <tr>
-                    <th class="fontCenter style="width: 100% text-right" >
-                    <br>
-                    <h5 align="right">PENERIMA   <br></h5>
-                    <br> <br> <br <br> <br>
-                    </th>
 
-                </tr>
-                <tr>
-                    <th class="fontCenter style="width: 100% text-center" >
-                    <br>
-                    <h5 align="center">NOTE : Managemen Tidak Bertanggung Jawab Jika Ada Kehilangan atau Kerusakan    <br></h5>
-                    </th>
-
-                </tr>
-                </thead>
-            </table>
         </td>
     </tr>
 </table>
