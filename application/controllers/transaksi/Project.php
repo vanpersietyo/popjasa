@@ -576,12 +576,18 @@ class Project extends CI_Controller
 															<a class="dropdown-item" href="javascript:void(0)" onclick="delete_project(' . "'" . $d->id_project . "'" . ')"><i class="ft-trash"></i> Delete Project</a>
 															</div>';
             }
+            if ($d->st_project==1){
+                $project_a='<span class="badge badge-primary badge-md">Pop Jasa</span>';
+            }else{
+                $project_a='<span class="badge badge-warning badge-md">Jasamurah</span>';
+            }
 
             $row[] = '<h5 class="text-bold-500">' . $d->id_project;
             $row[] = '<h5 class="text-bold-500">' . $d->nm_project;
             $row[] = '<h5 class="text-bold-500">' . $d->nm_customer;
             $row[] = '<h5 class="text-bold-500">' . number_format($d->harga_jual);
-            $row[] = $status;
+            $row[] =  $status;
+            $row[] =  $project_a;
             $row[] =  '<h5 class="text-bold-500">' .Conversion::convert_date($d->tgl_input,'d-m-Y');
             $row[] = '<h5 class="text-bold-500">' . $d->input_by;
 

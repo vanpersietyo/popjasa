@@ -57,6 +57,7 @@
 						  <th>Nama Customer</th>
 						  <th>Jumlah Penjualan</th>
 						  <th>Status</th>
+                          <th>Perusahaan</th>
 						  <th>Tgl</th>
 						  <th>Operator</th>
                       </tr>
@@ -92,7 +93,7 @@
             // columnDefs: [
             //     { type: 'date-uk', targets: 6 }
             // ],
-            "order": [[ 5, "desc" ]],
+            "order": [[ 6, "desc" ]],
 
             dom: 'Bfrtip',
             buttons: [
@@ -104,10 +105,10 @@
                         page: "current"
                     }).nodes(),
                     i = null;
-                c.column(5, {
+                c.column(6, {
                     page: "current"
                 }).data().each(function (e, c) {
-                    i !== e && ($(r).eq(c).before('<tr class="group"><td colspan="8">' + e + "</td></tr>"), i = e)
+                    i !== e && ($(r).eq(c).before('<tr class="group"><td colspan="9">' + e + "</td></tr>"), i = e)
                 })
             }
         });
