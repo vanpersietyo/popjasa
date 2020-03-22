@@ -153,26 +153,25 @@ class Generate extends CI_Controller
 	}
 
     public function tes_pdf(){
-        try {
-            $mpdf = new Mpdf([
-                'mode' => 'utf-8',
-                'format' => 'Folio-L',
-                'orientation' => 'L'
-            ]);
-        } catch (MpdfException $e) {
-            echo 'error pdf';
-        }
-        $html = $this->load->view('html_to_pdf',[],true);
-        try {
-            $mpdf->WriteHTML($html);
-        } catch (MpdfException $e) {
-            echo 'error write';
-        }
-        try {
-            $mpdf->Output();
-        } catch (MpdfException $e) {
-            echo 'error output';
-        }
+        $mpdf = new Mpdf([
+            'mode' => 'utf-8',
+            'format' => 'A4-L',
+            'orientation' => 'L'
+        ]);
+        $html = $this->load->view('html_to_pdf', [], true);
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+    }
+
+    public function tes_pdf_2(){
+        $mpdf = new Mpdf([
+            'mode' => 'utf-8',
+            'format' => 'A4-L',
+            'orientation' => 'L'
+        ]);
+        $html = $this->load->view('html_to_pdf_2', [], true);
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
     }
 }
 
