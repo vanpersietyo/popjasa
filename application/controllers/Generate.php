@@ -63,103 +63,66 @@ class Generate extends CI_Controller
             echo 'M_'.strtolower(str_replace('V_','',$table)).'::T_'.$value.'=>$this->input->post'."(".'M_'.strtolower(str_replace('V_','',$table)).'::T_'.$value."),<br>";
         }
         echo "];";
-
     }
 
-	public function update_database($method = 'url'){
-		if ($handle = opendir('database/update/')) {
+    public function update_database($method = 'url'){
+        if ($handle = opendir('database/update/')) {
+            $files = [];
+            while (false !== ($entry = readdir($handle))) {
+                if ($entry != "." && $entry != "..") {
+                    $files[] = $entry;
+                }
+            }
+            closedir($handle);
+        }
+        sort($files);
+        foreach ($files as $item) {
+            $file 		= base_url('database/update/').$item;
+            $exist 		= $this->db->get_where('log_update',['script_name' => $item]);
+            if($exist->num_rows()){
+                echo $item." Sudah Ada.";
+                echo $method === 'url' ? '<br>' : "\n";
+            }else{
+                echo $method === 'url' ? '<br>' : "\n";
+                echo "Starting Execute Script : $item.";
+                echo $method === 'url' ? '<br>' : "\n";
 
-			$files = [];
-			while (false !== ($entry = readdir($handle))) {
-				if ($entry != "." && $entry != "..") {
-					$files[] = "$entry";
-					$exist = $this->db->get_where('log_update',['script_name' => $entry]);
-					if($exist->num_rows()){
-//						if($method == 'cli'){
-//							echo "Script $entry Sudah Ada. \n";
-//						}else{
-//							echo "Script $entry Sudah Ada. <br>";
-//						}
-					}else{
-//						Untuk testing
-//						$this->db->insert('log_update',['script_name' => $entry]);
-
-						if($method == 'cli'){
-//							echo "Script $entry Belum Ada. Starting Execute $entry.\n";
-							echo "Starting Execute $entry.\n";
-						}else{
-//							echo "Script $entry belum Ada. Starting Execute $entry.<br>";
-							echo "Starting Execute $entry.<br>";
-						}
-
-						$file 		= base_url('database/update/').$entry;
-						$filename 	= $file;
-						// Temporary variable, used to store current query
-						$templine = '';
-						// Read in entire file
-						$lines = file($filename);
-						// Loop through each line
-
-                        if($lines){
-                            $this->db->trans_begin();
-                            foreach ($lines as $line)
-                            {
-                                // Skip it if it's a comment
-                                if (substr($line, 0, 2) == '--' || $line == '')
-                                    continue;
-                                // Add this line to the current segment
-                                $templine .= $line;
-                                // If it has a semicolon at the end, it's the end of the query
-                                if (substr(trim($line), -1, 1) == ';')
-                                {
-                                    // Perform the query
-                                    if($method == 'cli'){
-                                        echo "$templine\n";
-                                    }else{
-                                        echo "<pre><code>".$templine.'</code></pre><br>';
-                                    }
-                                    $this->db->query($templine) ; //or print('Error performing query \'<strong>' . $templine . '\': ' . mysql_error() . '<br /><br />');
-                                    // Reset temp variable to empty
-                                    $templine = '';
-                                }
+                $templine 	= '';
+                $lines 		= file($file);
+                if ($lines) {
+                    foreach ($lines as $line) {
+                        if (substr($line, 0, 2) == '--' || $line == '')
+                            continue;
+                        $templine .= $line;
+                        if (substr(trim($line), -1, 1) == ';') {
+                            if($method === 'cli'){
+                                echo "$templine\n";
+                            }else{
+                                echo "<pre><code>".$templine.'</code></pre><br>';
                             }
+                            $this->db->trans_begin();
+                            $this->db->query($templine) ; //or print('Error performing query \'<strong>' . $templine . '\': ' . mysql_error() . '<br /><br />');
+                            $templine = '';
                             if ($this->db->trans_status() === FALSE)
                             {
                                 $this->db->trans_rollback();
-                                if($method == 'cli'){
-                                    echo "$entry Gagal Dieksekusi.\n";
-                                }else{
-                                    echo "$entry Gagal Dieksekusi.<br>";
-                                }
+                                echo "$item Gagal Dieksekusi.";
+                                echo $method === 'url' ? '<br>' : "\n";
                             }
                             else
                             {
                                 $this->db->trans_commit();
-                                if($method == 'cli'){
-                                    echo "$entry Berhasil Dieksekusi.\n";
-                                }else{
-                                    echo "$entry Berhasil Dieksekusi.<br>";
-                                }
-                            }
-                        }else{
-                            if($method == 'cli'){
-                                echo "$entry Tidak Bisa Dieksekusi.\n";
-                            }else{
-                                echo "$entry Tidak Bisa Dieksekusi.<br>";
+                                echo "$item Berhasil Dieksekusi.";
+                                echo $method === 'url' ? '<br>' : "\n";
                             }
                         }
-					}
-				}
-			}
-			closedir($handle);
-		}
-		if($method == 'cli'){
-			echo "Database Sudah Terupdate.\n";
-		}else{
-			echo "Database Sudah Terupdate.<br>";
-
-		}
-	}
+                    }
+                }
+            }
+        }
+        echo "Database Sudah Terupdate.";
+        echo $method === 'url' ? '<br>' : "\n";
+    }
 
     public function tes_pdf(){
         $mpdf = new Mpdf([

@@ -1,0 +1,2174 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `bank`
+--
+
+CREATE TABLE `bank` (
+  `kd_bank` varchar(30) NOT NULL DEFAULT '' COMMENT 'KODE BANK',
+  `nm_bank` varchar(200) DEFAULT NULL COMMENT 'NAMA PEMEGANG REKENING',
+  `st_data` varchar(1) DEFAULT NULL COMMENT 'STATUS DATA (0=BELUM DIGUNAKAN, 1=SUDAH DIGUNAKAN)',
+  `tgl_trans` timestamp NULL DEFAULT current_timestamp() COMMENT 'TGL DIBUAT / TGL DATA DI INSERT',
+  `operator` varchar(20) DEFAULT NULL COMMENT 'OPERATOR'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='untuk menyimpan tabel master bank';
+
+--
+-- Dumping data untuk tabel `bank`
+--
+
+INSERT INTO `bank` (`kd_bank`, `nm_bank`, `st_data`, `tgl_trans`, `operator`) VALUES
+('BCA', 'BANK CENTRAL ASIA', '0', '2020-01-27 13:44:04', 'SURABAYA'),
+('MANDIRI', 'MANDIRI', '0', '2020-01-27 13:44:59', 'SURABAYA'),
+('CASH', 'CASH', '0', '2020-01-27 13:45:07', 'SURABAYA'),
+('BRI', 'BRI', '0', '2020-03-13 07:13:08', 'NANDA');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `kartu_piutang_karyawan`
+--
+
+CREATE TABLE `kartu_piutang_karyawan` (
+  `id_trans` varchar(30) NOT NULL DEFAULT '' COMMENT 'NO. ID TRANSAKSI',
+  `id_karyawan` varchar(30) NOT NULL DEFAULT '' COMMENT 'KODE KARYAWAN',
+  `jumlah` decimal(10,2) DEFAULT NULL COMMENT 'JUMLAH',
+  `st_kartu` varchar(1) DEFAULT NULL COMMENT 'STATUS KARTU (D=DEBET, K=KREDIT)',
+  `note_kartu` varchar(150) DEFAULT NULL COMMENT 'KETERANGAN MUTASI PRODUCT',
+  `tgl_buat` timestamp NULL DEFAULT current_timestamp() COMMENT 'TGL. DIBUAT',
+  `id_opr` varchar(20) DEFAULT NULL COMMENT 'OPERATOR'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Table Kartu Piutang Karyawan';
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `log_customer`
+--
+
+CREATE TABLE `log_customer` (
+  `id_customer` varchar(20) NOT NULL DEFAULT '',
+  `kd_cabang` varchar(255) DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL,
+  `status` varchar(2) DEFAULT NULL COMMENT '1=contacted,2=deals,3=lost'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `log_customer`
+--
+
+INSERT INTO `log_customer` (`id_customer`, `kd_cabang`, `tgl_input`, `status`) VALUES
+('CUS-20200300001', 'SBY', '2020-03-19 15:23:00', '1'),
+('CUS-20200300002', 'SBY', '2020-03-19 15:35:51', '1'),
+('CUS-20200300003', 'SBY', '2020-03-19 15:44:40', '1'),
+('CUS-20200300004', 'SBY', '2020-03-19 15:49:12', '1'),
+('CUS-20200300005', 'SBY', '2020-03-19 15:54:40', '1'),
+('CUS-20200300006', 'SBY', '2020-03-19 16:02:34', '1'),
+('CUS-20200300007', 'SBY', '2020-03-19 16:06:18', '1'),
+('CUS-20200300008', 'SBY', '2020-03-21 09:57:57', '1'),
+('CUS-20200300009', 'SBY', '2020-03-21 11:06:45', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `log_m_karyawan`
+--
+
+CREATE TABLE `log_m_karyawan` (
+  `id_log` int(11) NOT NULL DEFAULT 0,
+  `id_karyawan` varchar(255) NOT NULL DEFAULT '',
+  `kd_cabang` varchar(255) DEFAULT NULL,
+  `id_jabatan` varchar(255) DEFAULT NULL,
+  `nama_karyawan` varchar(255) DEFAULT NULL,
+  `no_rek` varchar(255) DEFAULT NULL,
+  `atas_nama` varchar(255) DEFAULT NULL,
+  `nm_bank` varchar(255) DEFAULT NULL,
+  `status_karyawan` varchar(255) DEFAULT NULL,
+  `jns_kelamin` varchar(255) DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL,
+  `inputby` varchar(255) DEFAULT NULL,
+  `jml_gaji` int(11) DEFAULT 0,
+  `updated_gaji` datetime DEFAULT NULL,
+  `updated_gaji_by` varchar(255) DEFAULT NULL,
+  `keterangan_gaji` varchar(255) DEFAULT NULL,
+  `jml_piutang` int(11) DEFAULT 0 COMMENT 'JUMLAH AKUMULASI PIUTANG KARYAWAN',
+  `jml_bayar` int(11) DEFAULT 0 COMMENT 'jumlah total bayar',
+  `st_data` varchar(1) DEFAULT '0' COMMENT '1=digunakan 0=tidak di gunakan',
+  `tgl_mulai_bekerja` date DEFAULT current_timestamp()
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `log_m_karyawan`
+--
+
+INSERT INTO `log_m_karyawan` (`id_log`, `id_karyawan`, `kd_cabang`, `id_jabatan`, `nama_karyawan`, `no_rek`, `atas_nama`, `nm_bank`, `status_karyawan`, `jns_kelamin`, `keterangan`, `tgl_input`, `inputby`, `jml_gaji`, `updated_gaji`, `updated_gaji_by`, `keterangan_gaji`, `jml_piutang`, `jml_bayar`, `st_data`, `tgl_mulai_bekerja`) VALUES
+(0, 'PJS-20200100001', 'SBY', 'mng', 'Rio', NULL, NULL, NULL, '1', 'L', 'ganti jabatan', '2020-01-11 18:50:10', 'SURABAYA', 5000000, '2020-03-05 14:39:30', 'SURABAYA', '', 0, 0, '0', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_agen`
+--
+
+CREATE TABLE `m_agen` (
+  `id_agen` int(11) NOT NULL,
+  `nm_agen` varchar(255) DEFAULT NULL,
+  `email_agen` varchar(255) DEFAULT NULL,
+  `telp_agen` varchar(255) DEFAULT NULL,
+  `hp_agen` varchar(255) DEFAULT NULL,
+  `alamat_agen` varchar(255) DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `tgl_trans` datetime DEFAULT NULL,
+  `operator` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_cabang`
+--
+
+CREATE TABLE `m_cabang` (
+  `kd_cabang` varchar(11) NOT NULL DEFAULT '',
+  `nm_cabang` varchar(255) DEFAULT NULL,
+  `status` varchar(2) DEFAULT NULL COMMENT 'A=AKTIF N=NON AKTIF',
+  `inputby` varchar(255) DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL,
+  `extra_field` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='master cabang';
+
+--
+-- Dumping data untuk tabel `m_cabang`
+--
+
+INSERT INTO `m_cabang` (`kd_cabang`, `nm_cabang`, `status`, `inputby`, `tgl_input`, `extra_field`) VALUES
+('MJK', 'Mojokerto', 'A', 'admin', NULL, NULL),
+('MLG', 'Malang', 'A', 'admin', NULL, NULL),
+('SBY', 'Surabaya', 'A', 'admin', NULL, NULL),
+('YYK', 'Yogyakarta', 'A', 'admin', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_customer`
+--
+
+CREATE TABLE `m_customer` (
+  `id_customer` varchar(20) NOT NULL DEFAULT '',
+  `kd_cabang` varchar(255) DEFAULT NULL,
+  `Agen` varchar(255) DEFAULT NULL,
+  `nm_customer` varchar(255) DEFAULT NULL,
+  `alamat` text DEFAULT NULL,
+  `nm_perusahaan` varchar(255) DEFAULT NULL,
+  `alamat_perusahaan` text DEFAULT NULL,
+  `jns_usaha` varchar(255) DEFAULT NULL,
+  `bidang_usaha` varchar(255) DEFAULT NULL,
+  `tlp_customer` varchar(255) DEFAULT NULL,
+  `telp2_customer` varchar(255) DEFAULT NULL,
+  `email_customer` varchar(255) DEFAULT NULL,
+  `kota_customer` varchar(255) DEFAULT NULL,
+  `keterangan` text DEFAULT NULL,
+  `inputby` varchar(255) DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL,
+  `status` varchar(2) DEFAULT NULL COMMENT '1=contacted,2=deals,3=lost',
+  `keterangan_deals` text DEFAULT NULL,
+  `keterangan_lost` text DEFAULT NULL,
+  `st_data` varchar(2) DEFAULT '0' COMMENT '0=tidak dipakai 1=dipakai',
+  `id_layanan` varchar(255) DEFAULT NULL COMMENT 'dia tanya produk apa ?'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `m_customer`
+--
+
+INSERT INTO `m_customer` (`id_customer`, `kd_cabang`, `Agen`, `nm_customer`, `alamat`, `nm_perusahaan`, `alamat_perusahaan`, `jns_usaha`, `bidang_usaha`, `tlp_customer`, `telp2_customer`, `email_customer`, `kota_customer`, `keterangan`, `inputby`, `tgl_input`, `status`, `keterangan_deals`, `keterangan_lost`, `st_data`, `id_layanan`) VALUES
+('CUS-20200300001', 'SBY', NULL, 'CV MEGA KARYA', '', '', '', NULL, NULL, '', '', '', '', '', 'VERA', '2020-03-19 15:23:11', '2', '', NULL, '0', 'PJS-20200300021'),
+('CUS-20200300002', 'SBY', NULL, 'PT SUCAHI', '', '', '', NULL, NULL, '', '', '', '', '', 'TITIN', '2020-03-19 15:35:58', '2', '', NULL, '0', ''),
+('CUS-20200300003', 'SBY', NULL, 'CV SANJAYA PRATAMA', '', '', '', NULL, NULL, '', '', '', '', '', 'TITIN', '2020-03-19 15:44:48', '2', '', NULL, '0', 'PJS-20200300136'),
+('CUS-20200300004', 'SBY', NULL, 'CV MANDIRI GLOBAL NUSA', '', '', '', NULL, NULL, '', '', '', 'Surabaya', '', 'VERA', '2020-03-19 15:49:22', '2', '', NULL, '0', 'PJS-20200300021'),
+('CUS-20200300005', 'SBY', NULL, 'CV FAZA TEKNIK', '', '', '', NULL, NULL, '', '', '', '', '', 'NANDA', '2020-03-19 15:58:44', '2', '', NULL, '0', 'PJS-20200300100'),
+('CUS-20200300006', 'SBY', NULL, 'CV RAGA TECH SYSTEM', '', '', '', NULL, NULL, '', '', '', '', '', 'VERA', '2020-03-19 16:02:40', '2', '', NULL, '0', 'PJS-20200300100'),
+('CUS-20200300007', 'SBY', NULL, 'CV JATA IDE', '', '', '', NULL, NULL, '', '', '', '', '', 'VERA', '2020-03-19 16:06:24', '2', '', NULL, '0', 'PJS-20200300027'),
+('CUS-20200300008', 'SBY', NULL, 'PT KREASI ALAM TEKNOLOGI', '', 'PT KREASI ALAM TEKNOLOGI', '', NULL, NULL, '', '', '', '', '', 'NANDA', '2020-03-21 09:58:31', '2', '', NULL, '0', ''),
+('CUS-20200300009', 'SBY', NULL, 'TES JASAMURA', '', '', '', NULL, NULL, '', '', '', 'Surabaya', '', 'NANDA', '2020-03-21 11:06:52', '2', '', NULL, '0', 'PJS-20200300021');
+
+--
+-- Trigger `m_customer`
+--
+DELIMITER $$
+CREATE TRIGGER `log_contacted` AFTER INSERT ON `m_customer` FOR EACH ROW BEGIN
+  INSERT INTO log_customer
+   (id_customer,kd_cabang,`status`,tgl_input)
+   VALUES
+   ( new.id_customer,new.kd_cabang,new.status,new.tgl_input);
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_detail_layanan`
+--
+
+CREATE TABLE `m_detail_layanan` (
+  `id_detail_layanan` varchar(20) NOT NULL DEFAULT '',
+  `id_layanan` varchar(255) DEFAULT NULL,
+  `id_syrt_layanan` varchar(255) DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL,
+  `inputby` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_fix_assets`
+--
+
+CREATE TABLE `m_fix_assets` (
+  `Fa_ID` varchar(15) NOT NULL,
+  `Barcode` varchar(200) DEFAULT NULL,
+  `Nama_FA` varchar(255) DEFAULT NULL,
+  `Divisi` varchar(255) DEFAULT NULL,
+  `Lokasi` varchar(255) DEFAULT NULL,
+  `Cabang` varchar(11) DEFAULT NULL,
+  `Register_Date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Date_Akuisisi` date DEFAULT NULL,
+  `Date_FA` date DEFAULT NULL,
+  `Date_Disposed` date DEFAULT NULL,
+  `Penerima` varchar(255) DEFAULT NULL,
+  `Harga` decimal(19,4) DEFAULT 0.0000
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_harga_layanan`
+--
+
+CREATE TABLE `m_harga_layanan` (
+  `id_hrg_layanan` varchar(20) NOT NULL DEFAULT '',
+  `id_layanan` varchar(255) DEFAULT NULL,
+  `harga` int(11) DEFAULT NULL,
+  `hpp` int(11) DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL,
+  `inputby` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `m_harga_layanan`
+--
+
+INSERT INTO `m_harga_layanan` (`id_hrg_layanan`, `id_layanan`, `harga`, `hpp`, `keterangan`, `tgl_input`, `inputby`) VALUES
+('CUS-20200300001', 'PJS-20200300139', 6000, 6000, '', '2020-03-16 11:29:20', 'NANDA'),
+('CUS-20200300002', 'PJS-20200300140', 50000, 30000, '', '2020-03-16 11:30:01', 'NANDA'),
+('CUS-20200300003', 'PJS-20200300141', 100000, 70000, '', '2020-03-16 11:30:20', 'NANDA'),
+('CUS-20200300004', 'PJS-20200300142', 150000, 120000, '', '2020-03-16 11:30:39', 'NANDA'),
+('CUS-20200300005', 'PJS-20200300019', 1000000, 0, '', '2020-03-16 11:31:46', 'NANDA'),
+('CUS-20200300006', 'PJS-20200300020', 1700000, 450000, '', '2020-03-16 11:39:30', 'NANDA'),
+('CUS-20200300007', 'PJS-20200300021', 2000000, 750000, '', '2020-03-16 11:40:27', 'NANDA'),
+('CUS-20200300008', 'PJS-20200300143', 6000000, 3500000, '', '2020-03-16 11:42:28', 'NANDA'),
+('CUS-20200300009', 'PJS-20200300022', 6000000, 3250000, '', '2020-03-16 11:42:59', 'NANDA'),
+('CUS-20200300010', 'PJS-20200300023', 5500000, 2800000, '', '2020-03-16 12:19:26', 'NANDA'),
+('CUS-20200300011', 'PJS-20200300024', 5500000, 2800000, '', '2020-03-16 12:19:03', 'NANDA'),
+('CUS-20200300012', 'PJS-20200300025', 7000000, 0, '', '2020-03-16 12:23:26', 'NANDA'),
+('CUS-20200300013', 'PJS-20200300026', 1400000, 450000, '', '2020-03-16 12:22:27', 'NANDA'),
+('CUS-20200300014', 'PJS-20200300027', 2000000, 700000, '', '2020-03-16 12:25:43', 'NANDA'),
+('CUS-20200300015', 'PJS-20200300028', 1800000, 700000, '', '2020-03-16 12:26:18', 'NANDA'),
+('CUS-20200300016', 'PJS-20200300029', 1500000, 0, '', '2020-03-16 12:26:56', 'NANDA'),
+('CUS-20200300017', 'PJS-20200300030', 7000000, 4150000, '', '2020-03-16 12:28:04', 'NANDA'),
+('CUS-20200300018', 'PJS-20200300031', 6500000, 3250000, '', '2020-03-16 12:32:34', 'NANDA'),
+('CUS-20200300019', 'PJS-20200300032', 7000000, 4150000, '', '2020-03-16 12:34:16', 'NANDA'),
+('CUS-20200300020', 'PJS-20200300033', 6000000, 2200000, '', '2020-03-16 12:36:35', 'NANDA'),
+('CUS-20200300021', 'PJS-20200300034', 6000000, 2200000, '', '2020-03-16 12:37:10', 'NANDA'),
+('CUS-20200300022', 'PJS-20200300035', 7000000, 3500000, '', '2020-03-16 12:37:56', 'NANDA'),
+('CUS-20200300023', 'PJS-20200300036', 7000000, 3500000, '', '2020-03-16 13:11:43', 'NANDA'),
+('CUS-20200300024', 'PJS-20200300037', 6500000, 2500000, '', '2020-03-16 13:13:07', 'NANDA'),
+('CUS-20200300025', 'PJS-20200300038', 5500000, 2000000, '', '2020-03-16 13:16:08', 'NANDA'),
+('CUS-20200300026', 'PJS-20200300039', 5000000, 2600000, '', '2020-03-16 13:16:55', 'NANDA'),
+('CUS-20200300027', 'PJS-20200300040', 5000000, 2500000, '', '2020-03-16 13:32:49', 'NANDA'),
+('CUS-20200300028', 'PJS-20200300041', 800000, 0, '', '2020-03-16 13:35:55', 'NANDA'),
+('CUS-20200300029', 'PJS-20200300042', 1500000, 450000, '', '2020-03-16 13:36:39', 'NANDA'),
+('CUS-20200300030', 'PJS-20200300043', 2000000, 650000, '', '2020-03-16 13:37:02', 'NANDA'),
+('CUS-20200300031', 'PJS-20200300044', 7000000, 4150000, '', '2020-03-16 13:43:35', 'NANDA'),
+('CUS-20200300032', 'PJS-20200300047', 1000000, 0, '', '2020-03-16 13:46:48', 'NANDA'),
+('CUS-20200300033', 'PJS-20200300048', 1700000, 350000, '', '2020-03-16 13:47:57', 'NANDA'),
+('CUS-20200300034', 'PJS-20200300049', 2000000, 350000, '', '2020-03-16 13:48:42', 'NANDA'),
+('CUS-20200300035', 'PJS-20200300050', 6000000, 750000, '', '2020-03-16 13:52:11', 'NANDA'),
+('CUS-20200300036', 'PJS-20200300051', 8500000, 4750000, '', '2020-03-16 14:37:22', 'NANDA'),
+('CUS-20200300037', 'PJS-20200300052', 6000000, 3500000, 'PIRT DIBANTU REKANAN NOVAN', '2020-03-16 14:12:37', 'NANDA'),
+('CUS-20200300038', 'PJS-20200300053', 7000000, 3500000, 'PIRT DIBANTU REKANAN NOVAN', '2020-03-16 14:02:34', 'NANDA'),
+('CUS-20200300039', 'PJS-20200300054', 7500000, 3950000, 'PIRT DIBANTU REKANAN NOVAN', '2020-03-16 14:03:45', 'NANDA'),
+('CUS-20200300040', 'PJS-20200300056', 12500000, 8000000, 'DIBANTU REKANAN SIUJPT', '2020-03-16 14:06:03', 'NANDA'),
+('CUS-20200300041', 'PJS-20200300057', 12000000, 6500000, 'DIBANTU REKANAN SIPA', '2020-03-16 14:09:03', 'NANDA'),
+('CUS-20200300042', 'PJS-20200300058', 1000000, 450000, '', '2020-03-16 14:10:48', 'NANDA'),
+('CUS-20200300043', 'PJS-20200300059', 1500000, 750000, '', '2020-03-16 14:12:15', 'NANDA'),
+('CUS-20200300044', 'PJS-20200300060', 5000000, 3250000, '', '2020-03-16 14:20:14', 'NANDA'),
+('CUS-20200300045', 'PJS-20200300144', 6000000, 3500000, '', '2020-03-16 14:20:55', 'NANDA'),
+('CUS-20200300046', 'PJS-20200300061', 5500000, 2800000, '', '2020-03-16 14:21:48', 'NANDA'),
+('CUS-20200300047', 'PJS-20200300062', 5500000, 2500000, '', '2020-03-16 14:24:23', 'NANDA'),
+('CUS-20200300048', 'PJS-20200300063', 1000000, 450000, '', '2020-03-16 14:25:12', 'NANDA'),
+('CUS-20200300049', 'PJS-20200300064', 1500000, 700000, '', '2020-03-16 14:25:59', 'NANDA'),
+('CUS-20200300050', 'PJS-20200300065', 6500000, 4150000, '', '2020-03-16 14:27:31', 'NANDA'),
+('CUS-20200300051', 'PJS-20200300066', 6000000, 3250000, '', '2020-03-16 14:28:20', 'NANDA'),
+('CUS-20200300052', 'PJS-20200300067', 6500000, 4150000, '', '2020-03-16 14:46:24', 'NANDA'),
+('CUS-20200300053', 'PJS-20200300068', 5500000, 2200000, '', '2020-03-16 14:47:02', 'NANDA'),
+('CUS-20200300054', 'PJS-20200300069', 5500000, 2200000, '', '2020-03-16 14:31:06', 'NANDA'),
+('CUS-20200300055', 'PJS-20200300070', 6500000, 3500000, '', '2020-03-16 14:47:20', 'NANDA'),
+('CUS-20200300056', 'PJS-20200300071', 7000000, 3500000, '', '2020-03-16 14:33:27', 'NANDA'),
+('CUS-20200300057', 'PJS-20200300072', 6000000, 2500000, '', '2020-03-16 14:36:16', 'NANDA'),
+('CUS-20200300058', 'PJS-20200300073', 5000000, 2000000, '', '2020-03-16 14:50:16', 'NANDA'),
+('CUS-20200300059', 'PJS-20200300074', 5000000, 2600000, '', '2020-03-16 14:50:47', 'NANDA'),
+('CUS-20200300060', 'PJS-20200300075', 5000000, 2500000, '', '2020-03-16 14:51:28', 'NANDA'),
+('CUS-20200300061', 'PJS-20200300076', 1000000, 450000, '', '2020-03-16 14:52:38', 'NANDA'),
+('CUS-20200300062', 'PJS-20200300077', 2000000, 650000, '', '2020-03-16 14:53:02', 'NANDA'),
+('CUS-20200300063', 'PJS-20200300078', 6000000, 4150000, '', '2020-03-16 14:54:23', 'NANDA'),
+('CUS-20200300064', 'PJS-20200300081', 1000000, 350000, '', '2020-03-16 14:55:54', 'NANDA'),
+('CUS-20200300065', 'PJS-20200300082', 1500000, 350000, '', '2020-03-16 14:57:02', 'NANDA'),
+('CUS-20200300066', 'PJS-20200300083', 5500000, 750000, '', '2020-03-16 14:58:24', 'NANDA'),
+('CUS-20200300067', 'PJS-20200300084', 6500000, 415000, '', '2020-03-16 15:00:01', 'NANDA'),
+('CUS-20200300068', 'PJS-20200300085', 300000, 100000, '', '2020-03-16 15:02:47', 'NANDA'),
+('CUS-20200300069', 'PJS-20200300086', 800000, 350000, '', '2020-03-16 15:04:27', 'NANDA'),
+('CUS-20200300070', 'PJS-20200300087', 1000000, 900000, '', '2020-03-16 15:06:16', 'NANDA'),
+('CUS-20200300071', 'PJS-20200300088', 8000000, 7500000, '', '2020-03-16 15:06:44', 'NANDA'),
+('CUS-20200300072', 'PJS-20200300089', 300000, 250000, '', '2020-03-16 15:07:58', 'NANDA'),
+('CUS-20200300073', 'PJS-20200300090', 700000, 580000, '', '2020-03-16 15:11:11', 'NANDA'),
+('CUS-20200300074', 'PJS-20200300091', 200000, 0, '', '2020-03-16 15:11:49', 'NANDA'),
+('CUS-20200300075', 'PJS-20200300092', 400000, 0, '', '2020-03-16 15:12:33', 'NANDA'),
+('CUS-20200300076', 'PJS-20200300093', 400000, 0, '', '2020-03-16 15:13:06', 'NANDA'),
+('CUS-20200300077', 'PJS-20200300094', 500000, 0, '', '2020-03-16 15:13:41', 'NANDA'),
+('CUS-20200300078', 'PJS-20200300095', 100000, 0, '', '2020-03-16 15:14:08', 'NANDA'),
+('CUS-20200300079', 'PJS-20200300096', 100000, 0, '', '2020-03-16 15:14:29', 'NANDA'),
+('CUS-20200300080', 'PJS-20200300100', 1000000, 0, '', '2020-03-16 15:17:44', 'NANDA'),
+('CUS-20200300081', 'PJS-20200300101', 1000000, 0, '', '2020-03-16 15:18:04', 'NANDA'),
+('CUS-20200300082', 'PJS-20200300102', 500000, 0, '', '2020-03-16 15:18:41', 'NANDA'),
+('CUS-20200300083', 'PJS-20200300103', 1000000, 0, '', '2020-03-16 15:19:19', 'NANDA'),
+('CUS-20200300084', 'PJS-20200300104', 1500000, 0, '', '2020-03-16 15:20:13', 'NANDA'),
+('CUS-20200300085', 'PJS-20200300113', 5000000, 2500000, 'DIBANTU REKANAN NOVAN', '2020-03-16 15:22:45', 'NANDA'),
+('CUS-20200300086', 'PJS-20200300114', 5000000, 1500000, 'DIBANTU REKANAN FITRA', '2020-03-16 15:24:50', 'NANDA'),
+('CUS-20200300087', 'PJS-20200300116', 6000000, 2500000, 'DIBANTU REKANAN NOVAN', '2020-03-16 15:35:44', 'NANDA'),
+('CUS-20200300088', 'PJS-20200300120', 6500000, 4500000, '', '2020-03-16 15:36:53', 'NANDA'),
+('CUS-20200300089', 'PJS-20200300121', 6000000, 3000000, '', '2020-03-16 15:37:31', 'NANDA'),
+('CUS-20200300090', 'PJS-20200300123', 10000000, 20000, '', '2020-03-16 15:38:03', 'NANDA'),
+('CUS-20200300091', 'PJS-20200300124', 5000000, 3750000, '', '2020-03-16 15:58:24', 'NANDA'),
+('CUS-20200300092', 'PJS-20200300125', 7000000, 5500000, '', '2020-03-16 15:59:27', 'NANDA'),
+('CUS-20200300093', 'PJS-20200300126', 3500000, 2200000, '', '2020-03-16 16:00:19', 'NANDA'),
+('CUS-20200300094', 'PJS-20200300127', 6000000, 2500000, '', '2020-03-16 16:01:12', 'NANDA');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_harikerja`
+--
+
+CREATE TABLE `m_harikerja` (
+  `periode` varchar(25) NOT NULL DEFAULT '' COMMENT 'PERIODE BULAN TAHUN (JAN19)',
+  `jml_harikerja` int(11) DEFAULT NULL COMMENT 'days',
+  `jml_libur` int(11) DEFAULT NULL COMMENT 'days',
+  `tgl_input` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'tanggal input',
+  `inputby` varchar(255) DEFAULT NULL COMMENT 'operator input',
+  `keterangan` text DEFAULT NULL,
+  `st_konfirm` varchar(1) DEFAULT '0' COMMENT '1=konfirm 0=blm'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='master hari kerja per periode bulan';
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_jabatan`
+--
+
+CREATE TABLE `m_jabatan` (
+  `id_jabatan` varchar(20) NOT NULL DEFAULT '',
+  `nama_jabatan` varchar(255) DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL,
+  `inputby` varchar(255) DEFAULT NULL,
+  `st_data` varchar(2) DEFAULT '0' COMMENT '0=tidak dipakai 1=dipakai'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `m_jabatan`
+--
+
+INSERT INTO `m_jabatan` (`id_jabatan`, `nama_jabatan`, `keterangan`, `tgl_input`, `inputby`, `st_data`) VALUES
+('CEO', 'CEO', 'ALL', '2020-03-13 14:23:40', 'NANDA', '0'),
+('GM', 'GENERAL MANAGER', 'ALL', '2020-03-13 14:23:52', 'NANDA', '0'),
+('HRD', 'HRD', 'ALL', '2020-03-13 14:39:52', 'NANDA', '0'),
+('MANAGER', 'MANAGER KEUANGAN', 'ALL', '2020-03-13 14:24:04', 'NANDA', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_jenis_rekening_biaya`
+--
+
+CREATE TABLE `m_jenis_rekening_biaya` (
+  `id_jns_rekbiaya` varchar(36) NOT NULL,
+  `nm_jns_rekbiaya` varchar(765) DEFAULT NULL,
+  `keterangan` text DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL,
+  `lastmodify` datetime DEFAULT NULL,
+  `inputby` varchar(765) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `m_jenis_rekening_biaya`
+--
+
+INSERT INTO `m_jenis_rekening_biaya` (`id_jns_rekbiaya`, `nm_jns_rekbiaya`, `keterangan`, `tgl_input`, `lastmodify`, `inputby`) VALUES
+('JR001', 'OPERASIONAL KANTOR', 'pembayaran rekening listrik', '2019-03-26 16:11:12', '2020-01-11 19:06:05', 'ADMIN'),
+('JR003', 'KOMISI SUPLIER / NOTARIS', 'untuk pembayaran supplier / notaris\r\n', '2019-10-11 09:25:04', NULL, 'SURABAYA'),
+('JR004', 'KOMISI AGEN', 'Komisi Agen', '2019-10-11 09:33:04', NULL, 'SURABAYA'),
+('JR009', 'LAIN - LAIN', '', '2020-01-11 19:13:47', NULL, 'SURABAYA');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_karyawan`
+--
+
+CREATE TABLE `m_karyawan` (
+  `id_karyawan` varchar(255) NOT NULL DEFAULT '',
+  `kd_cabang` varchar(255) DEFAULT NULL,
+  `id_jabatan` varchar(255) DEFAULT NULL,
+  `nama_karyawan` varchar(255) DEFAULT NULL,
+  `no_rek` varchar(255) DEFAULT NULL,
+  `atas_nama` varchar(255) DEFAULT NULL,
+  `nm_bank` varchar(255) DEFAULT NULL,
+  `status_karyawan` varchar(255) DEFAULT NULL,
+  `jns_kelamin` varchar(255) DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL,
+  `inputby` varchar(255) DEFAULT NULL,
+  `jml_gaji` int(11) DEFAULT 0,
+  `updated_gaji` datetime DEFAULT NULL,
+  `updated_gaji_by` varchar(255) DEFAULT NULL,
+  `keterangan_gaji` varchar(255) DEFAULT NULL,
+  `jml_piutang` int(11) DEFAULT 0 COMMENT 'JUMLAH AKUMULASI PIUTANG KARYAWAN',
+  `jml_bayar` int(11) DEFAULT 0 COMMENT 'jumlah total bayar',
+  `st_data` varchar(1) DEFAULT '0' COMMENT '1=digunakan 0=tidak di gunakan',
+  `tgl_mulai_bekerja` date DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `m_karyawan`
+--
+
+INSERT INTO `m_karyawan` (`id_karyawan`, `kd_cabang`, `id_jabatan`, `nama_karyawan`, `no_rek`, `atas_nama`, `nm_bank`, `status_karyawan`, `jns_kelamin`, `keterangan`, `tgl_input`, `inputby`, `jml_gaji`, `updated_gaji`, `updated_gaji_by`, `keterangan_gaji`, `jml_piutang`, `jml_bayar`, `st_data`, `tgl_mulai_bekerja`) VALUES
+('PJS-20200300001', 'SBY', 'CEO', 'RAHMAD KHAIRUL HUDA', NULL, NULL, NULL, '1', 'L', '', '2020-03-13 14:57:17', 'NANDA', 0, NULL, NULL, NULL, 0, 0, '0', '2011-01-01'),
+('PJS-20200300002', 'SBY', 'GM', 'RIO ADHITYA', NULL, NULL, NULL, '1', 'L', '', '2020-03-13 14:59:38', 'NANDA', 0, NULL, NULL, NULL, 0, 0, '0', '2017-12-14'),
+('PJS-20200300003', 'SBY', 'MANAGER', 'CINDY NOVIANA DEWI', NULL, NULL, NULL, '1', 'P', '', '2020-03-13 15:01:44', 'NANDA', 0, NULL, NULL, NULL, 0, 0, '0', '2018-07-23');
+
+--
+-- Trigger `m_karyawan`
+--
+DELIMITER $$
+CREATE TRIGGER `log_m_karyawan_jabatan` AFTER UPDATE ON `m_karyawan` FOR EACH ROW BEGIN
+IF OLD.id_jabatan<> new.id_jabatan THEN
+   INSERT INTO log_m_karyawan
+   (
+      id_karyawan,
+      kd_cabang,
+      id_jabatan,
+      nama_karyawan,
+      no_rek,
+      atas_nama,
+      nm_bank,
+      status_karyawan,
+      jns_kelamin,
+      keterangan,
+      tgl_input,
+      inputby,
+      jml_gaji,
+      updated_gaji,
+      updated_gaji_by,
+      keterangan_gaji,
+      jml_piutang,
+      jml_bayar,
+      st_data,
+      tgl_mulai_bekerja
+   )
+   VALUES
+   ( 
+    new.id_karyawan,
+    new.kd_cabang,
+    new.id_jabatan,
+    new.nama_karyawan,
+    new.no_rek,
+    new.atas_nama,
+    new.nm_bank,
+    new.status_karyawan,
+    new.jns_kelamin,
+    'ganti jabatan',
+    new.tgl_input,
+    new.inputby,
+    new.jml_gaji,
+    new.updated_gaji,
+    new.updated_gaji_by,
+    new.keterangan_gaji,
+    new.jml_piutang,
+    new.jml_bayar,
+    new.st_data,
+    new.tgl_mulai_bekerja
+   );
+ END IF;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_kota`
+--
+
+CREATE TABLE `m_kota` (
+  `id_kota` varchar(20) NOT NULL DEFAULT '',
+  `kd_cabang` varchar(255) DEFAULT NULL,
+  `nama_kota` varchar(255) DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL,
+  `inputby` varchar(255) DEFAULT NULL,
+  `st_data` varchar(2) DEFAULT NULL COMMENT '0=tidak di pakai, 1= dipakai'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `m_kota`
+--
+
+INSERT INTO `m_kota` (`id_kota`, `kd_cabang`, `nama_kota`, `keterangan`, `tgl_input`, `inputby`, `st_data`) VALUES
+('AREA00001', 'SBY', 'Surabaya', '', '2019-05-23 08:59:03', 'SISTEM', NULL),
+('AREA00003', 'SBY', 'Mojokerto', '', '2019-05-23 09:02:57', 'SISTEM', NULL),
+('AREA00004', 'SBY', 'Sidoarjo', '', '2019-05-23 08:59:27', 'SISTEM', NULL),
+('AREA00005', 'SBY', 'Lamongan', '', '2019-05-26 11:32:34', 'SISTEM', NULL),
+('AREA00006', 'SBY', 'Gersik', '', '2019-05-26 11:32:42', 'SISTEM', NULL),
+('AREA00007', 'SBY', 'Solo', NULL, '2019-05-26 11:32:42', 'SISTEM', NULL),
+('AREA00008', 'SBY', 'Yogyakarta', NULL, '2019-05-26 11:32:42', 'SISTEM', NULL),
+('AREA00009', 'SBY', 'Pasuruan', NULL, '2019-05-26 11:32:42', 'SISTEM', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_layanan`
+--
+
+CREATE TABLE `m_layanan` (
+  `id_layanan` varchar(20) NOT NULL DEFAULT '' COMMENT 'id layanan generate from sistem',
+  `kd_cabang` varchar(255) DEFAULT NULL,
+  `nama_layanan` varchar(255) DEFAULT NULL COMMENT 'nama layanan',
+  `jenis_layanan` varchar(255) DEFAULT NULL COMMENT 'jenis_layanan',
+  `keterangan` varchar(255) DEFAULT NULL COMMENT 'keterangan',
+  `inputby` varchar(255) DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `m_layanan`
+--
+
+INSERT INTO `m_layanan` (`id_layanan`, `kd_cabang`, `nama_layanan`, `jenis_layanan`, `keterangan`, `inputby`, `tgl_input`) VALUES
+('PJS-20200300019', NULL, 'PAKET PENDIRIAN UD TANPA AKTA', 'PAKET', 'NIB BARU', 'NANDA', '2020-03-12 13:49:28'),
+('PJS-20200300020', NULL, 'PAKET PENDIRIAN UD DENGAN AKTA', 'PAKET ', 'AKTA PENDIRIAN+PN DAN NIB BARU', 'NANDA', '2020-03-12 14:00:24'),
+('PJS-20200300021', NULL, 'PAKET PENDIRIAN CV', 'PAKET', 'AKTA PENDIRIAN+SKT PENDIRIAN,NPWP BADAN BARU,NIB', 'NANDA', '2020-03-12 15:07:04'),
+('PJS-20200300022', NULL, 'PAKET PENDIRIAN PT MODAL DASAR DIBAWAH 1 MILYAR', 'PAKET', 'AKTA PENDIRIAN+SK KEMENKUMHAM PENDIRIAN,NPWP BADAN BARU,NIB DAN TBNRI PENDIRIAN', 'NANDA', '2020-03-16 11:32:54'),
+('PJS-20200300023', NULL, 'PAKET PENDIRIAN YAYASAN', 'PAKET', 'AKTA PENDIRIAN+SK PENDIRIAN DAN NPWP BARU YAYASAN', 'NANDA', '2020-03-13 10:10:12'),
+('PJS-20200300024', NULL, 'PAKET PENDIRIAN PERKUMPULAN', 'PAKET', 'AKTA PENDIRIAN+SK PENDIRIAN DAN NPWP BARU PEKUMPULAN', 'NANDA', '2020-03-13 10:13:16'),
+('PJS-20200300025', NULL, 'PAKET PERUBAHAN UD TANPA AKTA', 'PAKET', 'NIB PERUBAHAN', 'NANDA', '2020-03-13 10:14:15'),
+('PJS-20200300026', NULL, 'PAKET PERUBAHAN UD DENGAN AKTA', 'PAKET', 'APAPUN PERUBAHANNYA DAN BISA LEBIH DARI SATU PERUBAHANNYA\r\nAKTA PERUBAHAN+PN DAN NIB\r\n', 'NANDA', '2020-03-13 10:25:04'),
+('PJS-20200300027', NULL, 'PAKET PERUBAHAN CV KELOMPOK A', 'PAKET', 'PAKET PERUBAHAN CV KELOMPOK A\r\n1. PERUBAHAN NAMA\r\n2. PERUBAHAN KEDUDUKAN GANTI KOTA/KAB\r\n3.  PERUBAHAN DIREKTUR\r\n4. PERUBAHAN MAKSUD DAN TUJUAN\r\nYANG DI DAPAT:\r\nAKTA PERUBAHAN+SKT  PERUBAHAN ,NPWP PERUBAHAN,NIB PERUBAHAN ', 'NANDA', '2020-03-13 10:26:23'),
+('PJS-20200300028', NULL, 'PAKET PERUBAHAN CV KELOMPOK B', 'PAKET', 'PAKET PERUBAHAN CV KELOMPOK B\r\n1. PERUBAHAN KOMANDITER.\r\nYANG DIDAPAT :\r\nAKTA PERUBAHAN+SKT  PERUBAHAN DAN NIB PERUBAHAN', 'NANDA', '2020-03-13 10:28:38'),
+('PJS-20200300029', NULL, 'PAKET PERUBAHAN CV KELOMPOK C', 'PAKET', 'PAKET PERUBAHAN CV KELOMPOK C\r\n1. PERUBAHAN KEDUDUKAN MASIH 1 KOTA/KAB\r\nYANG DIDAPAT : NPWP PERUBAHAN DAN NIB PERUBAHAN', 'NANDA', '2020-03-13 10:32:26'),
+('PJS-20200300030', NULL, 'PAKET PERUBAHAN PT KELOMPOK A1', 'PAKET', 'PAKET PERUBAHAN PT KELOMPOK A\r\n1. PERUBAHAN GANTI NAMA\r\n2. PERUBAHAN GANTI KOTA/KAB TEMPAT KEDUDUKAN\r\nYANG DIDAPAT :AKTA PERUBAHAN+SK PERUBAHAN,NPWP BADAN PERUBAHAN,NIB PERUBAHAN DAN KORAN MEMO', 'NANDA', '2020-03-16 12:29:17'),
+('PJS-20200300031', NULL, 'PAKET PERUBAHAN PT KELOMPOK A2', 'PAKET', 'PAKET PERUBAHAN PT KELOMPOK A 3. PERUBAHAN GANTI JENIS PT\r\n4. PERUBAHAN GANTI STATUS PT\r\n5. PERUBAHAN GANTI MAKSUD TUJUAN\r\n6. PERUBAHAN NAIK MODAL DASAR (MODAL SETOR NAIK ATAU TETAP) YANG DIDAPAT AKTA PERUBAHAN+SK PERUBAHAN,NPWP BADAN PERUBAHAN DAN NIB PE', 'NANDA', '2020-03-13 11:12:28'),
+('PJS-20200300032', NULL, 'PAKET PERUBAHAN PT KELOMPOK A3', 'PAKET', '7. PERUBAHAN TURUN MODAL \r\nDASAR (MODAL SETOR BERUBAH ATAU TETAP)\r\n8. PERUBAHAN TURUN MODAL DISETOR TANPA MERUBAH MODAL DASAR (SETORAN MIN 25% DARI MODAL DASAR)\r\nYANG DIDAPAT AKTA PERUBAHAN+SK PERUBAHAN,NPWP BADAN PERUBAHAN,NIB PERUBAHAN DAN KORAN MEMO', 'NANDA', '2020-03-16 12:29:55'),
+('PJS-20200300033', NULL, 'PAKET PERUBAHAN PT KELOMPOK B ', 'PAKET', '1. PERUBAHAN NAIK MODAL DISETOR TANPA MERUBAH MODAL DASAR \r\n2. PERUBAHAN NILAI NOMINAL SAHAM\r\n3. PERUBAHAN PEMBERITAHUAN JUMLAH SAHAM DARI PEMEGANG SAHAM\r\n4. PERUBAHAN PASAL 5-PASAL 20.\r\nYANG DI DAPAT AKTA PERUBAHAN+SP PERUBAHAN,NPWP BADAN PERUBAHAN DAN N', 'NANDA', '2020-03-13 11:17:36'),
+('PJS-20200300034', NULL, 'PAKET PERUBAHAN PT KELOMPOK C', 'PAKET', '1. PERPANJANGAN DIREKSI / KOMISARIS\r\n2. RUBAH PENGURUS (SUSUNAN DIREKSI DAN ATAU KOMISARIS)\r\n3. NAMA PEMEGANG SAHAM,ADA YANG SAHAMNYA BERUBAH JUMLAHNYA (ADA ATAU TIDAK JUAL BELI SAHAM)\r\nYANG DI DAPAT :AKTA PERUBAHAN+SP PERUBAHAN,NPWP BADAN PERUBAHAN DAN N', 'NANDA', '2020-03-13 11:21:10'),
+('PJS-20200300035', NULL, 'PAKET PERUBAHAN PT KELOMPOK D (KELOMPOK A+C ATAU A+B)', 'PAKET', 'PAKET PERUBAHAN PT KELOMPOK D\r\n(KELOMPOK A+C ATAU A+B)\r\nAKTA PERUBAHAN+SP DAN ATAU SP PERUBAHAN,NPWP BADAN PERUBAHAN DAN NIB PERUBAHAN', 'NANDA', '2020-03-16 12:38:44'),
+('PJS-20200300036', NULL, 'PAKET PERUBAHAN PT KELOMPOK E (KELOMPOK A+B+C)', 'PAKET', 'PAKET PERUBAHAN PT KELOMPOK E\r\n(KELOMPOK A+B+C).\r\nYANG DIDAPAT:\r\nAKTA PERUBAHAN+SP DAN ATAU SP PERUBAHAN,NPWP BADAN PERUBAHAN DAN NIB PERUBAHAN', 'NANDA', '2020-03-13 11:24:08'),
+('PJS-20200300037', NULL, 'PAKET PERUBAHAN PT KELOMPOK F (KELOMPOK B+C)', 'PAKET', 'AKTA PERUBAHAN+SP PERUBAHAN,NPWP BADAN PERUBAHAN DAN NIB PERUBAHAN', 'NANDA', '2020-03-13 13:18:39'),
+('PJS-20200300038', NULL, 'PAKET PERUBAHAN PT KELOMPOK G (PERPANJANGAN DIREKSI SAJA TIDAK ADA PERUBAHAN LAIN)', 'PAKET', 'AKTA PERUBAHAN+SP PERUBAHAN.', 'NANDA', '2020-03-13 13:18:53'),
+('PJS-20200300039', NULL, 'PAKET PERUBAHAN YAYASAN', 'PAKET', 'AKTA PERUBAHAN+SP PERUBAHAN DAN NPWP PERUBAHAN', 'NANDA', '2020-03-13 11:38:23'),
+('PJS-20200300040', NULL, 'PAKET PERUBAHAN PERKUMPULAN', 'PAKET', 'AKTA PERUBAHAN+SP PERUBAHAN DAN NPWP PERUBAHAN', 'NANDA', '2020-03-13 11:38:58'),
+('PJS-20200300041', NULL, 'PAKET PEMBUBARAN UD TANPA AKTA', 'PAKET', 'NIB PENGHAPUSAN DATA', 'NANDA', '2020-03-13 11:39:39'),
+('PJS-20200300042', NULL, 'PAKET PEMBUBARAN UD DENGAN AKTA', 'PAKET', 'AKTA PEMBUBARAN +PN DAN NIB PENGHAPUSAN DATA', 'NANDA', '2020-03-13 11:40:16'),
+('PJS-20200300043', NULL, 'PAKET PEMBUBARAN CV', 'PAKET', 'AKTA PEMBUBARAN +SKT  PEMBUBARAN ,NPWP BADAN NE + PENGHAPUSAN DAN NIB PENGHAPUSAN DATA', 'NANDA', '2020-03-13 12:39:28'),
+('PJS-20200300044', NULL, 'PAKET  PEMBUBARAN PT', 'PAKET', 'AKTA PEMBUBARAN +SK  PEMBUBARAN ,NPWP BADAN NE + PENGHAPUSAN ,NIB PENGHAPUSAN DATA DAN KORAN MEMO', 'NANDA', '2020-03-16 13:50:33'),
+('PJS-20200300045', NULL, 'PAKET  PEMBUBARAN  YAYASAN', 'PAKET', 'TIDAK BS DIBUBARKAN TP BISANYA DI HIBAHKAN', 'NANDA', '2020-03-13 12:41:16'),
+('PJS-20200300046', NULL, 'PAKET  PEMBUBARAN PERKUMPULAN', 'PAKET', '', 'NANDA', '2020-03-13 12:42:22'),
+('PJS-20200300047', NULL, 'PAKET CABANG UD TANPA AKTA', 'PAKET ', 'NIB CABANG', 'NANDA', '2020-03-13 12:43:01'),
+('PJS-20200300048', NULL, 'PAKET  CABANG UD DENGAN AKTA', 'PAKET', 'AKTA CABANG DAN NIB CABANG', 'NANDA', '2020-03-13 12:43:36'),
+('PJS-20200300049', NULL, 'PAKET CABANG CV', 'PAKET', 'AKTA CABANG,NPWP CABANG DAN NIB CABANG', 'NANDA', '2020-03-13 12:44:07'),
+('PJS-20200300050', NULL, 'PAKET CABANG PT', 'PAKET', 'AKTA CABANG,NPWP CABANG DAN NIB CABANG', 'NANDA', '2020-03-13 12:44:47'),
+('PJS-20200300051', NULL, 'PAKET UPGRADE CV KE PT', 'PAKET', 'AKTA PEMBUBARAN CV+SKT CV  PEMBUBARAN ,NPWP CV NE  + PENGHAPUSAN  NPWP CV DAN NIB PENGHAPUSAN DATA CV.\r\nAKTA UPGRADE KE PT + SK PT ,NPWP PT DGN NOMOR NPWP BARU,NIB PT,KORAN MEMO', 'NANDA', '2020-03-16 13:51:33'),
+('PJS-20200300052', NULL, 'PAKET PIRT BARU SDH/BLM PENYULUHAN WILAYAH SURABAYA', 'PAKET', 'SURAT PENYULUHAN DAN PIRT \r\nJIKA SDH IKUT PENYULUHAN BERARTI HANYA DPT PIRT SAJA\r\n', 'NANDA', '2020-03-16 13:57:39'),
+('PJS-20200300053', NULL, 'PAKET PIRT BARU (UD+PIRT) TANPA AKTA UD WILAYAH SURABAYA', 'PAKET', 'NIB BARU, SURAT PENYULUHAN DAN PIRT', 'NANDA', '2020-03-16 13:58:20'),
+('PJS-20200300054', NULL, 'PAKET PIRT BARU (UD+PIRT) DGN AKTA UD WILAYAH SURABAYA', 'PAKET', 'AKTA PENDIRIAN + PN,NIB BARU, SURAT PENYULUHAN DAN PIRT', 'NANDA', '2020-03-16 13:59:07'),
+('PJS-20200300055', NULL, 'PAKET PIRT BARU (CV+PIRT) WILAYAH SURABAYA', 'PAKET', 'AKTA PENDIRIAN+SKT PENDIRIAN,NPWP BADAN BARU,NIB, SURAT PENYULUHAN DAN PIRT', 'NANDA', '2020-03-16 13:59:35'),
+('PJS-20200300056', NULL, 'PAKET SIUJPT BARU (PT + SIUJPT)', 'PAKET', 'AKTA PENDIRIAN+SK PENDIRIAN,NPWP BADAN BARU,NIB DAN SIUJPT', 'NANDA', '2020-03-16 14:00:18'),
+('PJS-20200300057', NULL, 'PAKET SIPA BARU (PT + SIPA)', 'PAKET', 'AKTA PENDIRIAN+SK PENDIRIAN,NPWP BADAN BARU,NIB DAN SIPA', 'NANDA', '2020-03-16 14:00:27'),
+('PJS-20200300058', NULL, 'AKTA PENDIRAN UD', 'SATUAN', 'AKTA PENDIRIAN+PN', 'NANDA', '2020-03-13 12:56:50'),
+('PJS-20200300059', NULL, 'AKTA PENDIRAN CV', 'SATUAN', 'AKTA PENDIRIAN+SKT PENDIRIAN', 'NANDA', '2020-03-13 13:01:22'),
+('PJS-20200300060', NULL, 'AKTA PENDIRAN PT DIBAWAH 1 MILYAR', 'SATUAN', 'AKTA PENDIRIAN+SK PENDIRIAN', 'NANDA', '2020-03-16 14:14:47'),
+('PJS-20200300061', NULL, 'AKTA PENDIRIAN YAYASAN', 'SATUAN', 'AKTA PENDIRIAN+SK PENDIRIAN', 'NANDA', '2020-03-13 13:03:43'),
+('PJS-20200300062', NULL, 'AKTA PENDIRAN PERKUMPULAN', 'SATUAN', 'AKTA PENDIRIAN+SK PENDIRIAN', 'NANDA', '2020-03-13 13:04:16'),
+('PJS-20200300063', NULL, 'AKTA PERUBAHAN UD', 'SATUAN', 'AKTA PERUBAHAN+PN', 'NANDA', '2020-03-13 13:04:37'),
+('PJS-20200300064', NULL, 'AKTA PERUBAHAN CV', 'SATUAN', 'AKTA PERUBAHAN+SKT PERUBAHAN', 'NANDA', '2020-03-13 13:05:21'),
+('PJS-20200300065', NULL, 'AKTA PERUBAHAN PT KELOMPOK A1', 'SATUAN', '1. PERUBAHAN GANTI NAMA\r\n2. PERUBAHAN GANTI KOTA/KAB TEMPAT KEDUDUKAN\r\nYANG DI DAPAT : AKTA PERUBAHAN+SK PERUBAHAN  DAN KORAN\r\n', 'NANDA', '2020-03-13 13:16:48'),
+('PJS-20200300066', NULL, 'AKTA PERUBAHAN PT KELOMPOK A2', 'SATUAN', '3. PERUBAHAN GANTI JENIS PT\r\n4. PERUBAHAN GANTI STATUS PT\r\n5. PERUBAHAN GANTI MAKSUD TUJUAN\r\n6. PERUBAHAN NAIK MODAL DASAR (MODAL SETOR NAIK ATAU TETAP)\r\nYANG DIDAPAT : AKTA PERUBAHAN+SK PERUBAHAN\r\n', 'NANDA', '2020-03-13 13:16:41'),
+('PJS-20200300067', NULL, 'AKTA PERUBAHAN PT KELOMPOK A3', 'SATUAN', '7. PERUBAHAN TURUN MODAL \r\nDASAR (MODAL SETOR BERUBAH ATAU TETAP)\r\n8. PERUBAHAN TURUN MODAL DISETOR TANPA MERUBAH MODAL DASAR (SETORAN MIN 25% DARI MODAL DASAR)\r\nYANG DIDAPAT : AKTA PERUBAHAN+SK PERUBAHAN DAN KORAN', 'NANDA', '2020-03-13 13:16:30'),
+('PJS-20200300068', NULL, 'AKTA PERUBAHAN PT KELOMPOK B ', 'SATUAN', '1. PERUBAHAN NAIK MODAL DISETOR TANPA MERUBAH MODAL DASAR \r\n2. PERUBAHAN NILAI NOMINAL SAHAM\r\n3. PERUBAHAN PEMBERITAHUAN JUMLAH SAHAM DARI PEMEGANG SAHAM\r\n4. PERUBAHAN PASAL 5-PASAL 20\r\nYANG DIDAPAT: AKTA PERUBAHAN+SP PERUBAHAN', 'NANDA', '2020-03-13 13:16:19'),
+('PJS-20200300069', NULL, 'AKTA PERUBAHAN PT KELOMPOK C', 'SATUAN', '1. PERPANJANGAN DIREKSI / KOMISARIS\r\n2. RUBAH PENGURUS (SUSUNAN DIREKSI DAN ATAU KOMISARIS)\r\n3. NAMA PEMEGANG SAHAM,ADA YANG SAHAMNYA BERUBAH JUMLAHNYA (ADA ATAU TIDAK JUAL BELI SAHAM)\r\nYANG DI DAPAT : AKTA PERUBAHAN+SP PERUBAHAN\r\n', 'NANDA', '2020-03-13 13:16:07'),
+('PJS-20200300070', NULL, 'AKTA PERUBAHAN PT KELOMPOK D (KELOMPOK A+C)', 'SATUAN', 'AKTA PERUBAHAN+SP DAN ATAU SP ', 'NANDA', '2020-03-13 13:15:34'),
+('PJS-20200300071', NULL, 'AKTA PERUBAHAN PT KELOMPOK E (KELOMPOK A+B+C)', 'SATUAN', 'AKTA PERUBAHAN+SP DAN ATAU SP PERUBAHAN.\r\n', 'NANDA', '2020-03-13 13:17:35'),
+('PJS-20200300072', NULL, 'AKTA PERUBAHAN PT KELOMPOK F (KELOMPOK B+C)', 'SATUAN', 'AKTA PERUBAHAN+SP PERUBAHAN.', 'NANDA', '2020-03-16 14:48:28'),
+('PJS-20200300073', NULL, 'AKTA PERUBAHAN PT KELOMPOK G PERPANJANGAN DIREKSI SAJA TIDAK ADA PERUBAHAN LAIN', 'SATUAN', 'AKTA PERUBAHAN+SP PERUBAHAN.', 'NANDA', '2020-03-13 13:26:14'),
+('PJS-20200300074', NULL, 'AKTA PERUBAHAN YAYASAN', 'SATUAN', 'AKTA PERUBAHAN+SK PERUBAHAN', 'NANDA', '2020-03-13 13:27:51'),
+('PJS-20200300075', NULL, 'AKTA PERUBAHAN PERKUMPULAN', 'SATUAN', 'AKTA PERUBAHAN+SK PERUBAHAN', 'NANDA', '2020-03-13 13:28:47'),
+('PJS-20200300076', NULL, 'AKTA PEMBUBARAN UD', 'SATUAN', 'AKTA PEMBUBARAN +PN', 'NANDA', '2020-03-13 13:29:12'),
+('PJS-20200300077', NULL, 'AKTA PEMBUBARAN CV', 'SATUAN', 'AKTA PEMBUBARAN +SKT  PEMBUBARAN', 'NANDA', '2020-03-13 13:29:39'),
+('PJS-20200300078', NULL, 'AKTA PEMBUBARAN PT', 'SATUAN', 'AKTA PEMBUBARAN +SK  PEMBUBARAN', 'NANDA', '2020-03-13 13:30:13'),
+('PJS-20200300079', NULL, 'AKTA  PEMBUBARAN  YAYASAN', 'SATUAN', 'AKTA PEMBUBARAN +SK  PEMBUBARAN', 'NANDA', '2020-03-13 13:30:43'),
+('PJS-20200300080', NULL, 'AKTA  PEMBUBARAN PERKUMPULAN', 'SATUAN', 'AKTA PEMBUBARAN +SK  PEMBUBARAN', 'NANDA', '2020-03-13 13:31:08'),
+('PJS-20200300081', NULL, 'AKTA CABANG UD', 'SATUAN', 'AKTA UD CABANG\r\n(TANPA PN)\r\n', 'NANDA', '2020-03-13 13:31:50'),
+('PJS-20200300082', NULL, 'AKTA CABANG CV', 'SATUAN', 'AKTA CV CABANG \r\n(TANPA SKT)\r\n', 'NANDA', '2020-03-13 13:32:43'),
+('PJS-20200300083', NULL, 'AKTA CABANG PT', 'SATUAN', 'AKTA PT CABANG (TANPA SK)', 'NANDA', '2020-03-13 13:33:39'),
+('PJS-20200300084', NULL, 'AKTA UPGRADE CV KE PT', 'SATUAN', 'AKTA UPGRADE PT +SK  DAN KORAN MEMO', 'NANDA', '2020-03-16 15:01:35'),
+('PJS-20200300085', NULL, 'PENGESAHAN PN', 'SATUAN', 'PENGESAHAN PN', 'NANDA', '2020-03-13 13:34:57'),
+('PJS-20200300086', NULL, 'SK REGISTRASI/PENCATATAN CV ', 'SATUAN', 'SK REGISTRASI/PENCATATAN CV', 'NANDA', '2020-03-13 13:35:22'),
+('PJS-20200300087', NULL, 'KORAN  MEMO', 'SATUAN', 'IKLAN KORAN', 'NANDA', '2020-03-13 13:36:33'),
+('PJS-20200300088', NULL, 'KORAN JAWA POS', 'SATUAN', 'IKLAN KORAN', 'NANDA', '2020-03-13 13:36:48'),
+('PJS-20200300089', NULL, 'TBNRI PENDIRIAN PT MODAL DASAR DIATAS 1 MILYAR', 'SATUAN', 'TBNRI PENDIRIAN PT MODAL DASAR DIATAS 1 MILYAR', 'NANDA', '2020-03-16 15:09:58'),
+('PJS-20200300090', NULL, 'TBNRI PERUBAHAN PT', 'SATUAN', 'TBNRI PERUBAHAN PT', 'NANDA', '2020-03-13 13:40:01'),
+('PJS-20200300091', NULL, 'NPWP PRIBADI ', 'SATUAN', 'NPWP PRIBADI ', 'NANDA', '2020-03-13 13:41:15'),
+('PJS-20200300092', NULL, 'NPWP BADAN', 'SATUAN', 'NPWP BADAN', 'NANDA', '2020-03-13 13:41:36'),
+('PJS-20200300093', NULL, 'NPWP CABANG', 'SATUAN', 'NPWP CABANG', 'NANDA', '2020-03-13 13:41:53'),
+('PJS-20200300094', NULL, 'PKP', 'SATUAN', 'PKP', 'NANDA', '2020-03-13 13:44:24'),
+('PJS-20200300095', NULL, 'EFIN PRIBADI', 'SATUAN', 'EFIN PRIBADI', 'NANDA', '2020-03-13 13:45:11'),
+('PJS-20200300096', NULL, 'EFIN BADAN', 'SATUAN', 'EFIN BADAN', 'NANDA', '2020-03-13 13:45:28'),
+('PJS-20200300097', NULL, 'LAPOAN PAJAK NIHIL TAHUNAN PRIBADI', 'SATUAN', 'BUKTI LAPORAN PAJAK', 'NANDA', '2020-03-13 13:46:34'),
+('PJS-20200300098', NULL, 'LAPORAN PAJAK NIHIL TAHUNAN BADAN', 'SATUAN', 'BUKTI LAPORAN PAJAK', 'NANDA', '2020-03-13 13:47:17'),
+('PJS-20200300099', NULL, 'LAPORAN PAJAK BADAN OMSET DIATAS/DIBAWAH 10 M PKP/NON PKP', 'SATUAN', 'BUKTI LAPORAN PAJAK', 'NANDA', '2020-03-13 13:48:50'),
+('PJS-20200300100', NULL, 'NIB BARU', 'SATUAN', 'NIB', 'NANDA', '2020-03-13 13:49:49'),
+('PJS-20200300101', NULL, 'NIB PENAMBAHAN', 'SATUAN', 'NIB PENAMBAHAN', 'NANDA', '2020-03-13 13:50:15'),
+('PJS-20200300102', NULL, 'NIB PENGHAPUSAN', 'SATUAN', 'NIB PENGHAPUSAN DATA\r\nCEK DATA SDH HILANG\r\n', 'NANDA', '2020-03-13 13:50:45'),
+('PJS-20200300103', NULL, 'NIB CABANG', 'SATUAN', 'NIB CABANG', 'NANDA', '2020-03-13 13:51:25'),
+('PJS-20200300104', NULL, 'API NIK (NIB)', 'SATUAN', 'API NIK (NIB)', 'NANDA', '2020-03-13 13:52:03'),
+('PJS-20200300105', NULL, 'PASS + USERNAME NIB', 'SATUAN', 'PASS + USERNAME NIB', 'NANDA', '2020-03-13 13:52:19'),
+('PJS-20200300106', NULL, 'RENCANA PENETAPAN TENAGA KERJA ASING (RPTKA)', 'SATUAN', 'RENCANA PENETAPAN TENAGA KERJA ASING (RPTKA)', 'NANDA', '2020-03-13 13:53:12'),
+('PJS-20200300107', NULL, 'IMTA / NOTIFIKASI', 'SATUAN', 'IMTA / NOTIFIKASI', 'NANDA', '2020-03-13 13:53:43'),
+('PJS-20200300108', NULL, 'SKRK', 'SATUAN', 'SKRK', 'NANDA', '2020-03-13 13:54:49'),
+('PJS-20200300109', NULL, 'UKL UPL', 'SATUAN', 'UKL UPL', 'NANDA', '2020-03-13 13:55:10'),
+('PJS-20200300110', NULL, 'DRAINASE', 'SATUAN', 'DRAINASE', 'NANDA', '2020-03-13 13:56:04'),
+('PJS-20200300111', NULL, 'LALIN', 'SATUAN', 'LALIN', 'NANDA', '2020-03-13 13:56:19'),
+('PJS-20200300112', NULL, 'IMB', 'SATUAN', 'IMB', 'NANDA', '2020-03-13 13:56:38'),
+('PJS-20200300113', NULL, 'IUI BARU WILAYAH SURABAYA', 'SATUAN', 'IUI', 'NANDA', '2020-03-16 15:33:29'),
+('PJS-20200300114', NULL, 'TDUP (RESTO/BPW/BIDANG DLL) BARU WILAYAH SURABAYA', 'SATUAN', 'TDUP SESUAI BIDANGNYA', 'NANDA', '2020-03-16 15:33:09'),
+('PJS-20200300115', NULL, 'TDG SURABAYA', 'SATUAN', 'TDG', 'NANDA', '2020-03-16 15:32:43'),
+('PJS-20200300116', NULL, 'PIRT BARU WILAYAH SURABAYA (SDH/BLM PENYULUHAN)', 'SATUAN', 'SURAT PENYULUHAN DAN PIRT (JIKA SDH PENYULUHAN MAKA HANYA DAPAT PIRT SAJA)', 'NANDA', '2020-03-16 15:32:28'),
+('PJS-20200300117', NULL, 'PENYULUHAN PIRT', 'SATUAN', 'PENYULUHAN PIRT', 'NANDA', '2020-03-13 13:58:43'),
+('PJS-20200300118', NULL, 'MUI HALAL', 'SATUAN', 'MUI HALAL', 'NANDA', '2020-03-13 13:59:02'),
+('PJS-20200300119', NULL, 'BPOM', 'SATUAN', 'BPOM', 'NANDA', '2020-03-13 13:59:21'),
+('PJS-20200300120', NULL, 'SIUJPT BARU WILAYAH SURABAYA', 'SATUAN', 'SIUJPT', 'NANDA', '2020-03-16 15:34:04'),
+('PJS-20200300121', NULL, 'SIPA BARU WILAYAH SURABAYA', 'SATUAN', 'SIPA', 'NANDA', '2020-03-16 15:34:39'),
+('PJS-20200300122', NULL, 'SKDU BARU WILAYAH SURABAYA', 'SATUAN', 'SKDU', 'NANDA', '2020-03-16 15:34:48'),
+('PJS-20200300123', NULL, 'SURAT KETERANGAN TIDAK PAILIT WILAYAH SURABAYA', 'SATUAN', 'SURAT KETERANGAN TIDAK PAILIT', 'NANDA', '2020-03-16 15:34:56'),
+('PJS-20200300124', NULL, 'SKA MUDA', 'SATUAN', 'SKA MUDA', 'NANDA', '2020-03-13 14:02:36'),
+('PJS-20200300125', NULL, 'SKA MADYA', 'SATUAN', 'SKA MADYA', 'NANDA', '2020-03-13 14:03:08'),
+('PJS-20200300126', NULL, 'SKT', 'SATUAN', 'SKT', 'NANDA', '2020-03-13 14:03:28'),
+('PJS-20200300127', NULL, 'SBU K1 GAPENSI SURABAYA', 'SATUAN', 'SBU K1 GAPENSI SURABAYA', 'NANDA', '2020-03-13 14:03:52'),
+('PJS-20200300128', NULL, 'SBU K1 GAPENSI GRESIK', 'SATUAN', 'SBU K1 GAPENSI GRESIK', 'NANDA', '2020-03-13 14:04:54'),
+('PJS-20200300129', NULL, 'SBU K1 GAPENSI SIDOARJO', 'SATUAN', 'SBU K1 GAPENSI GRESIK', 'NANDA', '2020-03-13 14:05:18'),
+('PJS-20200300130', NULL, 'SBU M1 GAPENSI SURABAYA', 'SATUAN', 'SBU M1 GAPENSI SURABAYA', 'NANDA', '2020-03-13 14:05:51'),
+('PJS-20200300131', NULL, 'SBU M1 GAPENSI GRESIK', 'SATUAN', 'SBU M1 GAPENSI GRESIK', 'NANDA', '2020-03-13 14:06:17'),
+('PJS-20200300132', NULL, 'SBU M1 GAPENSI SIDOARJO', 'SATUAN', 'SBU M1 GAPENSI SIDOARJO', 'NANDA', '2020-03-13 14:06:53'),
+('PJS-20200300133', NULL, 'SBU M1 PERKOPINDO ALL JATIM', 'SATUAN', 'SBU M1 PERKOPINDO ALL JATIM', 'NANDA', '2020-03-13 14:07:32'),
+('PJS-20200300134', NULL, 'SBU K1 PERKOPINDO ALL JATIM', 'SATUAN', 'SBU K1 PERKOPINDO ALL JATIM', 'NANDA', '2020-03-13 14:07:54'),
+('PJS-20200300135', NULL, 'SBU KONSULTAN INKINDO', 'SATUAN', 'SBU KONSULTAN INKINDO', 'NANDA', '2020-03-13 14:08:34'),
+('PJS-20200300136', NULL, 'SIUJK SURABAYA', 'SATUAN', 'SIUJK SURABAYA', 'NANDA', '2020-03-13 14:09:09'),
+('PJS-20200300137', NULL, 'SIUJK SIDOARJO', 'SATUAN', 'SIUJK SIDOARJO', 'NANDA', '2020-03-13 14:09:28'),
+('PJS-20200300138', NULL, 'SIUJK GRESIK', 'SATUAN', 'SIUJK GRESIK', 'NANDA', '2020-03-13 14:09:52'),
+('PJS-20200300139', NULL, 'MATERAI 6000', 'SATUAN', 'MATERAI', 'NANDA', '2020-03-16 11:27:44'),
+('PJS-20200300140', NULL, 'STEMPEL KAYU', 'SATUAN', 'STEMPEL KAYU', 'NANDA', '2020-03-16 11:28:12'),
+('PJS-20200300141', NULL, 'STEMPEL FLASH', 'SATUAN', 'STEMPEL FLASH', 'NANDA', '2020-03-16 11:28:27'),
+('PJS-20200300142', NULL, 'STEMPEL TRODAT', 'SATUAN', 'STEMPEL TRODAT', 'NANDA', '2020-03-16 11:28:44'),
+('PJS-20200300143', NULL, 'PAKET PENDIRIAN PT MODAL DASAR DIATAS 1 MILYAR', 'PAKET', 'AKTA PENDIRIAN+SK KEMENKUMHAM PENDIRIAN,NPWP BADAN BARU,NIB DAN TBNRI PENDIRIAN', 'NANDA', '2020-03-16 11:37:53'),
+('PJS-20200300144', NULL, 'AKTA PENDIRAN PT DIATAS 1 MILYAR', 'SATUAN', 'AKTA PENDIRIAN+SK PENDIRIAN', 'NANDA', '2020-03-16 14:17:47');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_potongan`
+--
+
+CREATE TABLE `m_potongan` (
+  `id_potongan` int(11) NOT NULL,
+  `nm_potongan` varchar(255) DEFAULT NULL,
+  `keterangan` text DEFAULT NULL,
+  `tgl_trans` datetime DEFAULT NULL,
+  `operator` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='master tunjangan';
+
+--
+-- Dumping data untuk tabel `m_potongan`
+--
+
+INSERT INTO `m_potongan` (`id_potongan`, `nm_potongan`, `keterangan`, `tgl_trans`, `operator`) VALUES
+(1, 'Potongan Absen', 'Potongan Absen	\r\n', '2019-10-04 14:28:20', 'SURABAYA'),
+(4, 'Tunj. Anak', 'Tunjungan Anak', '2019-10-04 14:28:45', 'SURABAYA'),
+(3, 'Tunj. Taransport', 'Tunjangan Transport', '2019-10-04 14:28:45', 'SURABAYA'),
+(5, 'Bonus Bulanan', 'Bonus Bulanan', '2019-10-04 14:28:45', 'SURABAYA'),
+(6, 'Bonus Harian', 'Bonus Harian', '2019-10-04 14:28:45', 'SURABAYA'),
+(7, 'Bonus Lainya', 'Bonus Lainya', '2019-10-04 14:28:45', 'SURABAYA');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_reason_deal`
+--
+
+CREATE TABLE `m_reason_deal` (
+  `id_reason_deal` int(11) NOT NULL,
+  `keterangan` text DEFAULT NULL COMMENT 'keterangan',
+  `tgl_input` datetime DEFAULT NULL,
+  `inputby` varchar(255) DEFAULT NULL,
+  `tgl_update` datetime DEFAULT NULL,
+  `updateby` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Reason Deals';
+
+--
+-- Dumping data untuk tabel `m_reason_deal`
+--
+
+INSERT INTO `m_reason_deal` (`id_reason_deal`, `keterangan`, `tgl_input`, `inputby`, `tgl_update`, `updateby`) VALUES
+(1, 'Dikenalkan Orang', '2020-01-14 22:39:23', 'SURABAYA', NULL, NULL),
+(3, 'harga terjangkau', '2020-03-05 14:23:36', 'SURABAYA', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_reason_lost`
+--
+
+CREATE TABLE `m_reason_lost` (
+  `id_reason_lost` int(11) NOT NULL,
+  `keterangan` text DEFAULT NULL COMMENT 'keterangan',
+  `tgl_input` datetime DEFAULT NULL,
+  `inputby` varchar(255) DEFAULT NULL,
+  `tgl_update` datetime DEFAULT NULL,
+  `updateby` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Reason Lost';
+
+--
+-- Dumping data untuk tabel `m_reason_lost`
+--
+
+INSERT INTO `m_reason_lost` (`id_reason_lost`, `keterangan`, `tgl_input`, `inputby`, `tgl_update`, `updateby`) VALUES
+(3, 'Tidak Punya Budget', '2019-10-02 11:49:01', 'SLS_SBY', NULL, NULL),
+(7, 'Persyaratan terlalu rumit ', '2020-03-05 14:21:56', 'SURABAYA', NULL, NULL),
+(4, 'Tidak Tertarik', '2019-10-02 11:49:11', 'SLS_SBY', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_rekening_biaya`
+--
+
+CREATE TABLE `m_rekening_biaya` (
+  `id_rekbiaya` varchar(45) DEFAULT NULL,
+  `id_jns_rekbiaya` varchar(765) DEFAULT NULL,
+  `nm_rekbiaya` varchar(765) DEFAULT NULL,
+  `keterangan` text DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL,
+  `inputby` varchar(765) DEFAULT NULL,
+  `lastmodify` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_supplier`
+--
+
+CREATE TABLE `m_supplier` (
+  `id_supplier` int(11) NOT NULL,
+  `nm_supplier` varchar(255) DEFAULT NULL,
+  `email_supplier` varchar(255) DEFAULT NULL,
+  `telp_supplier` varchar(255) DEFAULT NULL,
+  `hp_supplier` varchar(255) DEFAULT NULL,
+  `alamat_supplier` varchar(255) DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `tgl_trans` datetime DEFAULT NULL,
+  `operator` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_syarat_layanan`
+--
+
+CREATE TABLE `m_syarat_layanan` (
+  `id_syrt_layanan` varchar(20) NOT NULL DEFAULT '',
+  `id_layanan` varchar(255) DEFAULT NULL,
+  `nm_syrt_layanan` varchar(255) DEFAULT NULL,
+  `qty_syrt_layanan` varchar(255) DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL,
+  `inputby` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_target`
+--
+
+CREATE TABLE `m_target` (
+  `periode` varchar(11) NOT NULL DEFAULT '',
+  `kd_cabang` varchar(255) DEFAULT NULL,
+  `jumlah_target` varchar(255) DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `inputby` varchar(255) DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='master target bulanan';
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_target_produk`
+--
+
+CREATE TABLE `m_target_produk` (
+  `periode` varchar(11) NOT NULL DEFAULT '',
+  `kd_cabang` varchar(255) DEFAULT NULL,
+  `id_layanan` varchar(255) DEFAULT NULL,
+  `jumlah_target` varchar(255) DEFAULT NULL,
+  `keterangan` text DEFAULT NULL,
+  `inputby` varchar(255) DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='MASTER TARGET PER PRODUK';
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_tipe_layanan`
+--
+
+CREATE TABLE `m_tipe_layanan` (
+  `id_tipe_layanan` varchar(20) NOT NULL DEFAULT '',
+  `nm_tipe_layanan` varchar(255) DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL,
+  `inputby` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_tunjangan`
+--
+
+CREATE TABLE `m_tunjangan` (
+  `id_tunjangan` int(11) NOT NULL,
+  `nm_tunjangan` varchar(255) DEFAULT NULL,
+  `keterangan` text DEFAULT NULL,
+  `tgl_trans` datetime DEFAULT NULL,
+  `operator` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='master tunjangan';
+
+--
+-- Dumping data untuk tabel `m_tunjangan`
+--
+
+INSERT INTO `m_tunjangan` (`id_tunjangan`, `nm_tunjangan`, `keterangan`, `tgl_trans`, `operator`) VALUES
+(2, 'Tunj Internet', 'Tunjangan Internet', '2019-10-04 14:11:51', 'SURABAYA'),
+(3, 'Tunj. Transport	', 'Tunjangan Transport', '2019-10-04 14:12:09', 'SURABAYA'),
+(4, 'Tunj. Makan	', 'Tunjangan Makan', '2019-10-04 14:12:22', 'SURABAYA'),
+(6, 'Lembur', 'Lembur', '2019-10-04 14:12:46', 'SURABAYA'),
+(7, 'Tunj. Anak', 'Tunjangan Anak', '2019-10-04 14:13:01', 'SURABAYA'),
+(8, 'Insentif Jam Kerja', 'Insentif Jam Kerja', '2019-10-04 14:13:15', 'SURABAYA'),
+(9, 'Tambahan Lain Lain', 'Tambahan Lain Lain', '2019-10-04 14:13:28', 'SURABAYA');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_user`
+--
+
+CREATE TABLE `m_user` (
+  `id_user` varchar(20) NOT NULL DEFAULT '',
+  `id_karyawan` varchar(255) DEFAULT NULL,
+  `kd_cabang` varchar(255) DEFAULT NULL,
+  `nama_user` varchar(255) DEFAULT NULL,
+  `status_user` varchar(2) DEFAULT NULL COMMENT 'A=aktif dan N=non aktif',
+  `password` varchar(255) DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL,
+  `inputby` varchar(255) DEFAULT NULL,
+  `akses` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `m_user`
+--
+
+INSERT INTO `m_user` (`id_user`, `id_karyawan`, `kd_cabang`, `nama_user`, `status_user`, `password`, `tgl_input`, `inputby`, `akses`) VALUES
+('cindy', 'PJS-20200300013', 'SBY', 'cindy', 'A', 'admin', '2019-03-25 19:23:50', 'ADMIN', 'su'),
+('farid', 'PJS-20200100002', 'SBY', 'farid', 'A', 'admin', '2019-03-25 19:23:50', 'ADMIN', 'ops'),
+('icha', 'PJS-20200100007', 'SBY', 'icha', 'A', 'admin', '2019-03-25 19:23:50', 'ADMIN', 'ops'),
+('nanda', 'PJS-20200100005', 'SBY', 'nanda', 'A', 'admin', '2019-03-25 19:23:50', 'ADMIN', 'su'),
+('rahud', 'PJS-20200300012', 'SBY', 'rahud', 'A', 'admin', '2019-03-25 19:23:50', 'ADMIN', 'su'),
+('rio', 'PJS-20190300001', 'SBY', 'rio', 'A', 'admin', '2019-03-25 19:23:50', 'ADMIN', 'su'),
+('riza', 'PJS-20200300014', 'SBY', 'riza', 'A', 'admin', '2019-03-25 19:23:50', 'ADMIN', 'hrd'),
+('surabaya', 'PJS-20190300001', 'SBY', 'administrator', 'A', 'admin', '2019-03-25 19:23:50', 'ADMIN', 'su'),
+('titin', 'PJS-20200100004', 'SBY', 'titin', 'A', 'admin', '2019-03-25 19:23:50', 'ADMIN', 'mrkt'),
+('vera', 'PJS-20200300015', 'SBY', 'vera', 'A', 'admin', '2019-03-25 19:23:50', 'ADMIN', 'mrkt');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trans_bank_in`
+--
+
+CREATE TABLE `trans_bank_in` (
+  `ID_TRANS` varchar(25) NOT NULL COMMENT 'ID TRANSAKSI (TBO-)',
+  `KD_BANK` varchar(255) DEFAULT NULL COMMENT 'KODE BANK DARI MASTER BANK',
+  `SLD_MASUK` int(11) DEFAULT NULL COMMENT 'JUMLAH SALDO YANG MASUK',
+  `TGL_BUAT` datetime DEFAULT NULL COMMENT 'TGL BUAT',
+  `ID_OPR` varchar(255) DEFAULT NULL COMMENT 'ID OPERATOR',
+  `ST_DATA` varchar(2) DEFAULT '0' COMMENT '1=KONFIRMASI 0=BLM KONFIRMASI',
+  `TGL_TRANS` datetime DEFAULT NULL,
+  `KETERANGAN` varchar(255) DEFAULT NULL,
+  `KD_CABANG` varchar(25) DEFAULT 'SBY' COMMENT 'kode cabang'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='transasksi bank masuk' ROW_FORMAT=DYNAMIC;
+
+--
+-- Dumping data untuk tabel `trans_bank_in`
+--
+
+INSERT INTO `trans_bank_in` (`ID_TRANS`, `KD_BANK`, `SLD_MASUK`, `TGL_BUAT`, `ID_OPR`, `ST_DATA`, `TGL_TRANS`, `KETERANGAN`, `KD_CABANG`) VALUES
+('TBI20200300001', 'CASH', 436000, '2020-03-19 16:12:20', 'NANDA', '1', '2020-03-18 00:00:00', 'TGL 18', 'SBY'),
+('TBI20200300002', 'CASH', 300000, '2020-03-19 16:13:32', 'NANDA', '1', '2020-03-19 00:00:00', 'TAMBAHAN CASH', 'SBY'),
+('TBI20200300003', 'BCA', 85208500, '2020-03-19 16:14:44', 'NANDA', '1', '2020-03-18 00:00:00', 'TGL 18', 'SBY'),
+('TBI20200300004', 'CASH', 1300000, '2020-03-21 10:06:37', 'NANDA', '1', '2020-03-21 00:00:00', 'TAMBAHAN CASH', 'SBY');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trans_bank_out`
+--
+
+CREATE TABLE `trans_bank_out` (
+  `ID_TRANS` varchar(25) NOT NULL COMMENT 'ID TRANSAKSI (TBO-)',
+  `KD_BANK` varchar(255) DEFAULT NULL COMMENT 'KODE BANK DARI MASTER BANK',
+  `SLD_KELUAR` int(11) DEFAULT NULL COMMENT 'JUMLAH SALDO YANG KELUAR',
+  `TGL_BUAT` datetime DEFAULT NULL COMMENT 'TGL BUAT',
+  `ID_OPR` varchar(255) DEFAULT NULL COMMENT 'ID OPERATOR',
+  `ST_DATA` varchar(2) DEFAULT '0' COMMENT '1=KONFIRMASI 0=BLM KONFIRMASI',
+  `KETERANGAN` varchar(255) DEFAULT NULL,
+  `KD_CABANG` varchar(25) DEFAULT 'SBY' COMMENT 'kode cabang',
+  `TGL_TRANS` datetime DEFAULT NULL COMMENT 'GENERATE BY SISTEM'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='transasksi bank keluar' ROW_FORMAT=DYNAMIC;
+
+--
+-- Dumping data untuk tabel `trans_bank_out`
+--
+
+INSERT INTO `trans_bank_out` (`ID_TRANS`, `KD_BANK`, `SLD_KELUAR`, `TGL_BUAT`, `ID_OPR`, `ST_DATA`, `KETERANGAN`, `KD_CABANG`, `TGL_TRANS`) VALUES
+('TBO20200300001', 'CASH', 10000, '2020-03-19 16:17:43', 'NANDA', '1', 'E BILLING CV SINAR BUSANA', 'SBY', '2020-03-19 00:00:00'),
+('TBO20200300002', 'CASH', 60000, '2020-03-19 16:18:24', 'NANDA', '1', 'ONGKIR CABANG MOJOKERTO BULAN FEBRUARI', 'SBY', '2020-03-19 00:00:00'),
+('TBO20200300003', 'CASH', 20000, '2020-03-19 16:18:53', 'NANDA', '1', 'ONGKIR CABANG BANDUNG BULAN FEBRUARI', 'SBY', '2020-03-19 00:00:00'),
+('TBO20200300004', 'CASH', 10000, '2020-03-19 16:19:24', 'NANDA', '1', 'ONGKIR CABANG MALANG BULAN FEBRUARI', 'SBY', '2020-03-19 00:00:00'),
+('TBO20200300005', 'CASH', 30000, '2020-03-19 16:20:02', 'NANDA', '1', 'HARIAN RENAT', 'SBY', '2020-03-19 00:00:00'),
+('TBO20200300006', 'CASH', 20000, '2020-03-19 16:20:29', 'NANDA', '1', 'HARIAN AGIL', 'SBY', '2020-03-19 00:00:00'),
+('TBO20200300007', 'CASH', 20000, '2020-03-19 16:20:50', 'NANDA', '1', 'HARIAN ARIS', 'SBY', '2020-03-19 00:00:00'),
+('TBO20200300008', 'CASH', 5000, '2020-03-19 16:21:23', 'NANDA', '1', 'ES BATU', 'SBY', '2020-03-19 00:00:00'),
+('TBO20200300009', 'CASH', 93500, '2020-03-19 16:22:02', 'NANDA', '1', 'PAKET RAK SEPATU', 'SBY', '2020-03-19 00:00:00'),
+('TBO20200300010', 'CASH', 305000, '2020-03-19 16:22:33', 'NANDA', '1', 'PAKET', 'SBY', '2020-03-19 00:00:00'),
+('TBO20200300011', 'CASH', 67000, '2020-03-19 16:23:08', 'NANDA', '1', 'PAKET STOP CONTAC', 'SBY', '2020-03-19 00:00:00'),
+('TBO20200300012', 'BCA', 5000000, '2020-03-21 10:18:50', 'NANDA', '1', 'COACH ROFI', 'SBY', '2020-03-21 00:00:00'),
+('TBO20200300013', 'CASH', 20000, '2020-03-21 10:21:04', 'NANDA', '1', 'HARIAN RENAT KEMARIN', 'SBY', '2020-03-21 00:00:00'),
+('TBO20200300014', 'CASH', 20000, '2020-03-21 10:21:39', 'NANDA', '1', 'HARIAN AGIL KEMARIN', 'SBY', '2020-03-21 00:00:00'),
+('TBO20200300015', 'CASH', 20000, '2020-03-21 10:22:08', 'NANDA', '1', 'HARIAN ARIS KEMARIN', 'SBY', '2020-03-21 00:00:00'),
+('TBO20200300016', 'CASH', 17000, '2020-03-21 10:22:43', 'NANDA', '1', 'YAKULT', 'SBY', '2020-03-21 00:00:00'),
+('TBO20200300017', 'CASH', 13000, '2020-03-21 10:24:38', 'NANDA', '1', 'GADO GADO UTK COACH', 'SBY', '2020-03-21 00:00:00'),
+('TBO20200300018', 'CASH', 117000, '2020-03-21 10:25:20', 'NANDA', '1', 'PAKET JAM DINDING', 'SBY', '2020-03-21 00:00:00'),
+('TBO20200300019', 'CASH', 206000, '2020-03-21 10:25:42', 'NANDA', '1', 'PAKET', 'SBY', '2020-03-21 00:00:00'),
+('TBO20200300020', 'CASH', 20000, '2020-03-21 10:26:35', 'NANDA', '1', 'KERUPUK', 'SBY', '2020-03-21 00:00:00'),
+('TBO20200300021', 'CASH', 20000, '2020-03-21 10:27:25', 'NANDA', '1', 'HARIAN AGIL', 'SBY', '2020-03-21 00:00:00'),
+('TBO20200300022', 'CASH', 20000, '2020-03-21 10:27:39', 'NANDA', '1', 'HARIAN ARIS', 'SBY', '2020-03-21 00:00:00'),
+('TBO20200300023', 'CASH', 30000, '2020-03-21 10:28:40', 'NANDA', '1', 'HARIAN RENAT', 'SBY', '2020-03-21 00:00:00'),
+('TBO20200300024', 'CASH', 120000, '2020-03-21 12:48:23', 'NANDA', '1', 'RAM', 'SBY', '2020-03-21 00:00:00'),
+('TBO20200300025', 'CASH', 210000, '2020-03-21 12:49:13', 'NANDA', '1', 'HARDISK', 'SBY', '2020-03-21 00:00:00'),
+('TBO20200300026', 'CASH', 140000, '2020-03-21 12:51:48', 'NANDA', '1', 'MINGGUAN MAS FERRI', 'SBY', '2020-03-21 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trs_detail_rekening_biaya`
+--
+
+CREATE TABLE `trs_detail_rekening_biaya` (
+  `id_dtlrekbiaya` varchar(63) DEFAULT NULL,
+  `id_trs_rekbiaya` varchar(765) DEFAULT NULL,
+  `id_rekbiaya` varchar(765) DEFAULT NULL,
+  `harga` int(11) DEFAULT NULL,
+  `qty` int(11) DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL,
+  `inputby` varchar(765) DEFAULT NULL,
+  `keterangan` varchar(765) DEFAULT NULL,
+  `kd_bank` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trs_fix_asset_dtl`
+--
+
+CREATE TABLE `trs_fix_asset_dtl` (
+  `TrNo` varchar(15) NOT NULL,
+  `Line_No` int(11) NOT NULL,
+  `Fa_Id` varchar(15) DEFAULT NULL,
+  `Jenis` varchar(255) DEFAULT NULL,
+  `Date_beli` date DEFAULT NULL,
+  `Estimasi` smallint(6) DEFAULT NULL,
+  `Date_penyusutan` date DEFAULT NULL,
+  `Hrg_beli` decimal(18,2) DEFAULT NULL,
+  `Penyusutan_thn` decimal(18,2) DEFAULT NULL,
+  `Penyusutan_bln` decimal(18,2) DEFAULT NULL,
+  `Pembulatan` decimal(18,2) DEFAULT NULL,
+  `Added_by` varchar(255) DEFAULT NULL,
+  `Entry_time` timestamp NULL DEFAULT current_timestamp(),
+  `Changed_by` varchar(255) DEFAULT NULL,
+  `Last_Modified` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trs_fix_asset_hdr`
+--
+
+CREATE TABLE `trs_fix_asset_hdr` (
+  `TrNo` varchar(15) NOT NULL COMMENT 'format TrNo {Wilayah}{TahunBulanTgl}{counter}',
+  `Tgl` date DEFAULT NULL,
+  `TrManualRef` varchar(255) DEFAULT NULL,
+  `Created_At` varchar(255) DEFAULT NULL,
+  `Modified_By` varchar(255) DEFAULT NULL,
+  `EntryTime` datetime DEFAULT NULL,
+  `Last_Modified` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trs_hrd_absensi`
+--
+
+CREATE TABLE `trs_hrd_absensi` (
+  `id_absen` varchar(25) NOT NULL DEFAULT '' COMMENT 'id absen',
+  `id_karyawan` varchar(255) DEFAULT NULL COMMENT 'id karyawan',
+  `status` varchar(255) DEFAULT NULL COMMENT 'M=masuk P=pulang',
+  `tgl_absen` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'waktu absen',
+  `operator` varchar(255) DEFAULT NULL COMMENT 'operator',
+  `st_konfirmasi` varchar(255) DEFAULT '0' COMMENT 'status ditutupnya absensi',
+  `keterangan` text DEFAULT NULL,
+  `tgl_absen2` date DEFAULT '0000-00-00'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='log absensi karyawan';
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trs_hrd_bonus_karyawan`
+--
+
+CREATE TABLE `trs_hrd_bonus_karyawan` (
+  `id_bonus_krywn` varchar(255) NOT NULL DEFAULT '',
+  `id_karyawan` varchar(255) DEFAULT NULL,
+  `periode` varchar(255) DEFAULT NULL,
+  `jumlah_bonus` int(255) DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `tgl_input` datetime DEFAULT '0000-00-00 00:00:00',
+  `input_by` varchar(255) DEFAULT NULL,
+  `st_data` varchar(2) DEFAULT '0' COMMENT '0=blm di konfirm 1=sudah di konfirm'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='header piutang karyawan';
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trs_hrd_cuti`
+--
+
+CREATE TABLE `trs_hrd_cuti` (
+  `id_cuti` varchar(25) NOT NULL DEFAULT '' COMMENT 'id cuti',
+  `id_karyawan` varchar(255) DEFAULT NULL COMMENT 'id karyawan',
+  `jns_cuti` varchar(255) DEFAULT NULL COMMENT '1=nikah, 2=tahunan, 3=ijin sakit, 4=hamil',
+  `tgl_cuti` date DEFAULT '0000-00-00' COMMENT 'tgl mulai cuti',
+  `tgl_cuti2` date DEFAULT '0000-00-00' COMMENT 'tgl berakhir cuti',
+  `keterangan` text DEFAULT NULL COMMENT 'keterangan cuti',
+  `st_konfirmasi` varchar(255) DEFAULT '0' COMMENT 'status konfirmasi cuti',
+  `konfirmasi_by` varchar(255) DEFAULT NULL COMMENT 'konfirmasi by',
+  `jml_cuti` varchar(2) DEFAULT '' COMMENT 'jumlah hari cuti',
+  `tgl_input` datetime DEFAULT NULL COMMENT 'tgl input',
+  `operator` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='log cuti';
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trs_hrd_gaji`
+--
+
+CREATE TABLE `trs_hrd_gaji` (
+  `id_gaji` int(11) NOT NULL,
+  `id_karyawan` varchar(255) DEFAULT NULL,
+  `jml_gaji` int(11) DEFAULT NULL,
+  `keterangan_gaji` varchar(255) DEFAULT NULL,
+  `updated_gaji` datetime DEFAULT NULL,
+  `updated_gaji_by` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='TRANSAKSI PENGGAJIAN KARYAWAN';
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trs_hrd_pembayaran_karyawan`
+--
+
+CREATE TABLE `trs_hrd_pembayaran_karyawan` (
+  `id_pmbyrn_krywn` varchar(255) NOT NULL DEFAULT '',
+  `id_karyawan` varchar(255) DEFAULT NULL,
+  `jumlah_bayar` int(255) DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `tgl_input` datetime DEFAULT '0000-00-00 00:00:00',
+  `input_by` varchar(255) DEFAULT NULL,
+  `st_data` varchar(2) DEFAULT '0' COMMENT '0=blm di konfirm 1=sudah di konfirm'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='header piutang karyawan';
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trs_hrd_piutang_karyawan`
+--
+
+CREATE TABLE `trs_hrd_piutang_karyawan` (
+  `id_piut_krywn` varchar(255) NOT NULL DEFAULT '',
+  `id_karyawan` varchar(255) DEFAULT NULL,
+  `jumlah_piutang` int(255) DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `tgl_input` datetime DEFAULT '0000-00-00 00:00:00',
+  `input_by` varchar(255) DEFAULT NULL,
+  `jumlah_bayar` int(11) DEFAULT 0,
+  `st_data` varchar(2) DEFAULT '0' COMMENT '0=belum konfirmasi 1=sudah konfirmasi'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='header piutang karyawan';
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trs_hrd_potongan_karyawan`
+--
+
+CREATE TABLE `trs_hrd_potongan_karyawan` (
+  `id_trans_potongan` int(11) NOT NULL,
+  `id_potongan` varchar(255) DEFAULT NULL,
+  `id_karyawan` varchar(255) DEFAULT NULL,
+  `periode` varchar(255) DEFAULT NULL,
+  `jumlah` int(255) DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `tgl_trans` datetime DEFAULT '0000-00-00 00:00:00',
+  `operator` varchar(255) DEFAULT NULL,
+  `st_data` varchar(2) DEFAULT '0' COMMENT '0=blm di konfirm 1=sudah di konfirm'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='header potongan karyawan';
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trs_hrd_tunjangan_karyawan`
+--
+
+CREATE TABLE `trs_hrd_tunjangan_karyawan` (
+  `id_trans_tunjangan` bigint(20) NOT NULL,
+  `id_tunjangan` int(11) DEFAULT NULL,
+  `id_karyawan` varchar(255) DEFAULT NULL,
+  `periode` varchar(255) DEFAULT NULL,
+  `jumlah` int(255) DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `tgl_trans` datetime DEFAULT '0000-00-00 00:00:00',
+  `operator` varchar(255) DEFAULT NULL,
+  `st_data` varchar(2) DEFAULT '0' COMMENT '0=blm di konfirm 1=sudah di konfirm'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='header tunjangan karyawan';
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trs_pembayaran`
+--
+
+CREATE TABLE `trs_pembayaran` (
+  `id_pay` varchar(255) NOT NULL DEFAULT '',
+  `id_project` varchar(255) DEFAULT NULL,
+  `kd_cabang` varchar(255) DEFAULT NULL,
+  `jumlah_pay` int(11) DEFAULT NULL,
+  `tipe_pay` varchar(255) DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `input_by` varchar(255) DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `trs_pembayaran`
+--
+
+INSERT INTO `trs_pembayaran` (`id_pay`, `id_project`, `kd_cabang`, `jumlah_pay`, `tipe_pay`, `keterangan`, `input_by`, `tgl_input`) VALUES
+('PAY20200300003', 'PRO20200300003', NULL, 1000000, 'MANDIRI', 'DP DAN PELUNASAN SIUJK CV SANJAYA PRATAMA', 'TITIN', '2020-03-19 15:48:07'),
+('PAY20200300002', 'PRO20200300002', NULL, 1500000, 'BCA', 'DP 2 DAN PELUNASAN PT SUCAHI', 'TITIN', '2020-03-19 15:43:07'),
+('PAY20200300001', 'PRO20200300001', NULL, 300000, 'BCA', 'PELUNASAN ', 'VERA', '2020-03-19 15:34:16'),
+('PAY20200300004', 'PRO20200300004', NULL, 1500000, 'BCA', 'DP CV MANDIRI GLOBAL NUSA', 'VERA', '2020-03-19 15:51:40'),
+('PAY20200300005', 'PRO20200300005', NULL, 800000, 'BCA', 'DP DAN PELUNASAN CV FAZA TEKNIK', 'VERA', '2020-03-19 16:01:47'),
+('PAY20200300006', 'PRO20200300006', NULL, 800000, 'BCA', 'DP DAN PELUNASAN CV RAGA TECH', 'VERA', '2020-03-19 16:05:38'),
+('PAY20200300007', 'PRO20200300007', NULL, 700000, 'BCA', 'PELUNASAN CV JATA IDE', 'VERA', '2020-03-19 16:09:49'),
+('PAY20200300008', 'PRO20200300008', NULL, 500000, 'CASH', 'PELUNASAN PT KREASI ALAM TEKNOLOGI', 'NANDA', '2020-03-21 10:01:09');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trs_project`
+--
+
+CREATE TABLE `trs_project` (
+  `id_project` varchar(255) NOT NULL DEFAULT '',
+  `id_hdr_project` varchar(255) DEFAULT NULL,
+  `kd_cabang` varchar(255) DEFAULT NULL,
+  `id_customer` varchar(255) DEFAULT NULL,
+  `id_layanan` varchar(255) DEFAULT NULL,
+  `harga_jual` int(11) DEFAULT 0,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `input_by` varchar(255) DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL,
+  `st_project` varchar(2) DEFAULT '1' COMMENT '1=popjasa 2=jasamurah',
+  `st_data` varchar(2) DEFAULT '0' COMMENT '0=blm dipakai 1=konfirm',
+  `nm_project` varchar(255) DEFAULT NULL,
+  `st_minuta` smallint(6) DEFAULT 0 COMMENT '0=Tidak dikerjakan 1=Sudah dikerjakan 2=On progress 3=Bermasalah 4=Belum dikerjakan',
+  `st_akte` smallint(6) DEFAULT 0 COMMENT '0=Tidak dikerjakan 1=Sudah dikerjakan 2=On progress 3=Bermasalah 4=Belum dikerjakan',
+  `st_domisili` smallint(6) DEFAULT 0 COMMENT '0=Tidak dikerjakan 1=Sudah dikerjakan 2=On progress 3=Bermasalah 4=Belum dikerjakan',
+  `st_npwp` smallint(6) DEFAULT 0 COMMENT '0=Tidak dikerjakan 1=Sudah dikerjakan 2=On progress 3=Bermasalah 4=Belum dikerjakan',
+  `st_pn` smallint(6) DEFAULT 0 COMMENT '0=Tidak dikerjakan 1=Sudah dikerjakan 2=On progress 3=Bermasalah 4=Belum dikerjakan',
+  `st_siup` smallint(6) DEFAULT 0 COMMENT '0=Tidak dikerjakan 1=Sudah dikerjakan 2=On progress 3=Bermasalah 4=Belum dikerjakan',
+  `st_pkp` smallint(6) DEFAULT 0 COMMENT '0=Tidak dikerjakan 1=Sudah dikerjakan 2=On progress 3=Bermasalah 4=Belum dikerjakan'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `trs_project`
+--
+
+INSERT INTO `trs_project` (`id_project`, `id_hdr_project`, `kd_cabang`, `id_customer`, `id_layanan`, `harga_jual`, `keterangan`, `input_by`, `tgl_input`, `st_project`, `st_data`, `nm_project`, `st_minuta`, `st_akte`, `st_domisili`, `st_npwp`, `st_pn`, `st_siup`, `st_pkp`) VALUES
+('PRO20200300001', 'PJS-20200300021', 'SBY', 'CUS-20200300001', 'PJS-20200300021', 2300000, '', 'VERA', '2020-03-19 15:30:54', '1', '0', 'DEFF PROJECT', 0, 0, 0, 0, 0, 0, 0),
+('PRO20200300002', 'PJS-20200300022', 'SBY', 'CUS-20200300002', 'PJS-20200300022', 5000000, 'PROMO', 'TITIN', '2020-03-19 15:37:13', '2', '1', 'DEFF PROJECT', 0, 0, 0, 0, 0, 0, 0),
+('PRO20200300003', 'PJS-20200300136', 'SBY', 'CUS-20200300003', 'PJS-20200300136', 1000000, '', 'TITIN', '2020-03-19 15:46:01', '1', '0', 'DEFF PROJECT', 0, 0, 0, 0, 0, 0, 0),
+('PRO20200300004', 'PJS-20200300021', 'SBY', 'CUS-20200300004', 'PJS-20200300021', 2300000, 'REPEAT ORDER', 'VERA', '2020-03-19 15:50:29', '1', '0', 'DEFF PROJECT', 0, 0, 0, 0, 0, 0, 0),
+('PRO20200300005', 'PJS-20200300100', 'SBY', 'CUS-20200300005', 'PJS-20200300100', 1000000, '', 'VERA', '2020-03-19 16:00:53', '1', '0', 'DEFF PROJECT', 0, 0, 0, 0, 0, 0, 0),
+('PRO20200300006', 'PJS-20200300100', 'SBY', 'CUS-20200300006', 'PJS-20200300100', 800000, '', 'VERA', '2020-03-19 16:03:19', '1', '0', 'DEFF PROJECT', 0, 0, 0, 0, 0, 0, 0),
+('PRO20200300007', 'PJS-20200300027', 'SBY', 'CUS-20200300007', 'PJS-20200300027', 2700000, '', 'VERA', '2020-03-19 16:08:48', '1', '0', 'DEFF PROJECT', 0, 0, 0, 0, 0, 0, 0),
+('PRO20200300008', 'PJS-20200300060', 'SBY', 'CUS-20200300008', 'PJS-20200300060', 5000000, '', 'NANDA', '2020-03-21 09:59:42', '1', '0', 'DEFF PROJECT', 0, 0, 0, 0, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trs_projects_izin`
+--
+
+CREATE TABLE `trs_projects_izin` (
+  `Bool_Izin_Akta_Notaris` enum('Yes','No') DEFAULT 'No',
+  `Izin_Akta_Notaris` varchar(255) DEFAULT NULL,
+  `Bool_Izin_Pengesahan` enum('Yes','No') DEFAULT 'No',
+  `Izin_Pengesahan` varchar(255) DEFAULT NULL,
+  `Bool_NPWP` enum('Yes','No') DEFAULT 'No',
+  `Bool_NPWP_Perusahaan` enum('Yes','No') DEFAULT 'No',
+  `Bool_SKT_Perusahaan` enum('Yes','No') DEFAULT 'No',
+  `Bool_SIUP_TDP` enum('Yes','No') DEFAULT 'No',
+  `Bool_Registrasi` enum('Yes','No') DEFAULT 'No',
+  `Bool_PKP` enum('Yes','No') DEFAULT 'No',
+  `Bool_SK_Domisili` enum('Yes','No') DEFAULT 'No',
+  `Izin_Lain` text DEFAULT NULL,
+  `ID_Project_JNS` varchar(255) NOT NULL,
+  `ID_Hdr_Project` varchar(255) DEFAULT NULL,
+  `ID_Project` varchar(255) DEFAULT NULL,
+  `Created_by` varchar(255) DEFAULT NULL,
+  `EntryTime` timestamp NULL DEFAULT NULL,
+  `Modified_by` varchar(255) DEFAULT NULL,
+  `Last_Modified` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trs_projects_Ket`
+--
+
+CREATE TABLE `trs_projects_Ket` (
+  `Ket_Email` varchar(50) DEFAULT NULL,
+  `Email_Pengurus` varchar(50) DEFAULT NULL,
+  `No_Telp` varchar(20) DEFAULT NULL,
+  `Ket_Luas` int(11) DEFAULT NULL,
+  `Ket_Bidang_Usaha` text DEFAULT NULL,
+  `Ket_Bidang_Usaha_Utama` varchar(255) DEFAULT NULL,
+  `Ket_Informasi` varchar(255) DEFAULT NULL,
+  `ID_Project_Ket` varchar(255) NOT NULL,
+  `ID_Hdr_Project` varchar(255) DEFAULT NULL,
+  `ID_Project` varchar(255) DEFAULT NULL,
+  `Created_By` varchar(255) DEFAULT NULL,
+  `EntryTime` timestamp NULL DEFAULT NULL,
+  `Modified_By` varchar(255) DEFAULT NULL,
+  `Last_Mofidified` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `Pass_Email` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trs_project_hdr`
+--
+
+CREATE TABLE `trs_project_hdr` (
+  `id_hdr_project` varchar(255) NOT NULL DEFAULT '',
+  `kd_cabang` varchar(255) DEFAULT NULL,
+  `id_customer` varchar(255) DEFAULT NULL,
+  `nm_project` varchar(255) DEFAULT NULL,
+  `jml_penjualan` int(11) DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `input_by` varchar(255) DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL,
+  `st_data` varchar(2) DEFAULT '0' COMMENT '0=blm dipakai 1=konfirm',
+  `note_project` text DEFAULT NULL,
+  `st_project` varchar(1) DEFAULT '1' COMMENT '1=popjasa,2=jasamurah'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `trs_project_hdr`
+--
+
+INSERT INTO `trs_project_hdr` (`id_hdr_project`, `kd_cabang`, `id_customer`, `nm_project`, `jml_penjualan`, `keterangan`, `input_by`, `tgl_input`, `st_data`, `note_project`, `st_project`) VALUES
+('POP20200300001', 'SBY', 'CUS-20200300001', 'DEFF PROJECT', NULL, 'PENJUALAN PRODUK', 'VERA', '2020-03-19 15:29:50', '0', '', '1'),
+('POP20200300002', 'SBY', 'CUS-20200300002', 'DEFF PROJECT', NULL, 'PENJUALAN PRODUK', 'TITIN', '2020-03-19 15:36:11', '0', '', '1'),
+('POP20200300003', 'SBY', 'CUS-20200300004', 'DEFF PROJECT', NULL, 'PENJUALAN PRODUK', 'VERA', '2020-03-19 15:49:38', '0', '', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trs_project_logs`
+--
+
+CREATE TABLE `trs_project_logs` (
+  `Project_id` varchar(255) NOT NULL,
+  `LineNo` int(11) NOT NULL,
+  `Status_log` smallint(6) DEFAULT 0,
+  `tgl_log` date DEFAULT NULL,
+  `keterangan` text DEFAULT NULL,
+  `created_by` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `modified_by` varchar(255) DEFAULT NULL,
+  `modified_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trs_project_terima`
+--
+
+CREATE TABLE `trs_project_terima` (
+  `bool_ktp` enum('fotokopi','asli') DEFAULT 'fotokopi',
+  `bool_npwp` enum('fotokopi','asli') DEFAULT 'fotokopi',
+  `bool_sertifikat` enum('fotokopi','asli') DEFAULT 'fotokopi',
+  `bool_imb` enum('fotokopi','asli') DEFAULT 'fotokopi',
+  `bool_stempel` enum('yes','no') DEFAULT 'yes',
+  `jml_materai` int(11) DEFAULT NULL,
+  `bool_sk_domisili` enum('fotokopi','asli') DEFAULT 'fotokopi',
+  `bool_surat_sewa` enum('fotokopi','asli') DEFAULT 'fotokopi',
+  `ID_Project_terima` varchar(255) NOT NULL,
+  `ID_Hdr_Project` varchar(255) DEFAULT NULL,
+  `ID_Project` varchar(255) DEFAULT NULL,
+  `Created_by` varchar(255) DEFAULT NULL,
+  `EntryTime` timestamp NULL DEFAULT NULL,
+  `Modified_by` varchar(255) DEFAULT NULL,
+  `Last_Modified` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `jml_ktp` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trs_project_terima_ktp`
+--
+
+CREATE TABLE `trs_project_terima_ktp` (
+  `id` int(11) NOT NULL,
+  `id_project` varchar(255) DEFAULT NULL,
+  `no_ktp` varchar(50) DEFAULT NULL,
+  `nama_ktp` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trs_project_uraian`
+--
+
+CREATE TABLE `trs_project_uraian` (
+  `nm_perusahaan` varchar(255) DEFAULT NULL,
+  `modal` decimal(18,2) DEFAULT 0.00,
+  `presentase_shm` decimal(9,2) DEFAULT 0.00,
+  `hrg_saham` decimal(18,2) DEFAULT 0.00,
+  `No_Telp` varchar(20) DEFAULT NULL,
+  `No_Fax` varchar(20) DEFAULT NULL,
+  `alamat` varchar(100) DEFAULT NULL,
+  `kota` varchar(30) DEFAULT NULL,
+  `kelurahan` varchar(30) DEFAULT NULL,
+  `kabupaten` varchar(30) DEFAULT NULL,
+  `izin_persetujuan` enum('Yes','No') DEFAULT 'No',
+  `signature_commander` text DEFAULT NULL,
+  `penerima` text DEFAULT NULL,
+  `ID_Project_Uraian` varchar(255) NOT NULL,
+  `ID_Hdr_Project` varchar(255) DEFAULT NULL,
+  `ID_Project` varchar(255) DEFAULT NULL,
+  `Created_by` varchar(255) DEFAULT NULL,
+  `EntryTime` timestamp NULL DEFAULT NULL,
+  `Modified_by` varchar(255) DEFAULT NULL,
+  `Last_Modified` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `modal_disetor` decimal(19,2) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `trs_project_uraian`
+--
+
+INSERT INTO `trs_project_uraian` (`nm_perusahaan`, `modal`, `presentase_shm`, `hrg_saham`, `No_Telp`, `No_Fax`, `alamat`, `kota`, `kelurahan`, `kabupaten`, `izin_persetujuan`, `signature_commander`, `penerima`, `ID_Project_Uraian`, `ID_Hdr_Project`, `ID_Project`, `Created_by`, `EntryTime`, `Modified_by`, `Last_Modified`, `modal_disetor`) VALUES
+('', 0.00, 0.00, 0.00, '', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'DKU20200300001', 'PJS-20200300022', 'PRO20200300002', 'SURABAYA', '2020-03-22 07:44:06', 'SURABAYA', '2020-03-22 07:45:17', 0.00);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trs_rekening_biaya`
+--
+
+CREATE TABLE `trs_rekening_biaya` (
+  `id_trs_rekbiaya` varchar(45) DEFAULT NULL,
+  `kd_cabang` varchar(255) DEFAULT NULL,
+  `keterangan` varchar(765) DEFAULT NULL,
+  `periode` varchar(765) DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL,
+  `inputby` varchar(765) DEFAULT NULL,
+  `total_pengeluaran` int(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in struktur untuk tampilan `v_karyawan`
+-- (Lihat di bawah untuk tampilan aktual)
+--
+CREATE TABLE `v_karyawan` (
+`id_karyawan` varchar(255)
+,`nama_karyawan` varchar(255)
+,`id_jabatan` varchar(20)
+,`nama_jabatan` varchar(255)
+,`status_karyawan` varchar(255)
+,`jns_kelamin` varchar(255)
+,`jml_gaji` int(11)
+,`jml_piutang` int(11)
+,`jml_bayar` int(11)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in struktur untuk tampilan `v_log_customer`
+-- (Lihat di bawah untuk tampilan aktual)
+--
+CREATE TABLE `v_log_customer` (
+`id_customer` varchar(20)
+,`kd_cabang` varchar(255)
+,`Agen` varchar(255)
+,`nm_customer` varchar(255)
+,`alamat` text
+,`nm_perusahaan` varchar(255)
+,`alamat_perusahaan` text
+,`jns_usaha` varchar(255)
+,`bidang_usaha` varchar(255)
+,`tlp_customer` varchar(255)
+,`telp2_customer` varchar(255)
+,`email_customer` varchar(255)
+,`kota_customer` varchar(255)
+,`keterangan` text
+,`inputby` varchar(255)
+,`tgl_input` datetime
+,`status` varchar(2)
+,`keterangan_deals` text
+,`keterangan_lost` text
+,`st_data` varchar(2)
+,`id_layanan` varchar(255)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in struktur untuk tampilan `v_paybycustomers`
+-- (Lihat di bawah untuk tampilan aktual)
+--
+CREATE TABLE `v_paybycustomers` (
+`id_project` varchar(255)
+,`st_project` varchar(2)
+,`kd_cabang` varchar(255)
+,`id_layanan` varchar(255)
+,`nama_layanan` varchar(255)
+,`harga` int(11)
+,`hpp` int(11)
+,`id_customer` varchar(255)
+,`nm_customer` varchar(255)
+,`nm_perusahaan` varchar(255)
+,`profit` decimal(32,0)
+,`jml_order` bigint(21)
+,`jumlah_byr` decimal(54,0)
+,`keterangan` varchar(255)
+,`input_by` varchar(255)
+,`tgl_input` datetime
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in struktur untuk tampilan `v_paybyproject`
+-- (Lihat di bawah untuk tampilan aktual)
+--
+CREATE TABLE `v_paybyproject` (
+`id_project` varchar(255)
+,`id_layanan` varchar(255)
+,`st_project` varchar(2)
+,`kd_cabang` varchar(255)
+,`nama_layanan` varchar(255)
+,`harga` int(11)
+,`hpp` int(11)
+,`id_customer` varchar(255)
+,`nm_customer` varchar(255)
+,`profit` int(11)
+,`jml_order` bigint(21)
+,`jumlah_byr` decimal(32,0)
+,`keterangan` varchar(255)
+,`input_by` varchar(255)
+,`tgl_input` datetime
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in struktur untuk tampilan `v_pengeluaran`
+-- (Lihat di bawah untuk tampilan aktual)
+--
+CREATE TABLE `v_pengeluaran` (
+`ket_periode` varchar(765)
+,`kd_cabang` varchar(255)
+,`id_dtlrekbiaya` varchar(63)
+,`id_trs_rekbiaya` varchar(765)
+,`id_rekbiaya` varchar(765)
+,`harga` int(11)
+,`qty` int(11)
+,`tgl_input` datetime
+,`inputby` varchar(765)
+,`keterangan` varchar(765)
+,`nm_rekbiaya` varchar(765)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in struktur untuk tampilan `v_project`
+-- (Lihat di bawah untuk tampilan aktual)
+--
+CREATE TABLE `v_project` (
+`id_project` varchar(255)
+,`id_layanan` varchar(255)
+,`st_project` varchar(2)
+,`kd_cabang` varchar(255)
+,`nama_layanan` varchar(255)
+,`harga` int(11)
+,`id_customer` varchar(255)
+,`nm_customer` varchar(255)
+,`hpp` int(11)
+,`harga_jual` int(11)
+,`keterangan` varchar(255)
+,`input_by` varchar(255)
+,`tgl_input` datetime
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in struktur untuk tampilan `v_project_logs`
+-- (Lihat di bawah untuk tampilan aktual)
+--
+CREATE TABLE `v_project_logs` (
+`Project_id` varchar(255)
+,`LineNo` int(11)
+,`Status_log` varchar(10)
+,`tgl_log` date
+,`keterangan` text
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in struktur untuk tampilan `v_rekapitulasi_cashflow`
+-- (Lihat di bawah untuk tampilan aktual)
+--
+CREATE TABLE `v_rekapitulasi_cashflow` (
+`ID_TRANS` varchar(255)
+,`TGL` date
+,`KD_BANK` varchar(255)
+,`NOMINAL` int(11)
+,`TIPE` varchar(6)
+,`TRX` varchar(19)
+,`ID_OPR` text
+,`KETERANGAN` text
+,`KETERANGAN2` text
+,`URAIAN` text
+,`NM_BANK` varchar(200)
+,`KD_CABANG` varchar(255)
+,`NM_CABANG` varchar(255)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in struktur untuk tampilan `v_trs_potongan`
+-- (Lihat di bawah untuk tampilan aktual)
+--
+CREATE TABLE `v_trs_potongan` (
+`id_karyawan` varchar(255)
+,`id_potongan` int(11)
+,`nm_potongan` varchar(255)
+,`jumlah` int(255)
+,`tgl_trans` datetime
+,`operator` varchar(255)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in struktur untuk tampilan `v_trs_tunjangan`
+-- (Lihat di bawah untuk tampilan aktual)
+--
+CREATE TABLE `v_trs_tunjangan` (
+`id_karyawan` varchar(255)
+,`id_tunjangan` int(11)
+,`nm_tunjangan` varchar(255)
+,`jumlah` varchar(255)
+,`operator` varchar(255)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur untuk view `v_karyawan`
+--
+DROP TABLE IF EXISTS `v_karyawan`;
+
+CREATE VIEW `v_karyawan`  AS  select `a`.`id_karyawan` AS `id_karyawan`,`a`.`nama_karyawan` AS `nama_karyawan`,`b`.`id_jabatan` AS `id_jabatan`,`b`.`nama_jabatan` AS `nama_jabatan`,`a`.`status_karyawan` AS `status_karyawan`,`a`.`jns_kelamin` AS `jns_kelamin`,`a`.`jml_gaji` AS `jml_gaji`,`a`.`jml_piutang` AS `jml_piutang`,`a`.`jml_bayar` AS `jml_bayar` from ((`m_karyawan` `a` join `m_jabatan` `b` on(`a`.`id_jabatan` = `b`.`id_jabatan`)) join `m_cabang` `c` on(`a`.`kd_cabang` = `c`.`kd_cabang`)) ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur untuk view `v_log_customer`
+--
+DROP TABLE IF EXISTS `v_log_customer`;
+
+CREATE VIEW `v_log_customer`  AS  select `a`.`id_customer` AS `id_customer`,`a`.`kd_cabang` AS `kd_cabang`,`a`.`Agen` AS `Agen`,`a`.`nm_customer` AS `nm_customer`,`a`.`alamat` AS `alamat`,`a`.`nm_perusahaan` AS `nm_perusahaan`,`a`.`alamat_perusahaan` AS `alamat_perusahaan`,`a`.`jns_usaha` AS `jns_usaha`,`a`.`bidang_usaha` AS `bidang_usaha`,`a`.`tlp_customer` AS `tlp_customer`,`a`.`telp2_customer` AS `telp2_customer`,`a`.`email_customer` AS `email_customer`,`a`.`kota_customer` AS `kota_customer`,`a`.`keterangan` AS `keterangan`,`a`.`inputby` AS `inputby`,`a`.`tgl_input` AS `tgl_input`,`a`.`status` AS `status`,`a`.`keterangan_deals` AS `keterangan_deals`,`a`.`keterangan_lost` AS `keterangan_lost`,`a`.`st_data` AS `st_data`,`a`.`id_layanan` AS `id_layanan` from (`m_customer` `a` join `log_customer` `b` on(`a`.`id_customer` = `b`.`id_customer`)) ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur untuk view `v_paybycustomers`
+--
+DROP TABLE IF EXISTS `v_paybycustomers`;
+
+CREATE VIEW `v_paybycustomers`  AS  (select `a`.`id_project` AS `id_project`,`a`.`st_project` AS `st_project`,`a`.`kd_cabang` AS `kd_cabang`,`a`.`id_layanan` AS `id_layanan`,`a`.`nama_layanan` AS `nama_layanan`,`a`.`harga` AS `harga`,`a`.`hpp` AS `hpp`,`a`.`id_customer` AS `id_customer`,`a`.`nm_customer` AS `nm_customer`,`c`.`nm_perusahaan` AS `nm_perusahaan`,coalesce(sum(`a`.`harga_jual`),0) AS `profit`,count(`a`.`id_project`) AS `jml_order`,coalesce(sum(`b`.`jumlah_pay`),0) AS `jumlah_byr`,`a`.`keterangan` AS `keterangan`,`a`.`input_by` AS `input_by`,`a`.`tgl_input` AS `tgl_input` from ((`v_project` `a` left join (select `trs_pembayaran`.`id_project` AS `id_project`,sum(`trs_pembayaran`.`jumlah_pay`) AS `jumlah_pay` from `trs_pembayaran` group by `trs_pembayaran`.`id_project`) `b` on(`b`.`id_project` = `a`.`id_project`)) join `m_customer` `c` on(`c`.`id_customer` = `a`.`id_customer`)) group by `a`.`id_customer`) ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur untuk view `v_paybyproject`
+--
+DROP TABLE IF EXISTS `v_paybyproject`;
+
+CREATE VIEW `v_paybyproject`  AS  (select `a`.`id_project` AS `id_project`,`a`.`id_layanan` AS `id_layanan`,`a`.`st_project` AS `st_project`,`a`.`kd_cabang` AS `kd_cabang`,`a`.`nama_layanan` AS `nama_layanan`,`a`.`harga` AS `harga`,`a`.`hpp` AS `hpp`,`a`.`id_customer` AS `id_customer`,`a`.`nm_customer` AS `nm_customer`,`a`.`harga_jual` AS `profit`,count(`a`.`id_project`) AS `jml_order`,coalesce(`b`.`jumlah_pay`,0) AS `jumlah_byr`,`a`.`keterangan` AS `keterangan`,`a`.`input_by` AS `input_by`,`a`.`tgl_input` AS `tgl_input` from (`v_project` `a` left join (select `trs_pembayaran`.`id_project` AS `id_project`,sum(`trs_pembayaran`.`jumlah_pay`) AS `jumlah_pay` from `trs_pembayaran` group by `trs_pembayaran`.`id_project`) `b` on(`a`.`id_project` = `b`.`id_project`)) group by `a`.`id_project`) ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur untuk view `v_pengeluaran`
+--
+DROP TABLE IF EXISTS `v_pengeluaran`;
+
+CREATE VIEW `v_pengeluaran`  AS  select `b`.`keterangan` AS `ket_periode`,`b`.`kd_cabang` AS `kd_cabang`,`a`.`id_dtlrekbiaya` AS `id_dtlrekbiaya`,`a`.`id_trs_rekbiaya` AS `id_trs_rekbiaya`,`a`.`id_rekbiaya` AS `id_rekbiaya`,`a`.`harga` AS `harga`,`a`.`qty` AS `qty`,`a`.`tgl_input` AS `tgl_input`,`a`.`inputby` AS `inputby`,`a`.`keterangan` AS `keterangan`,`c`.`nm_rekbiaya` AS `nm_rekbiaya` from ((`trs_detail_rekening_biaya` `a` join `trs_rekening_biaya` `b` on(`a`.`id_trs_rekbiaya` = `b`.`id_trs_rekbiaya`)) join `m_rekening_biaya` `c` on(`a`.`id_rekbiaya` = `c`.`id_rekbiaya`)) ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur untuk view `v_project`
+--
+DROP TABLE IF EXISTS `v_project`;
+
+CREATE VIEW `v_project`  AS  select `a`.`id_project` AS `id_project`,`a`.`id_layanan` AS `id_layanan`,`a`.`st_project` AS `st_project`,`a`.`kd_cabang` AS `kd_cabang`,`c`.`nama_layanan` AS `nama_layanan`,`d`.`harga` AS `harga`,`a`.`id_customer` AS `id_customer`,`b`.`nm_customer` AS `nm_customer`,`d`.`hpp` AS `hpp`,`a`.`harga_jual` AS `harga_jual`,`a`.`keterangan` AS `keterangan`,`a`.`input_by` AS `input_by`,`a`.`tgl_input` AS `tgl_input` from (((`trs_project` `a` join `m_customer` `b` on(`a`.`id_customer` = `b`.`id_customer`)) join `m_layanan` `c` on(`a`.`id_layanan` = `c`.`id_layanan`)) left join `m_harga_layanan` `d` on(`a`.`id_layanan` = `d`.`id_layanan`)) ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur untuk view `v_project_logs`
+--
+DROP TABLE IF EXISTS `v_project_logs`;
+
+CREATE VIEW `v_project_logs`  AS  select `tpl`.`Project_id` AS `Project_id`,`tpl`.`LineNo` AS `LineNo`,case when `tpl`.`Status_log` = 0 then 'New' when `tpl`.`Status_log` = 1 then 'On Progres' when `tpl`.`Status_log` = 2 then 'Finish' end AS `Status_log`,`tpl`.`tgl_log` AS `tgl_log`,`tpl`.`keterangan` AS `keterangan` from `trs_project_logs` `tpl` ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur untuk view `v_rekapitulasi_cashflow`
+--
+DROP TABLE IF EXISTS `v_rekapitulasi_cashflow`;
+
+CREATE VIEW `v_rekapitulasi_cashflow`  AS  (select `cf_global`.`ID_TRANS` AS `ID_TRANS`,`cf_global`.`TGL` AS `TGL`,`cf_global`.`KD_BANK` AS `KD_BANK`,`cf_global`.`NOMINAL` AS `NOMINAL`,`cf_global`.`TIPE` AS `TIPE`,`cf_global`.`TRX` AS `TRX`,`cf_global`.`ID_OPR` AS `ID_OPR`,`cf_global`.`KETERANGAN` AS `KETERANGAN`,`cf_global`.`KETERANGAN2` AS `KETERANGAN2`,`cf_global`.`URAIAN` AS `URAIAN`,`b`.`nm_bank` AS `NM_BANK`,`cf_global`.`KD_CABANG` AS `KD_CABANG`,`m_cabang`.`nm_cabang` AS `NM_CABANG` from ((((select cast(coalesce(`trans_bank_in`.`TGL_TRANS`,`trans_bank_in`.`TGL_BUAT`) as date) AS `TGL`,`trans_bank_in`.`ID_TRANS` AS `ID_TRANS`,`trans_bank_in`.`KD_BANK` AS `KD_BANK`,`trans_bank_in`.`SLD_MASUK` AS `NOMINAL`,'DEBET' AS `TIPE`,'KAS MASUK' AS `TRX`,`trans_bank_in`.`ID_OPR` AS `ID_OPR`,`trans_bank_in`.`KETERANGAN` AS `KETERANGAN`,'' AS `KETERANGAN2`,concat('Kas Masuk Nomor : ',`trans_bank_in`.`ID_TRANS`) AS `URAIAN`,coalesce(`trans_bank_in`.`KD_CABANG`,'SBY') AS `KD_CABANG` from `trans_bank_in` where `trans_bank_in`.`ST_DATA` = 1) union all select cast(coalesce(`trans_bank_out`.`TGL_TRANS`,`trans_bank_out`.`TGL_BUAT`) as date) AS `TGL`,`trans_bank_out`.`ID_TRANS` AS `ID_TRANS`,`trans_bank_out`.`KD_BANK` AS `KD_BANK`,`trans_bank_out`.`SLD_KELUAR` AS `SLD_KELUAR`,'KREDIT' AS `KREDIT`,'KAS KELUAR' AS `BANK OUT`,`trans_bank_out`.`ID_OPR` AS `ID_OPR`,`trans_bank_out`.`KETERANGAN` AS `KETERANGAN`,'' AS `KETERANGAN2`,concat('Kas Keluar Nomor : ',`trans_bank_out`.`ID_TRANS`) AS `URAIAN`,coalesce(`trans_bank_out`.`KD_CABANG`,'SBY') AS `KD_CABANG` from `trans_bank_out` where `trans_bank_out`.`ST_DATA` = 1 union all select cast(`b`.`tgl_input` as date) AS `CAST(b.tgl_input AS DATE)`,`a`.`id_trs_rekbiaya` AS `id_trs_rekbiaya`,`b`.`kd_bank` AS `kd_bank`,`b`.`harga` AS `harga`,'KREDIT' AS `KREDIT`,'Pengeluaran Bulanan' AS `Pengeluaran Bulanan`,`b`.`inputby` AS `inputby`,`b`.`keterangan` AS `keterangan`,'' AS `keterangan`,concat('Biaya Pengeluaran Periode ',`a`.`periode`,' Nomor : ',`a`.`id_trs_rekbiaya`) AS `uraian`,`a`.`kd_cabang` AS `kd_cabang` from (`trs_rekening_biaya` `a` join `trs_detail_rekening_biaya` `b` on(`a`.`id_trs_rekbiaya` = `b`.`id_trs_rekbiaya`)) union all select cast(`a`.`tgl_input` as date) AS `tanggal`,`a`.`id_project` AS `id`,`a`.`tipe_pay` AS `metode`,`a`.`jumlah_pay` AS `jumlah`,'DEBET' AS `tipe`,'PROJECT' AS `trx`,`a`.`input_by` AS `input_by`,`a`.`keterangan` AS `keterangan`,concat(`c`.`nm_perusahaan`,' (',`c`.`nm_customer`,')') AS `keterangan2`,concat('Project Nomor : ',`a`.`id_project`) AS `uraian`,`b`.`kd_cabang` AS `kd_cabang` from ((`trs_pembayaran` `a` join `trs_project` `b` on(`a`.`id_project` = `b`.`id_project`)) join `m_customer` `c` on(`c`.`id_customer` = `b`.`id_customer`))) `cf_global` left join `bank` `b` on(`cf_global`.`KD_BANK` = `b`.`kd_bank`)) join `m_cabang` on(`m_cabang`.`kd_cabang` = `cf_global`.`KD_CABANG`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur untuk view `v_trs_potongan`
+--
+DROP TABLE IF EXISTS `v_trs_potongan`;
+
+CREATE VIEW `v_trs_potongan`  AS  select `b`.`id_karyawan` AS `id_karyawan`,`a`.`id_potongan` AS `id_potongan`,`a`.`nm_potongan` AS `nm_potongan`,`b`.`jumlah` AS `jumlah`,`b`.`tgl_trans` AS `tgl_trans`,`b`.`operator` AS `operator` from (`m_potongan` `a` left join `trs_hrd_potongan_karyawan` `b` on(`a`.`id_potongan` = `b`.`id_potongan`)) ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur untuk view `v_trs_tunjangan`
+--
+DROP TABLE IF EXISTS `v_trs_tunjangan`;
+
+CREATE VIEW `v_trs_tunjangan`  AS  select `b`.`id_karyawan` AS `id_karyawan`,`a`.`id_tunjangan` AS `id_tunjangan`,`a`.`nm_tunjangan` AS `nm_tunjangan`,coalesce(`b`.`jumlah`,`b`.`tgl_trans`,0) AS `jumlah`,`b`.`operator` AS `operator` from (`m_tunjangan` `a` left join `trs_hrd_tunjangan_karyawan` `b` on(`a`.`id_tunjangan` = `b`.`id_tunjangan`)) ;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indeks untuk tabel `bank`
+--
+ALTER TABLE `bank`
+  ADD PRIMARY KEY (`kd_bank`);
+
+--
+-- Indeks untuk tabel `kartu_piutang_karyawan`
+--
+ALTER TABLE `kartu_piutang_karyawan`
+  ADD PRIMARY KEY (`id_trans`,`id_karyawan`);
+
+--
+-- Indeks untuk tabel `log_customer`
+--
+ALTER TABLE `log_customer`
+  ADD PRIMARY KEY (`id_customer`);
+
+--
+-- Indeks untuk tabel `log_m_karyawan`
+--
+ALTER TABLE `log_m_karyawan`
+  ADD PRIMARY KEY (`id_log`,`id_karyawan`);
+
+--
+-- Indeks untuk tabel `m_agen`
+--
+ALTER TABLE `m_agen`
+  ADD PRIMARY KEY (`id_agen`);
+
+--
+-- Indeks untuk tabel `m_cabang`
+--
+ALTER TABLE `m_cabang`
+  ADD PRIMARY KEY (`kd_cabang`);
+
+--
+-- Indeks untuk tabel `m_customer`
+--
+ALTER TABLE `m_customer`
+  ADD PRIMARY KEY (`id_customer`);
+
+--
+-- Indeks untuk tabel `m_detail_layanan`
+--
+ALTER TABLE `m_detail_layanan`
+  ADD PRIMARY KEY (`id_detail_layanan`);
+
+--
+-- Indeks untuk tabel `m_fix_assets`
+--
+ALTER TABLE `m_fix_assets`
+  ADD PRIMARY KEY (`Fa_ID`);
+
+--
+-- Indeks untuk tabel `m_harga_layanan`
+--
+ALTER TABLE `m_harga_layanan`
+  ADD PRIMARY KEY (`id_hrg_layanan`),
+  ADD KEY `id_layanan` (`id_layanan`);
+
+--
+-- Indeks untuk tabel `m_harikerja`
+--
+ALTER TABLE `m_harikerja`
+  ADD PRIMARY KEY (`periode`);
+
+--
+-- Indeks untuk tabel `m_jabatan`
+--
+ALTER TABLE `m_jabatan`
+  ADD PRIMARY KEY (`id_jabatan`);
+
+--
+-- Indeks untuk tabel `m_jenis_rekening_biaya`
+--
+ALTER TABLE `m_jenis_rekening_biaya`
+  ADD PRIMARY KEY (`id_jns_rekbiaya`);
+
+--
+-- Indeks untuk tabel `m_karyawan`
+--
+ALTER TABLE `m_karyawan`
+  ADD PRIMARY KEY (`id_karyawan`),
+  ADD KEY `id_jabatan` (`id_jabatan`),
+  ADD KEY `kd_cabang` (`kd_cabang`);
+
+--
+-- Indeks untuk tabel `m_kota`
+--
+ALTER TABLE `m_kota`
+  ADD PRIMARY KEY (`id_kota`);
+
+--
+-- Indeks untuk tabel `m_layanan`
+--
+ALTER TABLE `m_layanan`
+  ADD PRIMARY KEY (`id_layanan`);
+
+--
+-- Indeks untuk tabel `m_potongan`
+--
+ALTER TABLE `m_potongan`
+  ADD PRIMARY KEY (`id_potongan`);
+
+--
+-- Indeks untuk tabel `m_reason_deal`
+--
+ALTER TABLE `m_reason_deal`
+  ADD PRIMARY KEY (`id_reason_deal`);
+
+--
+-- Indeks untuk tabel `m_reason_lost`
+--
+ALTER TABLE `m_reason_lost`
+  ADD PRIMARY KEY (`id_reason_lost`);
+
+--
+-- Indeks untuk tabel `m_rekening_biaya`
+--
+ALTER TABLE `m_rekening_biaya`
+  ADD KEY `id_jns_rekbiaya` (`id_jns_rekbiaya`);
+
+--
+-- Indeks untuk tabel `m_supplier`
+--
+ALTER TABLE `m_supplier`
+  ADD PRIMARY KEY (`id_supplier`);
+
+--
+-- Indeks untuk tabel `m_syarat_layanan`
+--
+ALTER TABLE `m_syarat_layanan`
+  ADD PRIMARY KEY (`id_syrt_layanan`);
+
+--
+-- Indeks untuk tabel `m_target`
+--
+ALTER TABLE `m_target`
+  ADD PRIMARY KEY (`periode`);
+
+--
+-- Indeks untuk tabel `m_target_produk`
+--
+ALTER TABLE `m_target_produk`
+  ADD PRIMARY KEY (`periode`);
+
+--
+-- Indeks untuk tabel `m_tipe_layanan`
+--
+ALTER TABLE `m_tipe_layanan`
+  ADD PRIMARY KEY (`id_tipe_layanan`);
+
+--
+-- Indeks untuk tabel `m_tunjangan`
+--
+ALTER TABLE `m_tunjangan`
+  ADD PRIMARY KEY (`id_tunjangan`);
+
+--
+-- Indeks untuk tabel `m_user`
+--
+ALTER TABLE `m_user`
+  ADD PRIMARY KEY (`id_user`);
+
+--
+-- Indeks untuk tabel `trans_bank_in`
+--
+ALTER TABLE `trans_bank_in`
+  ADD PRIMARY KEY (`ID_TRANS`) USING BTREE;
+
+--
+-- Indeks untuk tabel `trans_bank_out`
+--
+ALTER TABLE `trans_bank_out`
+  ADD PRIMARY KEY (`ID_TRANS`) USING BTREE;
+
+--
+-- Indeks untuk tabel `trs_fix_asset_dtl`
+--
+ALTER TABLE `trs_fix_asset_dtl`
+  ADD PRIMARY KEY (`Line_No`,`TrNo`) USING BTREE,
+  ADD UNIQUE KEY `Idx_TrNo` (`TrNo`,`Line_No`) USING BTREE,
+  ADD KEY `idx_item_id` (`Fa_Id`),
+  ADD KEY `idx_jenis` (`Jenis`);
+
+--
+-- Indeks untuk tabel `trs_fix_asset_hdr`
+--
+ALTER TABLE `trs_fix_asset_hdr`
+  ADD PRIMARY KEY (`TrNo`),
+  ADD KEY `Idx_Tgl` (`Tgl`),
+  ADD KEY `Idx_TrManualRef` (`TrManualRef`);
+
+--
+-- Indeks untuk tabel `trs_hrd_absensi`
+--
+ALTER TABLE `trs_hrd_absensi`
+  ADD PRIMARY KEY (`id_absen`);
+
+--
+-- Indeks untuk tabel `trs_hrd_bonus_karyawan`
+--
+ALTER TABLE `trs_hrd_bonus_karyawan`
+  ADD PRIMARY KEY (`id_bonus_krywn`);
+
+--
+-- Indeks untuk tabel `trs_hrd_cuti`
+--
+ALTER TABLE `trs_hrd_cuti`
+  ADD PRIMARY KEY (`id_cuti`);
+
+--
+-- Indeks untuk tabel `trs_hrd_gaji`
+--
+ALTER TABLE `trs_hrd_gaji`
+  ADD PRIMARY KEY (`id_gaji`),
+  ADD KEY `id_karyawan` (`id_karyawan`);
+
+--
+-- Indeks untuk tabel `trs_hrd_pembayaran_karyawan`
+--
+ALTER TABLE `trs_hrd_pembayaran_karyawan`
+  ADD PRIMARY KEY (`id_pmbyrn_krywn`);
+
+--
+-- Indeks untuk tabel `trs_hrd_piutang_karyawan`
+--
+ALTER TABLE `trs_hrd_piutang_karyawan`
+  ADD PRIMARY KEY (`id_piut_krywn`);
+
+--
+-- Indeks untuk tabel `trs_hrd_potongan_karyawan`
+--
+ALTER TABLE `trs_hrd_potongan_karyawan`
+  ADD PRIMARY KEY (`id_trans_potongan`);
+
+--
+-- Indeks untuk tabel `trs_hrd_tunjangan_karyawan`
+--
+ALTER TABLE `trs_hrd_tunjangan_karyawan`
+  ADD PRIMARY KEY (`id_trans_tunjangan`);
+
+--
+-- Indeks untuk tabel `trs_pembayaran`
+--
+ALTER TABLE `trs_pembayaran`
+  ADD PRIMARY KEY (`id_pay`);
+
+--
+-- Indeks untuk tabel `trs_project`
+--
+ALTER TABLE `trs_project`
+  ADD PRIMARY KEY (`id_project`);
+
+--
+-- Indeks untuk tabel `trs_projects_izin`
+--
+ALTER TABLE `trs_projects_izin`
+  ADD PRIMARY KEY (`ID_Project_JNS`),
+  ADD KEY `FK_Project_ID` (`ID_Project`),
+  ADD KEY `FK_Project_ID_Hdr` (`ID_Hdr_Project`);
+
+--
+-- Indeks untuk tabel `trs_projects_Ket`
+--
+ALTER TABLE `trs_projects_Ket`
+  ADD PRIMARY KEY (`ID_Project_Ket`),
+  ADD KEY `FK_ID_Project` (`ID_Project`),
+  ADD KEY `FK_ID_HDR_Project` (`ID_Hdr_Project`);
+
+--
+-- Indeks untuk tabel `trs_project_hdr`
+--
+ALTER TABLE `trs_project_hdr`
+  ADD PRIMARY KEY (`id_hdr_project`);
+
+--
+-- Indeks untuk tabel `trs_project_logs`
+--
+ALTER TABLE `trs_project_logs`
+  ADD PRIMARY KEY (`Project_id`,`LineNo`) USING BTREE;
+
+--
+-- Indeks untuk tabel `trs_project_terima`
+--
+ALTER TABLE `trs_project_terima`
+  ADD PRIMARY KEY (`ID_Project_terima`);
+
+--
+-- Indeks untuk tabel `trs_project_terima_ktp`
+--
+ALTER TABLE `trs_project_terima_ktp`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `terima_project_ktp` (`id_project`);
+
+--
+-- Indeks untuk tabel `trs_project_uraian`
+--
+ALTER TABLE `trs_project_uraian`
+  ADD PRIMARY KEY (`ID_Project_Uraian`),
+  ADD KEY `FK_Project_ID` (`ID_Project`),
+  ADD KEY `FK_Project_ID_Hdr` (`ID_Hdr_Project`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
+--
+
+--
+-- AUTO_INCREMENT untuk tabel `m_agen`
+--
+ALTER TABLE `m_agen`
+  MODIFY `id_agen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `m_potongan`
+--
+ALTER TABLE `m_potongan`
+  MODIFY `id_potongan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT untuk tabel `m_reason_deal`
+--
+ALTER TABLE `m_reason_deal`
+  MODIFY `id_reason_deal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `m_reason_lost`
+--
+ALTER TABLE `m_reason_lost`
+  MODIFY `id_reason_lost` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT untuk tabel `m_supplier`
+--
+ALTER TABLE `m_supplier`
+  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `m_tunjangan`
+--
+ALTER TABLE `m_tunjangan`
+  MODIFY `id_tunjangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT untuk tabel `trs_hrd_gaji`
+--
+ALTER TABLE `trs_hrd_gaji`
+  MODIFY `id_gaji` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT untuk tabel `trs_hrd_potongan_karyawan`
+--
+ALTER TABLE `trs_hrd_potongan_karyawan`
+  MODIFY `id_trans_potongan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT untuk tabel `trs_hrd_tunjangan_karyawan`
+--
+ALTER TABLE `trs_hrd_tunjangan_karyawan`
+  MODIFY `id_trans_tunjangan` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT untuk tabel `trs_project_logs`
+--
+ALTER TABLE `trs_project_logs`
+  MODIFY `LineNo` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `trs_project_terima_ktp`
+--
+ALTER TABLE `trs_project_terima_ktp`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `m_harga_layanan`
+--
+ALTER TABLE `m_harga_layanan`
+  ADD CONSTRAINT `m_harga_layanan_ibfk_1` FOREIGN KEY (`id_layanan`) REFERENCES `m_layanan` (`id_layanan`);
+
+--
+-- Ketidakleluasaan untuk tabel `m_karyawan`
+--
+ALTER TABLE `m_karyawan`
+  ADD CONSTRAINT `m_karyawan_ibfk_1` FOREIGN KEY (`id_jabatan`) REFERENCES `m_jabatan` (`id_jabatan`),
+  ADD CONSTRAINT `m_karyawan_ibfk_2` FOREIGN KEY (`kd_cabang`) REFERENCES `m_cabang` (`kd_cabang`);
+
+--
+-- Ketidakleluasaan untuk tabel `m_rekening_biaya`
+--
+ALTER TABLE `m_rekening_biaya`
+  ADD CONSTRAINT `m_rekening_biaya_ibfk_1` FOREIGN KEY (`id_jns_rekbiaya`) REFERENCES `m_jenis_rekening_biaya` (`id_jns_rekbiaya`);
+
+--
+-- Ketidakleluasaan untuk tabel `trs_project_terima_ktp`
+--
+ALTER TABLE `trs_project_terima_ktp`
+  ADD CONSTRAINT `terima_project_ktp` FOREIGN KEY (`id_project`) REFERENCES `trs_project` (`id_project`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
