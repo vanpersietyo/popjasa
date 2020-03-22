@@ -118,7 +118,12 @@
                         <br>LUASAN TEMPAT USAHA : <br>  <?= $dokumen->Ket_Luas ?><br>
                         <br>BIDANG USAHA : <br>  <?= $dokumen->Ket_Bidang_Usaha ?><br>
                         <br>BIDANG USAHA UTAMA : <br>  <?=$dokumen->Ket_Bidang_Usaha_Utama ?><br>
-                        <br> MENGETAHUI <B>POPJASA</B> DARI : <br> <?= $dokumen->Ket_Informasi ?><br>
+                        <?php if ($dokumen->st_project==1) { ?>
+                            <br> MENGETAHUI <B>POPJASA</B> DARI : <br> <?= $dokumen->Ket_Informasi ?><br>
+                        <?php } else { ?>
+                            <br> MENGETAHUI <B>JASAMURA</B> DARI : <br> <?= $dokumen->Ket_Informasi ?><br>
+                        <?php } ?>
+
 
                     </td>
                     <!--izin-->
