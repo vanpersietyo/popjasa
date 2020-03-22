@@ -1,8 +1,11 @@
 
 <?php
+
+use Mpdf\Mpdf;
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Labarugi extends CI_Controller {
+class Progress extends CI_Controller {
 
     function __construct(){
         parent::__construct();
@@ -13,12 +16,15 @@ class Labarugi extends CI_Controller {
         $this->load->model('M_project');
     }
 
-    function cetak(){
-        if ($this->input->post('submitForm')=='rekap') {
-            $tgl_awal=date("Y-m-d", strtotime($this->input->post('TGL_01')));
-            $tgl_akhir=date("Y-m-d", strtotime($this->input->post('TGL_02')));
-            $this->pdf($tgl_awal,$tgl_akhir);
-        }
+    public function cetak($id){
+        $mpdf = new Mpdf([
+            'mode' => 'utf-8',
+            'format' => 'A4-L',
+            'orientation' => 'L'
+        ]);
+        $html = $this->load->view('html_to_pdf_2', [], true);
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
     }
 
 

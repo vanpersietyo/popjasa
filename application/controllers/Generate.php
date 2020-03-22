@@ -8,6 +8,15 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Generate extends CI_Controller
 {
+    function __construct(){
+        parent::__construct();
+
+        $this->load->model('M_login');
+        $this->M_login->isLogin();
+        $this->load->model('M_Customer');
+        $this->load->model('M_project');
+    }
+
 	public function index(){
 		$tabel = $this->db->list_tables();
 		echo 'Generate Tabel :<br>';
@@ -173,6 +182,21 @@ class Generate extends CI_Controller
         $mpdf->WriteHTML($html);
         $mpdf->Output();
     }
+
+    public function dok_progress($id){
+//        $mpdf = new Mpdf([
+//            'mode' => 'utf-8',
+//            'format' => 'A4-L',
+//            'orientation' => 'L'
+//        ]);
+        $data['dokumen'] = $this->M_project->get_dokumen($id);
+        $this->load->view('report/progress', $data);
+//        $html = $this->load->view('report/progress', $data, true);
+//        $mpdf->WriteHTML($html);
+//        $mpdf->Output();
+    }
+
+
 }
 
 /* End of file Level.php */
