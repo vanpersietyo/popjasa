@@ -162,6 +162,17 @@ class Generate extends CI_Controller
         $mpdf->WriteHTML($html);
         $mpdf->Output();
     }
+
+    public function tes_pdf_2(){
+        $mpdf = new Mpdf([
+            'mode' => 'utf-8',
+            'format' => 'A4-L',
+            'orientation' => 'L'
+        ]);
+        $html = $this->load->view('html_to_pdf_2', [], true);
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+    }
 }
 
 /* End of file Level.php */
