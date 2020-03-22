@@ -996,7 +996,7 @@
     function cetak() {
 
         let id = $('[name="id_project"]').val();
-        window.location.href = "<?php echo site_url('/transaksi/progress/cetak/'); ?>" + id;
+        window.location.href = "<?php echo site_url('/report/progress/cetak/'); ?>" + id;
     }
 
     function show_izin() {
