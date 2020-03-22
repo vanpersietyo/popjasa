@@ -39,13 +39,13 @@ class Labarugi extends CI_Controller {
         // membuat halaman baru
         $pdf->AddPage('P');
         // setting jenis font yang akan digunakan
-        $pdf->Image(base_url().'assets/app-assets/vendors/logo/popjasa.png',180,10,0,20);
-        $pdf->Image(base_url().'assets/app-assets/vendors/logo/popjasa.png',10,10,0,20);
+//        $pdf->Image(base_url().'assets/app-assets/vendors/logo/popjasa.png',180,10,0,20);
+//        $pdf->Image(base_url().'assets/app-assets/vendors/logo/popjasa.png',10,10,0,20);
         $pdf->SetFont('Times','B',16);
         // mencetak string
         $sysdate=date('d/m/Y H:i');
         $pdf->Cell(0,7,"LAPORAN LABA RUGI",0,2,'C');
-        $pdf->Cell(0,5,"POPJASA",0,2,'C');
+        $pdf->Cell(0,5,"POPJASA DAN JASAMURA",0,2,'C');
         $pdf->SetFont('Times','B',8);
         $pdf->Cell(10,5,'',0,1);
         $pdf->Cell(0,1,"KANTOR CABANG : $cabang",0,1,'C');
@@ -93,7 +93,7 @@ class Labarugi extends CI_Controller {
         $pdf->Cell(128,5,': Rp. ',0,0,'R');
         $pdf->Cell(20,5,number_format(array_sum($SUM_JUM_BIAYA)),0,1,'L');
         $pdf->Cell(10,10,'',0,1);
-        $pdf->Cell(87,5,'OMZET JASA MURAH',1,0,'L');
+        $pdf->Cell(87,5,'OMZET JASAMURA',1,0,'L');
         $prosentase_2=$jsmrh/$total_semua*100;
         $echo_p2=number_format($prosentase_2);
         $pdf->Cell(30,5,"$echo_p2 %",1,1,'R');
@@ -157,11 +157,11 @@ class Labarugi extends CI_Controller {
         $pdf->Cell(1,5,": Rp.  ",0,0,'R');
         $pdf->Cell(20,5,number_format($hhppji),0,1,'R');
         $pdf->Cell(10,10,'',0,1);
-        $pdf->Cell(87,5,'HPP JASAMURAH',1,0,'L');
+        $pdf->Cell(87,5,'HPP JASAMURA',1,0,'L');
         $prosentase_10=$phppgl/$total_omz2*100;
         $echo_p10=number_format($prosentase_10);
         $pdf->Cell(30,5,"$echo_p10 %",1,1,'R');
-        $pdf->Cell(95,5,"- HPP JASAMURAH",0,0,'L');
+        $pdf->Cell(95,5,"- HPP JASAMURA",0,0,'L');
         $pdf->Cell(1,5,": Rp.  ",0,0,'R');
         $pdf->Cell(20,5,number_format($phppgl),0,1,'R');
         $pdf->Cell(10,10,'',0,1);
@@ -206,11 +206,12 @@ class Labarugi extends CI_Controller {
 
         $pdf->Cell(80,5,'___________________________________________________________________________________________________ +',0,1,'L');
         $pdf->Cell(160,5,'TOTAL PENGELUARAN  :',0,0,'R');
-        $total_omz=number_format(array_sum($SUM_thp)+array_sum($jum_keluar));
-        $pdf->Cell(20,5,"Rp.  $total_omz",0,1,'L');
+        $tot_pengeluaran=$hhppji+$pgl+$pgl+$phppgl;
+        $t_out=number_format($tot_pengeluaran);
+        $pdf->Cell(20,5,"Rp.  $t_out",0,1,'L');
 
         $a=(array_sum($SUM_JUM_BIAYA)+array_sum($SUM_JUM_jasmurah));
-        $b=(array_sum($jum_keluar)+array_sum($SUM_thp));
+        $b=$tot_pengeluaran;
         $laba=$a-$b;
         $pl=round($laba/$a*100,0);
         $pdf->Cell(155,5,"TOTAL LABA PENJUALAN ($pl %)",0,0,'R');

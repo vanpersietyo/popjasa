@@ -184,6 +184,28 @@ class Generate extends CI_Controller
         $mpdf->Output();
     }
 
+    public function labarugi(){
+        $tgl_awal=date("Y-m-d", strtotime($this->input->post('TGL_01')));
+        $tgl_akhir=date("Y-m-d", strtotime($this->input->post('TGL_02')));
+        $TGL01=date("Y-m-d", strtotime($tgl_awal));
+        $TGL02=date("Y-m-d", strtotime($tgl_akhir));
+        $TGL2=date("d/m/Y", strtotime($tgl_akhir));
+        $TGL1=date("d/m/Y", strtotime($tgl_awal));
+
+        $mpdf = new Mpdf([
+            'mode' => 'utf-8',
+            'format' => 'A4-L',
+            'orientation' => 'L'
+        ]);
+        $data['periode'] = strtoupper(date("F Y", strtotime($tgl_akhir)));
+        $data['sysdate'] = date('d/m/Y H:i');
+        $data['operator']=$this->session->userdata('yangLogin');
+        $data['cabang']=$this->session->userdata('nm_cabang');
+        $html = $this->load->view('report/labarugi_new', $data, true);
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+    }
+
     public function dok_progress($id){
         $mpdf = new Mpdf([
             'mode' => 'utf-8',
