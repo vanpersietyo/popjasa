@@ -56,7 +56,7 @@
                                                         <div class="input-group-prepend">
                                                             <button class="btn btn-info" type="button"><i class="la la-calendar"></i></button>
                                                         </div>
-                                                        <input data-role="date" type='text' class="datepicker form-control" name="TGL_01" required />
+                                                        <input data-role="date" type='text' class="datepicker form-control" name="TGL_01" required autocomplete="off"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -68,7 +68,7 @@
                                                         <div class="input-group-prepend">
                                                             <button class="btn btn-danger" type="button"><i class="la la-calendar"></i></button>
                                                         </div>
-                                                        <input data-role="date" type='text' class="datepicker form-control" name="TGL_02" required />
+                                                        <input data-role="date" type='text' class="datepicker form-control" name="TGL_02" required autocomplete="off" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -115,8 +115,6 @@
         todayHighlight: true,
         orientation: "top auto",
         todayBtn: true,
-        todayHighlight: true,
-        //startDate: date,
     });
 
     $('.datepicker2').datepicker({
@@ -125,8 +123,6 @@
         todayHighlight: true,
         orientation: "top auto",
         todayBtn: true,
-        todayHighlight: true,
-        //startDate: date,
     });
 
 </script>
