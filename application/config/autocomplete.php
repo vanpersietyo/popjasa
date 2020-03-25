@@ -114,6 +114,8 @@
  *
  *  * Report
  * @property M_v_rekapitulasi_cashflow          $M_v_rekapitulasi_cashflow
+ * @property M_labarugi                         $M_labarugi
+ *
  *
  * Custom  Libraries
  * @property Unirest $unirest
