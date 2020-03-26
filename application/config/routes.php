@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+if(file_exists(FCPATH.'.env')){
+    $dotenv = Dotenv\Dotenv::createImmutable(FCPATH);
+    $dotenv->load();
+}
 /*
 | -------------------------------------------------------------------------
 | URI ROUTING

@@ -1,0 +1,1 @@
+insert into log_update(script_name,note) values ("2020_03_25_1.txt","testing update database");

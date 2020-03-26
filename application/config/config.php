@@ -23,8 +23,9 @@ date_default_timezone_set('Asia/Jakarta');
 | a PHP script and you can easily do that on your own.
 |
 */
-$root = getenv('APP_ENV', 'production') === 'production' ? "https://" . $_SERVER['HTTP_HOST'] : (isset($_SERVER['HTTPS']) ? "https://" : "http://") . $_SERVER['HTTP_HOST'];;
-$root .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
+$env    = ENVIRONMENT ?: 'production';
+$root   = $env === 'production' ? "https://".$_SERVER['HTTP_HOST'] : "http://".$_SERVER['HTTP_HOST'];
+$root   .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
 $config['base_url'] = "$root";
 /*
 |--------------------------------------------------------------------------
