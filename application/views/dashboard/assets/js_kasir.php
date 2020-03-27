@@ -1,25 +1,15 @@
-
-  <!-- BEGIN VENDOR JS-->
-  <script src="http://paceandrace.qloud.id/assets/app-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
-  <!-- BEGIN VENDOR JS-->
-  <!-- BEGIN PAGE VENDOR JS-->
-  <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/vendors/js/ui/jquery.sticky.js"></script>
-  <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/vendors/js/charts/jquery.sparkline.min.js"></script>
-  <script src="<?php echo base_url('assets')?>/app-assets/vendors/js/charts/chartist.min.js" type="text/javascript"></script>
-  <script src="<?php echo base_url('assets')?>/app-assets/vendors/js/charts/chartist-plugin-tooltip.min.js"
-  type="text/javascript"></script>
-  <script src="<?php echo base_url('assets')?>/app-assets/vendors/js/charts/raphael-min.js" type="text/javascript"></script>
-  <script src="<?php echo base_url('assets')?>/app-assets/vendors/js/charts/morris.min.js" type="text/javascript"></script>
-  <script src="<?php echo base_url('assets')?>/app-assets/vendors/js/timeline/horizontal-timeline.js" type="text/javascript"></script>
-  <!-- END PAGE VENDOR JS-->
-  <!-- BEGIN MODERN JS-->
-  <script src="<?php echo base_url('assets')?>/app-assets/js/core/app-menu.js" type="text/javascript"></script>
-  <script src="<?php echo base_url('assets')?>/app-assets/js/core/app.js" type="text/javascript"></script>
-  <script src="<?php echo base_url('assets')?>/app-assets/js/scripts/customizer.js" type="text/javascript"></script>
-  <!-- END MODERN JS-->
-  <!-- BEGIN PAGE LEVEL JS-->
-  <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/js/scripts/ui/breadcrumbs-with-stats.js"></script>
-  <!-- <script src="http://paceandrace.qloud.id/assets/app-assets/js/scripts/pages/dashboard-ecommerce.js" type="text/javascript"></script> -->
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/vendors.min.js')?>" ></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/ui/jquery.sticky.js')?>"></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/charts/jquery.sparkline.min.js')?>"></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/charts/chartist.min.js')?>" ></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/charts/chartist-plugin-tooltip.min.js')?>" ></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/charts/raphael-min.js')?>" ></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/charts/morris.min.js')?>" ></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/timeline/horizontal-timeline.js')?>" ></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/core/app-menu.js')?>" ></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/core/app.js')?>" ></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/scripts/customizer.js')?>" ></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/scripts/ui/breadcrumbs-with-stats.js')?>"></script>
   <script>
 $(window).on("load", function(){
     $('#recent-buyers, #new-orders').perfectScrollbar({
@@ -255,7 +245,7 @@ $(window).on("load", function(){
 
 </script>
 
-<script type="text/javascript">
+<script >
 $(document).ready(function() {
 
 
@@ -412,16 +402,16 @@ function detail_piutang(id) {
 </script>
 
 </script>
-    <script src="<?php echo base_url('assets')?>/app-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
-  <script src="<?php echo base_url('assets')?>/app-assets/vendors/js/ui/jquery.sticky.js" type="text/javascript" ></script>
-  <script src="<?php echo base_url('assets')?>/app-assets/vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
-  <script src="<?php echo base_url('assets')?>/app-assets/js/core/app-menu.js" type="text/javascript"></script>
-  <script src="<?php echo base_url('assets')?>/app-assets/js/core/app.js" type="text/javascript"></script>
-  <script src="<?php echo base_url('assets')?>/app-assets/js/scripts/customizer.js" type="text/javascript"></script>
-  <script src="<?php echo base_url('assets')?>/app-assets/js/scripts/tables/datatables/datatable-basic.js" type="text/javascript"></script>
-  <script src="<?php echo base_url('assets')?>/app-assets/vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
-  <script src="<?php echo base_url('assets')?>/app-assets/js/scripts/extensions/sweet-alerts.js" type="text/javascript"></script>
-  <script src="<?php echo base_url('assets')?>/app-assets/js/scripts/forms/select/form-select2.js" type="text/javascript"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/vendors/js/vendors.min.js" ></script>
+  <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/vendors/js/ui/jquery.sticky.js"  ></script>
+  <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/vendors/js/tables/datatable/datatables.min.js" ></script>
+  <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/js/core/app-menu.js" ></script>
+  <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/js/core/app.js" ></script>
+  <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/js/scripts/customizer.js" ></script>
+  <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/js/scripts/tables/datatables/datatable-basic.js" ></script>
+  <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/vendors/js/extensions/sweetalert.min.js" ></script>
+  <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/js/scripts/extensions/sweet-alerts.js" ></script>
+  <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/js/scripts/forms/select/form-select2.js" ></script>
 
 
   <!-- END PAGE LEVEL JS-->
