@@ -53,7 +53,7 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-define('ENVIRONMENT',$_SERVER['SERVER_NAME'] === 'admin.popjasa.id' ? 'production' : 'development');
+define('ENVIRONMENT',$_SERVER['SERVER_NAME'] === 'admin.popjasa.id' || $_SERVER['SERVER_NAME'] === 'popjasa.nuhapos.com' ? 'production' : 'development');
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
