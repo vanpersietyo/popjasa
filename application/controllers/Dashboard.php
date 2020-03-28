@@ -25,16 +25,21 @@ class Dashboard extends CI_Controller
         $param2 = date('31-m-Y');
         $TGL01  = date("Y-m-d", strtotime($param));
         $TGL02  = date("Y-m-d", strtotime($param2));
-        $pj = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '1');
+
+        $pj         = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '1');
+        $SUMPOPJASA = [];
         foreach ($pj as $pj) {
             $SUMPOPJASA[] = $pj->profit;
         }
-        $jm = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '2');
+
+        $jm             = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '2');
+        $SUMJASAMURAH   = [];
         foreach ($jm as $jm) {
             $SUMJASAMURAH[] = $jm->profit;
         }
 //        $gj = $this->M_labarugi->select_karyawan($TGL01, $TGL02, '1');
-        $gj = $this->M_labarugi->select_karyawan();
+        $gj         = $this->M_labarugi->select_karyawan();
+        $SUM_GAJI   = [];
         foreach ($gj as $gj) {
             $potongan   = $this->M_labarugi->select_potongan($gj->id_karyawan);
             $tunjangan  = $this->M_labarugi->select_tunjangan($gj->id_karyawan);
