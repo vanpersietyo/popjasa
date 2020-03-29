@@ -1,25 +1,15 @@
-<!-- BEGIN VENDOR CSS-->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/app-assets/css/vendors.css') ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/app-assets/fonts/meteocons/style.css') ?>">
-
-<!-- END VENDOR CSS-->
-<!-- BEGIN MODERN CSS-->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/app-assets/css/app.css') ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/app-assets/vendors/css/extensions/sweetalert.css') ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/app-assets/css/plugins/animate/animate.css') ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/app-assets/fonts/simple-line-icons/style.css') ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/app-assets/vendors/css/forms/selects/select2.min.css') ?>">
-
-<!-- END MODERN CSS-->
-<!-- BEGIN Page Level CSS-->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/app-assets/css/core/menu/menu-types/horizontal-menu.css') ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/app-assets/css/core/colors/palette-gradient.css') ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/app-assets/fonts/simple-line-icons/style.css') ?>">
-<link href="<?php echo base_url('assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')?>" rel="stylesheet">
-<!-- END Page Level CSS-->
-<!-- BEGIN Custom CSS-->
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')?>">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/assets/css/style.css') ?>">
-<!-- END Custom CSS-->
 
 <div class="app-content content">
     <div class="content-wrapper">
@@ -115,32 +105,22 @@
     </div>
 </div>
 
-<!-- BEGIN VENDOR JS-->
-<script src="<?php echo base_url('assets/app-assets/vendors/js/vendors.min.js') ?>" type="text/javascript"></script>
-<!-- BEGIN VENDOR JS-->
-<!-- BEGIN PAGE VENDOR JS-->
+<script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/vendors.min.js') ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/ui/jquery.sticky.js') ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/charts/jquery.sparkline.min.js') ?>"></script>
-<!-- END PAGE VENDOR JS-->
-<!-- BEGIN MODERN JS-->
-<script src="<?php echo base_url('assets/app-assets/js/core/app-menu.js') ?>" type="text/javascript"></script>
-<script src="<?php echo base_url('assets/app-assets/js/core/app.js') ?>" type="text/javascript"></script>
-<script src="<?php echo base_url('assets/app-assets/js/scripts/customizer.js') ?>" type="text/javascript"></script>
-<!-- END MODERN JS-->
-<!-- BEGIN PAGE LEVEL JS-->
+<script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/core/app-menu.js') ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/core/app.js') ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/scripts/customizer.js') ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/scripts/ui/breadcrumbs-with-stats.js') ?>"></script>
-<script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
-<script src="<?php echo base_url('assets/app-assets/vendors/js/extensions/sweetalert.min.js')?>"></script>
-<script src="<?php echo base_url('assets/app-assets/js/scripts/extensions/sweet-alerts.js')?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/extensions/sweetalert.min.js')?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/scripts/extensions/sweet-alerts.js')?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/forms/select/select2.full.min.js')?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/scripts/forms/select/form-select2.js')?>"></script>
 
-<script src="<?php echo base_url('assets/app-assets/vendors/js/forms/select/select2.full.min.js')?>"></script>
-<script src="<?php echo base_url('assets/app-assets/js/scripts/forms/select/form-select2.js')?>"></script>
-<!-- END PAGE LEVEL JS-->
-
-<script type="text/javascript">
+<script>
     $(document).ready(function() {
         setTimeout(function(){ $('.datepicker').focus(); }, 500);
-
         $('.select2').select2();
     });
 
@@ -152,14 +132,16 @@
         todayBtn: true
     });
 
-    $(".datepicker2").datepicker({
+    var datepicker2 = $(".datepicker2");
+    datepicker2.datepicker({
         autoclose: true,
         format: "dd-mm-yyyy",
         todayHighlight: true,
         orientation: "top auto",
         todayBtn: true
     });
-    $(".datepicker2").datepicker('setDate', new Date());
+    datepicker2.datepicker('setDate', new Date());
+
     //fungsi untuk menampilkan alert error
     function error_swal(message = 'Silahkan Hubungi Administrator!') {
         swal("Gagal", message, "error");
@@ -173,7 +155,7 @@
         $(".form-control").removeClass('border-danger');
         $('[id="error_messages"]').html('');
     }
-    //
+    //fungsi cetak cashflow
     function cetak_cashflow() {
         clear_all_error();
         var formData = new FormData($('#form_cashflow')[0]);
@@ -208,5 +190,4 @@
             }
         });
     }
-
 </script>

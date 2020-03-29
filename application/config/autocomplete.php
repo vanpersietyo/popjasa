@@ -88,6 +88,10 @@
  *
  * Custom Models
  *
+ * //DASHBOARD
+ * @property M_dir            				    $M_dir
+ * @property M_hrd            				    $M_hrd
+ *
  * //Master
  * @property M_login            				$M_login
  * @property M_user             				$M_user
@@ -111,6 +115,7 @@
  * @property M_bankout                          $M_bankout
  * @property M_trs_pengeluaran                  $M_trs_pengeluaran
  * @property M_trs_detail_rekening_biaya        $M_trs_detail_rekening_biaya
+ * @property M_pembayaran_karyawan              $M_pembayaran_karyawan
  *
  *  * Report
  * @property M_v_rekapitulasi_cashflow          $M_v_rekapitulasi_cashflow
