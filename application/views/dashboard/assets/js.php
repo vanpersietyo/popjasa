@@ -1,15 +1,15 @@
-  <script type="text/javascript" src="http://paceandrace.qloud.id/assets/app-assets/vendors/js/vendors.min.js"></script>
-  <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/vendors/js/ui/jquery.sticky.js"></script>
-  <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/vendors/js/charts/jquery.sparkline.min.js"></script>
-  <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/vendors/js/charts/chartist.min.js"></script>
-  <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/vendors/js/charts/chartist-plugin-tooltip.min.js"></script>
-  <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/vendors/js/charts/raphael-min.js"></script>
-  <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/vendors/js/charts/morris.min.js"></script>
-  <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/vendors/js/timeline/horizontal-timeline.js"></script>
-  <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/js/core/app-menu.js"></script>
-  <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/js/core/app.js"></script>
-  <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/js/scripts/customizer.js"></script>
-  <script type="text/javascript" src="<?php echo base_url('assets')?>/app-assets/js/scripts/ui/breadcrumbs-with-stats.js"></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/vendors.min.js')?>"></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/ui/jquery.sticky.js')?>"></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/charts/jquery.sparkline.min.js')?>"></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/charts/chartist.min.js')?>"></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/charts/chartist-plugin-tooltip.min.js')?>"></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/charts/raphael-min.js')?>"></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/charts/morris.min.js')?>"></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/timeline/horizontal-timeline.js')?>"></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/core/app-menu.js')?>"></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/core/app.js')?>"></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/scripts/customizer.js')?>"></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/scripts/ui/breadcrumbs-with-stats.js')?>"></script>
 
   <script>
 $(window).on("load", function(){

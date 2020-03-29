@@ -7,6 +7,8 @@
 /** @var string $subtitle */
 /** @var string $logo */
 /** @var string $nm_cabang */
+/** @var bool $harian */
+/** @var bool $cutoff */
 
 $tgl_saldo_awal =  date('d-m-Y', strtotime(Conversion::convert_date($tgl_awal, "Y-m-d") . ' - 1 days'));
 ?>
@@ -22,8 +24,9 @@ $tgl_saldo_awal =  date('d-m-Y', strtotime(Conversion::convert_date($tgl_awal, "
                             <span style="font-weight: bold;font-size: 25px"><?php echo strtoupper($title);?></span><br>
                             <span class="judul_2">BANK  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $subtitle;?></span><br>
                             <span class="judul_2">CABANG  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $nm_cabang;?></span><br>
-							<span class="judul_2">PERIODE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <?php echo $tgl_awal.' - '.$tgl_akhir?></span><br>
-                            <span class="judul_2">TGL CETAK &nbsp;: <?php echo Conversion::get_date('d-m-Y H:i')." (".$this->session->userdata('yangLogin').")";?></span>
+							<span class="judul_2">PERIODE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <?php echo $harian ? $tgl_awal : $tgl_awal.' - '.$tgl_akhir?></span><br>
+                            <span class="judul_2">TGL CETAK &nbsp;: <?php echo Conversion::get_date('d-m-Y H:i')." (".$this->session->userdata('yangLogin').")";?></span><br>
+                            <span class="judul_2">CUT OFF &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $cutoff === 'on' ? "YA" : "TIDAK";?></span>
                         </th>
                         <th class="unboxed collapsing fontKanan"><img alt="Logo" src="<?php echo $logo ?>" width="120px" height="100px">  </th>
                     </tr>
@@ -57,13 +60,18 @@ $tgl_saldo_awal =  date('d-m-Y', strtotime(Conversion::convert_date($tgl_awal, "
                     </thead>
                     <tbody class="tb-body">
 
-					<?php $no_ = 1;?>
-					<tr>
-						<td class="size-body" style="text-align: center"> <?php echo $no_; ?></td>
-						<td class="size-body" style="text-align: center"> <?php echo $tgl_saldo_awal;?> </td>
-						<td class="size-body" colspan="7">Saldo Awal</td>
-						<td class="size-body fontKanan" ><?php echo Conversion::numberFormat($saldo_awal);?></td>
-					</tr>
+					<?php
+					if($cutoff === 'on'){
+                        $no_ = 0;
+					}else{
+                        $no_ = 1;?>
+                        <tr>
+                            <td class="size-body" style="text-align: center"> <?php echo $no_; ?></td>
+                            <td class="size-body" style="text-align: center"> <?php echo $tgl_saldo_awal;?> </td>
+                            <td class="size-body" colspan="7">Saldo Awal</td>
+                            <td class="size-body fontKanan" ><?php echo Conversion::numberFormat($saldo_awal);?></td>
+                        </tr>
+                    <?php } ?>
 
                     <?php
                     /** @var M_v_rekapitulasi_cashflow $item */
@@ -123,16 +131,26 @@ $tgl_saldo_awal =  date('d-m-Y', strtotime(Conversion::convert_date($tgl_awal, "
 		<tr>
 			<td colspan="5" style="height: 10px"></td>
 		</tr>
-		<tr>
-			<td colspan="2"></td>
-			<td class="size-header fontBold size-13">SALDO AWAL <?php echo $tgl_saldo_awal;?></td>
-			<td class="size-header fontBold"> : </td>
-			<td class="size-header fontBold fontKanan"><?php echo Conversion::numberFormat($saldo_awal);?></td>
-		</tr>
-		<tr>
-			<td colspan="2"></td>
-			<td colspan="3"><hr></td>
-		</tr>
+        <?php
+        if($cutoff === 'off'){?>
+            <tr>
+                <td colspan="2"></td>
+                <td class="size-header fontBold size-13">SALDO AWAL <?php echo $tgl_saldo_awal;?></td>
+                <td class="size-header fontBold"> : </td>
+                <td class="size-header fontBold fontKanan"><?php echo Conversion::numberFormat($saldo_awal);?></td>
+            </tr>
+        <?php }else{?>
+            <tr>
+                <td colspan="2"></td>
+                <td class="size-header fontBold size-13">RINCIAN SALDO : </td>
+                <td colspan="2"></td>
+            </tr>
+        <?php } ?>
+
+        <tr>
+            <td colspan="2"></td>
+            <td colspan="3"><hr></td>
+        </tr>
 		<?php
 		/** @var M_v_rekapitulasi_cashflow $rks */
 		/** @var M_v_rekapitulasi_cashflow $ringkasan*/
@@ -155,7 +173,7 @@ $tgl_saldo_awal =  date('d-m-Y', strtotime(Conversion::convert_date($tgl_awal, "
 
 		<tr>
 			<td colspan="2"></td>
-			<td class="size-header fontBold">SALDO <?php echo $tgl_awal.' s/d '.$tgl_akhir?></td>
+			<td class="size-header fontBold">SALDO <?php echo $harian ? $tgl_awal : $tgl_awal.' s/d '.$tgl_akhir?></td>
 			<td class="size-header fontBold"> : </td>
 			<td class="size-header fontBold fontKanan"><?php echo Conversion::numberFormat($total_saldo_debit-$total_saldo_kredit);?></td>
 		</tr>
@@ -164,12 +182,15 @@ $tgl_saldo_awal =  date('d-m-Y', strtotime(Conversion::convert_date($tgl_awal, "
 			<td colspan="3"><hr></td>
 		</tr>
 
+        <?php
+        if($cutoff === 'off'){?>
 		<tr>
 			<td colspan="2"></td>
 			<td class="size-14 fontBold">TOTAL </td>
 			<td class="size-header fontBold"> : </td>
 			<td class="size-header fontBold fontKanan"><?php echo Conversion::numberFormat($total);?></td>
 		</tr>
+        <?php } ?>
 		</tfoot>
 
 	</table>
