@@ -46,6 +46,15 @@ CREATE TABLE `kartu_piutang_karyawan` (
 
 -- --------------------------------------------------------
 
+DROP TABLE IF EXISTS `log_update`;
+CREATE TABLE `log_update`  (
+                               `id` int(11) NOT NULL AUTO_INCREMENT,
+                               `script_name` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+                               `date_exec` timestamp(0) NOT NULL DEFAULT current_timestamp(),
+                               `note` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
+                               PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
 --
 -- Struktur dari tabel `log_customer`
 --
