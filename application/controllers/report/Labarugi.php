@@ -240,20 +240,31 @@ class Labarugi extends CI_Controller
         $pdf->Output();
     }
 
-    public function pdf_baru($bulan = null,$tahun = null)
+    public function pdf_baru($bulan = null,$tahun = null,$cabang = null)
     {
+        $this->load->model('report/M_v_paybycustomers');
         $TGL01		= $tahun."-".$bulan."-01";//date("Y-m-d", strtotime($tgl_awal));
         $TGL02		= $tahun."-".$bulan."-31";//date("Y-m-d", strtotime($tgl_akhir));
 
         //Popjasa
-        $popjasa    = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '1');
+        $where      = [
+            M_v_paybycustomers::st_project              => 1,
+            "MONTH(".M_v_paybycustomers::tgl_input.")"  => $bulan,
+            "YEAR(".M_v_paybycustomers::tgl_input.")"   => $tahun,
+
+        ];
+
+        if($cabang){
+            array_append('','','');
+        }
+        $popjasa    = $this->M_v_paybycustomers->find($where);
 
         //Jasamura
         $jasamura   = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '2');
 
         echo "<pre>";
         print_r ($popjasa);
-        print_r ($jasamura);
+//        print_r ($jasamura);
         echo "</pre>";
         die();
 

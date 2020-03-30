@@ -50,7 +50,7 @@ class M_v_paybycustomers extends CI_Model
 	
 	/**
 	 * @param int $id
-	 * @return bool|M_v_rekapitulasi_cashflow
+	 * @return bool|M_v_paybycustomers
 	 */
 	public function get_by_id($id)
 	{
@@ -63,7 +63,7 @@ class M_v_paybycustomers extends CI_Model
 	/**
 	 * @param null|array|string $where
 	 * @param array $order
-	 * @return array|bool|M_v_rekapitulasi_cashflow
+	 * @return array|bool|M_v_paybycustomers
 	 */
 	public function find_first($where = null, $order = [])
 	{
@@ -82,7 +82,7 @@ class M_v_paybycustomers extends CI_Model
 	/**
 	 * @param null|array|string $where
 	 * @param array $order
-	 * @return array|bool|M_v_rekapitulasi_cashflow
+	 * @return array|bool|M_v_paybycustomers
 	 */
 	public function find($where = null, $order = [])
 	{
@@ -128,7 +128,7 @@ class M_v_paybycustomers extends CI_Model
 
 	/**
 	 * @param array $data
-	 * @return array | M_v_rekapitulasi_cashflow
+	 * @return array | M_v_paybycustomers
 	 */
 	public function select($data = [])
 	{
@@ -166,7 +166,7 @@ class M_v_paybycustomers extends CI_Model
 
 	/**
 	 * @param array $data
-	 * @return array | M_v_rekapitulasi_cashflow
+	 * @return array | M_v_paybycustomers
 	 */
 	public function select_first($data = [])
 	{
