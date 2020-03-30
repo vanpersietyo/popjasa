@@ -74,6 +74,10 @@ class ComposerStaticInit68963982c955fb7f9248091cf3503f34
         array (
             'setasign\\Fpdi\\' => 14,
         ),
+        'T' => 
+        array (
+            'TelegramBot\\Api\\' => 16,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Ctype\\' => 23,
@@ -105,6 +109,10 @@ class ComposerStaticInit68963982c955fb7f9248091cf3503f34
         'setasign\\Fpdi\\' => 
         array (
             0 => __DIR__ . '/..' . '/setasign/fpdi/src',
+        ),
+        'TelegramBot\\Api\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/telegram-bot/api/src',
         ),
         'Symfony\\Polyfill\\Ctype\\' => 
         array (

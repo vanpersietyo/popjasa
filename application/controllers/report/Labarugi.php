@@ -1,4 +1,7 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php use Mpdf\Mpdf;
+use Mpdf\MpdfException;
+
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Labarugi extends CI_Controller
 {
@@ -63,11 +66,14 @@ class Labarugi extends CI_Controller
         //header
         $pdf->Cell(10, 5, '', 0, 1);
         $pdf->SetFont('Arial', 'B', 8);
+
         $pj = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '1');
+        $SUMPOPJASA = [];
         foreach ($pj as $pj) {
             $SUMPOPJASA[] = $pj->profit;
         }
         $jm = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '2');
+        $SUMJASAMURAH = [];
         foreach ($jm as $jm) {
             $SUMJASAMURAH[] = $jm->profit;
         }
@@ -83,7 +89,9 @@ class Labarugi extends CI_Controller
         $prosentase_1 = $pjs / $total_semua * 100;
         $echo_p1 = number_format($prosentase_1);
         $pdf->Cell(30, 5, "$echo_p1 %", 1, 1, 'R');
+
         $popjasa = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '1');
+        $SUM_JUM_BIAYA = [];
         foreach ($popjasa as $popjasa) {
             $pdf->Cell(95, 5, "- $popjasa->nm_customer", 0, 0, 'L');
             $pdf->Cell(1, 5, ": Rp.  ", 0, 0, 'R');
@@ -99,7 +107,9 @@ class Labarugi extends CI_Controller
         $prosentase_2 = $jsmrh / $total_semua * 100;
         $echo_p2 = number_format($prosentase_2);
         $pdf->Cell(30, 5, "$echo_p2 %", 1, 1, 'R');
+
         $jasmurah = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '2');
+        $SUM_JUM_jasmurah = [];
         foreach ($jasmurah as $jasmurah) {
             $pdf->Cell(95, 5, "- $jasmurah->nm_customer", 0, 0, 'L');
             $pdf->Cell(1, 5, ": Rp.  ", 0, 0, 'R');
@@ -118,6 +128,7 @@ class Labarugi extends CI_Controller
         $total_omz2 = (array_sum($SUM_JUM_BIAYA) + array_sum($SUM_JUM_jasmurah));
 
         $gj = $this->M_labarugi->select_karyawan($TGL01, $TGL02, '1');
+        $SUM_GAJI = [];
         foreach ($gj as $gj) {
             $potongan = $this->M_labarugi->select_potongan($gj->id_karyawan);
             $tunjangan = $this->M_labarugi->select_tunjangan($gj->id_karyawan);
@@ -126,20 +137,24 @@ class Labarugi extends CI_Controller
             $thp = (($gaji + $bonus->bonus + $tunjangan->tunjangan) - $potongan->potongan);
             $SUM_GAJI[] = $thp;
         }
+
         $uk = $this->M_labarugi->uang_keluar($TGL01, $TGL02);
+        $SUMPENGELUARAN = [];
         foreach ($uk as $uk) {
             $SUMPENGELUARAN[] = $uk->pengeluaran;
         }
 
         $hpppj = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '1');
+        $SUMHPPPOPJASA = [];
         foreach ($hpppj as $hpppj) {
             $SUMHPPPOPJASA[] = $hpppj->hpp;
         }
+
         $hppjm = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '2');
+        $SUMHHPPJASAMURAH = [];
         foreach ($hppjm as $hppjm) {
             $SUMHHPPJASAMURAH[] = $hppjm->hpp;
         }
-
 
         $hji = array_sum($SUM_GAJI);
         $pgl = array_sum($SUMPENGELUARAN);
@@ -173,6 +188,7 @@ class Labarugi extends CI_Controller
         $pdf->Cell(30, 5, "$echo_p3 %", 1, 1, 'R');
 
         $karyawan = $this->M_labarugi->select_karyawan();
+        $SUM_thp = [];
         foreach ($karyawan as $karyawan) {
             $pdf->Cell(95, 5, "- $karyawan->nama_karyawan", 0, 0, 'L');
             $potongan = $this->M_labarugi->select_potongan($karyawan->id_karyawan);
@@ -195,6 +211,7 @@ class Labarugi extends CI_Controller
         $echo_p4 = number_format($prosentase_4);
         $pdf->Cell(30, 5, "$echo_p4 %", 1, 1, 'R');
         $keluar = $this->M_labarugi->uang_keluar($TGL01, $TGL02);
+        $jum_keluar = [];
         foreach ($keluar as $keluar) {
             $pdf->Cell(95, 5, "- $keluar->nm_rekbiaya", 0, 0, 'L');
             $pdf->Cell(1, 5, ": Rp.  ", 0, 0, 'R');
@@ -220,8 +237,73 @@ class Labarugi extends CI_Controller
         $pdf->Cell(7, 5, '  :   Rp.   ', 0, 0, 'L');
         $pdf->Cell(20, 5, number_format($laba), 0, 1, 'R');
 
-
         $pdf->Output();
+    }
+
+    public function pdf_baru($bulan = null,$tahun = null)
+    {
+        $TGL01		= $tahun."-".$bulan."-01";//date("Y-m-d", strtotime($tgl_awal));
+        $TGL02		= $tahun."-".$bulan."-31";//date("Y-m-d", strtotime($tgl_akhir));
+
+        //Popjasa
+        $popjasa    = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '1');
+
+        //Jasamura
+        $jasamura   = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '2');
+
+        echo "<pre>";
+        print_r ($popjasa);
+        print_r ($jasamura);
+        echo "</pre>";
+        die();
+
+        $jual		= $this->M_rugilaba->sum_penjualan($TGL01,$TGL02);
+        $retur_jual	= $this->M_rugilaba->sum_returpenjualan($TGL01,$TGL02);
+        $HPP_BRUTTO	= $this->M_rugilaba->sum_HPPpenjualan($TGL01,$TGL02);
+        $HPP_RETUR	= $this->M_rugilaba->sum_HPPretur($TGL01,$TGL02);
+        $biaya_gaji	= $this->M_rugilaba->biayaGroup($TGL01,$TGL02,'GAJI');
+        $tot_gaji	= $this->M_rugilaba->sumBiayaGroup($TGL01,$TGL02,'GAJI');
+        $end_gaji 	= end($biaya_gaji);
+        $biaya_opr	= $this->M_rugilaba->biayaGroup($TGL01,$TGL02,'OPERASIONAL');
+        $end_opr 	= end($biaya_opr);
+        $tot_opr	= $this->M_rugilaba->sumBiayaGroup($TGL01,$TGL02,'OPERASIONAL');
+        $periode	= Conversion::monthIndo($bulan,true) . " - " . $tahun;
+        $data = [
+            'title' 		=> 'LAPORAN RUGI LABA',
+            'jual_bruto'	=> $jual ? $jual->BAYAR : 0,
+            'jual_retur'	=> $retur_jual ? $retur_jual->RETUR_PENJUALAN : 0,
+            'hpp_bruto'		=> $HPP_BRUTTO ? $HPP_BRUTTO->HPP : 0,
+            'hpp_retur'		=> $HPP_RETUR ? $HPP_RETUR->HPP : 0,
+            'biaya_gaji'	=> $biaya_gaji,
+            'end_gaji'		=> $end_gaji,
+            'tot_gaji'		=> $tot_gaji ? $tot_gaji->JUM_BIAYA : 0,
+            'biaya_opr'		=> $biaya_opr,
+            'end_opr'		=> $end_opr,
+            'tot_opr'		=> $tot_opr ? $tot_opr->JUM_BIAYA : 0,
+            'periode' 		=> $periode,
+            'logo'          => base_url('assets/app-assets/vendors/logo/popjasa.png')
+            ];
+        try {
+            $mpdf = new Mpdf([
+                'mode' => 'utf-8',
+                'format' => 'A4-P',
+                'orientation' => 'P'
+            ]);
+        } catch (MpdfException $e) {
+            Conversion::send_telegram(json_encode($e));
+        }
+        $html = $this->load->view($this->conversion->getController('pdf'), $data,true);
+
+        try {
+            $mpdf->WriteHTML($html);
+        } catch (MpdfException $e) {
+            Conversion::send_telegram(json_encode($e));
+        }
+        try {
+            $mpdf->Output();
+        } catch (MpdfException $e) {
+            Conversion::send_telegram(json_encode($e));
+        }
     }
 
 

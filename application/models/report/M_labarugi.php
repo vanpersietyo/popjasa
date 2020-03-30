@@ -1,5 +1,4 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_labarugi extends CI_Model {
     public function __construct()
@@ -92,6 +91,17 @@ class M_labarugi extends CI_Model {
         return $query->result();
     }
 
-
-
+//    Fungsi Adit
+//    public function uang_masuk($tgl1,$tgl2,$param){
+//        $cabang=$this->session->userdata('cabang');
+//        $query=$this->db->query("
+//		SELECT *
+//		FROM v_paybycustomers
+//		WHERE kd_cabang='$cabang'
+//		and STR_TO_DATE(tgl_input,'%Y-%m-%d') >= DATE('$tgl1')
+//		and STR_TO_DATE(tgl_input,'%Y-%m-%d') <= DATE('$tgl2')
+//		and st_project='$param'
+//			");
+//        return $query->result();
+//    }
 }
