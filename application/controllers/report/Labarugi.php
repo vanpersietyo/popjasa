@@ -253,18 +253,19 @@ class Labarugi extends CI_Controller
             "YEAR(".M_v_paybycustomers::tgl_input.")"   => $tahun,
 
         ];
-
         if($cabang){
-            array_append('','','');
+            $where[M_v_paybycustomers::kd_cabang] = $cabang;
         }
-        $popjasa    = $this->M_v_paybycustomers->find($where);
-
+        $popjasa        = $this->M_v_paybycustomers->find($where);
+        $profitPopjasa  = array_sum(array_column($popjasa,'profit'));
         //Jasamura
-        $jasamura   = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '2');
+        $jasamura       = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '2');
+        $profitJasamura = array_sum(array_column($jasamura,'profit'));
 
         echo "<pre>";
-        print_r ($popjasa);
-//        print_r ($jasamura);
+        var_dump($profitPopjasa);
+        var_dump($profitJasamura);
+//        print_r ($where);
         echo "</pre>";
         die();
 
