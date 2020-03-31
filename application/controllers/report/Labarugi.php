@@ -240,31 +240,58 @@ class Labarugi extends CI_Controller
         $pdf->Output();
     }
 
-    public function pdf_baru($bulan = null,$tahun = null,$cabang = null)
+    public function pdf_baru($bulan = null,$tahun = null,$cabang = 'SBY')
     {
+        if(!$bulan) $bulan = date('m');
+        if(!$tahun) $tahun = date('Y');
         $this->load->model('report/M_v_paybycustomers');
+        $this->load->model('report/M_v_pengeluaran');
         $TGL01		= $tahun."-".$bulan."-01";//date("Y-m-d", strtotime($tgl_awal));
         $TGL02		= $tahun."-".$bulan."-31";//date("Y-m-d", strtotime($tgl_akhir));
 
         //Popjasa
-        $where      = [
+        $wherePopjasa = [
             M_v_paybycustomers::st_project              => 1,
             "MONTH(".M_v_paybycustomers::tgl_input.")"  => $bulan,
             "YEAR(".M_v_paybycustomers::tgl_input.")"   => $tahun,
-
         ];
-        if($cabang){
-            $where[M_v_paybycustomers::kd_cabang] = $cabang;
-        }
-        $popjasa        = $this->M_v_paybycustomers->find($where);
-        $profitPopjasa  = array_sum(array_column($popjasa,'profit'));
+        if($cabang){$wherePopjasa[M_v_paybycustomers::kd_cabang] = $cabang;}
+
         //Jasamura
-        $jasamura       = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '2');
-        $profitJasamura = array_sum(array_column($jasamura,'profit'));
+        $whereJasamura = [
+            M_v_paybycustomers::st_project              => 2,
+            "MONTH(".M_v_paybycustomers::tgl_input.")"  => $bulan,
+            "YEAR(".M_v_paybycustomers::tgl_input.")"   => $tahun,
+        ];
+        if($cabang){$whereJasamura[M_v_paybycustomers::kd_cabang] = $cabang;}
+
+        //Popjasa
+        if($popjasa = $this->M_v_paybycustomers->find($wherePopjasa)) {
+            $profitPopjasa  = array_sum(array_column($popjasa, 'profit'));
+            $hppPopjasa     = array_sum(array_column($popjasa, 'hpp'));
+        }else {
+            $profitPopjasa  = 0;
+            $hppPopjasa     = 0;
+        }
+        //Jasamura
+        if($jasamura = $this->M_v_paybycustomers->find($whereJasamura)) {
+            $profitJasamura = array_sum(array_column($jasamura, 'profit'));
+            $hppJasamura    = array_sum(array_column($jasamura, 'hpp'));
+        }else {
+            $profitJasamura = 0;
+            $hppJasamura    = 0;
+        }
+
+        $totalPendapatan    = $profitPopjasa + $profitJasamura;
+        $totalHpp           = $hppPopjasa + $hppJasamura;
 
         echo "<pre>";
+        var_dump($bulan);
+        var_dump($tahun);
         var_dump($profitPopjasa);
+        var_dump($hppPopjasa);
         var_dump($profitJasamura);
+        var_dump($hppJasamura);
 //        print_r ($where);
         echo "</pre>";
         die();
@@ -304,7 +331,7 @@ class Labarugi extends CI_Controller
         } catch (MpdfException $e) {
             Conversion::send_telegram(json_encode($e));
         }
-        $html = $this->load->view($this->conversion->getController('pdf'), $data,true);
+        $html = $this->load->view('report/labarugi/pdf', $data,true);
 
         try {
             $mpdf->WriteHTML($html);
