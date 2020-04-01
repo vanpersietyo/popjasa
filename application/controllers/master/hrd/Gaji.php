@@ -105,7 +105,9 @@ class Gaji extends CI_Controller
             // $row[] = '<h5 class="text-bold-500">'.$d->password;
             $date = date("d/m/Y H:i", strtotime($d->updated_gaji));
             $row[] = '<h5 class="text-bold-500">' . $date;
-            $row[] = '<h5 class="text-bold-500">' . $d->updated_gaji_by;
+            $row[] = '<h5 class="text-bold-500">' . $d->tgl_gaji;
+            $row[] = '<a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Delete Transaksi" onclick="delete_person(' . "'" . $d->id_gaji . "'" . ')"><i class="ft-trash"></i></a>';
+
 
             //add html for action
 
@@ -144,6 +146,7 @@ class Gaji extends CI_Controller
         $data_insert = array(
             'jml_gaji' => str_replace(".", "", $this->input->post('jml_gaji')),
             'keterangan_gaji' => $this->input->post('keterangan'),
+            'tgl_gaji' => $this->input->post('tgl_gaji'),
             'kd_bank' => $this->input->post('kd_bank'),
             'id_karyawan' => $this->input->post('id'),
             'updated_gaji' => date('Y-m-d H:i:s'),
@@ -153,6 +156,12 @@ class Gaji extends CI_Controller
         $this->M_gaji->update(array('id_karyawan' => $this->input->post('id')), $data, $data_insert);
         // var_dump($this->db->last_query());
         // exit();
+        echo json_encode(array("status" => TRUE));
+    }
+
+    public function delete_detail($id)
+    {
+        $this->M_gaji->delete_by_id($id);
         echo json_encode(array("status" => TRUE));
     }
 
@@ -172,6 +181,22 @@ class Gaji extends CI_Controller
         if (empty($this->input->post('jml_gaji'))) {
             $error = 'Jumlah Gaji Tidak Boleh Kosong';
             $data['inputerror'][] = 'jml_gaji';
+            $data['notiferror'][] = $prefix . $error . $suffix;
+            $data['error_string'][] = $error;
+            $data['status'] = FALSE;
+        }
+
+        if (empty($this->input->post('tgl_gaji'))) {
+            $error = 'Tanggal Pembayaran Gaji Tidak Boleh Kosong';
+            $data['inputerror'][] = 'tgl_gaji';
+            $data['notiferror'][] = $prefix . $error . $suffix;
+            $data['error_string'][] = $error;
+            $data['status'] = FALSE;
+        }
+
+        if (empty($this->input->post('kd_bank'))) {
+            $error = 'Account Pembayaran Gaji Tidak Boleh Kosong';
+            $data['inputerror'][] = 'kd_bank';
             $data['notiferror'][] = $prefix . $error . $suffix;
             $data['error_string'][] = $error;
             $data['status'] = FALSE;

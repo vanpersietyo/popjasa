@@ -22,7 +22,7 @@ class M_gaji extends CI_Model {
 
     public function get_history($id){
 		$query=$this->db->query("
-		select b.id_karyawan,b.nama_karyawan,b.jns_kelamin,b.keterangan,b.tgl_input,b.inputby,b.status_karyawan,c.jml_gaji,c.updated_gaji,c.updated_gaji_by,d.nm_bank
+		select b.id_karyawan,b.nama_karyawan,b.jns_kelamin,b.keterangan,b.tgl_input,b.inputby,b.status_karyawan,c.jml_gaji,c.updated_gaji,c.updated_gaji_by,d.nm_bank,c.tgl_gaji,c.id_gaji
 		from m_karyawan b,trs_hrd_gaji c, bank d
 		where b.id_karyawan=c.id_karyawan and b.kd_bank=d.kd_bank and b.id_karyawan='$id'
 			");
@@ -122,8 +122,8 @@ class M_gaji extends CI_Model {
 
 	public function delete_by_id($id)
 	{
-		$this->db->where('id_karyawan', $id);
-		$this->db->delete('m_karyawan');
+		$this->db->where('id_gaji', $id);
+		$this->db->delete('trs_hrd_gaji');
 	}
 
 	//Laporan
