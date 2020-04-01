@@ -1,0 +1,9 @@
+ALTER TABLE `trs_hrd_tunjangan_karyawan`
+  CHANGE `tgl_trans` `tgl_trans` DATETIME NULL,
+  ADD COLUMN `kd_bank` VARCHAR(30) DEFAULT 'CASH' NULL AFTER `st_data`;
+
+ALTER TABLE `trs_hrd_potongan_karyawan`
+  CHANGE `tgl_trans` `tgl_trans` DATETIME NULL,
+  ADD COLUMN `kd_bank` VARCHAR(30) DEFAULT 'CASH' NULL AFTER `st_data`;
+
+insert into log_update(script_name,note) values ("2020_04_01_1585714545.txt","update kd bank ke trs_hrd_potongan_karyawan dan trs_hrd_tunjangan_karyawan");
