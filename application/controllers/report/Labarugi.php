@@ -242,10 +242,12 @@ class Labarugi extends CI_Controller
 
     public function pdf_baru($bulan = null,$tahun = null,$cabang = 'SBY')
     {
-        if(!$bulan) $bulan = date('m');
-        if(!$tahun) $tahun = date('Y');
         $this->load->model('report/M_v_paybycustomers');
         $this->load->model('report/M_v_pengeluaran');
+        $this->load->model('M_karyawan');
+
+        if(!$bulan) $bulan = date('m');
+        if(!$tahun) $tahun = date('Y');
         $TGL01		= $tahun."-".$bulan."-01";//date("Y-m-d", strtotime($tgl_awal));
         $TGL02		= $tahun."-".$bulan."-31";//date("Y-m-d", strtotime($tgl_akhir));
 
@@ -285,6 +287,31 @@ class Labarugi extends CI_Controller
         $totalPendapatan    = $profitPopjasa + $profitJasamura;
         $totalHpp           = $hppPopjasa + $hppJasamura;
 
+        //Gaji
+//        $karyawan   = $this->M_labarugi->select_karyawan();
+//        $SUM_thp    = [];
+//        foreach ($karyawan as $karyawan) {
+//            $potongan   = $this->M_labarugi->select_potongan($karyawan->id_karyawan);
+//            $tunjangan  = $this->M_labarugi->select_tunjangan($karyawan->id_karyawan);
+//            $bonus      = $this->M_labarugi->select_bonus($karyawan->id_karyawan);
+//            $gaji       = $karyawan->jml_gaji;
+//            $thp        = (($gaji + $bonus->bonus + $tunjangan->tunjangan) - $potongan->potongan);
+//            $SUM_thp[]  = $thp;
+//        }
+
+        $whereKaryawan  = [M_karyawan::status_karyawan => 1];
+        if($cabang){$whereKaryawan[M_karyawan::kd_cabang] = $cabang;}
+        $karyawan       = $this->M_karyawan->find($whereKaryawan);
+
+        $gaji           = 0;
+        $gajiKaryawan   = 0;
+        if($karyawan){
+            /** @var M_karyawan $krywn */
+            foreach ($karyawan as $krywn) {
+                $gaji[] = $krywn->jml_gaji;
+            }
+        }
+
         echo "<pre>";
         var_dump($bulan);
         var_dump($tahun);
@@ -292,6 +319,8 @@ class Labarugi extends CI_Controller
         var_dump($hppPopjasa);
         var_dump($profitJasamura);
         var_dump($hppJasamura);
+        var_dump($karyawan);
+        var_dump($gaji);
 //        print_r ($where);
         echo "</pre>";
         die();

@@ -4,14 +4,14 @@
 class Karyawan extends CI_Controller{
 	function __construct(){
 		parent::__construct();
-		$this->load->model('M_Karyawan');
+		$this->load->model('M_karyawan');
 		$this->load->model('M_login');
 		$this->M_login->isLogin();
 	}
 
 	public function index(){
-		$data['jabatan']= $this->M_Karyawan->get_jabatan();
-		$data['jabataan']= $this->M_Karyawan->get_jabatan();
+		$data['jabatan']= $this->M_karyawan->get_jabatan();
+		$data['jabataan']= $this->M_karyawan->get_jabatan();
 		$data['pages']='master/karyawan/list_karyawan';
 		$this->load->view('layout',$data);
 	}
@@ -20,7 +20,7 @@ class Karyawan extends CI_Controller{
 	{
 		$this->load->helper('url');
 
-		$list = $this->M_Karyawan->get_user();
+		$list = $this->M_karyawan->get_user();
 		$data = array();
 
 		foreach ($list as $d) {
@@ -63,8 +63,8 @@ class Karyawan extends CI_Controller{
 
 		$output = array(
 
-						"recordsTotal" => $this->M_Karyawan->count_all(),
-						"recordsFiltered" => $this->M_Karyawan->count_filtered(),
+						"recordsTotal" => $this->M_karyawan->count_all(),
+						"recordsFiltered" => $this->M_karyawan->count_filtered(),
 						"data" => $data,
 				);
 		//output to json format
@@ -73,7 +73,7 @@ class Karyawan extends CI_Controller{
 
 	public function ajax_edit($id)
 	{
-		$data = $this->M_Karyawan->get_by_id($id);
+		$data = $this->M_karyawan->get_by_id($id);
 		//$data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
 		echo json_encode($data);
 	}
@@ -83,7 +83,7 @@ class Karyawan extends CI_Controller{
 		$this->_validate();
 		$kode=date('Ymds');
 		$data = array(
-			'id_karyawan' => $this->M_Karyawan->get_ID('id_karyawan'),
+			'id_karyawan' => $this->M_karyawan->get_ID('id_karyawan'),
 			'id_jabatan' => $this->input->post('id_jabatan'),
 			'kd_cabang'	=> $this->session->userdata('cabang'),
 			'nama_karyawan' => $this->input->post('nama_karyawan'),
@@ -94,7 +94,7 @@ class Karyawan extends CI_Controller{
 			'inputby' => $this->session->userdata('yangLogin'),
 			);
 
-		$insert = $this->M_Karyawan->save($data);
+		$insert = $this->M_karyawan->save($data);
 
 		echo json_encode(array("status" => TRUE));
 	}
@@ -112,13 +112,13 @@ class Karyawan extends CI_Controller{
 			'tgl_input' => date('Y-m-d H:i:s'),
 			'inputby' => $this->session->userdata('yangLogin'),
 			);
-		$this->M_Karyawan->update(array('id_karyawan' => $this->input->post('id')), $data);
+		$this->M_karyawan->update(array('id_karyawan' => $this->input->post('id')), $data);
 		echo json_encode(array("status" => TRUE));
 	}
 
 	public function ajax_delete($id)
 	{
-		$this->M_Karyawan->delete_by_id($id);
+		$this->M_karyawan->delete_by_id($id);
 		echo json_encode(array("status" => TRUE));
 	}
 

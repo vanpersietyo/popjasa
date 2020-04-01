@@ -1,0 +1,8 @@
+ALTER TABLE `m_karyawan`
+  DROP COLUMN `kd_bank`,
+  ADD COLUMN `kd_bank` VARCHAR(30) DEFAULT 'CASH' NULL COMMENT 'kd bank' AFTER `tgl_mulai_bekerja`;
+
+ALTER TABLE `trs_hrd_gaji`
+  ADD COLUMN `kd_bank` VARCHAR(30) DEFAULT 'CASH' NULL AFTER `updated_gaji_by`;
+
+insert into log_update(script_name,note) values ("2020_04_01_1.txt","update kd bank ke m_karyawan dan trs_hrd_gaji");
