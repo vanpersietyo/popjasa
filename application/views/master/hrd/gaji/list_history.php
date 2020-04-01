@@ -57,7 +57,7 @@
             <div class="card-content">
               <div class="card-body">
                 <!-- Invoices List table -->
-                <h2 class="text-center text-red">Daftar Kenaikan Gaji Karyawan POP JASA</h2>
+                <h2 class="text-center text-red">Daftar Transaksi Gaji Karyawan </h2>
                 <div class="table-responsive">
                   <table id="table" class="table table-striped table-bordered sourced-data">
                     <thead>
@@ -66,8 +66,9 @@
                         <th>Nama Karyawan</th>
                         <th>Status</th>
                         <th>Gaji</th>
-                        <th>Tgl Pembaruan</th>
+                        <th>Tgl Pembayaran Gaji</th>
                         <th>Operator</th>
+                         <th></th>
 
                       </tr>
                     </thead>
@@ -278,6 +279,31 @@ function save()
 
         }
     });
+}
+
+function delete_person(id)
+{
+    if(confirm('Anda Yakin Akan Menghapus Data?'))
+    {
+        // ajax delete data to database
+        $.ajax({
+            url : "<?php echo site_url('master/hrd/gaji/delete_detail/')?>/"+id,
+            type: "POST",
+            dataType: "JSON",
+            success: function(data)
+            {
+                //if success reload ajax table
+                $('#modal_form').modal('hide');
+                reload_table();
+                swal("Good Job !", "Data Berhasil Dihapus !", "success");
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                swal("Sorry !", "Data Gagal Dihapus !", "warning");
+            }
+        });
+
+    }
 }
 
 
