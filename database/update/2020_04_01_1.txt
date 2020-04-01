@@ -1,5 +1,4 @@
 ALTER TABLE `m_karyawan`
-  DROP COLUMN `kd_bank`,
   ADD COLUMN `kd_bank` VARCHAR(30) DEFAULT 'CASH' NULL COMMENT 'kd bank' AFTER `tgl_mulai_bekerja`;
 
 ALTER TABLE `trs_hrd_gaji`

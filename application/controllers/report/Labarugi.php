@@ -303,7 +303,7 @@ class Labarugi extends CI_Controller
         if($cabang){$whereKaryawan[M_karyawan::kd_cabang] = $cabang;}
         $karyawan       = $this->M_karyawan->find($whereKaryawan);
 
-        $gaji           = 0;
+        $gaji           = [];
         $gajiKaryawan   = 0;
         if($karyawan){
             /** @var M_karyawan $krywn */
