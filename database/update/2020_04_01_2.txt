@@ -1,5 +1,4 @@
-ALTER TABLE `popjasa`.`trs_hrd_gaji`
-  DROP COLUMN `tgl_gaji`,
+ALTER TABLE `trs_hrd_gaji`
   ADD COLUMN `tgl_gaji` DATE NULL AFTER `kd_bank`;
 
 insert into log_update(script_name,note) values ("2020_04_01_2.txt","update tgl transaksi gaji karyawan ke trs_hrd_gaji");
