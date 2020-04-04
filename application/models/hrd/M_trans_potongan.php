@@ -82,22 +82,22 @@ class M_trans_potongan extends CI_Model
         $m = date('m');
         $y = date('Y');
         $query = $this->db->query("
-    select a.id_trans_potongan,b.nama_karyawan,c.keterangan,a.jumlah,a.tgl_trans,a.operator,a.st_data
-      from trs_hrd_potongan_karyawan a
-      join m_karyawan b on a.id_karyawan=b.id_karyawan
-      join m_potongan c on a.id_potongan=c.id_potongan
-        where MONTH(a.tgl_trans) = '$m' and YEAR(a.tgl_trans)='$y'
-    ");
-        $jml = $this->db->query("
-    select a.id_trans_potongan,b.nama_karyawan,c.keterangan,a.jumlah,a.tgl_trans,a.operator,a.st_data
-      from trs_hrd_potongan_karyawan a
-      join m_karyawan b on a.id_karyawan=b.id_karyawan
-      join m_potongan c on a.id_potongan=c.id_potongan
-        where MONTH(a.tgl_trans) = '$m' and YEAR(a.tgl_trans)='$y'
-    ");
-        if (count($jml->result()) <= 0) {
-            return array('st_data' => 0);
-        }
+        select a.id_trans_potongan,b.nama_karyawan,c.keterangan,a.jumlah,a.tgl_trans,a.operator,a.st_data
+          from trs_hrd_potongan_karyawan a
+          join m_karyawan b on a.id_karyawan=b.id_karyawan
+          join m_potongan c on a.id_potongan=c.id_potongan
+            where MONTH(a.tgl_trans) = '$m' and YEAR(a.tgl_trans)='$y'
+        ");
+            $jml = $this->db->query("
+        select a.id_trans_potongan,b.nama_karyawan,c.keterangan,a.jumlah,a.tgl_trans,a.operator,a.st_data
+          from trs_hrd_potongan_karyawan a
+          join m_karyawan b on a.id_karyawan=b.id_karyawan
+          join m_potongan c on a.id_potongan=c.id_potongan
+            where MONTH(a.tgl_trans) = '$m' and YEAR(a.tgl_trans)='$y'
+        ");
+//        if (count($jml->result()) <= 0) {
+//            return array('st_data' => 0);
+//        }
         return $query->row();
     }
 

@@ -46,7 +46,7 @@
                     <thead>
                       <tr>
                         <th>Nama Karyawan</th>
-                        <th>Tunjangan</th>
+                        <th>Potongan</th>
                         <th>Jumlah</th>
                         <th>Acc Bank</th>
                         <th></th>
@@ -65,7 +65,8 @@
                   </table>
                 </div>
                 <div class="row">
-                  <?php if ($conf->st_data==0){ ?>
+                  <?php
+                  if ($conf->st_data==0 ){ ?>
                     <div class="col-md-12">
                         <a type="button" href="<?php echo site_url('master/hrd/trans_potongan/konfirmasi/'.$this->session->userdata('yangLogin'));?>" class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up"> Save</a>
                     </div>
