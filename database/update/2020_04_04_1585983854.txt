@@ -158,7 +158,7 @@ SELECT
     `cf_global`.`URAIAN` AS `URAIAN`,
     `b`.`nm_bank` AS `NM_BANK`,
     `cf_global`.`KD_CABANG` AS `KD_CABANG`,
-    `popjasa`.`m_cabang`.`nm_cabang` AS `NM_CABANG`
+    `m_cabang`.`nm_cabang` AS `NM_CABANG`
   FROM
     (
       (
@@ -166,57 +166,57 @@ SELECT
           (SELECT
             CAST(
               COALESCE(
-                `popjasa`.`trans_bank_in`.`TGL_TRANS`,
-                `popjasa`.`trans_bank_in`.`TGL_BUAT`
+                `trans_bank_in`.`TGL_TRANS`,
+                `trans_bank_in`.`TGL_BUAT`
               ) AS DATE
             ) AS `TGL`,
-            `popjasa`.`trans_bank_in`.`ID_TRANS` AS `ID_TRANS`,
-            `popjasa`.`trans_bank_in`.`KD_BANK` AS `KD_BANK`,
-            `popjasa`.`trans_bank_in`.`SLD_MASUK` AS `NOMINAL`,
+            `trans_bank_in`.`ID_TRANS` AS `ID_TRANS`,
+            `trans_bank_in`.`KD_BANK` AS `KD_BANK`,
+            `trans_bank_in`.`SLD_MASUK` AS `NOMINAL`,
             'DEBET' AS `TIPE`,
             'KAS MASUK' AS `TRX`,
-            `popjasa`.`trans_bank_in`.`ID_OPR` AS `ID_OPR`,
-            `popjasa`.`trans_bank_in`.`KETERANGAN` AS `KETERANGAN`,
+            `trans_bank_in`.`ID_OPR` AS `ID_OPR`,
+            `trans_bank_in`.`KETERANGAN` AS `KETERANGAN`,
             '' AS `KETERANGAN2`,
             CONCAT(
               'Kas Masuk Nomor : ',
-              `popjasa`.`trans_bank_in`.`ID_TRANS`
+              `trans_bank_in`.`ID_TRANS`
             ) AS `URAIAN`,
             COALESCE(
-              `popjasa`.`trans_bank_in`.`KD_CABANG`,
+              `trans_bank_in`.`KD_CABANG`,
               'SBY'
             ) AS `KD_CABANG`
           FROM
-            `popjasa`.`trans_bank_in`
-          WHERE `popjasa`.`trans_bank_in`.`ST_DATA` = 1)
+            `trans_bank_in`
+          WHERE `trans_bank_in`.`ST_DATA` = 1)
           UNION
           ALL
           SELECT
             CAST(
               COALESCE(
-                `popjasa`.`trans_bank_out`.`TGL_TRANS`,
-                `popjasa`.`trans_bank_out`.`TGL_BUAT`
+                `trans_bank_out`.`TGL_TRANS`,
+                `trans_bank_out`.`TGL_BUAT`
               ) AS DATE
             ) AS `TGL`,
-            `popjasa`.`trans_bank_out`.`ID_TRANS` AS `ID_TRANS`,
-            `popjasa`.`trans_bank_out`.`KD_BANK` AS `KD_BANK`,
-            `popjasa`.`trans_bank_out`.`SLD_KELUAR` AS `SLD_KELUAR`,
+            `trans_bank_out`.`ID_TRANS` AS `ID_TRANS`,
+            `trans_bank_out`.`KD_BANK` AS `KD_BANK`,
+            `trans_bank_out`.`SLD_KELUAR` AS `SLD_KELUAR`,
             'KREDIT' AS `KREDIT`,
             'KAS KELUAR' AS `BANK OUT`,
-            `popjasa`.`trans_bank_out`.`ID_OPR` AS `ID_OPR`,
-            `popjasa`.`trans_bank_out`.`KETERANGAN` AS `KETERANGAN`,
+            `trans_bank_out`.`ID_OPR` AS `ID_OPR`,
+            `trans_bank_out`.`KETERANGAN` AS `KETERANGAN`,
             '' AS `KETERANGAN2`,
             CONCAT(
               'Kas Keluar Nomor : ',
-              `popjasa`.`trans_bank_out`.`ID_TRANS`
+              `trans_bank_out`.`ID_TRANS`
             ) AS `URAIAN`,
             COALESCE(
-              `popjasa`.`trans_bank_out`.`KD_CABANG`,
+              `trans_bank_out`.`KD_CABANG`,
               'SBY'
             ) AS `KD_CABANG`
           FROM
-            `popjasa`.`trans_bank_out`
-          WHERE `popjasa`.`trans_bank_out`.`ST_DATA` = 1
+            `trans_bank_out`
+          WHERE `trans_bank_out`.`ST_DATA` = 1
           UNION
           ALL
           SELECT
@@ -238,8 +238,8 @@ SELECT
             `a`.`kd_cabang` AS `kd_cabang`
           FROM
             (
-              `popjasa`.`trs_rekening_biaya` `a`
-              JOIN `popjasa`.`trs_detail_rekening_biaya` `b`
+              `trs_rekening_biaya` `a`
+              JOIN `trs_detail_rekening_biaya` `b`
                 ON (
                   `a`.`id_trs_rekbiaya` = `b`.`id_trs_rekbiaya`
                 )
@@ -269,13 +269,13 @@ SELECT
           FROM
             (
               (
-                `popjasa`.`trs_pembayaran` `a`
-                JOIN `popjasa`.`trs_project` `b`
+                `trs_pembayaran` `a`
+                JOIN `trs_project` `b`
                   ON (
                     `a`.`id_project` = `b`.`id_project`
                   )
               )
-              JOIN `popjasa`.`m_customer` `c`
+              JOIN `m_customer` `c`
                 ON (
                   `c`.`id_customer` = `b`.`id_customer`
                 )
@@ -311,14 +311,14 @@ SELECT
     AND YEAR(tgl_gaji) = year_tgl_trans
     WHERE gaji.jumlah - COALESCE(potongan.potongan,0) != 0
           ) `cf_global`
-          LEFT JOIN `popjasa`.`bank` `b`
+          LEFT JOIN `bank` `b`
             ON (
               `cf_global`.`KD_BANK` = `b`.`kd_bank`
             )
         )
-        JOIN `popjasa`.`m_cabang`
+        JOIN `m_cabang`
           ON (
-            `popjasa`.`m_cabang`.`kd_cabang` = `cf_global`.`KD_CABANG`
+            `m_cabang`.`kd_cabang` = `cf_global`.`KD_CABANG`
           )
       )
   );
