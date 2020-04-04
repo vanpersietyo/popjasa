@@ -93,6 +93,7 @@
  * @property M_hrd            				    $M_hrd
  *
  * //Master
+ * --TABEL
  * @property M_login            				$M_login
  * @property M_user             				$M_user
  * @property M_Customer         				$M_Customer
@@ -103,6 +104,9 @@
  * @property M_cabang                           $M_cabang
  * @property M_karyawan                         $M_karyawan
  * @property M_gaji                             $M_gaji
+ *
+ * --VIEW
+ * @property M_v_m_karyawan                     $M_v_m_karyawan
  *
  * Transaksi
 
@@ -127,12 +131,23 @@
  * @property M_trs_pembayaran                   $M_trs_pembayaran
 
  * HRD
+ * --TABEL
  * @property M_trans_potongan                   $M_trans_potongan
  * @property M_trs_hrd_piutang_karyawan         $M_trs_hrd_piutang_karyawan
  * @property M_trs_hrd_bonus_karyawan           $M_trs_hrd_bonus_karyawan
+ * @property M_trs_hrd_gaji                     $M_trs_hrd_gaji
  * @property M_trs_hrd_cuti                     $M_trs_hrd_cuti
  * @property M_trs_hrd_potongan_karyawan        $M_trs_hrd_potongan_karyawan
  * @property M_trs_hrd_tunjangan_karyawan       $M_trs_hrd_tunjangan_karyawan
+ *
+ * --VIEW
+ * @property M_v_trs_hrd_potongan_karyawan      $M_v_trs_hrd_potongan_karyawan
+ * @property M_v_trs_hrd_gaji                   $M_v_trs_hrd_gaji
+ * @property M_v_trs_hrd_bonus_karyawan         $M_v_trs_hrd_bonus_karyawan
+ * @property M_v_trs_hrd_tunjangan_karyawan     $M_v_trs_hrd_tunjangan_karyawan
+ * @property M_v_trs_hrd_piutang_karyawan       $M_v_trs_hrd_piutang_karyawan
+ * @property M_v_trs_hrd_pembayaran_karyawan    $M_v_trs_hrd_pembayaran_karyawan
+ *
  *
  *  * Report
  * @property M_v_rekapitulasi_cashflow          $M_v_rekapitulasi_cashflow

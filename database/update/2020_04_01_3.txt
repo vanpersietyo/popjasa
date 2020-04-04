@@ -1,7 +1,7 @@
 ALTER TABLE `trs_hrd_pembayaran_karyawan`
-ADD COLUMN `kd_bank` VARCHAR(255) NULL AFTER `jumlah`;
+ADD COLUMN `kd_bank` VARCHAR(255) NULL AFTER `jumlah_bayar`;
 
 ALTER TABLE `trs_hrd_piutang_karyawan`
-ADD COLUMN `kd_bank` VARCHAR(255) NULL AFTER `jumlah`;
+ADD COLUMN `kd_bank` VARCHAR(255) NULL AFTER `jumlah_piutang`;
 
 insert into log_update(script_name,note) values ("2020_04_01_3.txt","update kd_bank di trans pembayaran,piutang");
