@@ -296,10 +296,20 @@ SELECT
 	CONCAT(keterangan_tunjangan,' Karyawan : ',nama_karyawan,' (',nama_jabatan,')'),KD_CABANG
 	FROM v_trs_hrd_tunjangan_karyawan
 	UNION ALL
-	SELECT
-    CAST(tgl_gaji AS DATE),id_karyawan,KD_BANK,jml_gaji,'KREDIT','PEMBAYARAN GAJI',updated_gaji_by,'',nama_karyawan,
-    CONCAT('Pembayaran Gaji : ',nama_karyawan,' (',nama_jabatan,')'),KD_CABANG
+    SELECT tgl_gaji,gaji.id_karyawan,kd_bank,gaji.jumlah - COALESCE(potongan.potongan,0) AS gaji_bersih,
+    TIPE,TRX,operator,keterangan,keterangan2,uraian,gaji.kd_cabang
+    FROM (
+    SELECT
+    tgl_gaji,id_karyawan,KD_BANK,SUM(jml_gaji) AS jumlah,'KREDIT' AS `TIPE`,'PEMBAYARAN GAJI' AS TRX,updated_gaji_by AS operator,'' AS keterangan,nama_karyawan AS keterangan2,
+    CONCAT('Gaji Karyawan : ',nama_karyawan,' (',nama_jabatan,')') AS uraian,KD_CABANG
     FROM v_trs_hrd_gaji
+    GROUP BY id_karyawan,MONTH(tgl_gaji),YEAR(tgl_gaji),kd_cabang ) AS gaji
+    LEFT JOIN
+    (SELECT MONTH(tgl_trans) AS month_tgl_trans,YEAR(tgl_trans) AS year_tgl_trans,id_karyawan,SUM(jumlah) AS potongan,KD_CABANG FROM v_trs_hrd_potongan_karyawan
+    GROUP BY id_karyawan,MONTH(tgl_trans),YEAR(tgl_trans),kd_cabang) AS potongan
+    ON gaji.id_karyawan = potongan.id_karyawan AND gaji.kd_cabang= potongan.kd_cabang AND MONTH(tgl_gaji) = month_tgl_trans
+    AND YEAR(tgl_gaji) = year_tgl_trans
+    WHERE gaji.jumlah - COALESCE(potongan.potongan,0) != 0
           ) `cf_global`
           LEFT JOIN `popjasa`.`bank` `b`
             ON (
@@ -311,7 +321,6 @@ SELECT
             `popjasa`.`m_cabang`.`kd_cabang` = `cf_global`.`KD_CABANG`
           )
       )
-
   );
 
 insert into log_update(script_name,note) values
