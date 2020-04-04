@@ -80,16 +80,17 @@ class Labarugi extends CI_Controller
         $pjs = array_sum($SUMPOPJASA);
         $jsmrh = array_sum($SUMJASAMURAH);
         $total_semua = array_sum($SUMJASAMURAH) + array_sum($SUMPOPJASA);
-//        var_dump($pjs);
-//        exit();
-        //value
+
+        $pdf->SetFillColor(0,0,0);
+
         $pdf->Cell(40, 5, 'RINCIAN PEMASUKAN :', 0, 1, 'L');
         $pdf->Cell(10, 5, '', 0, 1);
-        $pdf->Cell(87, 5, 'OMZET POPJASA', 1, 0, 'L');
+        $pdf->SetTextColor(255,255,255);
+        $pdf->Cell(87, 5, 'OMZET POPJASA', 1, 0, 'L',true);
         $prosentase_1 = $pjs / $total_semua * 100;
         $echo_p1 = number_format($prosentase_1);
-        $pdf->Cell(30, 5, "$echo_p1 %", 1, 1, 'R');
-
+        $pdf->Cell(30, 5, "$echo_p1 %", 1, 1, 'R',true);
+        $pdf->SetTextColor(0,0,0);
         $popjasa = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '1');
         $SUM_JUM_BIAYA = [];
         foreach ($popjasa as $popjasa) {
@@ -103,11 +104,12 @@ class Labarugi extends CI_Controller
         $pdf->Cell(128, 5, ': Rp. ', 0, 0, 'R');
         $pdf->Cell(20, 5, number_format(array_sum($SUM_JUM_BIAYA)), 0, 1, 'L');
         $pdf->Cell(10, 10, '', 0, 1);
-        $pdf->Cell(87, 5, 'OMZET JASAMURA', 1, 0, 'L');
+        $pdf->SetTextColor(255,255,255);
+        $pdf->Cell(87, 5, 'OMZET JASAMURA', 1, 0, 'L',true);
         $prosentase_2 = $jsmrh / $total_semua * 100;
         $echo_p2 = number_format($prosentase_2);
-        $pdf->Cell(30, 5, "$echo_p2 %", 1, 1, 'R');
-
+        $pdf->Cell(30, 5, "$echo_p2 %", 1, 1, 'R',true);
+        $pdf->SetTextColor(0,0,0);
         $jasmurah = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '2');
         $SUM_JUM_jasmurah = [];
         foreach ($jasmurah as $jasmurah) {
@@ -166,27 +168,32 @@ class Labarugi extends CI_Controller
         $pdf->Cell(10, 5, '', 0, 1);
         $pdf->Cell(40, 5, 'RINCIAN PENGELUARAN :', 0, 1, 'L');
         $pdf->Cell(10, 5, '', 0, 1);
-        $pdf->Cell(87, 5, 'HPP POPJASA', 1, 0, 'L');
+        $pdf->SetTextColor(255,255,255);
+        $pdf->Cell(87, 5, 'HPP POPJASA', 1, 0, 'L',true);
         $prosentase_9 = $hhppji / $total_omz2 * 100;
         $echo_p9 = number_format($prosentase_9);
-        $pdf->Cell(30, 5, "$echo_p9 %", 1, 1, 'R');
+        $pdf->Cell(30, 5, "$echo_p9 %", 1, 1, 'R',true);
+        $pdf->SetTextColor(0,0,0);
         $pdf->Cell(95, 5, "- HPP POPJASA", 0, 0, 'L');
         $pdf->Cell(1, 5, ": Rp.  ", 0, 0, 'R');
         $pdf->Cell(20, 5, number_format($hhppji), 0, 1, 'R');
         $pdf->Cell(10, 10, '', 0, 1);
-        $pdf->Cell(87, 5, 'HPP JASAMURA', 1, 0, 'L');
+        $pdf->SetTextColor(255,255,255);
+        $pdf->Cell(87, 5, 'HPP JASAMURA', 1, 0, 'L',true);
         $prosentase_10 = $phppgl / $total_omz2 * 100;
         $echo_p10 = number_format($prosentase_10);
-        $pdf->Cell(30, 5, "$echo_p10 %", 1, 1, 'R');
+        $pdf->Cell(30, 5, "$echo_p10 %", 1, 1, 'R',true);
+        $pdf->SetTextColor(0,0,0);
         $pdf->Cell(95, 5, "- HPP JASAMURA", 0, 0, 'L');
         $pdf->Cell(1, 5, ": Rp.  ", 0, 0, 'R');
         $pdf->Cell(20, 5, number_format($phppgl), 0, 1, 'R');
         $pdf->Cell(10, 10, '', 0, 1);
-        $pdf->Cell(87, 5, 'GAJI KARYAWAN', 1, 0, 'L');
+        $pdf->SetTextColor(255,255,255);
+        $pdf->Cell(87, 5, 'GAJI KARYAWAN', 1, 0, 'L',true);
         $prosentase_3 = $hji / $total_omz2 * 100;
         $echo_p3 = number_format($prosentase_3);
-        $pdf->Cell(30, 5, "$echo_p3 %", 1, 1, 'R');
-
+        $pdf->Cell(30, 5, "$echo_p3 %", 1, 1, 'R',true);
+        $pdf->SetTextColor(0,0,0);
         $karyawan = $this->M_labarugi->select_karyawan();
         $SUM_thp = [];
         foreach ($karyawan as $karyawan) {
@@ -205,12 +212,14 @@ class Labarugi extends CI_Controller
         $pdf->Cell(20, 5, number_format(array_sum($SUM_thp)), 0, 1, 'L');
         $pdf->Cell(10, 5, '', 0, 1);
         $pdf->Cell(10, 5, '', 0, 1);
-
-        $pdf->Cell(87, 5, 'BIAYA OPERASIONAL', 1, 0, 'L');
+        $pdf->SetTextColor(255,255,255);
+        $pdf->Cell(87, 5, 'BIAYA OPERASIONAL', 1, 0, 'L',true);
         $prosentase_4 = $pgl / $total_omz2 * 100;
         $echo_p4 = number_format($prosentase_4);
-        $pdf->Cell(30, 5, "$echo_p4 %", 1, 1, 'R');
+        $pdf->Cell(30, 5, "$echo_p4 %", 1, 1, 'R',true);
         $keluar = $this->M_labarugi->uang_keluar($TGL01, $TGL02);
+        $pdf->SetTextColor(0,0,0);
+
         $jum_keluar = [];
         foreach ($keluar as $keluar) {
             $pdf->Cell(95, 5, "- $keluar->nm_rekbiaya", 0, 0, 'L');

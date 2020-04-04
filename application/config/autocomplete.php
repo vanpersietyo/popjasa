@@ -127,6 +127,7 @@
  * @property M_trs_pembayaran                   $M_trs_pembayaran
 
  * HRD
+ * @property M_trans_potongan                   $M_trans_potongan
  * @property M_trs_hrd_piutang_karyawan         $M_trs_hrd_piutang_karyawan
  * @property M_trs_hrd_bonus_karyawan           $M_trs_hrd_bonus_karyawan
  * @property M_trs_hrd_cuti                     $M_trs_hrd_cuti
