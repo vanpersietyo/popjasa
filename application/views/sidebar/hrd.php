@@ -30,6 +30,11 @@ role="navigation" data-menu="menu-wrapper">
        <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/hrd/trans_potongan')?>"
          data-toggle="dropdown"><i class="la la-cut"></i>Potongan Karyawan<div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti')?></div></a>
        </li>
+          <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/hrd/gaji') ?>"
+                              data-toggle="dropdown"><i class="la la-file"></i>Pembayaran Gaji
+                  <div class="badge badge-pill badge-danger"></div>
+              </a>
+          </li>
 
       </ul>
     </li>
