@@ -189,6 +189,22 @@ class M_absensi_karyawan extends CI_Model {
 		return $query->result();
 	}
 
+    function report_cutii($TGL01,$TGL02){
+        $cabang=$this->session->userdata('cabang');
+        $query=$this->db->query("
+		SELECT *,a.keterangan as alasan
+        FROM trs_hrd_cuti a, m_karyawan b
+        WHERE a.id_karyawan=b.id_karyawan
+        AND STR_TO_DATE(a.tgl_cuti2,'%Y-%m-%d') >= DATE('2020-04-01')
+        AND STR_TO_DATE(a.tgl_cuti2,'%Y-%m-%d') <= DATE('2020-04-30')
+        AND b.kd_cabang='SBY'
+        ORDER BY a.id_karyawan
+		");
+        return $query->result();
+    }
+
+
+
 	function report_absensi_id($TGL01,$TGL02,$id){
 		$cabang=$this->session->userdata('cabang');
 		$query=$this->db->query("

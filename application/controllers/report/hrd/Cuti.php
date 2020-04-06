@@ -99,7 +99,7 @@ class Cuti extends CI_Controller {
 	  $TGL2=date("d/m/Y", strtotime($tgl_akhir));
 		$TGL1=date("d/m/Y", strtotime($tgl_awal));
 		$periode=strtoupper(date("F Y", strtotime($tgl_akhir)));
-		$PRD_BLTH=strtoupper(date("My", strtotime($tgl_akhir)));
+		$PRD_BLTH=strtoupper(date("Fy", strtotime($tgl_akhir)));
 		$cabang=$this->session->userdata('nm_cabang');
 		$sysdate=date('d/m/Y H:i');
 
@@ -107,13 +107,13 @@ class Cuti extends CI_Controller {
 	        // membuat halaman baru
 	        $pdf->AddPage('P');
 	        // setting jenis font yang akan digunakan
-	        $pdf->Image(base_url().'assets/app-assets/vendors/logo/popjasa.png',180,10,0,20);
-					 $pdf->Image(base_url().'assets/app-assets/vendors/logo/popjasa.png',10,10,0,20);
+    //	        $pdf->Image(base_url().'/assets/app-assets/vendors/logo/popjasa.png',180,10,0,20);
+    //	        $pdf->Image(base_url().'/assets/app-assets/vendors/logo/popjasa.png',10,10,0,20);
 	        $pdf->SetFont('Times','B',16);
 	        // mencetak string
 	        $sysdate=date('d/m/Y H:i');
-	        $pdf->Cell(0,7,"DAFTAR KEHADIRAN KARYAWAN",0,2,'C');
-					$pdf->Cell(0,5,"POPJASA",0,2,'C');
+	        $pdf->Cell(0,7,"DAFTAR KETIDAKHADIRAN KARYAWAN",0,2,'C');
+//					$pdf->Cell(0,5,"",0,2,'C');
 	        $pdf->SetFont('Times','B',8);
 					$pdf->Cell(10,5,'',0,1);
 	        $pdf->Cell(0,1,"KANTOR CABANG : $cabang",0,1,'C');
@@ -166,14 +166,16 @@ class Cuti extends CI_Controller {
 				 $pdf->Cell(10,5,'',0,1);
 				 $pdf->Cell(10,5,'',0,1);
 				 $pdf->SetFont('Arial','B',8);
-						 $pdf->Cell(280,5,"Detail Daftar Kehadiran",0,2,'L');
+						 $pdf->Cell(280,5,"Detail Daftar Karyawan Mengajukan Ketidakhadiran",0,2,'L');
 						 $pdf->SetFont('Arial','',7);
 						 $pdf->Cell(10,5,'No',1,0,'C');
-						 $pdf->Cell(110,5,'Nama',1,0,'L');
-						 $pdf->Cell(35,5,'Tgl Absen',1,0,'C');
-						 $pdf->Cell(35,5,'Status Absen',1,0,'C');
-							 $pdf->Cell(10,5,'',0,1);
-							 $detail = $this->M_absensi_karyawan->report_absensi($TGL01,$TGL02);
+						 $pdf->Cell(60,5,'Nama',1,0,'L');
+						 $pdf->Cell(20,5,'Tgl Awal Cuti',1,0,'C');
+                        $pdf->Cell(20,5,'Tgl Masuk Kerja',1,0,'C');
+						 $pdf->Cell(20,5,'Jumlah Cuti',1,0,'C');
+                        $pdf->Cell(60,5,'Keterangan',1,0,'C');
+							 $pdf->Cell(5,5,'',0,1);
+							 $detail = $this->M_absensi_karyawan->report_cutii($TGL01,$TGL02);
 							 $d='1';
 							 foreach ($detail as $detail){
 								$pdf->SetFont('Arial','',7);
@@ -183,9 +185,15 @@ class Cuti extends CI_Controller {
 									 $status='Pulang';
 							 }
 								$pdf->Cell(10,5,$d,1,0,'C');
-								$pdf->Cell(110,5,$detail->nama_karyawan,1,0,'L');
-								$pdf->Cell(35,5,$detail->tgl_absen,1,0,'C');
-								$pdf->Cell(35,5,$status,1,0,'C');
+								$pdf->Cell(60,5,$detail->nama_karyawan,1,0,'L');
+                                 $c1=strtoupper(date("d-m-Y", strtotime($detail->tgl_cuti)));
+                                 $x2=strtoupper(date("d", strtotime($detail->tgl_cuti2)))-1;
+                                 $x3= sprintf("%02d", $x2);
+                                 $c2=strtoupper(date("d-m-Y", strtotime($detail->tgl_cuti2)));
+								$pdf->Cell(20,5,"$c1",1,0,'C');
+                                 $pdf->Cell(20,5,"$c2",1,0,'C');
+                                 $pdf->Cell(20,5,$detail->jml_cuti,1,0,'C');
+                                 $pdf->Cell(60,5,$detail->alasan,1,0,'C');
 
 
 								$pdf->Cell(0,5,'',0,1,'C');
