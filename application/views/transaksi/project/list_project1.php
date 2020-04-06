@@ -105,7 +105,7 @@
                                            <label>Status Perusahaan</label>
                                            <select class="form-control" name="st_project" >
                                                <option value="1">POPJASA</option>
-                                               <option value="2">JASAMURAH</option>
+                                               <option value="2">JASAMURA</option>
                                            </select>
                                        </div>
 
