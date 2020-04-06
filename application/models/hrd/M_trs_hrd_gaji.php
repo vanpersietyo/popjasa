@@ -10,6 +10,7 @@ class M_trs_hrd_gaji extends CI_Model
     const updated_gaji = "updated_gaji";
     const updated_gaji_by = "updated_gaji_by";
     const kd_bank = "kd_bank";
+    const tgl_gaji = "tgl_gaji";
     const TABLE = "trs_hrd_gaji";
 
 //for inisialisasi.
@@ -20,9 +21,11 @@ class M_trs_hrd_gaji extends CI_Model
     public $updated_gaji;
     public $updated_gaji_by;
     public $kd_bank;
+    public $tgl_gaji;
 
     var $table = 'trs_hrd_gaji';
     var $primary_key = 'id_gaji';
+
 
 	public function __construct()
 	{

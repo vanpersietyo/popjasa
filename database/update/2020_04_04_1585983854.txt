@@ -1,0 +1,330 @@
+ALTER TABLE `kartu_piutang_karyawan`
+  ADD COLUMN `kd_bank` VARCHAR(25) NULL AFTER `id_opr`;
+
+CREATE OR REPLACE VIEW `v_m_karyawan` AS (
+SELECT
+a.id_karyawan,
+a.nama_karyawan,
+a.no_rek,
+a.atas_nama,
+a.nm_bank,
+a.status_karyawan,
+a.jns_kelamin,
+a.keterangan,
+a.tgl_input,
+a.inputby,
+a.jml_gaji,
+a.updated_gaji,
+a.updated_gaji_by,
+a.keterangan_gaji,
+a.jml_piutang,
+a.jml_bayar,
+a.st_data,
+a.tgl_mulai_bekerja,
+a.kd_bank,
+b.kd_cabang,
+b.nm_cabang,
+b.status AS status_cabang,
+c.id_jabatan,
+c.nama_jabatan,
+c.keterangan AS keterangan_jabatan,
+c.st_data AS st_data_jabatan
+FROM m_karyawan a
+JOIN m_cabang b ON a.kd_cabang = b.kd_cabang
+JOIN m_jabatan c ON c.id_jabatan = a.id_jabatan);
+
+CREATE OR REPLACE VIEW `v_trs_hrd_potongan_karyawan` AS (
+SELECT a.id_trans_potongan,
+a.id_potongan,
+c.`nm_potongan`,
+c.`keterangan` AS keterangan_potongan,
+a.periode,
+a.jumlah,
+a.keterangan,
+a.tgl_trans,
+a.operator,
+a.st_data,
+a.kd_bank,
+b.id_karyawan,
+b.nama_karyawan,
+b.status_karyawan,
+b.jns_kelamin,
+b.keterangan AS keterangan_karyawan,
+b.st_data AS st_data_karyawan,
+b.kd_cabang,
+b.nm_cabang,
+b.id_jabatan,
+b.nama_jabatan
+FROM trs_hrd_potongan_karyawan a
+JOIN v_m_karyawan b ON a.id_karyawan = b.`id_karyawan`
+JOIN m_potongan c ON c.`id_potongan` = a.`id_potongan`
+);
+
+CREATE OR REPLACE VIEW `v_trs_hrd_gaji` AS (
+SELECT
+a.*,
+b.nama_karyawan,
+b.status_karyawan,
+b.jns_kelamin,
+b.keterangan AS keterangan_karyawan,
+b.st_data AS st_data_karyawan,
+b.kd_cabang,
+b.nm_cabang,
+b.id_jabatan,
+b.nama_jabatan
+FROM trs_hrd_gaji a
+JOIN v_m_karyawan b ON a.id_karyawan = b.`id_karyawan`
+);
+
+CREATE OR REPLACE VIEW v_trs_hrd_tunjangan_karyawan AS (
+SELECT
+a.*,
+c.`nm_tunjangan`,
+c.`keterangan` AS keterangan_tunjangan,
+b.nama_karyawan,
+b.status_karyawan,
+b.jns_kelamin,
+b.keterangan AS keterangan_karyawan,
+b.st_data AS st_data_karyawan,
+b.kd_cabang,
+b.nm_cabang,
+b.id_jabatan,
+b.nama_jabatan
+FROM trs_hrd_tunjangan_karyawan a
+JOIN v_m_karyawan b ON a.id_karyawan = b.`id_karyawan`
+JOIN m_tunjangan c ON c.`id_tunjangan` = a.`id_tunjangan`
+);
+
+CREATE OR REPLACE VIEW v_trs_hrd_bonus_karyawan AS (
+SELECT
+a.*,
+b.nama_karyawan,
+b.status_karyawan,
+b.jns_kelamin,
+b.keterangan AS keterangan_karyawan,
+b.st_data AS st_data_karyawan,
+b.kd_cabang,
+b.nm_cabang,
+b.id_jabatan,
+b.nama_jabatan
+FROM `trs_hrd_bonus_karyawan` a
+JOIN v_m_karyawan b ON a.id_karyawan = b.`id_karyawan`
+);
+
+CREATE OR REPLACE VIEW v_trs_hrd_pembayaran_karyawan AS (
+SELECT
+a.*,
+b.nama_karyawan,
+b.status_karyawan,
+b.jns_kelamin,
+b.keterangan AS keterangan_karyawan,
+b.st_data AS st_data_karyawan,
+b.kd_cabang,
+b.nm_cabang,
+b.id_jabatan,
+b.nama_jabatan
+FROM `trs_hrd_pembayaran_karyawan` a
+JOIN v_m_karyawan b ON a.id_karyawan = b.`id_karyawan`
+);
+
+CREATE OR REPLACE VIEW v_trs_hrd_piutang_karyawan AS (
+SELECT
+a.*,
+b.nama_karyawan,
+b.status_karyawan,
+b.jns_kelamin,
+b.keterangan AS keterangan_karyawan,
+b.st_data AS st_data_karyawan,
+b.kd_cabang,
+b.nm_cabang,
+b.id_jabatan,
+b.nama_jabatan
+FROM trs_hrd_piutang_karyawan a
+JOIN v_m_karyawan b ON a.id_karyawan = b.`id_karyawan`
+);
+
+CREATE OR REPLACE VIEW `v_rekapitulasi_cashflow` AS
+  (
+SELECT
+    `cf_global`.`ID_TRANS` AS `ID_TRANS`,
+    `cf_global`.`TGL` AS `TGL`,
+    `cf_global`.`KD_BANK` AS `KD_BANK`,
+    `cf_global`.`NOMINAL` AS `NOMINAL`,
+    `cf_global`.`TIPE` AS `TIPE`,
+    `cf_global`.`TRX` AS `TRX`,
+    `cf_global`.`ID_OPR` AS `ID_OPR`,
+    `cf_global`.`KETERANGAN` AS `KETERANGAN`,
+    `cf_global`.`KETERANGAN2` AS `KETERANGAN2`,
+    `cf_global`.`URAIAN` AS `URAIAN`,
+    `b`.`nm_bank` AS `NM_BANK`,
+    `cf_global`.`KD_CABANG` AS `KD_CABANG`,
+    `m_cabang`.`nm_cabang` AS `NM_CABANG`
+  FROM
+    (
+      (
+        (
+          (SELECT
+            CAST(
+              COALESCE(
+                `trans_bank_in`.`TGL_TRANS`,
+                `trans_bank_in`.`TGL_BUAT`
+              ) AS DATE
+            ) AS `TGL`,
+            `trans_bank_in`.`ID_TRANS` AS `ID_TRANS`,
+            `trans_bank_in`.`KD_BANK` AS `KD_BANK`,
+            `trans_bank_in`.`SLD_MASUK` AS `NOMINAL`,
+            'DEBET' AS `TIPE`,
+            'KAS MASUK' AS `TRX`,
+            `trans_bank_in`.`ID_OPR` AS `ID_OPR`,
+            `trans_bank_in`.`KETERANGAN` AS `KETERANGAN`,
+            '' AS `KETERANGAN2`,
+            CONCAT(
+              'Kas Masuk Nomor : ',
+              `trans_bank_in`.`ID_TRANS`
+            ) AS `URAIAN`,
+            COALESCE(
+              `trans_bank_in`.`KD_CABANG`,
+              'SBY'
+            ) AS `KD_CABANG`
+          FROM
+            `trans_bank_in`
+          WHERE `trans_bank_in`.`ST_DATA` = 1)
+          UNION
+          ALL
+          SELECT
+            CAST(
+              COALESCE(
+                `trans_bank_out`.`TGL_TRANS`,
+                `trans_bank_out`.`TGL_BUAT`
+              ) AS DATE
+            ) AS `TGL`,
+            `trans_bank_out`.`ID_TRANS` AS `ID_TRANS`,
+            `trans_bank_out`.`KD_BANK` AS `KD_BANK`,
+            `trans_bank_out`.`SLD_KELUAR` AS `SLD_KELUAR`,
+            'KREDIT' AS `KREDIT`,
+            'KAS KELUAR' AS `BANK OUT`,
+            `trans_bank_out`.`ID_OPR` AS `ID_OPR`,
+            `trans_bank_out`.`KETERANGAN` AS `KETERANGAN`,
+            '' AS `KETERANGAN2`,
+            CONCAT(
+              'Kas Keluar Nomor : ',
+              `trans_bank_out`.`ID_TRANS`
+            ) AS `URAIAN`,
+            COALESCE(
+              `trans_bank_out`.`KD_CABANG`,
+              'SBY'
+            ) AS `KD_CABANG`
+          FROM
+            `trans_bank_out`
+          WHERE `trans_bank_out`.`ST_DATA` = 1
+          UNION
+          ALL
+          SELECT
+            CAST(`b`.`tgl_input` AS DATE) AS `CAST(b.tgl_input AS DATE)`,
+            `a`.`id_trs_rekbiaya` AS `id_trs_rekbiaya`,
+            `b`.`kd_bank` AS `kd_bank`,
+            `b`.`harga` AS `harga`,
+            'KREDIT' AS `KREDIT`,
+            'Pengeluaran Bulanan' AS `Pengeluaran Bulanan`,
+            `b`.`inputby` AS `inputby`,
+            `b`.`keterangan` AS `keterangan`,
+            '' AS `keterangan`,
+            CONCAT(
+              'Biaya Pengeluaran Periode ',
+              `a`.`periode`,
+              ' Nomor : ',
+              `a`.`id_trs_rekbiaya`
+            ) AS `uraian`,
+            `a`.`kd_cabang` AS `kd_cabang`
+          FROM
+            (
+              `trs_rekening_biaya` `a`
+              JOIN `trs_detail_rekening_biaya` `b`
+                ON (
+                  `a`.`id_trs_rekbiaya` = `b`.`id_trs_rekbiaya`
+                )
+            )
+          UNION
+          ALL
+          SELECT
+            CAST(`a`.`tgl_input` AS DATE) AS `tanggal`,
+            `a`.`id_project` AS `id`,
+            `a`.`tipe_pay` AS `metode`,
+            `a`.`jumlah_pay` AS `jumlah`,
+            'DEBET' AS `tipe`,
+            'PROJECT' AS `trx`,
+            `a`.`input_by` AS `input_by`,
+            `a`.`keterangan` AS `keterangan`,
+            CONCAT(
+              `c`.`nm_perusahaan`,
+              ' (',
+              `c`.`nm_customer`,
+              ')'
+            ) AS `keterangan2`,
+            CONCAT(
+              'Project Nomor : ',
+              `a`.`id_project`
+            ) AS `uraian`,
+            `b`.`kd_cabang` AS `kd_cabang`
+          FROM
+            (
+              (
+                `trs_pembayaran` `a`
+                JOIN `trs_project` `b`
+                  ON (
+                    `a`.`id_project` = `b`.`id_project`
+                  )
+              )
+              JOIN `m_customer` `c`
+                ON (
+                  `c`.`id_customer` = `b`.`id_customer`
+                )
+            )
+            UNION ALL
+	SELECT
+	CAST(tgl_input AS DATE),id_piut_krywn,KD_BANK,jumlah_piutang,'KREDIT','PINJAMAN KARYAWAN',input_by,keterangan,nama_karyawan,
+	CONCAT(nama_karyawan,' (',nama_jabatan,')'),KD_CABANG
+	FROM v_trs_hrd_piutang_karyawan
+	UNION ALL
+	SELECT
+	CAST(tgl_input AS DATE),id_pmbyrn_krywn,KD_BANK,jumlah_bayar,'DEBET','PEMBAYARAN PIUTANG KARYAWAN',input_by,keterangan,nama_karyawan,
+	CONCAT(nama_karyawan,' (',nama_jabatan,')'),KD_CABANG
+	FROM v_trs_hrd_pembayaran_karyawan
+    UNION ALL
+	SELECT
+	CAST(tgl_trans AS DATE),id_karyawan,KD_BANK,jumlah,'KREDIT','TUNJANGAN KARYAWAN',operator,keterangan,nama_karyawan,
+	CONCAT(keterangan_tunjangan,' Karyawan : ',nama_karyawan,' (',nama_jabatan,')'),KD_CABANG
+	FROM v_trs_hrd_tunjangan_karyawan
+	UNION ALL
+    SELECT tgl_gaji,gaji.id_karyawan,kd_bank,gaji.jumlah - COALESCE(potongan.potongan,0) AS gaji_bersih,
+    TIPE,TRX,operator,keterangan,keterangan2,uraian,gaji.kd_cabang
+    FROM (
+    SELECT
+    tgl_gaji,id_karyawan,KD_BANK,SUM(jml_gaji) AS jumlah,'KREDIT' AS `TIPE`,'PEMBAYARAN GAJI' AS TRX,updated_gaji_by AS operator,'' AS keterangan,nama_karyawan AS keterangan2,
+    CONCAT('Gaji Karyawan : ',nama_karyawan,' (',nama_jabatan,')') AS uraian,KD_CABANG
+    FROM v_trs_hrd_gaji
+    GROUP BY id_karyawan,MONTH(tgl_gaji),YEAR(tgl_gaji),kd_cabang ) AS gaji
+    LEFT JOIN
+    (SELECT MONTH(tgl_trans) AS month_tgl_trans,YEAR(tgl_trans) AS year_tgl_trans,id_karyawan,SUM(jumlah) AS potongan,KD_CABANG FROM v_trs_hrd_potongan_karyawan
+    GROUP BY id_karyawan,MONTH(tgl_trans),YEAR(tgl_trans),kd_cabang) AS potongan
+    ON gaji.id_karyawan = potongan.id_karyawan AND gaji.kd_cabang= potongan.kd_cabang AND MONTH(tgl_gaji) = month_tgl_trans
+    AND YEAR(tgl_gaji) = year_tgl_trans
+    WHERE gaji.jumlah - COALESCE(potongan.potongan,0) != 0
+          ) `cf_global`
+          LEFT JOIN `bank` `b`
+            ON (
+              `cf_global`.`KD_BANK` = `b`.`kd_bank`
+            )
+        )
+        JOIN `m_cabang`
+          ON (
+            `m_cabang`.`kd_cabang` = `cf_global`.`KD_CABANG`
+          )
+      )
+  );
+
+insert into log_update(script_name,note) values
+(
+"2020_04_04_1585983854.txt",
+"create view v_m_karyawan,v_trs_hrd_potongan_karyawan,v_trs_hrd_gaji,v_trs_hrd_tunjangan_karyawan,v_trs_hrd_piutang_karyawan,v_trs_hrd_pembayaran_karyawan,v_trs_hrd_bonus_karyawan, alter v_rekapitulasi_cashflow"
+);

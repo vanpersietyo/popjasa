@@ -251,6 +251,12 @@ class Labarugi extends CI_Controller
 
     public function pdf_baru($bulan = null,$tahun = null,$cabang = 'SBY')
     {
+        $this->load->model('transaksi/hrd/M_v_trs_hrd_potongan_karyawan');
+        $this->load->model('transaksi/hrd/M_v_trs_hrd_gaji');
+        $this->load->model('transaksi/hrd/M_v_trs_hrd_pembayaran_karyawan');
+        $this->load->model('transaksi/hrd/M_v_trs_hrd_piutang_karyawan');
+        $this->load->model('transaksi/hrd/M_v_trs_hrd_bonus_karyawan');
+        $this->load->model('transaksi/hrd/M_v_trs_hrd_tunjangan_karyawan');
         $this->load->model('report/M_v_paybycustomers');
         $this->load->model('report/M_v_pengeluaran');
         $this->load->model('M_karyawan');
@@ -312,14 +318,52 @@ class Labarugi extends CI_Controller
         if($cabang){$whereKaryawan[M_karyawan::kd_cabang] = $cabang;}
         $karyawan       = $this->M_karyawan->find($whereKaryawan);
 
-        $gaji           = [];
-        $gajiKaryawan   = 0;
-        if($karyawan){
-            /** @var M_karyawan $krywn */
-            foreach ($karyawan as $krywn) {
-                $gaji[] = $krywn->jml_gaji;
-            }
-        }
+        //Gaji Karyawan
+        $whereTrxGaji   = [
+            "MONTH(".M_v_trs_hrd_gaji::tgl_gaji.")"   => $bulan,
+            "YEAR(".M_v_trs_hrd_gaji::tgl_gaji.")"    => $tahun,
+        ];
+        $trxGaji        = $this->M_v_trs_hrd_gaji->find($whereTrxGaji);
+
+        //Potongan Karyawan
+        $whereTrxPotongan   = [
+            "MONTH(".M_v_trs_hrd_potongan_karyawan::tgl_trans.")"   => $bulan,
+            "YEAR(".M_v_trs_hrd_potongan_karyawan::tgl_trans.")"    => $tahun,
+        ];
+        if($cabang){$whereTrxPotongan[M_v_trs_hrd_potongan_karyawan::kd_cabang] = $cabang;}
+        $trxPotongan        = $this->M_v_trs_hrd_potongan_karyawan->find($whereTrxPotongan);
+
+        //Tunjangan Karyawan
+        $whereTrxTunjangan  = [
+            "MONTH(".M_v_trs_hrd_tunjangan_karyawan::tgl_trans.")"   => $bulan,
+            "YEAR(".M_v_trs_hrd_tunjangan_karyawan::tgl_trans.")"    => $tahun,
+        ];
+        if($cabang){$whereTrxTunjangan[M_v_trs_hrd_tunjangan_karyawan::kd_cabang] = $cabang;}
+        $trxTunjangan       = $this->M_v_trs_hrd_tunjangan_karyawan->find($whereTrxTunjangan);
+
+        //Bonus Karyawan
+        $whereTrxBonus  = [
+            "MONTH(".M_v_trs_hrd_bonus_karyawan::tgl_input.")"   => $bulan,
+            "YEAR(".M_v_trs_hrd_bonus_karyawan::tgl_input.")"    => $tahun,
+        ];
+        if($cabang){$whereTrxBonus[M_v_trs_hrd_bonus_karyawan::kd_cabang] = $cabang;}
+        $trxBonus       = $this->M_v_trs_hrd_bonus_karyawan->find($whereTrxBonus);
+
+        //Piutang Karyawan
+        $whereTrxPiutang  = [
+            "MONTH(".M_v_trs_hrd_piutang_karyawan::tgl_input.")"   => $bulan,
+            "YEAR(".M_v_trs_hrd_piutang_karyawan::tgl_input.")"    => $tahun,
+        ];
+        if($cabang){$whereTrxPiutang[M_v_trs_hrd_piutang_karyawan::kd_cabang] = $cabang;}
+        $trxPiutang       = $this->M_v_trs_hrd_piutang_karyawan->find($whereTrxPiutang);
+
+        //Pembayaran Piutang Karyawan
+        $whereTrxBayar  = [
+            "MONTH(".M_v_trs_hrd_pembayaran_karyawan::tgl_input.")"   => $bulan,
+            "YEAR(".M_v_trs_hrd_pembayaran_karyawan::tgl_input.")"    => $tahun,
+        ];
+        if($cabang){$whereTrxBayar[M_v_trs_hrd_pembayaran_karyawan::kd_cabang] = $cabang;}
+        $trxBayar       = $this->M_v_trs_hrd_pembayaran_karyawan->find($whereTrxBayar);
 
         echo "<pre>";
         var_dump($bulan);
@@ -328,9 +372,18 @@ class Labarugi extends CI_Controller
         var_dump($hppPopjasa);
         var_dump($profitJasamura);
         var_dump($hppJasamura);
-        var_dump($karyawan);
-        var_dump($gaji);
-//        print_r ($where);
+        echo "Gaji : <br>";
+        var_dump($trxGaji);
+        echo "Potongan : <br>";
+        var_dump($trxPotongan);
+        echo "Tunjangan : <br>";
+        var_dump($trxTunjangan);
+        echo "Bonus : <br>";
+        var_dump($trxBonus);
+        echo "Piutang : <br>";
+        var_dump($trxPiutang);
+        echo "Bayar Piutang : <br>";
+        var_dump($trxBayar);
         echo "</pre>";
         die();
 
