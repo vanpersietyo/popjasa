@@ -577,9 +577,9 @@ class Project extends CI_Controller
 															</div>';
             }
             if ($d->st_project==1){
-                $project_a='<span class="badge badge-primary badge-md">Pop Jasa</span>';
+                $project_a='<span class="badge badge-primary badge-md">PopJasa</span>';
             }else{
-                $project_a='<span class="badge badge-warning badge-md">Jasamurah</span>';
+                $project_a='<span class="badge badge-warning badge-md">Jasamura</span>';
             }
 
             $row[] = '<h5 class="text-bold-500">' . $d->id_project;
