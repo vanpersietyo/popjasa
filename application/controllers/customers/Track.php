@@ -42,7 +42,7 @@ class Track extends CI_Controller
         } else {
             $data['status'] = '';
         }
-        $data['project_log']= $project_log;
+        $data['log']= $project_log;
 
         $data['pages'] = 'customer/list_order';
         $this->load->view('layout_customer', $data);
@@ -64,8 +64,7 @@ class Track extends CI_Controller
         } else {
             $data['status'] = '';
         }
-        $data['project_log']= $project_log;
-
+        $data['log']= $project_log;
         $data['pages'] = 'customer/list_order';
         $this->load->view('layout_customer', $data);
     }
@@ -79,7 +78,7 @@ class Track extends CI_Controller
 
         foreach ($list as $d) {
             $row = array();
-            $row[] = '<h5 class="text-bold-500">' . $d->nama_layanan;
+            $row[] = '<h class="text-bold-500">' . $d->nama_layanan;
             $row[] = $d->harga_jual;
 
 

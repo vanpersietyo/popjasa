@@ -1,44 +1,6 @@
 <?php
 $this->load->view('./template/head');
 ?>
-    <!-- BEGIN VENDOR CSS-->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/app-assets/css/vendors.css') ?>">
-    <link rel="stylesheet" type="text/css"
-          href="<?php echo base_url('assets/app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css') ?>">
-    <link rel="stylesheet" type="text/css"
-          href="<?php echo base_url('assets/app-assets/vendors/css/forms/icheck/icheck.css') ?>">
-    <link rel="stylesheet" type="text/css"
-          href="<?php echo base_url('assets/app-assets/vendors/css/forms/icheck/custom.css') ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/app-assets/fonts/meteocons/style.css') ?>">
-
-    <!-- END VENDOR CSS-->
-    <!-- BEGIN MODERN CSS-->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/app-assets/css/app.css') ?>">
-    <link rel="stylesheet" type="text/css"
-          href="<?php echo base_url('assets/app-assets/vendors/css/forms/selects/select2.min.css') ?>">
-    <link rel="stylesheet" type="text/css"
-          href="<?php echo base_url('assets/app-assets/vendors/css/extensions/sweetalert.css') ?>">
-    <link rel="stylesheet" type="text/css"
-          href="<?php echo base_url('assets/app-assets/css/plugins/animate/animate.css') ?>">
-    <link rel="stylesheet" type="text/css"
-          href="<?php echo base_url('assets/app-assets/fonts/simple-line-icons/style.css') ?>">
-
-    <!-- END MODERN CSS-->
-    <!-- BEGIN Page Level CSS-->
-    <link rel="stylesheet" type="text/css"
-          href="<?php echo base_url('assets/app-assets/css/core/menu/menu-types/horizontal-menu.css') ?>">
-    <link rel="stylesheet" type="text/css"
-          href="<?php echo base_url('assets/app-assets/css/core/colors/palette-gradient.css') ?>">
-    <link rel="stylesheet" type="text/css"
-          href="<?php echo base_url('assets/app-assets/fonts/simple-line-icons/style.css') ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets') ?>/app-assets/css/plugins/forms/wizard.css">
-    <link href="<?php echo base_url('assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') ?>" rel="stylesheet">
-
-
-    <!-- END Page Level CSS-->
-    <!-- BEGIN Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/assets/css/style.css') ?>">
-    <!-- END Custom CSS-->
 
     <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark navbar-brand-center">
         <div class="navbar-wrapper">
@@ -167,8 +129,8 @@ $this->load->view('./template/head');
                             <div class="card-content">
                                 <div class="card-body">
                                     <!-- Invoices List table -->
-                                    <div class="table-responsive">
-                                        <table id="table2" class="table table-striped table-bordered sourced-data">
+                                    <div class="table table-responsive">
+                                        <table id="table2" class="table table-striped table-bordered">
                                             <thead>
                                             <tr>
                                                 <th>Nama Jasa</th>
@@ -268,10 +230,8 @@ $this->load->view('./template/head');
                             <div class="card">
                                 <div class="card-content">
                                     <div class="card-body">
-                                        <input type="hidden" value="<?php echo $project_log->Project_id; ?>" id="id_project"
-                                               name="id_project"/>
                                         <h5 class="content-header-title">Log's Project
-                                            List <?php echo $project_log->Project_id; ?></h5>
+                                            List </h5>
                                         <br>
 
                                         <div class="table-responsive">
@@ -920,22 +880,6 @@ $this->load->view('./template/head');
             </div>
         </div>
     </div>
-    <!-- BEGIN VENDOR JS-->
-    <script src="<?php echo base_url('assets/app-assets/vendors/js/vendors.min.js') ?>"
-            type="text/javascript"></script>
-    <script type="text/javascript"
-            src="<?php echo base_url('assets/app-assets/vendors/js/ui/jquery.sticky.js') ?>"></script>
-    <script type="text/javascript"
-            src="<?php echo base_url('assets/app-assets/vendors/js/charts/jquery.sparkline.min.js') ?>"></script>
-    <script src="<?php echo base_url('assets/app-assets/vendors/js/tables/datatable/datatables.min.js') ?>"
-            type="text/javascript"></script>
-    <script src="<?php echo base_url('assets/app-assets/js/core/app-menu.js') ?>" type="text/javascript"></script>
-    <script src="<?php echo base_url('assets/app-assets/js/core/app.js') ?>" type="text/javascript"></script>
-    <script src="<?php echo base_url('assets/app-assets/js/scripts/customizer.js') ?>"
-            type="text/javascript"></script>
-    <script type="text/javascript"
-            src="<?php echo base_url('assets/app-assets/js/scripts/ui/breadcrumbs-with-stats.js') ?>"></script>
-    <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js') ?>"></script>
     <!-- END PAGE LEVEL JS-->
     <script type="text/javascript">
 
@@ -983,7 +927,7 @@ $this->load->view('./template/head');
 
                     var numFormat = $.fn.dataTable.render.number('\,', '.', 0, 'Rp. ').display;
                     $(api.column(1).footer()).html(
-                        '<h5 class="text-bold-500"> ' + numFormat(pageTotal)
+                        '<h class="text-bold-500"> ' + numFormat(pageTotal)
                     );
                 },
 
@@ -1045,11 +989,6 @@ $this->load->view('./template/head');
             }
         }
     </script>
-    <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js') ?>"></script>
-    <script src="<?php echo base_url('assets') ?>/app-assets/vendors/js/extensions/jquery.steps.min.js"
-            type="text/javascript"></script>
-    <script src="<?php echo base_url('assets') ?>/app-assets/vendors/js/forms/validation/jquery.validate.min.js"
-            type="text/javascript"></script>
     <script type="text/javascript">
         var date = new Date();
         date.setDate(date.getDate());
