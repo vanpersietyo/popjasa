@@ -71,9 +71,9 @@ class Pembayaran extends CI_Controller{
 
         foreach ($list as $d) {
             $row = array();
-            $row[] = '<h5 class="text-bold-500">'.$d->id_pay;
-            $row[] = '<h5 class="text-bold-500">'.number_format($d->jumlah_pay);
-            $row[] = '<h5 class="text-bold-500">'.strtoupper(date("d-m-Y", strtotime($d->tgl_input)));
+            $row[] = '<h class="text-bold-500">'.$d->id_pay;
+            $row[] = '<h class="text-bold-500">'.number_format($d->jumlah_pay);
+            $row[] = '<h class="text-bold-500">'.strtoupper(date("d-m-Y", strtotime($d->tgl_input)));
 
             $data[] = $row;
         }
