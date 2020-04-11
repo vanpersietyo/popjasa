@@ -154,6 +154,7 @@
  * @property M_labarugi                         $M_labarugi
  * @property M_v_paybycustomers                 $M_v_paybycustomers
  * @property M_v_pengeluaran                    $M_v_pengeluaran
+ * @property M_outstanding_piutang              $M_outstanding_piutang
  *
  *
  * Custom  Libraries

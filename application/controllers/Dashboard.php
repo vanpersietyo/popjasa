@@ -133,6 +133,8 @@ class Dashboard extends CI_Controller
         $data['tgl_penjualan']          = $a;
         $data['jml_penjualan']          = $b;
         $data['omz_penjualan_month']    = implode(",", $omz_penjualan_month);
+        $data['piutang_outstanding_doc_not_finish'] = $this->M_dir->outstanding_not_finish_findByMonth($date_month);
+        $data['piutang_outstanding_doc_finish'] = $this->M_dir->outstanding_finish_findByMonthFinish($date_month);
         $data['pages']                  = 'dashboard/chart';
         $this->load->view('layout', $data);
     }
@@ -198,6 +200,52 @@ class Dashboard extends CI_Controller
             $row[]  = $qty;
             $row[]  = $d->OMZET;
             $data[] = $row;
+        }
+        $output = [
+            "data" => $data,
+        ];
+        echo json_encode($output);
+    }
+
+    function ajax_outstanding_finish()
+    {
+        $list = $this->M_dir->outstanding_finish();
+        $data = [];
+        $no = 1;
+        foreach ($list as $d) {
+            $row    = [];
+            $row    = $no;
+            $row[]  = $d->nm_customer;
+            $row[]  = $d->nama_layanan;
+            $row[]  = number_format($d->qty);
+            $row[]  = number_format($d->harga_jual);
+            $row[]  = number_format($d->bayar);
+            $row[]  = number_format($d->outstanding);
+            $data[] = $row;
+            $no = 1 + $no;
+        }
+        $output = [
+            "data" => $data,
+        ];
+        echo json_encode($output);
+    }
+
+    function ajax_outstanding_not_finish()
+    {
+        $list = $this->M_dir->outstanding_not_finish();
+        $data = [];
+        $no = 1;
+        foreach ($list as $d) {
+            $row    = [];
+            $row    = $no;
+            $row[]  = $d->nm_customer;
+            $row[]  = $d->nama_layanan;
+            $row[]  = number_format($d->qty);
+            $row[]  = number_format($d->harga_jual);
+            $row[]  = number_format($d->bayar);
+            $row[]  = number_format($d->outstanding);
+            $data[] = $row;
+            $no = 1 + $no;
         }
         $output = [
             "data" => $data,

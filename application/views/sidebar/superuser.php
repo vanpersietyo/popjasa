@@ -272,11 +272,11 @@
                             <div class="badge badge-pill badge-danger"></div>
                         </a>
                     </li>
-<!--                    <li data-menu=""><a class="dropdown-item" href="--><?php //echo site_url('report/piutangoutstanding') ?><!--"-->
-<!--                                        data-toggle="dropdown"><i class="icon-calendar"></i>Piutang Outstanding-->
-<!--                            <div class="badge badge-pill badge-danger"></div>-->
-<!--                        </a>-->
-<!--                    </li>-->
+                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/outstandingpiutang') ?>"
+                                        data-toggle="dropdown"><i class="icon-calendar"></i>Piutang Outstanding
+                            <div class="badge badge-pill badge-danger"></div>
+                        </a>
+                    </li>
                     <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/labarugi') ?>"
                                         data-toggle="dropdown"><i class="icon-calendar"></i>Laporan Laba Rugi
                             <div class="badge badge-pill badge-danger"></div>

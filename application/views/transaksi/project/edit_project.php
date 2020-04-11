@@ -275,7 +275,7 @@ $status = $project->st_data;
                     swal.close();
                     if (data.status) {
                         // window.location.href = "<?php echo site_url('/transaksi/projects_ket/cek_exist_projects/'); ?>" + id_val;
-                        window.location.href = "<?php echo site_url('/transaksi/projects/'); ?>";
+                        window.location.href = "<?php echo site_url('/transaksi/project/'); ?>";
                     } else {
                         swal.close();
                         if (data.sw_alert) {

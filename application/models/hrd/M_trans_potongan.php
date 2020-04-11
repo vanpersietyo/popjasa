@@ -95,9 +95,9 @@ class M_trans_potongan extends CI_Model
           join m_potongan c on a.id_potongan=c.id_potongan
             where MONTH(a.tgl_trans) = '$m' and YEAR(a.tgl_trans)='$y'
         ");
-//        if (count($jml->result()) <= 0) {
-//            return array('st_data' => 0);
-//        }
+        if (count($jml->result()) <= 0) {
+            return array('st_data' => 0);
+        }
         return $query->row();
     }
 

@@ -358,6 +358,43 @@ $(document).ready(function() {
       penjualan_jasamurah.search($(this).val()).draw() ;
     });
 
+    outstanding_finish = $('#outstanding_finish').DataTable({
+        "ajax": {
+            "url": "<?php echo base_url('dashboard/ajax_outstanding_finish')?>",
+        },
+
+        "info"		: false,
+        "scrollY"       : "250px",
+        "scrollCollapse": true,
+        "ordering"      : true,
+        "searching"     : true,
+        "bLengthChange" : false,
+        "processing"    : true, //Feature control the processing indicator.
+        "paging"        : false,
+    });
+    $('#outstanding_finish').html('');
+    $('#search_piutang_outstanding_finish').on('keyup',function(){
+        outstanding_finish.search($(this).val()).draw() ;
+    });
+
+    outstanding_not_finish = $('#outstanding_not_finish').DataTable({
+        "ajax": {
+            "url": "<?php echo base_url('dashboard/ajax_outstanding_not_finish')?>",
+        },
+        "info"		: false,
+        "scrollY"       : "250px",
+        "scrollCollapse": true,
+        "ordering"      : true,
+        "searching"     : true,
+        "bLengthChange" : false,
+        "processing"    : true, //Feature control the processing indicator.
+        "paging"        : false,
+    });
+    $('#outstanding_not_finish').html('');
+    $('#search_piutang_outstanding_not_finish').on('keyup',function(){
+        outstanding_not_finish.search($(this).val()).draw() ;
+    });
+
 });
 
 </script>

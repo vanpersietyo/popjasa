@@ -1,0 +1,69 @@
+CREATE OR REPLACE VIEW v_outstanding_doc_finish AS SELECT
+v_project.tgl_input,
+	concat(Case
+	when month(v_project.tgl_input) = 1 then 'JANUARI'
+	when month(v_project.tgl_input) = 2 then 'FEBUARI'
+	when month(v_project.tgl_input) = 3 then 'MARET'
+	when month(v_project.tgl_input) = 4 then 'APRIL'
+	when month(v_project.tgl_input) = 5 then 'MEI'
+	when month(v_project.tgl_input) = 6 then 'JUNI'
+	when month(v_project.tgl_input) = 7 then 'JULI'
+	when month(v_project.tgl_input) = 8 then 'AGUSTUS'
+	when month(v_project.tgl_input) = 9 then 'SEPTEMBER'
+	when month(v_project.tgl_input) = 10 then 'OKTOBER'
+	when month(v_project.tgl_input) = 11 then 'NOVEMBER'
+	when month(v_project.tgl_input) = 12 then 'DESEMBER'
+	end,' ', Year(v_project.tgl_input)) as Periode,
+v_project.id_customer,
+v_project.nm_customer,
+v_project.id_layanan,
+v_project.nama_layanan,
+count(v_project.id_project) AS `jml_order`,
+v_project.harga_jual,
+trs_pembayaran.jumlah_pay,
+(v_project.harga_jual - trs_pembayaran.jumlah_pay) AS sisa,
+v_project.kd_cabang
+FROM
+v_project
+INNER JOIN trs_pembayaran ON v_project.id_project = trs_pembayaran.id_project
+WHERE
+Exists(Select 1 from trs_project_logs as log where Status_log = 2 and log.Project_id = v_project.id_project)
+GROUP BY v_project.tgl_input, periode ;
+
+CREATE OR REPLACE VIEW v_outstanding_doc_not_finish AS SELECT
+v_project.tgl_input,
+	concat(Case
+	when month(v_project.tgl_input) = 1 then 'JANUARI'
+	when month(v_project.tgl_input) = 2 then 'FEBUARI'
+	when month(v_project.tgl_input) = 3 then 'MARET'
+	when month(v_project.tgl_input) = 4 then 'APRIL'
+	when month(v_project.tgl_input) = 5 then 'MEI'
+	when month(v_project.tgl_input) = 6 then 'JUNI'
+	when month(v_project.tgl_input) = 7 then 'JULI'
+	when month(v_project.tgl_input) = 8 then 'AGUSTUS'
+	when month(v_project.tgl_input) = 9 then 'SEPTEMBER'
+	when month(v_project.tgl_input) = 10 then 'OKTOBER'
+	when month(v_project.tgl_input) = 11 then 'NOVEMBER'
+	when month(v_project.tgl_input) = 12 then 'DESEMBER'
+	end,' ', Year(v_project.tgl_input)) as Periode,
+v_project.id_customer,
+v_project.nm_customer,
+v_project.id_layanan,
+v_project.nama_layanan,
+count(v_project.id_project) AS `jml_order`,
+v_project.harga_jual,
+trs_pembayaran.jumlah_pay,
+(v_project.harga_jual - trs_pembayaran.jumlah_pay) AS sisa,
+v_project.kd_cabang
+FROM
+v_project
+INNER JOIN trs_pembayaran ON v_project.id_project = trs_pembayaran.id_project
+WHERE
+Exists(Select 1 from trs_project_logs as log where Status_log <> 2 and log.Project_id = v_project.id_project)
+GROUP BY v_project.tgl_input, periode ;
+
+insert into log_update(script_name,note) values
+(
+"2020_04_10_1586587411.txt",
+"create view v_outstanding_doc_finish,v_outstanding_doc_not_finish"
+);
