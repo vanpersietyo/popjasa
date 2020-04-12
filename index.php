@@ -55,8 +55,8 @@
  */
 //Custom setting environment production / development
 $ci_env = 'development';
-//define('ENVIRONMENT',$_SERVER['SERVER_NAME'] === 'admin.popjasa.id' || $_SERVER['SERVER_NAME'] === 'popjasa.nuhapos.com' ? 'production' : $ci_env);
-define('ENVIRONMENT', $ci_env);
+define('ENVIRONMENT',$_SERVER['SERVER_NAME'] === 'admin.popjasa.id' || $_SERVER['SERVER_NAME'] === 'popjasa.nuhapos.com' ? 'production' : $ci_env);
+//define('ENVIRONMENT', $ci_env);
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
