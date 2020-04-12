@@ -372,7 +372,7 @@ $(document).ready(function() {
         "processing"    : true, //Feature control the processing indicator.
         "paging"        : false,
     });
-    $('#outstanding_finish').html('');
+    $('#outstanding_finish_filter').html('');
     $('#search_piutang_outstanding_finish').on('keyup',function(){
         outstanding_finish.search($(this).val()).draw() ;
     });
@@ -390,7 +390,7 @@ $(document).ready(function() {
         "processing"    : true, //Feature control the processing indicator.
         "paging"        : false,
     });
-    $('#outstanding_not_finish').html('');
+    $('#outstanding_not_finish_filter').html('');
     $('#search_piutang_outstanding_not_finish').on('keyup',function(){
         outstanding_not_finish.search($(this).val()).draw() ;
     });
