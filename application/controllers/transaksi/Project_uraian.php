@@ -85,6 +85,8 @@ class Project_uraian extends CI_Controller
             'EntryTime' => set_value('EntryTime'),
             'Modified_by' => set_value('Modified_by'),
             'Last_Modified' => set_value('Last_Modified'),
+            'kecamatan' => set_value('kecamatan'),
+            'Keterangan'=> set_value('Keterangan'),
         );
         $this->load->view('transaksi/project_uraian/form', $data);
     }
@@ -112,6 +114,8 @@ class Project_uraian extends CI_Controller
             'Created_By' => $this->session->userdata('yangLogin'),
             'EntryTime' => date('Y-m-d H:i:s'),
             'ID_Project_Uraian' => $this->M_Project_uraian->get_Id(),
+            'kecamatan' => $this->input->post('kecamatan', TRUE),
+            'Keterangan'=> $this->input->post('Keterangan', TRUE),
         );
 
         $this->M_Project_uraian->insert($data);
@@ -145,6 +149,8 @@ class Project_uraian extends CI_Controller
                 'ID_Hdr_Project' => set_value('ID_Hdr_Project', $row->ID_Hdr_Project),
                 'ID_Project' => set_value('ID_Project', $row->ID_Project),
                 'pages' => 'transaksi/project_uraian/form',
+                'kecamatan' => set_value('kecamatan', $row->kecamatan),
+                'Keterangan'=> set_value('Keterangan', $row->Keterangan),
             );
             $this->load->view('layout', $data);
         } else {
@@ -179,6 +185,8 @@ class Project_uraian extends CI_Controller
                 'ID_Hdr_Project' => set_value('ID_Hdr_Project', $row->ID_Hdr_Project),
                 'ID_Project' => set_value('ID_Project', $row->ID_Project),
                 'pages' => 'transaksi/project_uraian/read',
+                'kecamatan' => set_value('kecamatan', $row->kecamatan),
+                'Keterangan'=> set_value('Keterangan', $row->Keterangan),
             );
             $this->load->view('layout_customer', $data);
         } else {
@@ -209,6 +217,8 @@ class Project_uraian extends CI_Controller
             'ID_Project' => $id_projects,
             'Modified_by' => $this->session->userdata('yangLogin'),
             'Last_Modified' => date('Y-m-d H:i:s'),
+            'kecamatan' => $this->input->post('kecamatan', TRUE),
+            'Keterangan'=> $this->input->post('Keterangan', TRUE),
         );
 
         $this->M_Project_uraian->update($this->input->post('ID_Project_Uraian', TRUE), $data);
@@ -282,6 +292,8 @@ class Project_uraian extends CI_Controller
                 'ID_Hdr_Project' => $project->id_hdr_project,
                 'ID_Project' => $id,
                 'pages' => 'transaksi/project_uraian/form',
+                'kecamatan' => set_value('kecamatan'),
+                'Keterangan'=> set_value('Keterangan'),
             );
             $this->load->view('layout', $data);
         } else {

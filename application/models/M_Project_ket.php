@@ -21,6 +21,10 @@ class M_Project_ket extends CI_Model
     const EntryTime = "EntryTime";
     const Modified_By = "Modified_By";
     const Last_Mofidified = "Last_Mofidified";
+    const Info_Asset = "Info_Asset";
+    const Info_Tanah = "Info_Tanah";
+    const Info_Usaha_Utama = "Info_Usaha_Utama";
+    const Keterangan = "Keterangan";
     const TABLE = "trs_projects_Ket";
 
 //for inisialisasi.
@@ -38,7 +42,10 @@ class M_Project_ket extends CI_Model
     public $EntryTime;
     public $Modified_By;
     public $Last_Mofidified;
-
+    public $Info_Asset;
+    public $Info_Tanah;
+    public $Info_Usaha_Utama;
+    public $Keterangan;
     var $table = 'trs_projects_Ket';
     var $id = 'ID_Project_Ket';
     var $id_project = 'ID_Project';

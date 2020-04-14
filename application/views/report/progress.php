@@ -24,7 +24,7 @@
             text-align: center;
         }
         td.kop{
-            padding: 15px!important;
+            padding: 10px!important;
         }
         .tb-body td, .tb-body th {
             border: solid 1px #000;
@@ -78,7 +78,7 @@
                                 <img width="75px" height="75px" src="<?php echo base_url('assets/app-assets/vendors/logo/popjasa.png');?>" alt="logo">
                              </th>
                             <th class="fontCenter" style="width: 90%">
-                                <h2 align="center">BLANKO PERSYARATAN PERIJINAN USAHA</h2>
+                                <h2 align="center">BLANKO PERSYARATAN PERIJINAN USAHA <?= $dokumen->kota_customer ?></h2>
                                 <h3 align="center"><?= $dokumen->nm_customer ?></h3>
                             </th>
                         <?php } else { ?>
@@ -86,7 +86,7 @@
                                 <img width="20%" src="<?php echo base_url('assets/app-assets/vendors/logo/jasamurah.png');?>" alt="logo">
                             </th>
                             <th class="fontCenter" style="width: 85%">
-                                <h2 align="center">BLANKO PERSYARATAN PERIJINAN USAHA</h2>
+                                <h2 align="center">BLANKO PERSYARATAN PERIJINAN USAHA <?= $dokumen->kota_customer ?></h2>
                                 <h3 align="center"><?= $dokumen->nm_customer ?></h3>
                             </th>
                         <?php } ?>
@@ -114,7 +114,7 @@
                     <td>
                         <br>EMAIL USAHA : <br> <?= $dokumen->Ket_Email ?> <br>
                         <br>PASSWORD : <br>  <?= $dokumen->Pass_Email ?><br>
-                        <br>EMAIL DAN NO TELP MASING MASING PENGURUS: <br>  <?= "$dokumen->Email_Pengurus / $dokumen->No_telp" ?><br>
+                        <br>EMAIL DAN NO TELP MASING MASING PENGURUS: <br>  <?= "$dokumen->Email_Pengurus / $dokumen->No_Telp" ?><br>
                         <br>LUASAN TEMPAT USAHA : <br>  <?= $dokumen->Ket_Luas ?><br>
                         <br>BIDANG USAHA : <br>  <?= $dokumen->Ket_Bidang_Usaha ?><br>
                         <br>BIDANG USAHA UTAMA : <br>  <?=$dokumen->Ket_Bidang_Usaha_Utama ?><br>
@@ -170,6 +170,29 @@
                 </tbody>
             </table>
 
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h5><div class="fontBold">Notes: Management <?php if ($dokumen->st_project==1) {?> POPJASA <?php } else {?> JASAMURA <?php } ?> tidak bertanggung jawab jika ada kerusakan atau kehilangan berkas legalitas yang belum diambil di <?php if ($dokumen->st_project==1) {?> POPJASA <?php } else {?> JASAMURA <?php } ?> lebih dari 3 minggu</div> </h5>
+        </td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td style="border: none">
+            <table width="100%">
+                <tr>
+                    <td style="border: none; text-align: center"><h5>Ruko Mezzanine, Blok A No.20, Nginden Jangkungan, Kec Sukolilo, Kota Surabaya, Jawa Timur 60118</h5>
+                </tr>
+                <tr>
+                    <td style="border: none; text-align: center"> <h5>Phone     : (031) 59173597</h5> </td>
+                </tr>
+                <tr><td style="border: none; text-align: center"> <h5>Handphone : 0812 3344 2301</h5> </td></tr>
+                <tr><td style="border: none; text-align: center"> <h5>Whatsapp  : 0812 3344 2301</h5> </td></tr>
+                <tr><td style="border: none; text-align: center"> <h5>Facebook  : POP JASA</h5></td></tr>
+                <tr><td style="border: none; text-align: center"> <h5>Instagram : @POPJASA</h5></td></tr>
+                <tr><td style="border: none; text-align: center"> <h5>Email     : popjasa@gmail.com</h5></td></tr>
+            </table>
         </td>
     </tr>
 </table>

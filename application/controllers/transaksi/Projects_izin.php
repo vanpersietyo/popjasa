@@ -83,6 +83,7 @@ class Projects_izin extends CI_Controller
             'EntryTime' => set_value('EntryTime'),
             'Modified_by' => set_value('Modified_by'),
             'Last_Modified' => set_value('Last_Modified'),
+            'Keterangan' => set_value('Keterangan'),
         );
         redirect(site_url('transaksi/trs_projects_uraian/form', $data));
     }
@@ -108,6 +109,7 @@ class Projects_izin extends CI_Controller
             'ID_Project_JNS' => $this->M_Project_izin->get_id(),
             'Created_By' => $this->session->userdata('yangLogin'),
             'EntryTime' => date('Y-m-d H:i:s'),
+            'Keterangan' => $this->input->post('Keterangan', TRUE),
         );
 
         $this->M_Project_izin->insert($data);
@@ -140,6 +142,8 @@ class Projects_izin extends CI_Controller
                 'ID_Hdr_Project' => set_value('ID_Hdr_Project', $row->ID_Hdr_Project),
                 'ID_Project' => set_value('ID_Project', $row->ID_Project),
                 'pages' => 'transaksi/projects_izin/form',
+                'status' => '1',
+                'Keterangan' => set_value('Keterangan', $row->Keterangan),
             );
             $this->load->view('layout', $data);
         } else {
@@ -172,6 +176,8 @@ class Projects_izin extends CI_Controller
                 'ID_Hdr_Project' => set_value('ID_Hdr_Project', $row->ID_Hdr_Project),
                 'ID_Project' => set_value('ID_Project', $row->ID_Project),
                 'pages' => 'transaksi/projects_izin/read',
+                'status' => '2',
+                'Keterangan' => set_value('Keterangan', $row->Keterangan),
             );
             $this->load->view('layout_customer', $data);
         } else {
@@ -198,10 +204,9 @@ class Projects_izin extends CI_Controller
             'Izin_Lain' => $this->input->post('Izin_Lain', TRUE),
             'ID_Hdr_Project' => $this->input->post('ID_Hdr_Project', TRUE),
             'ID_Project' => $id_projects,
-            'Created_by' => $this->input->post('Created_by', TRUE),
-            'EntryTime' => $this->input->post('EntryTime', TRUE),
             'Modified_by' => $this->session->userdata('yangLogin'),
             'Last_Modified' => date('Y-m-d H:i:s'),
+            'Keterangan' => $this->input->post('Keterangan', TRUE),
         );
 
         $this->M_Project_izin->update($this->input->post('ID_Project_JNS', TRUE), $data);
@@ -271,6 +276,8 @@ class Projects_izin extends CI_Controller
                 'ID_Hdr_Project' => $project->id_hdr_project,
                 'ID_Project' => $id,
                 'pages' => 'transaksi/projects_izin/form',
+                'Keterangan' => set_value('Keterangan'),
+                'status' => '1',
             );
             $this->load->view('layout', $data);
         } else {

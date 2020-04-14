@@ -91,6 +91,11 @@ class Projects_ket extends CI_Controller
                 'ID_Project' => $id,
                 'Pass_Email' => set_value('Pass_Email'),
                 'pages' => 'transaksi/projects_ket/form',
+                'status' => '1',
+                'Info_Asset' => set_value('Info_Asset'),
+                'Info_Tanah' => set_value('Info_Tanah'),
+                'Info_Usaha_Utama' => set_value('Info_Usaha_Utama'),
+                'Keterangan' => set_value('Keterangan'),
             );
             $this->load->view('layout', $data);
         }else {
@@ -115,6 +120,10 @@ class Projects_ket extends CI_Controller
                 'Pass_Email' => $this->input->post('password',TRUE),
                 'Created_By' => $this->session->userdata('yangLogin'),
                 'EntryTime' => date('Y-m-d H:i:s'),
+                'Info_Asset' => $this->input->post('Info_Asset',TRUE),
+                'Info_Tanah' => $this->input->post('Info_Tanah',TRUE),
+                'Info_Usaha_Utama' => $this->input->post('Info_Usaha_Utama',TRUE),
+                'Keterangan' => $this->input->post('Keterangan',TRUE),
             );
 
             $this->M_Project_ket->insert($data);
@@ -140,7 +149,12 @@ class Projects_ket extends CI_Controller
                 'ID_Hdr_Project' => set_value('ID_Hdr_Project', $row->ID_Hdr_Project),
                 'ID_Project' => set_value('ID_Project', $row->ID_Project),
                 'Pass_Email' => set_value('Pass_Email', $row->Pass_Email),
-                'pages' => 'transaksi/projects_ket/form',                
+                'pages' => 'transaksi/projects_ket/form',
+                'status' => '1', // bisa edit,
+                'Info_Asset' => set_value('Info_Asset', $row->Info_Asset),
+                'Info_Tanah' => set_value('Info_Tanah', $row->Info_Tanah),
+                'Info_Usaha_Utama' => set_value('Info_Usaha_Utama', $row->Info_Usaha_Utama),
+                'Keterangan' => set_value('Keterangan', $row->Keterangan),
             );
             $this->load->view('layout', $data);
         } else {
@@ -169,6 +183,10 @@ class Projects_ket extends CI_Controller
                 'Pass_Email' => set_value('Pass_Email', $row->Pass_Email),
                 'pages' => 'transaksi/projects_ket/read',
                 'status' => '2', // tidak bisa edit
+                'Info_Asset' => set_value('Info_Asset', $row->Info_Asset),
+                'Info_Tanah' => set_value('Info_Tanah', $row->Info_Tanah),
+                'Info_Usaha_Utama' => set_value('Info_Usaha_Utama', $row->Info_Usaha_Utama),
+                'Keterangan' => set_value('Keterangan', $row->Keterangan),
             );
             $this->load->view('layout_customer', $data);
         } else {
@@ -190,6 +208,10 @@ class Projects_ket extends CI_Controller
             'ID_Project' => $id_project,
             'Modified_By' => $this->session->userdata('yangLogin'),
             'Last_Mofidified' => date('Y-m-d H:i:s'),
+            'Info_Asset' => $this->input->post('Info_Asset', TRUE),
+            'Info_Tanah' => $this->input->post('Info_Tanah', TRUE),
+            'Info_Usaha_Utama' => $this->input->post('Info_Usaha_Utama', TRUE),
+            'Keterangan' => $this->input->post('Keterangan', TRUE),
         );
 
         $this->M_Project_ket->update($this->input->post('ID_Project_Ket', TRUE), $data);

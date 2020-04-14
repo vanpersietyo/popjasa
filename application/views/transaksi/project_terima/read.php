@@ -230,16 +230,29 @@ $this->load->view('template/head');
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <input type="hidden" name="ID_Project_terima" value="<?php echo $ID_Project_terima; ?>"/>
-                                        <a class="btn btn-danger bg-accent-4 pull-up" type="button"
-                                           href="<?php echo site_url('customers/track/order2/') . $ID_Project ?>"><i
-                                                class="ft-arrow-left white"></i>
-                                            Kembali</a>
+                                    <div class="row">
+                                        <div class="col-lg-8 col-md-6 col-xg-4">
+                                            <div class="form-group">
+                                                <label>KETERANGAN:</label>
+                                                <div class="input-group">
+                                                    <textarea class="form-control" rows="3"
+                                                              name="Keterangan"
+                                                              id="Keterangan"
+                                                              placeholder="Keterangan"><?php echo $Keterangan; ?></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="ID_Project_terima" value="<?php echo $ID_Project_terima; ?>"/>
+                        <a class="btn btn-danger bg-accent-4 pull-up" type="button"
+                           href="<?php echo site_url('customers/track/order2/') . $ID_Project ?>"><i
+                                    class="ft-arrow-left white"></i>
+                            Kembali</a>
                     </div>
                 </div>
             </div>

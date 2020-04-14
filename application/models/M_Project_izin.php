@@ -25,6 +25,7 @@ class M_Project_izin extends CI_Model
     const EntryTime = "EntryTime";
     const Modified_by = "Modified_by";
     const Last_Modified = "Last_Modified";
+    const Keterangan = "Keterangan";
     const TABLE = "trs_projects_izin";
 
 //for inisialisasi.
@@ -47,6 +48,7 @@ class M_Project_izin extends CI_Model
     public $EntryTime;
     public $Modified_by;
     public $Last_Modified;
+    public $Keterangan;
 
     var $table = 'trs_projects_izin';
     var $id = 'ID_Project_JNS';

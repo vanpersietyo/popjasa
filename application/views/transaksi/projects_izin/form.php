@@ -173,6 +173,19 @@ $this->load->view('template/head');
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-lg-8 col-md-6 col-xg-4">
+                                                <div class="form-group">
+                                                    <label>KETERANGAN:</label>
+                                                    <div class="input-group">
+                                                    <textarea class="form-control" rows="3"
+                                                          name="Keterangan"
+                                                          id="Keterangan"
+                                                          placeholder="Keterangan"><?php echo $Keterangan; ?></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -99,6 +99,7 @@ class Project_terima extends CI_Controller
             'Created_By' => $this->session->userdata('yangLogin'),
             'EntryTime' => date('Y-m-d H:i:s'),
             'jml_ktp' => $this->input->post('jml_ktp', TRUE),
+            'Keterangan' => $this->input->post('Keterangan', TRUE),
         );
 
         $this->M_Project_terima->insert($data);
@@ -145,7 +146,7 @@ class Project_terima extends CI_Controller
                 'jml_ktp'           => set_value('jml_ktp', $row->jml_ktp),
                 'pages'             => 'transaksi/project_terima/form',
                 'list_ktp'          => $this->M_Project_terima_ktp->find([M_Project_terima_ktp::id_project => $row->ID_Project]),
-
+                'Keterangan'        => set_value('Keterangan', $row->Keterangan),
         );
             $this->load->view('layout', $data);
         } else {
@@ -176,7 +177,7 @@ class Project_terima extends CI_Controller
                 'jml_ktp'           => set_value('jml_ktp', $row->jml_ktp),
                 'pages'             => 'transaksi/project_terima/read',
                 'list_ktp'          => $this->M_Project_terima_ktp->find([M_Project_terima_ktp::id_project => $row->ID_Project]),
-
+                'Keterangan'        => set_value('Keterangan', $row->Keterangan),
             );
             $this->load->view('layout_customer', $data);
         } else {
@@ -202,6 +203,7 @@ class Project_terima extends CI_Controller
             'Modified_by'       => $this->session->userdata('yangLogin'),
             'Last_Modified'     => date('Y-m-d H:i:s'),
             'jml_ktp'           => $this->input->post('jml_ktp', TRUE),
+            'Keterangan'           => $this->input->post('Keterangan', TRUE),
         );
         $this->M_Project_terima->update($this->input->post('ID_Project_terima', TRUE), $data);
 
@@ -282,7 +284,8 @@ class Project_terima extends CI_Controller
                 'ID_Project'        => $id,
                 'pages'             => 'transaksi/project_terima/form',
                 'jml_ktp'           => set_value('jml_ktp'),
-                'list_ktp'          => $this->M_Project_terima_ktp->find([M_Project_terima_ktp::id_project => $id])
+                'list_ktp'          => $this->M_Project_terima_ktp->find([M_Project_terima_ktp::id_project => $id]),
+                'Keterangan'        => set_value('Keterangan'),
             );
             $this->load->view('layout', $data);
         } else {

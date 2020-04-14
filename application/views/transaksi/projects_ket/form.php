@@ -57,7 +57,7 @@ $this->load->view('template/head');
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <label>Email UNTUK NIB</label>
+                                                        <label>Email USAHA</label>
                                                         <div class="input-group">
                                                             <input type="text" class="form-control" name="email"
                                                                    id="email" value="<?php echo $Ket_Email; ?>"/>
@@ -85,8 +85,10 @@ $this->load->view('template/head');
                                                     <div class="col-md-6">
                                                         <label>Email pengurus:</label>
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control" name="email_pengurus"
-                                                                   id="email_pengurus" value="<?php echo $Email_Pengurus; ?>"/>
+                                                            <textarea class="form-control" rows="3"
+                                                                      name="email_pengurus"
+                                                                      id="email_pengurus"
+                                                                      placeholder="Email Pengurus"><?php echo $Email_Pengurus; ?></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -101,70 +103,110 @@ $this->load->view('template/head');
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-lg-8 col-md-6 col-xg-4">
                                         <div class="form-group">
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>LUASAN TEMPAT USAHA:</label>
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control" name="luas"
-                                                                   id="luas" value="<?php echo $Ket_Luas; ?>"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label>MENGETAHUI POPJASA dari:</label>
-                                                        <div class="input-group">
-                                                            <select class="form-control" id="tahu" name="tahu"
-                                                                    onselect="<?php echo $Ket_Informasi; ?>">
-                                                                <option value="">---SILAHKAN PILIH---</option>
-                                                                <option value="pernah_order" <?php if ($Ket_Informasi == 'pernah_order'): ?> selected="selected"<?php endif; ?>>
-                                                                    PERNAH ORDER
-                                                                </option>
-                                                                <option value="website" <?php if ($Ket_Informasi == 'website'): ?> selected="selected"<?php endif; ?>>
-                                                                    WEBSITE
-                                                                </option>
-                                                                <option value="facebook" <?php if ($Ket_Informasi == 'facebook'): ?> selected="selected"<?php endif; ?>>
-                                                                    FACEBOOK
-                                                                </option>
-                                                                <option value="instagram" <?php if ($Ket_Informasi == 'instagram'): ?> selected="selected"<?php endif; ?>>
-                                                                    INSTAGRAM
-                                                                </option>
-                                                                <option value="olx" <?php if ($Ket_Informasi == 'olx'): ?> selected="selected"<?php endif; ?>>
-                                                                    OLX
-                                                                </option>
-                                                                <option value="spanduk" <?php if ($Ket_Informasi == 'spanduk'): ?> selected="selected"<?php endif; ?>>
-                                                                    SPANDUK
-                                                                </option>
-                                                                <option value="teman" <?php if ($Ket_Informasi == 'teman'): ?> selected="selected"<?php endif; ?>>
-                                                                    TEMAN
-                                                                </option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <label>LUASAN TEMPAT USAHA:</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="luas"
+                                                       id="luas" value="<?php echo $Ket_Luas; ?>"/>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-lg-6 col-md-12 col-xg-6">
                                         <div class="form-group">
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <label>BIDANG USAHA:</label>
-                                                        <div class="input-group">
-                                                            <textarea class="form-control" rows="3"
-                                                                      name="Ket_Bidang_Usaha"
-                                                                      id="Ket_Bidang_Usaha"
-                                                                      placeholder="Ket Bidang Usaha"><?php echo $Ket_Bidang_Usaha; ?></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <label>ASSET:</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="Info_Asset"
+                                                       id="Info_Asset" value="<?php echo $Info_Asset; ?>"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-xg-6">
+                                        <div class="form-group">
+                                            <label>KEPEMILIKAN TANAH:</label>
+                                            <div class="input-group">
+                                                <select class="form-control" id="Info_Tanah" name="Info_Tanah"
+                                                        onselect="<?php echo $Info_Tanah; ?>">
+                                                    <option value="">---SILAHKAN PILIH---</option>
+                                                    <option value="1" <?php if ($Info_Tanah == '1'): ?> selected="selected"<?php endif; ?>>
+                                                        SEWA
+                                                    </option>
+                                                    <option value="2" <?php if ($Info_Tanah == '2'): ?> selected="selected"<?php endif; ?>>
+                                                        BUKAN SEWA
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-12 col-xg-6">
+                                        <div class="form-group">
+                                            <label>BIDANG USAHA:</label>
+                                            <div class="input-group">
+                                                <textarea class="form-control" rows="3"
+                                                          name="Ket_Bidang_Usaha"
+                                                          id="Ket_Bidang_Usaha"
+                                                          placeholder="Ket Bidang Usaha"><?php echo $Ket_Bidang_Usaha; ?></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-xg-6">
+                                        <div class="form-group">
+                                            <label>BIDANG USAHA UTAMA:</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="Info_Usaha_Utama"
+                                                       id="Info_Usaha_Utama" value="<?php echo $Info_Usaha_Utama; ?>"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-6 col-xg-4">
+                                        <div class="form-group">
+                                            <label>MENGETAHUI POPJASA dari:</label>
+                                            <div class="input-group">
+                                                <select class="form-control" id="tahu" name="tahu"
+                                                        onselect="<?php echo $Ket_Informasi; ?>">
+                                                    <option value="">---SILAHKAN PILIH---</option>
+                                                    <option value="pernah_order" <?php if ($Ket_Informasi == 'pernah_order'): ?> selected="selected"<?php endif; ?>>
+                                                        PERNAH ORDER
+                                                    </option>
+                                                    <option value="website" <?php if ($Ket_Informasi == 'website'): ?> selected="selected"<?php endif; ?>>
+                                                        WEBSITE
+                                                    </option>
+                                                    <option value="facebook" <?php if ($Ket_Informasi == 'facebook'): ?> selected="selected"<?php endif; ?>>
+                                                        FACEBOOK
+                                                    </option>
+                                                    <option value="instagram" <?php if ($Ket_Informasi == 'instagram'): ?> selected="selected"<?php endif; ?>>
+                                                        INSTAGRAM
+                                                    </option>
+                                                    <option value="olx" <?php if ($Ket_Informasi == 'olx'): ?> selected="selected"<?php endif; ?>>
+                                                        OLX
+                                                    </option>
+                                                    <option value="spanduk" <?php if ($Ket_Informasi == 'spanduk'): ?> selected="selected"<?php endif; ?>>
+                                                        SPANDUK
+                                                    </option>
+                                                    <option value="teman" <?php if ($Ket_Informasi == 'teman'): ?> selected="selected"<?php endif; ?>>
+                                                        TEMAN
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-6 col-xg-4">
+                                        <div class="form-group">
+                                            <label>KETERANGAN:</label>
+                                            <div class="input-group">
+                                                <textarea class="form-control" rows="3"
+                                                          name="Keterangan"
+                                                          id="Keterangan"
+                                                          placeholder="Keterangan"><?php echo $Keterangan; ?></textarea>
                                             </div>
                                         </div>
                                     </div>

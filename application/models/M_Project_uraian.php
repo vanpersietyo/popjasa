@@ -26,6 +26,9 @@ class M_Project_uraian extends CI_Model
     const EntryTime = "EntryTime";
     const Modified_by = "Modified_by";
     const Last_Modified = "Last_Modified";
+    const kecamatan ="kecamatan";
+    const Keterangan = "Keterangan";
+
     const TABLE = "trs_project_uraian";
 
 //for inisialisasi.
@@ -49,6 +52,8 @@ class M_Project_uraian extends CI_Model
     public $EntryTime;
     public $Modified_by;
     public $Last_Modified;
+    public $kecamatan;
+    public $Keterangan;
 
     var $table = 'trs_project_uraian';
     var $id = 'ID_Project_Uraian';

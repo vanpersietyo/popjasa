@@ -21,6 +21,7 @@ class M_Project_terima extends CI_Model
     const EntryTime = "EntryTime";
     const Modified_by = "Modified_by";
     const Last_Modified = "Last_Modified";
+    const Keterangan = "Keterangan";
     const TABLE = "trs_project_terima";
 
 //for inisialisasi.
@@ -39,6 +40,7 @@ class M_Project_terima extends CI_Model
     public $EntryTime;
     public $Modified_by;
     public $Last_Modified;
+    public $Keterangan;
 
     var $table = 'trs_project_terima';
     var $id = 'ID_Project_terima';

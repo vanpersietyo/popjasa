@@ -91,18 +91,47 @@ $this->load->view('template/head');
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-lg-8 col-md-6 col-xg-4">
+                                                <div class="form-group">
+                                                    <label>Alamat:</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="Alamat" id="Alamat" value="<?php echo $alamat; ?>"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
                                                 <label>KEL :</label>
                                                 <div class="input-group">
                                                     <input type="text" class="form-control" name="kelurahan" id="kelurahan" value="<?php echo $kelurahan; ?>"/>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
+                                                <label>KEC :</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="kecamatan" id="kecamatan" value="<?php echo $kecamatan; ?>"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
                                                 <label>KOTA/KABUPATEN :</label>
                                                 <div class="input-group">
                                                     <input type="text" class="form-control" name="Kabupaten" id="Kabupaten" value="<?php echo $kabupaten; ?>"/>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-8 col-md-6 col-xg-4">
+                                    <div class="form-group">
+                                        <label>KETERANGAN:</label>
+                                        <div class="input-group">
+                                                    <textarea class="form-control" rows="3"
+                                                              name="Keterangan"
+                                                              id="Keterangan"
+                                                              placeholder="Keterangan"><?php echo $Keterangan; ?></textarea>
                                         </div>
                                     </div>
                                 </div>
