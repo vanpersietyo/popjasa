@@ -9,7 +9,6 @@
 /** @var string $nm_cabang */
 /** @var bool $harian */
 /** @var bool $cutoff */
-
 $tgl_saldo_awal =  date('d-m-Y', strtotime(Conversion::convert_date($tgl_awal, "Y-m-d") . ' - 1 days'));
 ?>
 <div class="paper landscape">
@@ -24,7 +23,7 @@ $tgl_saldo_awal =  date('d-m-Y', strtotime(Conversion::convert_date($tgl_awal, "
                             <span style="font-weight: bold;font-size: 25px"><?php echo strtoupper($title);?></span><br>
                             <span class="judul_2">BANK  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $subtitle;?></span><br>
                             <span class="judul_2">CABANG  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $nm_cabang;?></span><br>
-							<span class="judul_2">PERIODE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <?php echo $harian ? $tgl_awal : $tgl_awal.' - '.$tgl_akhir?></span><br>
+							<span class="judul_2">PERIODE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <?php echo $harian === 'true' ? $tgl_awal : $tgl_awal.' - '.$tgl_akhir ;?></span><br>
                             <span class="judul_2">TGL CETAK &nbsp;: <?php echo Conversion::get_date('d-m-Y H:i')." (".$this->session->userdata('yangLogin').")";?></span><br>
                             <span class="judul_2">CUT OFF &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $cutoff === 'on' ? "YA" : "TIDAK";?></span>
                         </th>
@@ -173,7 +172,7 @@ $tgl_saldo_awal =  date('d-m-Y', strtotime(Conversion::convert_date($tgl_awal, "
 
 		<tr>
 			<td colspan="2"></td>
-			<td class="size-header fontBold">SALDO <?php echo $harian ? $tgl_awal : $tgl_awal.' s/d '.$tgl_akhir?></td>
+			<td class="size-header fontBold">SALDO <?php echo $harian === 'true' ? $tgl_awal : $tgl_awal.' s/d '.$tgl_akhir?></td>
 			<td class="size-header fontBold"> : </td>
 			<td class="size-header fontBold fontKanan"><?php echo Conversion::numberFormat($total_saldo_debit-$total_saldo_kredit);?></td>
 		</tr>

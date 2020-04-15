@@ -318,7 +318,12 @@
             processData: false,
             success: function (data) {
                 if (data.status) {
-                    window.open(data.message, "_blank");
+                    $.post("<?php echo site_url('report/cashflow/cetak_cashflow')?>",data.params, function (data) {
+                        var w = window.open('about:blank');
+                        w.document.open();
+                        w.document.write(data);
+                        w.document.close();
+                    });
                 } else {
                     if (data.sw_alert) {
                         error_swal(data.message);
@@ -351,7 +356,12 @@
             processData: false,
             success: function (data) {
                 if (data.status) {
-                    window.open(data.message, "_blank");
+                    $.post("<?php echo site_url('report/cashflow/cetak_cashflow')?>",data.params, function (data) {
+                        var w = window.open('about:blank');
+                        w.document.open();
+                        w.document.write(data);
+                        w.document.close();
+                    });
                 } else {
                     if (data.sw_alert) {
                         error_swal(data.message);
