@@ -67,7 +67,7 @@ class Cashflow extends CI_Controller {
         }
 
         if($data['status']) {
-
+            $this->session->unset_userdata('params_report_cashflow');
             $params 	= [
                 'tgl_awal'	=> $tgl_awal,
                 'tgl_akhir'	=> $tgl_akhir,
@@ -109,7 +109,7 @@ class Cashflow extends CI_Controller {
         }
 
         if($data['status']) {
-
+            $this->session->unset_userdata('params_report_cashflow');
             $params 	= [
                 'tgl_awal'	=> $tgl_hariian,
                 'tgl_akhir'	=> $tgl_hariian,
