@@ -104,6 +104,7 @@
  * @property M_cabang                           $M_cabang
  * @property M_karyawan                         $M_karyawan
  * @property M_gaji                             $M_gaji
+ * @property M_rekeningbiaya                    $M_rekeningbiaya
  *
  * --VIEW
  * @property M_v_m_karyawan                     $M_v_m_karyawan

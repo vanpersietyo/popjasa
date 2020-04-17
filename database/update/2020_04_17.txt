@@ -1,0 +1,10 @@
+INSERT INTO `m_jenis_rekening_biaya`(`id_jns_rekbiaya`, `nm_jns_rekbiaya`, `keterangan`, `tgl_input`, `lastmodify`, `inputby`) VALUES
+('HPP01', 'HPP POPJASA', 'Harga Pokok Penjualan Popjasa', '2020-04-17 09:46:28', NULL, 'SURABAYA');
+INSERT INTO `m_jenis_rekening_biaya`(`id_jns_rekbiaya`, `nm_jns_rekbiaya`, `keterangan`, `tgl_input`, `lastmodify`, `inputby`) VALUES
+('HPP02', 'HPP JASAMURA', 'Harga Pokok Penjualan Jasamura', '2020-04-17 09:47:01', NULL, 'SURABAYA');
+
+insert into log_update(script_name,note) values
+(
+"2020_04_17.txt",
+"insert jenis rekening biaya"
+);
