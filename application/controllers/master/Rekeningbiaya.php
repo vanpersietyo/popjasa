@@ -18,34 +18,28 @@
 
     public function ajax_list()
     {
-        $this->load->helper('url');
-
-        $list = $this->M_rekeningbiaya->get_datatables();
+        $list = $this->M_rekeningbiaya->select([
+            'column' => '*',
+            'join'   => ['m_jenis_rekening_biaya b' => 'b.id_jns_rekbiaya = a.id_jns_rekbiaya']
+        ]);
         $data = array();
-        $no = $_POST['start'];
-        foreach ($list as $d) {
-            $no++;
-            $row = array();
-            $row[] = '<p class="badge badge-dark" style="font-size: 15px;">' . $d->id_rekbiaya;
-            $row[] = '<p class="badge badge-dark" style="font-size: 15px;">' . $d->id_jns_rekbiaya;
-            $row[] = '<h5 class="text-bold-500">' . $d->nm_rekbiaya;
-            $row[] = '<h5 class="text-bold-500">' . $d->tgl_input;
-            $row[] = '<p class="text-bold-500">' . $d->inputby;
-
-            //add html for action
-            $row[] = '<a class="btn btn-sm btn-success" href="javascript:void(0)" title="Edit" onclick="edit_person(' . "'" . $d->id_rekbiaya . "'" . ')"><i class="la la-edit"></i></a>
+        /** @var M_rekeningbiaya|M_jenisrekeningbiaya[] $list */
+        if($list){
+            foreach ($list as $d) {
+                $row = array();
+                $row[] = '<p class="badge badge-dark" style="font-size: 15px;">' . $d->id_rekbiaya." - ".$d->nm_rekbiaya;
+                $row[] = '<p class="badge badge-dark" style="font-size: 15px;">' . $d->id_jns_rekbiaya." - ".$d->nm_jns_rekbiaya;
+                $row[] = '<h5 class="text-bold-500">' . Conversion::convert_date($d->tgl_input,'d-m-Y');
+                $row[] = '<p class="text-bold-500">' . $d->inputby;
+                $row[] = '<a class="btn btn-sm btn-success" href="javascript:void(0)" title="Edit" onclick="edit_person(' . "'" . $d->id_rekbiaya . "'" . ')"><i class="la la-edit"></i></a>
 				  <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person(' . "'" . $d->id_rekbiaya . "'" . ')"><i class="la la-close"></i></a>';
-
-            $data[] = $row;
+                $data[] = $row;
+            }
         }
 
         $output = array(
-            "draw" => $_POST['draw'],
-            "recordsTotal" => $this->M_rekeningbiaya->count_all(),
-            "recordsFiltered" => $this->M_rekeningbiaya->count_filtered(),
             "data" => $data,
         );
-        //output to json format
         echo json_encode($output);
     }
 
