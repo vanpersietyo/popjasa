@@ -36,9 +36,11 @@
                 $data[] = $row;
             }
         }
-
         $output = array(
-            "data" => $data,
+            "recordsTotal"      => $this->M_rekeningbiaya->count_all(),
+            "recordsFiltered"   => $this->M_rekeningbiaya->count_filtered(),
+            "data"              => $data,
+
         );
         echo json_encode($output);
     }

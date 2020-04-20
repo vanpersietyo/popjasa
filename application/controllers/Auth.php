@@ -11,7 +11,17 @@ class   Auth extends CI_Controller
 
     public function index()
     {
-        $this->load->view('login/login16');
+        if($this->session->userdata('isLogin')){
+            $url = $this->session->userdata('url');
+            if(!empty($url)){
+                $this->session->unset_userdata('url');
+                redirect(site_url($url));
+            }else{
+                redirect('dashboard');
+            }
+        }else{
+            $this->load->view('login/login16');
+        }
     }
 
     function process()

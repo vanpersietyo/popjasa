@@ -20,30 +20,29 @@ class Pengeluaran extends CI_Controller
 
     public function ajax_list()
     {
-        $this->load->helper('url');
-
-        $list = $this->M_trs_pengeluaran->get_datatables();
+        $this->load->model('transaksi/keuangan/M_v_trs_rekening_biaya');
+        $list = $this->M_v_trs_rekening_biaya->find();
         $data = array();
         foreach ($list as $d) {
             $row = array();
             $row[] = '<p class="badge badge-dark" style="font-size: 15px;">' . $d->id_trs_rekbiaya;
-            $row[] = '<h5 class="text-bold-500">' . $d->periode;
-            $row[] = '<h5 class="text-bold-500">' . $d->keterangan;
-            $row[] = '<h5 class="text-bold-500">' . number_format($d->total_pengeluaran);
-            $row[] = '<p class="text-bold-500">' . date("d/m/Y", strtotime($d->tgl_input));
-            $row[] = '<p class="text-bold-500">' . $d->inputby;
+            $row[] = $d->periode;
+            $row[] = '<span class="badge badge-success" style="font-size: 15px;"> Tahun '. $d->tahun. '</span>';
+            $row[] = $d->keterangan;
+            $row[] = $d->total_pengeluaran;
+            $row[] = date("d/m/Y", strtotime($d->tgl_input));
+            $row[] = $d->inputby;
 
-            //add html for action
-            $row[] = '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Isi Detail Pengeluaran" onclick="detail(' . "'" . $d->id_trs_rekbiaya . "'" . ')"><i class="la la-plus"></i></a>
-				  <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person(' . "'" . $d->id_trs_rekbiaya . "'" . ')"><i class="la la-close"></i></a>';
-
+            $row[] = '
+                <a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Isi Detail Pengeluaran" onclick="detail(' . "'" . $d->id_trs_rekbiaya . "'" . ')"><i class="la la-plus"></i></a>
+	            <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person(' . "'" . $d->id_trs_rekbiaya . "'" . ')"><i class="la la-close"></i></a>';
             $data[] = $row;
         }
 
         $output = array(
-            "recordsTotal" => $this->M_trs_pengeluaran->count_all(),
-            "recordsFiltered" => $this->M_trs_pengeluaran->count_filtered(),
-            "data" => $data,
+            "recordsTotal"      => $this->M_v_trs_rekening_biaya->count(),
+            "recordsFiltered"   => $this->M_v_trs_rekening_biaya->count(),
+            "data"              => $data,
         );
         //output to json format
         echo json_encode($output);
@@ -58,20 +57,18 @@ class Pengeluaran extends CI_Controller
 
     public function ajax_add()
     {
-        //$this->_validate();
-        $kode = date('Ymds');
+        $this->_validate();
         $data = array(
-            'id_trs_rekbiaya' => $this->M_trs_pengeluaran->get_ID('id_trs_rekbiaya'),
-            'periode' => $this->input->post('periode'),
-            'keterangan' => $this->input->post('keterangan'),
-            'kd_cabang' => $this->session->userdata('cabang'),
-            'total_pengeluaran' => 0,
-            'tgl_input' => date('Y-m-d H:i:s'),
-            'inputby' => $this->session->userdata('yangLogin'),
+            M_trs_pengeluaran::id_trs_rekbiaya  => $this->M_trs_pengeluaran->get_ID(),
+            M_trs_pengeluaran::periode          => $this->input->post(M_trs_pengeluaran::periode),
+            M_trs_pengeluaran::keterangan       => $this->input->post(M_trs_pengeluaran::keterangan),
+            M_trs_pengeluaran::kd_cabang        => $this->session->userdata('cabang'),
+            M_trs_pengeluaran::total_pengeluaran=> 0,
+            M_trs_pengeluaran::tgl_input        => date('Y-m-d H:i:s'),
+            M_trs_pengeluaran::tahun            => date('Y'),
+            M_trs_pengeluaran::inputby          => $this->session->userdata('yangLogin'),
         );
-
-        $insert = $this->M_trs_pengeluaran->save($data);
-
+        $this->M_trs_pengeluaran->save($data);
         echo json_encode(array("status" => TRUE));
     }
 
@@ -99,18 +96,42 @@ class Pengeluaran extends CI_Controller
 
     private function _validate()
     {
-        $data = array();
-        $data['error_string'] = array();
-        $data['inputerror'] = array();
-        $data['status'] = TRUE;
+        $this->conversion->translate_error_form_validation();
+        $data = $data['inputerror'] = $data['notiferror'] = $data['notiferror'] = []; //inisialisasi
+        $data['status']         = TRUE; // TRUE = validation lolos | FALSE = validation gagal
+        $data['sw_alert']       = FALSE; // TRUE = kirim error swal dari controller | FALSE : tidak kirim error swal
 
-        if ($this->input->post('periode') == '') {
-            $data['inputerror'][] = 'periode';
-            $data['error_string'][] = 'Silahkan Pilih Periode ..';
-            $data['status'] = FALSE;
+		$this->form_validation->set_rules('periode', 'Periode', 'required|trim');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required|trim');
+//
+		if ($this->form_validation->run() == FALSE){
+			$data['status'] = FALSE;
+			foreach ($this->form_validation->error_array() as $dtl => $value) {
+				$data['inputerror'][]   = $dtl;
+				$data['notiferror'][]   = Conversion::template_error($value);
+			}
+		}
+
+		$tahun   = date('Y');
+		$periode = $this->input->post(M_trs_pengeluaran::periode);
+		$exists  = $this->M_trs_pengeluaran->find([
+		    M_trs_pengeluaran::periode  => $periode,
+		    M_trs_pengeluaran::tahun    => $tahun
+        ]);
+		if($exists){
+            $data['status']     = FALSE;
+            $data['inputerror'][] = M_trs_pengeluaran::periode;
+            $data['notiferror'][] = Conversion::template_error("Periode $periode $tahun Sudah Ada!");
         }
+//        $exist  = $this->M_trans_penambahan_a->find($where);
+//        if($exist){
+//            $data['message']        = 'Data Produk Sudah Ada';
+//            $data['sw_alert']       = TRUE;
+//            $data['status']         = FALSE;
+//        }
 
-        if ($data['status'] === FALSE) {
+        if(!$data['status'])
+        {
             echo json_encode($data);
             exit();
         }
