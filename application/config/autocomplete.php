@@ -149,6 +149,7 @@
  * @property M_v_trs_hrd_piutang_karyawan       $M_v_trs_hrd_piutang_karyawan
  * @property M_v_trs_hrd_pembayaran_karyawan    $M_v_trs_hrd_pembayaran_karyawan
  * @property M_v_trs_rekening_biaya             $M_v_trs_rekening_biaya
+ * @property M_v_trs_detail_rekening_biaya      $M_v_trs_detail_rekening_biaya
  *
  *
  *  * Report

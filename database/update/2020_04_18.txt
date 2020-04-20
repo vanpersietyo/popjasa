@@ -11,6 +11,17 @@ FROM trs_detail_rekening_biaya
 GROUP BY id_trs_rekbiaya) AS b ON b.id_trs_rekbiaya = a.`id_trs_rekbiaya`
 );
 
+CREATE OR REPLACE VIEW v_trs_detail_rekening_biaya AS (
+SELECT a.*,b.`nm_rekbiaya`,b.`id_jns_rekbiaya`,c.`nm_jns_rekbiaya`,d.`nm_bank` FROM trs_detail_rekening_biaya a
+JOIN m_rekening_biaya b ON a.`id_rekbiaya` = b.`id_rekbiaya`
+JOIN `m_jenis_rekening_biaya` c ON c.`id_jns_rekbiaya` = b.`id_jns_rekbiaya`
+JOIN `bank` d ON d.`kd_bank` = a.`kd_bank`
+);
+
+ALTER TABLE `trs_detail_rekening_biaya`
+    CHANGE `tgl_input` `tgl_input` DATE NULL,
+    ADD COLUMN `date_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NULL AFTER `kd_bank`;
+
 
 insert into log_update(script_name,note) values
 (

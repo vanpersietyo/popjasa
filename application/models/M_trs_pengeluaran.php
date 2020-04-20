@@ -85,6 +85,10 @@ class M_trs_pengeluaran extends CI_Model
         return $query->num_rows();
     }
 
+    /**
+     * @param $id
+     * @return array|bool|M_trs_pengeluaran
+     */
     public function get_by_id($id)
     {
         $this->db->from('trs_rekening_biaya');

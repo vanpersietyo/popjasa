@@ -1,7 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_trs_detail_rekening_biaya extends CI_Model
-{//Models
+{
+    //Models
     const id_dtlrekbiaya = "id_dtlrekbiaya";
     const id_trs_rekbiaya = "id_trs_rekbiaya";
     const id_rekbiaya = "id_rekbiaya";
@@ -11,6 +12,7 @@ class M_trs_detail_rekening_biaya extends CI_Model
     const inputby = "inputby";
     const keterangan = "keterangan";
     const kd_bank = "kd_bank";
+    const date_created = "date_created";
     const TABLE = "trs_detail_rekening_biaya";
 
 //for inisialisasi.
@@ -23,6 +25,7 @@ class M_trs_detail_rekening_biaya extends CI_Model
     public $inputby;
     public $keterangan;
     public $kd_bank;
+    public $date_created;
 
     var $table = 'trs_detail_rekening_biaya';
     var $primary_key = 'id_dtlrekbiaya';
@@ -87,7 +90,7 @@ class M_trs_detail_rekening_biaya extends CI_Model
     /**
      * @param null|array|string $where
      * @param array $order
-     * @return array|bool|M_trs_pengeluaran
+     * @return array|bool|M_trs_detail_rekening_biaya
      */
     public function find_first($where = null, $order = [])
     {
@@ -106,7 +109,7 @@ class M_trs_detail_rekening_biaya extends CI_Model
     /**
      * @param null|array|string $where
      * @param array $order
-     * @return array|bool|M_trs_pengeluaran
+     * @return array|bool|M_trs_detail_rekening_biaya
      */
     public function find($where = null, $order = [])
     {
@@ -152,7 +155,7 @@ class M_trs_detail_rekening_biaya extends CI_Model
 
     /**
      * @param array $data
-     * @return array | M_trs_pengeluaran
+     * @return array | M_trs_detail_rekening_biaya
      */
     public function select($data = [])
     {
@@ -190,7 +193,7 @@ class M_trs_detail_rekening_biaya extends CI_Model
 
     /**
      * @param array $data
-     * @return array | M_trs_pengeluaran
+     * @return array | M_trs_detail_rekening_biaya
      */
     public function select_first($data = [])
     {
@@ -210,6 +213,23 @@ class M_trs_detail_rekening_biaya extends CI_Model
             $data = $data['where'] ? $this->db->get_where($this->table, $data['where']) : $this->db->get($this->table);
         }
         return $data->row();
+    }
+
+    function get_ID()
+    {
+        $tahun = date('y');
+        $bulan = date('m');
+        $q = $this->db->query("select MAX(RIGHT($this->primary_key,3)) as kd_max from $this->table");
+        $kd = "";
+        if ($q->num_rows() > 0) {
+            foreach ($q->result() as $k) {
+                $tmp = ((int)$k->kd_max) + 1;
+                $kd = sprintf("%03s", $tmp);
+            }
+        } else {
+            $kd = "001";
+        }
+        return "DPG$tahun$bulan" . $kd;
     }
 
 }

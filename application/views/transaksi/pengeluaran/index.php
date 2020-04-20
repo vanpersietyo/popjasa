@@ -1,28 +1,5 @@
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/app-assets/css/vendors.css') ?>">
-<link rel="stylesheet" type="text/css"
-      href="<?php echo base_url('assets/app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css') ?>">
-<link rel="stylesheet" type="text/css"
-      href="<?php echo base_url('assets/app-assets/vendors/css/forms/icheck/icheck.css') ?>">
-<link rel="stylesheet" type="text/css"
-      href="<?php echo base_url('assets/app-assets/vendors/css/forms/icheck/custom.css') ?>">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/app-assets/fonts/meteocons/style.css') ?>">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/app-assets/css/app.css') ?>">
-<link rel="stylesheet" type="text/css"
-      href="<?php echo base_url('assets/app-assets/vendors/css/forms/selects/select2.min.css') ?>">
-<link rel="stylesheet" type="text/css"
-      href="<?php echo base_url('assets/app-assets/vendors/css/extensions/sweetalert.css') ?>">
-<link rel="stylesheet" type="text/css"
-      href="<?php echo base_url('assets/app-assets/css/plugins/animate/animate.css') ?>">
-<link rel="stylesheet" type="text/css"
-      href="<?php echo base_url('assets/app-assets/fonts/simple-line-icons/style.css') ?>">
-<link rel="stylesheet" type="text/css"
-      href="<?php echo base_url('assets/app-assets/css/core/menu/menu-types/horizontal-menu.css') ?>">
-<link rel="stylesheet" type="text/css"
-      href="<?php echo base_url('assets/app-assets/css/core/colors/palette-gradient.css') ?>">
-<link rel="stylesheet" type="text/css"
-      href="<?php echo base_url('assets/app-assets/fonts/simple-line-icons/style.css') ?>">
-<link href="<?php echo base_url('assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') ?>" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/assets/css/style.css') ?>">
+<?php $this->load->view('transaksi/pengeluaran/assets/css')?>
+
 <style media="screen">
     label {
         display: inline-block;
@@ -39,23 +16,43 @@
     .table th, .table td {
         padding: 0.5rem 1rem;
     }
+
+    table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_desc, table.dataTable thead>tr>th.sorting, table.dataTable thead>tr>td.sorting_asc, table.dataTable thead>tr>td.sorting_desc, table.dataTable thead>tr>td.sorting {
+        padding-right: 14px;
+    }
 </style>
 
 <div class="app-content content">
     <div class="content-wrapper">
-        <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                    <button type="button" class="btn mb-1 btn-info btn-lg btn-block pull-up" onclick="add_person()"><a>
-                            <i class="la la-plus"></i> Tambah Pengeluaran </a></button>
+        <div class="content-header row">
+
+            <div class="content-header-left col-md-6 col-6">
+                <h3 class="content-header-title">Transaksi Pengeluaran Biaya Bulanan</h3>
+                <div class="row breadcrumbs-top">
+                    <div class="breadcrumb-wrapper col-12">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><b class="">Untuk Menambah Transaksi, Klik Tombol (+) Tambah Pengeluaran</b>
+                            </li>
+                        </ol>
+                    </div>
                 </div>
             </div>
+            <div class="col-md-6 col-6">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <button type="button" class="btn mb-1 btn-info btn-block pull-up" onclick="add_person()"><a>
+                                    <i class="fa fa-plus"></i> Tambah Pengeluaran </a></button>
+                        </div>
+                    </div>
 
-            <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                    <button class="btn mb-1 btn-info btn-lg btn-block pull-up" onclick="reload_table()"><i
-                                class="la la-refresh"></i> Muat Ulang
-                    </button>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <button class="btn mb-1 btn-info btn-block pull-up" onclick="reload_table()"><i
+                                        class="fa fa-refresh"></i> Muat Ulang
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -173,31 +170,7 @@
     </div>
 </div>
 
-<script src="<?php echo base_url('assets/app-assets/vendors/js/vendors.min.js') ?>" type="text/javascript"></script>
-<script type="text/javascript"
-        src="<?php echo base_url('assets/app-assets/vendors/js/ui/jquery.sticky.js') ?>"></script>
-<script type="text/javascript"
-        src="<?php echo base_url('assets/app-assets/vendors/js/charts/jquery.sparkline.min.js') ?>"></script>
-<script src="<?php echo base_url('assets/app-assets/vendors/js/tables/datatable/datatables.min.js') ?>"
-        type="text/javascript"></script>
-<script src="<?php echo base_url('assets/app-assets/vendors/js/forms/extended/maxlength/bootstrap-maxlength.js') ?>"
-        type="text/javascript"></script>
-<script src="<?php echo base_url('assets/app-assets/js/core/app-menu.js') ?>" type="text/javascript"></script>
-<script src="<?php echo base_url('assets/app-assets/js/core/app.js') ?>" type="text/javascript"></script>
-<script src="<?php echo base_url('assets/app-assets/js/scripts/customizer.js') ?>" type="text/javascript"></script>
-<script type="text/javascript"
-        src="<?php echo base_url('assets/app-assets/js/scripts/ui/breadcrumbs-with-stats.js') ?>"></script>
-<script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js') ?>"></script>
-<script src="<?php echo base_url('assets/app-assets/vendors/js/extensions/sweetalert.min.js') ?>"
-        type="text/javascript"></script>
-<script src="<?php echo base_url('assets/app-assets/js/scripts/extensions/sweet-alerts.js') ?>"
-        type="text/javascript"></script>
-<script src="<?php echo base_url('assets/app-assets/vendors/js/forms/select/select2.full.min.js') ?>"
-        type="text/javascript"></script>
-<script src="<?php echo base_url('assets/app-assets/js/scripts/forms/select/form-select2.js') ?>"
-        type="text/javascript"></script>
-<script src="<?php echo base_url('assets/app-assets/js/scripts/forms/extended/form-maxlength.js') ?>"
-        type="text/javascript"></script>
+<?php $this->load->view('transaksi/pengeluaran/assets/js')?>
 
 <script type="text/javascript">
     var save_method; //for save method string
@@ -231,27 +204,27 @@
                 }
             ],
             "columns": [
-                { mData: '0',class: 'text-center'},
-                { mData: '1',class: 'text-center'},
-                { mData: '2',class: 'text-center'},
-                { mData: '3' },
-                { mData: '4', render: $.fn.dataTable.render.number( ',', '.', 0, ''),class: 'text-right' },
-                { mData: '5',class: 'text-center'},
-                { mData: '6' },
-                { mData: '7',class: 'text-center'},
+                {mData: '0', class: 'text-center'},
+                {mData: '1', class: 'text-center'},
+                {mData: '2', class: 'text-center'},
+                {mData: '3'},
+                {mData: '4', render: $.fn.dataTable.render.number(',', '.', 0, ''), class: 'text-right'},
+                {mData: '5', class: 'text-center'},
+                {mData: '6'},
+                {mData: '7', class: 'text-center'},
             ],
             drawCallback: function (e) {
-            var c = this.api(),
-                r = c.rows({
+                var c = this.api(),
+                    r = c.rows({
+                        page: "current"
+                    }).nodes(),
+                    i = null;
+                c.column(2, {
                     page: "current"
-                }).nodes(),
-                i = null;
-            c.column(2, {
-                page: "current"
-            }).data().each(function (e, c) {
-                i !== e && ($(r).eq(c).before('<tr class="group"><td colspan="8">' + e + "</td></tr>"), i = e)
-            })
-        }
+                }).data().each(function (e, c) {
+                    i !== e && ($(r).eq(c).before('<tr class="group"><td colspan="8">' + e + "</td></tr>"), i = e)
+                })
+            }
         });
 
         //datepicker
@@ -262,12 +235,16 @@
             orientation: "top auto",
             todayBtn: true,
         });
+
+        $('.select').select2();
+
     });
 
     function add_person() {
         save_method = 'add';
         $('#form')[0].reset(); // reset form on modals
         clear_all_error();
+        $('.select').val('<?php echo Conversion::monthIndo('',1);?>').trigger('change');
         $('#modal_form').modal('show'); // show bootstrap modal
         $('.modal-title').text('Tambah Pengeluaran'); // Set Title to Bootstrap modal title
 
@@ -293,6 +270,7 @@
             success: function (data) {
                 if (data.status) //if success close modal and reload ajax table
                 {
+                    $('.select').val('').trigger('change');
                     $('#modal_form').modal('hide');
                     reload_table();
                     swal("Kerja Bagus !", "Data Berhasil Disimpan !", "success");
