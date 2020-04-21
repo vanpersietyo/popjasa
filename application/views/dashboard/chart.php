@@ -277,97 +277,142 @@
                     </div>
 
                 </div>
+                <!-- Laporan Piutang Outstanding dan Berkas belum selesai -->
+            </section>
 
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12">
-                        <div class="card">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12">
+                    <div class="card">
+                        <div class="card card-body">
+                            <h5><label class="label label-control"
+                                       style="vertical-align: middle; font-style: initial; font-weight: bold"><span>Laporan Transaksi Harian</span></label></h5>
                             <div class="card-header" style="padding-bottom: 0">
-                                <div class="row">
-                                    <div class="col-lg-8">
-                                        <button class="btn btn-md btn-danger box-shadow-2 round">Pop Jasa</button>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <input id="search_penjualan_popjasa" type="text" class="search form-control"
-                                               data-toggle="tooltip"
-                                               data-original-title="Cari Tanggal Penjualan Popjasa"
-                                               placeholder="Cari Tanggal Penjualan Popjasa">
+
+                                <div class="card-header" style="padding-bottom: 0">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <button class="btn btn-md btn-danger box-shadow-2 round">Pop Jasa</button>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <input id="search_penjualan_popjasa" type="text" class="search form-control"
+                                                   data-toggle="tooltip"
+                                                   data-original-title="Cari Tanggal Penjualan Popjasa"
+                                                   placeholder="Cari Tanggal Penjualan Popjasa">
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="card-content">
+                                    <div id="new-orders" class="media-list position-relative">
+                                        <div class="table-responsive">
+                                            <table id="penjualan_popjasa" class="table table-hover table-xl mb-0"
+                                                   style="width: 100%;" align="center">
+                                                <thead>
+                                                <tr>
+                                                    <th class="border-top-0">TANGGAL</th>
+                                                    <th class="border-top-0">QTY</th>
+                                                    <th class="border-top-0">PENJUALAN</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                                <tfoot>
+                                                <tr>
+                                                    <td class="border-top-0">TOTAL</td>
+                                                    <td class="border-top-0"></td>
+                                                    <td class="border-top-0"></td>
+                                                </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-header" style="padding-bottom: 0">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <button class="btn btn-md btn-danger box-shadow-2 round">Jasamura</button>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <input id="search_penjualan_jasamurah" type="text" class="search form-control"
+                                                   data-toggle="tooltip" data-original-title="Cari Kategori Produk"
+                                                   placeholder="Cari Tanggal Penjualan Jasamura">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                            <div class="table-responsive">
+                                <table id="penjualan_jasamurah" class="table table-hover table-xl mb-0"
+                                       style="width: 100%;" align="center">
+                                    <thead>
+                                    <tr>
+                                        <th class="border-top-0">TANGGAL</th>
+                                        <th class="border-top-0">QTY</th>
+                                        <th class="border-top-0">PENJUALAN</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td class="border-top-0">TOTAL</td>
+                                        <td class="border-top-0"></td>
+                                        <td class="border-top-0"></td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
                             </div>
-                            <div class="card-content">
-                                <div id="new-orders" class="media-list position-relative">
+                        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card card-body">
+                            <div class="col-lg-6 col-xl-6 col6">
+                                <!-- Table product top ten sales -->
+                                <div class="card-header" style="padding-bottom: 0">
+
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <button class="btn btn-md btn-danger box-shadow-2 round">TOP 10 TOTAL PENJUALAN
+                                            </button>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <input id="search_top_sales_layanan" type="text" class="search form-control"
+                                                   data-toggle="tooltip" data-original-title="Cari TOP 10 TOTAL PENJUALAN"
+                                                   placeholder="Cari TOP 10 TOTAL PENJUALAN">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-content">
                                     <div class="table-responsive">
-                                        <table id="penjualan_popjasa" class="table table-hover table-xl mb-0"
+                                        <table id="top_sales_layanan" class="table table-hover table-xl mb-0"
                                                style="width: 100%;" align="center">
                                             <thead>
                                             <tr>
-                                                <th class="border-top-0">TANGGAL</th>
+                                                <th class="border-top-0">NO</th>
+                                                <th class="border-top-0">PRODUK</th>
                                                 <th class="border-top-0">QTY</th>
-                                                <th class="border-top-0">PENJUALAN</th>
+                                                <th class="border-top-0">TOTAL</th>
+                                                <th class="border-top-0">PROFIT</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             </tbody>
-                                            <tfoot>
-                                            <tr>
-                                                <td class="border-top-0">TOTAL</td>
-                                                <td class="border-top-0"></td>
-                                                <td class="border-top-0"></td>
-                                            </tr>
-                                            </tfoot>
                                         </table>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div id="recent-transactions" class="col-12">
-                        <div class="card">
-                            <div class="card-header" style="padding-bottom: 0">
-                                <div class="row">
-                                    <div class="col-lg-8">
-                                        <button class="btn btn-md btn-danger box-shadow-2 round">Jasamura</button>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <input id="search_penjualan_jasamurah" type="text" class="search form-control"
-                                               data-toggle="tooltip" data-original-title="Cari Kategori Produk"
-                                               placeholder="Cari Tanggal Penjualan Jasamura">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <div class="table-responsive">
-                                    <table id="penjualan_jasamurah" class="table table-hover table-xl mb-0"
-                                           style="width: 100%;" align="center">
-                                        <thead>
-                                        <tr>
-                                            <th class="border-top-0">TANGGAL</th>
-                                            <th class="border-top-0">QTY</th>
-                                            <th class="border-top-0">PENJUALAN</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        </tbody>
-                                        <tfoot>
-                                        <tr>
-                                            <td class="border-top-0">TOTAL</td>
-                                            <td class="border-top-0"></td>
-                                            <td class="border-top-0"></td>
-                                        </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
+                            <div class="col-lg-6 col-xl-6 col6">
+                                <!-- Table grafik penjualan -->
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Laporan Piutang Outstanding dan Berkas belum selesai -->
-            </section>
-
+            </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -437,6 +482,47 @@
                                     <tbody>
                                     </tbody>
                                 </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card card-body">
+                            <div class="card-header" style="padding-bottom: 0">
+
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <button class="btn btn-md btn-danger box-shadow-2 round">LAPORAN ARUS KAS / CASH FLOW
+                                        </button>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <input id="search_kas" type="text" class="search form-control"
+                                               data-toggle="tooltip" data-original-title="ARUS KAS
+                                               placeholder="Cari ARUS KAS / CASH FLOW">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="table-responsive">
+                                    <table id="outstanding_finish" class="table table-hover table-xl mb-0"
+                                           style="width: 100%;" align="center">
+                                        <thead>
+                                        <tr>
+                                            <th class="border-top-0">TANGGAL</th>
+                                            <th class="border-top-0">TUNAI</th>
+                                            <th class="border-top-0">BCA</th>
+                                            <th class="border-top-0">MANDIRI</th>
+                                            <th class="border-top-0">BRI</th>
+                                            <th class="border-top-0">TOTAL</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

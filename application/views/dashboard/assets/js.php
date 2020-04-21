@@ -395,6 +395,23 @@ $(document).ready(function() {
         outstanding_not_finish.search($(this).val()).draw() ;
     });
 
+    top_sales_layanan = $('#top_sales_layanan').DataTable({
+        "ajax": {
+            "url": "<?php echo base_url('dashboard/ajax_top_sales_layanan')?>",
+        },
+        "info"		: false,
+        "scrollY"       : "250px",
+        "scrollCollapse": true,
+        "ordering"      : true,
+        "searching"     : true,
+        "bLengthChange" : false,
+        "processing"    : true, //Feature control the processing indicator.
+        "paging"        : false,
+    });
+    $('#top_sales_layanan_finish_filter').html('');
+    $('#search_top_sales_layanan').on('keyup',function(){
+        top_sales_layanan.search($(this).val()).draw() ;
+    });
 });
 
 </script>
