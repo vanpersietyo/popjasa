@@ -1,0 +1,30 @@
+ALTER TABLE `trs_rekening_biaya`
+ADD COLUMN `tahun` INT(4) DEFAULT 2020 NULL AFTER `total_pengeluaran`;
+
+UPDATE trs_rekening_biaya SET tahun = 2020;
+
+CREATE OR REPLACE VIEW v_trs_rekening_biaya AS (
+SELECT a.id_trs_rekbiaya,kd_cabang,keterangan,periode,tgl_input,inputby,COALESCE(b.total_pengeluaran,0) AS total_pengeluaran,tahun FROM trs_rekening_biaya a
+LEFT JOIN
+(SELECT id_trs_rekbiaya,SUM(harga) AS total_pengeluaran
+FROM trs_detail_rekening_biaya
+GROUP BY id_trs_rekbiaya) AS b ON b.id_trs_rekbiaya = a.`id_trs_rekbiaya`
+);
+
+CREATE OR REPLACE VIEW v_trs_detail_rekening_biaya AS (
+SELECT a.*,b.`nm_rekbiaya`,b.`id_jns_rekbiaya`,c.`nm_jns_rekbiaya`,d.`nm_bank` FROM trs_detail_rekening_biaya a
+JOIN m_rekening_biaya b ON a.`id_rekbiaya` = b.`id_rekbiaya`
+JOIN `m_jenis_rekening_biaya` c ON c.`id_jns_rekbiaya` = b.`id_jns_rekbiaya`
+JOIN `bank` d ON d.`kd_bank` = a.`kd_bank`
+);
+
+ALTER TABLE `trs_detail_rekening_biaya`
+    CHANGE `tgl_input` `tgl_input` DATE NULL,
+    ADD COLUMN `date_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP() NULL AFTER `kd_bank`;
+
+
+insert into log_update(script_name,note) values
+(
+"2020_04_18.txt",
+"alter trans rekening biaya"
+);

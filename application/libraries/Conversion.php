@@ -44,11 +44,11 @@ class Conversion
         $iMonth= date('n',strtotime($tanggal));
         if($jenis)
         {
-            $bulan= array('','Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','Nopember','Desember');
+            $bulan= array('','Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember');
         }
         else
         {
-            $bulan = array('','Jan','Feb','Mar','Apr','Mei','Jun','Jul','Ags','Sep','Okt','Nop','Des');
+            $bulan = array('','Jan','Feb','Mar','Apr','Mei','Jun','Jul','Ags','Sep','Okt','Nov','Des');
         }
             $hari  = date('d',strtotime($tanggal));
             $bln   = $bulan[$iMonth];
@@ -62,13 +62,60 @@ class Conversion
      * @param int $jenis
      * @return mixed
      */
-    public static function monthIndo($kode, $jenis = 0){
-        if($jenis)
-        {$bulan= array('','Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','Nopember','Desember');}
-        else
-        {$bulan= array('','Jan','Feb','Mar','Apr','Mei','Jun','Jul','Ags','Sep','Okt','Nop','Des');}
+    public static function monthIndo($kode = null, $jenis = 0){
+        if(empty($kode)){
+           $kode = date('n');
+        }
+        $bulan = $jenis ? array('', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember') : array('', 'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des');
+        return $bulan[(int)$kode];
+    }
 
-        return $bulan[intval($kode)];
+    /**
+     * @param $kode
+     * @param int $jenis
+     * @return int
+     */
+    public static function monthNumber($bulan = null, $jenis = 0){
+        if(empty($bulan)){
+            return date('n');
+        }
+        if($jenis){
+            if (strtolower($bulan) === 'januari') {return '01';}
+            if (strtolower($bulan) === 'februari') {return '02';}
+            if (strtolower($bulan) === 'maret') {return '03';}
+            if (strtolower($bulan) === 'april') {return '04';}
+            if (strtolower($bulan) === 'mei') {return '05';}
+            if (strtolower($bulan) === 'juni') {return '06';}
+            if (strtolower($bulan) === 'juli') {return '07';}
+            if (strtolower($bulan) === 'agustus') {return '08';}
+            if (strtolower($bulan) === 'august') {return '08';}
+            if (strtolower($bulan) === 'september') {return '09';}
+            if (strtolower($bulan) === 'oktober') {return 10;}
+            if (strtolower($bulan) === 'october') {return 10;}
+            if (strtolower($bulan) === 'november') {return 11;}
+            if (strtolower($bulan) === 'nopember') {return 11;}
+            if (strtolower($bulan) === 'desember') {return 12;}
+            return date('n');
+        }else{
+            if (strtolower($bulan) === 'jan') {return '01';}
+            if (strtolower($bulan) === 'feb') {return '02';}
+            if (strtolower($bulan) === 'mar') {return '03';}
+            if (strtolower($bulan) === 'apr') {return '04';}
+            if (strtolower($bulan) === 'may') {return '05';}
+            if (strtolower($bulan) === 'mei') {return '05';}
+            if (strtolower($bulan) === 'jun') {return '06';}
+            if (strtolower($bulan) === 'jul') {return '07';}
+            if (strtolower($bulan) === 'agu') {return '08';}
+            if (strtolower($bulan) === 'aug') {return '08';}
+            if (strtolower($bulan) === 'ags') {return '08';}
+            if (strtolower($bulan) === 'sep') {return '09';}
+            if (strtolower($bulan) === 'okt') {return 10;}
+            if (strtolower($bulan) === 'oct') {return 10;}
+            if (strtolower($bulan) === 'nov') {return 11;}
+            if (strtolower($bulan) === 'nop') {return 11;}
+            if (strtolower($bulan) === 'des') {return 12;}
+            return date('n');
+        }
     }
 
     /**
