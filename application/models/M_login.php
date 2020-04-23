@@ -6,13 +6,16 @@
 			$query = $this->db->get_where('m_user',['id_user'=>$userid,'password'=>$password,'status_user'=>'A']);
 			if($query->num_rows() > 0 ){
 				return true;
-			}else{
-				return false;
 			}
+			return false;
 		}
 
 		function isLogin(){
-			if($this->session->userdata('isLogin') != true) redirect('auth');
+			if($this->session->userdata('isLogin') != true){
+				$url=$this->uri->uri_string();
+				$this->session->set_userdata('url',$url);
+				redirect('auth');
+			}
 		}
 
 		function target_today(){

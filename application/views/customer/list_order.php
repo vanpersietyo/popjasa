@@ -222,11 +222,21 @@ $this->load->view('./template/head');
                                                         onclick="show_terima()"><a>&nbsp;Formulir Terima </a></button>
                                             </div>
                                         </div>
+                                        <div class="col-lg-12 col-md-6">
+                                            <div class="form-group">
+                                                <button type="button" class="btn mb-1 btn-dark  btn-block pull-up"
+                                                        onclick="show_kepuasan()"><a>&nbsp;Formulir Kepuasan Pelanggan </a></button>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
                             <div class="card">
                                 <div class="card-content">
                                     <div class="card-body">
@@ -252,7 +262,6 @@ $this->load->view('./template/head');
                                 </div>
                             </div>
                         </div>
-                   </div>
                 </div>
             </div>
         </div>
@@ -963,6 +972,11 @@ $this->load->view('./template/head');
         function show_terima() {
             let id = $('[name="id_project"]').val();
             window.location.href = "<?php echo site_url('/transaksi/project_terima/cek_projects/'); ?>" + id;
+        }
+
+        function show_kepuasan() {
+            let id = $('[name="id_project"]').val();
+            window.location.href = "<?php echo site_url('/transaksi/kepuasan_pelanggan/cek_projects/'); ?>" + id;
         }
 
         function confirm_project($id) {

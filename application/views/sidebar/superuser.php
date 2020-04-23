@@ -8,60 +8,72 @@
                 </a>
             </li>
 
-            <li class="dropdown nav-item pull-up" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
-                                                                          data-toggle="dropdown"><i
+            <li class="dropdown nav-item pull-up" data-menu="dropdown">
+                <a class="dropdown-toggle nav-link" href="#"
+                   data-toggle="dropdown"><i
                             class="la la-users"></i><span>Customer Management</span></a>
                 <ul class="dropdown-menu">
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('sales/customer/contacted') ?>"
-                                        data-toggle="dropdown"><i class="icon-speech"></i>Customer Contacted</a>
+                    <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('sales/customer/contacted') ?>"
+                           data-toggle="dropdown"><i class="icon-speech"></i>Customer Contacted</a>
                     </li>
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('sales/customer/deals') ?>"
-                                        data-toggle="dropdown"><i class="icon-user-following"></i>Customers Deal</a>
+                    <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('sales/customer/deals') ?>"
+                           data-toggle="dropdown"><i class="icon-user-following"></i>Customers Deal</a>
                     </li>
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('sales/customer/lost') ?>"
-                                        data-toggle="dropdown"><i class="icon-user-unfollow"></i>Lost Customer</a>
+                    <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('sales/customer/lost') ?>"
+                           data-toggle="dropdown"><i class="icon-user-unfollow"></i>Lost Customer</a>
                     </li>
                 </ul>
             </li>
 
-            <li class="dropdown nav-item pull-up" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
-                                                                          data-toggle="dropdown"><i
+            <li class="dropdown nav-item pull-up" data-menu="dropdown">
+                <a class="dropdown-toggle nav-link" href="#"
+                   data-toggle="dropdown"><i
                             class="la la-sitemap"></i><span>HRD</span></a>
                 <ul class="dropdown-menu">
-                    <li data-menu=""><a class="dropdown-item"
-                                        href="<?php echo site_url('master/hrd/absensi_karyawan') ?>"
-                                        data-toggle="dropdown"><i class="la la-calendar"></i>Absensi Karyawan
+                    <li data-menu="">
+                        <a class="dropdown-item"
+                           href="<?php echo site_url('master/hrd/absensi_karyawan') ?>"
+                           data-toggle="dropdown"><i class="la la-calendar"></i>Absensi Karyawan
                             <div class="badge badge-pill badge-danger"></div>
                         </a>
                     </li>
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/hrd/cuti') ?>"
-                                        data-toggle="dropdown"><i class="la la-calendar"></i>Ijin Tidak Hadir / Cuti
+                    <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('master/hrd/cuti') ?>"
+                           data-toggle="dropdown"><i class="la la-calendar"></i>Ijin Tidak Hadir / Cuti
                             Karyawan</a>
                     </li>
-                    <li data-menu=""><a class="dropdown-item"
-                                        href="<?php echo site_url('master/hrd/piutang_karyawan') ?>"
-                                        data-toggle="dropdown"><i class="la la-credit-card"></i>Pinjaman Karyawan</a>
+                    <li data-menu="">
+                        <a class="dropdown-item"
+                           href="<?php echo site_url('master/hrd/piutang_karyawan') ?>"
+                           data-toggle="dropdown"><i class="la la-credit-card"></i>Pinjaman Karyawan</a>
                     </li>
-                    <li data-menu=""><a class="dropdown-item"
-                                        href="<?php echo site_url('master/hrd/pembayaran_karyawan') ?>"
-                                        data-toggle="dropdown"><i class="la la-credit-card"></i>Pembayaran Piutang
+                    <li data-menu="">
+                        <a class="dropdown-item"
+                           href="<?php echo site_url('master/hrd/pembayaran_karyawan') ?>"
+                           data-toggle="dropdown"><i class="la la-credit-card"></i>Pembayaran Piutang
                             Karyawan
                             <div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti') ?></div>
                         </a>
                     </li>
-                    <li data-menu=""><a class="dropdown-item"
-                                        href="<?php echo site_url('master/hrd/trans_tunjangan') ?>"
-                                        data-toggle="dropdown"><i class="la la-heart"></i>Tunjangan Karyawan
+                    <li data-menu="">
+                        <a class="dropdown-item"
+                           href="<?php echo site_url('master/hrd/trans_tunjangan') ?>"
+                           data-toggle="dropdown"><i class="la la-heart"></i>Tunjangan Karyawan
                             <div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti') ?></div>
                         </a>
                     </li>
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/hrd/trans_potongan') ?>"
-                                        data-toggle="dropdown"><i class="la la-cut"></i>Potongan Karyawan
+                    <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('master/hrd/trans_potongan') ?>"
+                           data-toggle="dropdown"><i class="la la-cut"></i>Potongan Karyawan
                             <div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti') ?></div>
                         </a>
                     </li>
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/hrd/gaji') ?>"
-                                        data-toggle="dropdown"><i class="la la-file"></i>Pembayaran Gaji
+                    <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('master/hrd/gaji') ?>"
+                           data-toggle="dropdown"><i class="la la-file"></i>Pembayaran Gaji
                             <div class="badge badge-pill badge-danger"></div>
                         </a>
                     </li>
@@ -69,95 +81,115 @@
                 </ul>
             </li>
 
-            <li class="dropdown nav-item pull-up" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
-                                                                          data-toggle="dropdown"><i
+            <li class="dropdown nav-item pull-up" data-menu="dropdown">
+                <a class="dropdown-toggle nav-link" href="#"
+                   data-toggle="dropdown"><i
                             class="la la-globe"></i><span>Operasional</span></a>
                 <ul class="dropdown-menu">
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/project') ?>"
-                                        data-toggle="dropdown"><i class="la la-file-archive-o"></i>Buat Project</a>
+                    <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('transaksi/project') ?>"
+                           data-toggle="dropdown"><i class="la la-file-archive-o"></i>Buat Project</a>
                     </li>
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/fixAsset_hdr') ?>"
-                                        data-toggle="dropdown"><i class="la la-file-archive-o"></i>Fix Assets</a>
+                    <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('transaksi/fixAsset_hdr') ?>"
+                           data-toggle="dropdown"><i class="la la-file-archive-o"></i>Fix Assets</a>
                     </li>
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/pembayaran') ?>"
-                                        data-toggle="dropdown"><i class="la la-money"></i>Pembayaran Project</a>
+                    <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('transaksi/pembayaran') ?>"
+                           data-toggle="dropdown"><i class="la la-money"></i>Pembayaran Project</a>
                     </li>
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/pengeluaran') ?>"
-                                        data-toggle="dropdown"><i class="la la-money"></i>Pengeluaran Bulanan</a>
+                    <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('transaksi/pengeluaran') ?>"
+                           data-toggle="dropdown"><i class="la la-money"></i>Pengeluaran Bulanan</a>
                     </li>
-                    <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a
+                    <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu">
+                        <a
                                 class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i
                                     class="la la-money"></i>Kas</a>
                         <ul class="dropdown-menu">
-                            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/keuangan/bankin') ?>"
-                                                data-toggle="dropdown"><i class="ft-chevron-right"></i>Kas Masuk</a>
+                            <li data-menu="">
+                                <a class="dropdown-item"
+                                   href="<?php echo site_url('transaksi/keuangan/bankin') ?>"
+                                   data-toggle="dropdown"><i class="ft-chevron-right"></i>Kas Masuk</a>
                             </li>
-                            <li data-menu=""><a class="dropdown-item"
-                                                href="<?php echo site_url('transaksi/keuangan/bankout') ?>"
-                                                data-toggle="dropdown"><i class="ft-chevron-right"></i>Kas Keluar</a>
+                            <li data-menu="">
+                                <a class="dropdown-item"
+                                   href="<?php echo site_url('transaksi/keuangan/bankout') ?>"
+                                   data-toggle="dropdown"><i class="ft-chevron-right"></i>Kas Keluar</a>
                             </li>
                         </ul>
                     </li>
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('transaksi/progress') ?>"
-                                        data-toggle="dropdown"><i class="la la-bar-chart"></i>Progress Project</a>
+                    <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('transaksi/progress') ?>"
+                           data-toggle="dropdown"><i class="la la-bar-chart"></i>Progress Project</a>
                     </li>
                 </ul>
             </li>
 
-            <li class="dropdown nav-item pull-up" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
-                                                                          data-toggle="dropdown"><i
+            <li class="dropdown nav-item pull-up" data-menu="dropdown">
+                <a class="dropdown-toggle nav-link" href="#"
+                   data-toggle="dropdown"><i
                             class="la la-folder-open-o"></i><span>Master</span></a>
                 <ul class="dropdown-menu">
-                    <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a
+                    <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu">
+                        <a
                                 class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i
                                     class="icon-folder"></i>Customer Management</a>
                         <ul class="dropdown-menu">
-                            <li data-menu=""><a class="dropdown-item"
-                                                href="<?php echo site_url('master/sales/reason/lost') ?>"
-                                                data-toggle="dropdown"><i class="la la-warning danger"></i>Lost
+                            <li data-menu="">
+                                <a class="dropdown-item"
+                                   href="<?php echo site_url('master/sales/reason/lost') ?>"
+                                   data-toggle="dropdown"><i class="la la-warning danger"></i>Lost
                                     Reason</a>
                             </li>
-                            <li data-menu=""><a class="dropdown-item"
-                                                href="<?php echo site_url('master/sales/reason/deal') ?>"
-                                                data-toggle="dropdown"><i class="la la-warning success"></i>Deal Reason</a>
+                            <li data-menu="">
+                                <a class="dropdown-item"
+                                   href="<?php echo site_url('master/sales/reason/deal') ?>"
+                                   data-toggle="dropdown"><i class="la la-warning success"></i>Deal Reason</a>
                             </li>
                         </ul>
                     </li>
 
-                    <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a
+                    <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu">
+                        <a
                                 class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i
                                     class="icon-folder"></i>HRD</a>
                         <ul class="dropdown-menu">
-                            <li data-menu=""><a class="dropdown-item"
-                                                href="<?php echo site_url('master/hrd/karyawan') ?>"
-                                                data-toggle="dropdown"><i class="la la-file"></i>Master Karyawan
+                            <li data-menu="">
+                                <a class="dropdown-item"
+                                   href="<?php echo site_url('master/hrd/karyawan') ?>"
+                                   data-toggle="dropdown"><i class="la la-file"></i>Master Karyawan
                                     <div class="badge badge-pill badge-danger"></div>
                                 </a>
                             </li>
-                            <li data-menu=""><a class="dropdown-item"
-                                                href="<?php echo site_url('master/hrd/jabatan') ?>"
-                                                data-toggle="dropdown"><i class="la la-file"></i>Master Jabatan
+                            <li data-menu="">
+                                <a class="dropdown-item"
+                                   href="<?php echo site_url('master/hrd/jabatan') ?>"
+                                   data-toggle="dropdown"><i class="la la-file"></i>Master Jabatan
                                     <div class="badge badge-pill badge-danger"></div>
                                 </a>
                             </li>
 
-                            <li data-menu=""><a class="dropdown-item"
-                                                href="<?php echo site_url('master/hrd/potongan') ?>"
-                                                data-toggle="dropdown"><i class="la la-file"></i>Master Potongan
+                            <li data-menu="">
+                                <a class="dropdown-item"
+                                   href="<?php echo site_url('master/hrd/potongan') ?>"
+                                   data-toggle="dropdown"><i class="la la-file"></i>Master Potongan
                                     Karyawan
                                     <div class="badge badge-pill badge-danger"></div>
                                 </a>
                             </li>
-                            <li data-menu=""><a class="dropdown-item"
-                                                href="<?php echo site_url('master/hrd/tunjangan') ?>"
-                                                data-toggle="dropdown"><i class="la la-file"></i>Master Tunjangan
+                            <li data-menu="">
+                                <a class="dropdown-item"
+                                   href="<?php echo site_url('master/hrd/tunjangan') ?>"
+                                   data-toggle="dropdown"><i class="la la-file"></i>Master Tunjangan
                                     Karyawan
                                     <div class="badge badge-pill badge-danger"></div>
                                 </a>
                             </li>
-                            <li data-menu=""><a class="dropdown-item"
-                                                href="<?php echo site_url('master/hrd/hari_kerja') ?>"
-                                                data-toggle="dropdown"><i class="la la-file"></i>Master Hari Kerja
+                            <li data-menu="">
+                                <a class="dropdown-item"
+                                   href="<?php echo site_url('master/hrd/hari_kerja') ?>"
+                                   data-toggle="dropdown"><i class="la la-file"></i>Master Hari Kerja
                                     <div class="badge badge-pill badge-danger"></div>
                                 </a>
                             </li>
@@ -165,131 +197,162 @@
                         </ul>
                     </li>
 
-                    <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a
+                    <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu">
+                        <a
                                 class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i
                                     class="icon-folder"></i>Operational</a>
                         <ul class="dropdown-menu">
-                            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/agen') ?>"
-                                                data-toggle="dropdown"><i class="icon-moustache"></i>Agen</a>
+                            <li data-menu="">
+                                <a class="dropdown-item" href="<?php echo site_url('master/agen') ?>"
+                                   data-toggle="dropdown"><i class="icon-moustache"></i>Agen</a>
                             </li>
-                            <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a
+                            <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu">
+                                <a
                                         class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i
                                             class="icon-present"></i>Produk Jasa</a>
                                 <ul class="dropdown-menu">
-                                    <li data-menu=""><a class="dropdown-item"
-                                                        href="<?php echo site_url('master/produkjasa') ?>"
-                                                        data-toggle="dropdown">Produk Jasa</a>
+                                    <li data-menu="">
+                                        <a class="dropdown-item"
+                                           href="<?php echo site_url('master/produkjasa') ?>"
+                                           data-toggle="dropdown">Produk Jasa</a>
                                     </li>
-                                    <li data-menu=""><a class="dropdown-item"
-                                                        href="<?php echo site_url('master/hargalayanan') ?>"
-                                                        data-toggle="dropdown">Harga Layanan Jasa</a>
+                                    <li data-menu="">
+                                        <a class="dropdown-item"
+                                           href="<?php echo site_url('master/hargalayanan') ?>"
+                                           data-toggle="dropdown">Harga Layanan Jasa</a>
                                     </li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
 
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/rekeningbiaya') ?>"
-                                        data-toggle="dropdown"><i class="icon-credit-card"></i>Rekening Biaya</a>
+                    <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('master/rekeningbiaya') ?>"
+                           data-toggle="dropdown"><i class="icon-credit-card"></i>Rekening Biaya</a>
                     </li>
-                    <!--           <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon-credit-card"></i>Rekening Biaya</a>-->
+                    <!--           <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu">
+<a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon-credit-card"></i>Rekening Biaya</a>-->
                     <!--            <ul class="dropdown-menu">-->
-                    <!--              <li data-menu=""><a class="dropdown-item" href="-->
+                    <!--              <li data-menu="">
+<a class="dropdown-item" href="-->
                     <?php //echo site_url('master/jenisrekeningbiaya')?><!--"-->
                     <!--                data-toggle="dropdown">Kategori Rekening Biaya</a>-->
                     <!--              </li>-->
-                    <!--              <li data-menu=""><a class="dropdown-item" href="-->
+                    <!--              <li data-menu="">
+<a class="dropdown-item" href="-->
                     <?php //echo site_url('master/rekeningbiaya')?><!--"-->
                     <!--                data-toggle="dropdown">Rekening Biaya</a>-->
                     <!--              </li>-->
                     <!--            </ul>-->
                     <!--          </li>-->
-                    <!-- <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/bank') ?>"
+                    <!-- <li data-menu="">
+<a class="dropdown-item" href="<?php echo site_url('master/bank') ?>"
             data-toggle="dropdown"><i class="icon-credit-card"></i>Bank</a>
           </li> -->
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/bank') ?>"
-                                        data-toggle="dropdown"><i class="icon-credit-card"></i>Bank</a>
+                    <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('master/bank') ?>"
+                           data-toggle="dropdown"><i class="icon-credit-card"></i>Bank</a>
                     </li>
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/kota') ?>"
-                                        data-toggle="dropdown"><i class="la la-folder"></i>Kota</a>
+                    <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('master/kota') ?>"
+                           data-toggle="dropdown"><i class="la la-folder"></i>Kota</a>
                     </li>
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/fix_assets') ?>"
-                                        data-toggle="dropdown"><i class="icon-trophy"></i>Aset</a>
+                    <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('master/fix_assets') ?>"
+                           data-toggle="dropdown"><i class="icon-trophy"></i>Aset</a>
                     </li>
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/targetpencapaian') ?>"
-                                        data-toggle="dropdown"><i class="icon-target"></i>Target Omzet</a>
+                    <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('master/targetpencapaian') ?>"
+                           data-toggle="dropdown"><i class="icon-target"></i>Target Omzet</a>
                     </li>
-                    <!--             <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon-target"></i>Target</a>-->
+                    <!--             <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu">
+<a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon-target"></i>Target</a>-->
                     <!--              <ul class="dropdown-menu">-->
-                    <!--                 <li data-menu=""><a class="dropdown-item" href="-->
+                    <!--                 <li data-menu="">
+<a class="dropdown-item" href="-->
                     <?php //echo site_url('master/targetpencapaian')?><!--" data-toggle="dropdown"> Target Pencapaian Global</a>-->
                     <!--                </li>-->
-                    <!--                <li data-menu=""><a class="dropdown-item" href="-->
+                    <!--                <li data-menu="">
+<a class="dropdown-item" href="-->
                     <?php //echo site_url('master/hargalayanan')?><!--"-->
                     <!--                  data-toggle="dropdown">Target Pencapaian Per Produk</a>-->
                     <!--                </li>-->
                     <!--              </ul>-->
                     <!--            </li>-->
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/user') ?>"
-                                        data-toggle="dropdown"><i class="icon-users"></i>User</a>
+                    <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('master/user') ?>"
+                           data-toggle="dropdown"><i class="icon-users"></i>User</a>
                     </li>
                 </ul>
             </li>
 
-            <li class="dropdown nav-item pull-up" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
-                                                                          data-toggle="dropdown"><i
+            <li class="dropdown nav-item pull-up" data-menu="dropdown">
+                <a class="dropdown-toggle nav-link" href="#"
+                   data-toggle="dropdown"><i
                             class="ft-file-text"></i><span>Laporan</span> </a>
                 <ul class="dropdown-menu">
-                    <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a
+                    <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu">
+                        <a
                                 class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i
                                     class="icon-folder"></i>HRD</a>
                         <ul class="dropdown-menu">
-                            <li data-menu=""><a class="dropdown-item"
-                                                href="<?php echo site_url('report/hrd/absensi') ?>"
-                                                data-toggle="dropdown"><i class="la la-file"></i>Laporan Kehadiran Karyawan
+                            <li data-menu="">
+                                <a class="dropdown-item"
+                                   href="<?php echo site_url('report/hrd/absensi') ?>"
+                                   data-toggle="dropdown"><i class="la la-file"></i>Laporan Kehadiran
+                                    Karyawan
                                     <div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti') ?></div>
                                 </a>
                             </li>
-                            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/hrd/gaji') ?>"
-                                                data-toggle="dropdown"><i class="la la-file"></i>Laporan Gaji Karyawan
+                            <li data-menu="">
+                                <a class="dropdown-item" href="<?php echo site_url('report/hrd/gaji') ?>"
+                                   data-toggle="dropdown"><i class="la la-file"></i>Laporan Gaji Karyawan
                                     <div class="badge badge-pill badge-danger"></div>
                                 </a>
                             </li>
-                            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/hrd/cuti') ?>"
-                                                data-toggle="dropdown"><i class="la la-file"></i>Laporan Ketidak Hadiran Karyawan
+                            <li data-menu="">
+                                <a class="dropdown-item" href="<?php echo site_url('report/hrd/cuti') ?>"
+                                   data-toggle="dropdown"><i class="la la-file"></i>Laporan Ketidak Hadiran
+                                    Karyawan
                                     <div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti') ?></div>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/biayapengeluaran') ?>"
-                                        data-toggle="dropdown"><i class="icon-calendar"></i>Laporan Biaya Pengeluaran
+                    <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('report/biayapengeluaran') ?>"
+                           data-toggle="dropdown"><i class="icon-calendar"></i>Laporan Biaya Pengeluaran
                             <div class="badge badge-pill badge-danger"><?php echo $this->session->userdata('cuti') ?></div>
                         </a>
                     </li>
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/omzet') ?>"
-                                        data-toggle="dropdown"><i class="icon-calendar"></i>Laporan Penjualan
+                    <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('report/omzet') ?>"
+                           data-toggle="dropdown"><i class="icon-calendar"></i>Laporan Penjualan
                             <div class="badge badge-pill badge-danger"></div>
                         </a>
                     </li>
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/outstandingpiutang') ?>"
-                                        data-toggle="dropdown"><i class="icon-calendar"></i>Piutang Outstanding
+                    <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('report/outstandingpiutang') ?>"
+                           data-toggle="dropdown"><i class="icon-calendar"></i>Piutang Outstanding
                             <div class="badge badge-pill badge-danger"></div>
                         </a>
                     </li>
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/labarugi') ?>"
-                                        data-toggle="dropdown"><i class="icon-calendar"></i>Laporan Laba Rugi
+                    <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('report/labarugi') ?>"
+                           data-toggle="dropdown"><i class="icon-calendar"></i>Laporan Laba Rugi
                             <div class="badge badge-pill badge-danger"></div>
                         </a>
                     </li>
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/cashflow') ?>"
-                                        data-toggle="dropdown"><i class="icon-calendar"></i>Laporan Arus Kas / Cash Flow
+                    <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('report/cashflow') ?>"
+                           data-toggle="dropdown"><i class="icon-calendar"></i>Laporan Arus Kas / Cash Flow
                             <div class="badge badge-pill badge-danger"></div>
                         </a>
                     </li>
 
-                    <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('report/rfixasset') ?>"
-                                        data-toggle="dropdown"><i class="icon-calendar"></i>Laporan Asset
+                    <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('report/rfixasset') ?>"
+                           data-toggle="dropdown"><i class="icon-calendar"></i>Laporan Asset
                             <div class="badge badge-pill badge-danger"></div>
                         </a>
                     </li>

@@ -5,6 +5,7 @@ class Bank extends CI_Controller{
         parent::__construct();
         $this->load->model('M_bank', 'M_bank');
         $this->load->model('M_login');
+        $this->M_login->isLogin();
     }
 
     public function index(){

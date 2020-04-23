@@ -2,8 +2,26 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_jenisrekeningbiaya extends CI_Model {
+//Models
+    const id_jns_rekbiaya = "id_jns_rekbiaya";
+    const nm_jns_rekbiaya = "nm_jns_rekbiaya";
+    const keterangan = "keterangan";
+    const tgl_input = "tgl_input";
+    const lastmodify = "lastmodify";
+    const inputby = "inputby";
+    const TABLE = "m_jenis_rekening_biaya";
 
-	var $table = 'm_jenis_rekening_biaya';
+//for inisialisasi.
+    public $id_jns_rekbiaya;
+    public $nm_jns_rekbiaya;
+    public $keterangan;
+    public $tgl_input;
+    public $lastmodify;
+    public $inputby;
+
+    var $table = 'm_jenis_rekening_biaya';
+    var $primary_key = 'id_jns_rekbiaya';
+
 	var $column_order = array(null,'id_jns_rekbiaya','nm_jns_rekbiaya','keterangan','tgl_input',null); //set column field database for datatable orderable
 	var $column_search = array('id_jns_rekbiaya','nm_jns_rekbiaya','keterangan','tgl_input'); //set column field database for datatable searchable just firstname , lastname , address are searchable
 	var $order = array('tgl_input' => 'desc'); // default order

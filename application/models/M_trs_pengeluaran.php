@@ -10,6 +10,7 @@ class M_trs_pengeluaran extends CI_Model
     const tgl_input = "tgl_input";
     const inputby = "inputby";
     const total_pengeluaran = "total_pengeluaran";
+    const tahun = "tahun";
     const TABLE = "trs_rekening_biaya";
 
 //for inisialisasi.
@@ -19,6 +20,7 @@ class M_trs_pengeluaran extends CI_Model
     public $periode;
     public $tgl_input;
     public $inputby;
+    public $tahun;
     public $total_pengeluaran;
 
     var $table = 'trs_rekening_biaya';
@@ -83,6 +85,10 @@ class M_trs_pengeluaran extends CI_Model
         return $query->num_rows();
     }
 
+    /**
+     * @param $id
+     * @return array|bool|M_trs_pengeluaran
+     */
     public function get_by_id($id)
     {
         $this->db->from('trs_rekening_biaya');

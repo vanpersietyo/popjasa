@@ -67,7 +67,6 @@ class Cashflow extends CI_Controller {
         }
 
         if($data['status']) {
-
             $params 	= [
                 'tgl_awal'	=> $tgl_awal,
                 'tgl_akhir'	=> $tgl_akhir,
@@ -76,10 +75,7 @@ class Cashflow extends CI_Controller {
                 'harian'	=> $harian,
                 'cutoff'    => $cutoff
             ] ;
-            $this->session->set_userdata('params_report_cashflow',$params);
-
-            $messsage = site_url('report/cashflow/cetak_cashflow');
-            $data['message'] = $messsage;
+            $data['params']     = $params;
         }
 
         echo json_encode($data);
@@ -109,7 +105,6 @@ class Cashflow extends CI_Controller {
         }
 
         if($data['status']) {
-
             $params 	= [
                 'tgl_awal'	=> $tgl_hariian,
                 'tgl_akhir'	=> $tgl_hariian,
@@ -117,11 +112,8 @@ class Cashflow extends CI_Controller {
                 'cabang'	=> $cabang,
                 'harian'	=> $harian,
                 'cutoff'    => $cutoff
-            ] ;
-            $this->session->set_userdata('params_report_cashflow',$params);
-
-            $messsage = site_url('report/cashflow/cetak_cashflow');
-            $data['message'] = $messsage;
+            ];
+            $data['params']     = $params;
         }
 
         echo json_encode($data);
@@ -133,7 +125,16 @@ class Cashflow extends CI_Controller {
         $this->load->model('M_cabang');
         $this->load->model('report/M_v_rekapitulasi_cashflow');
 
-        $data       = $this->session->userdata('params_report_cashflow');
+//        $data       = $this->session->userdata('params_report_cashflow');
+        $data = [
+            'tgl_awal'  => $this->input->post('tgl_awal'),
+            'tgl_akhir' => $this->input->post('tgl_akhir'),
+            'bayar'     => $this->input->post('bayar'),
+            'cabang'    => $this->input->post('cabang'),
+            'harian'    => $this->input->post('harian'),
+            'cutoff'    => $this->input->post('cutoff')
+        ];
+
         $subtitle   = "";
         if(!empty($data)){
             $tgl_awal 	= Conversion::convert_date($data['tgl_awal'],'Y-m-d');
@@ -226,6 +227,10 @@ class Cashflow extends CI_Controller {
             'cutoff'    => $cutoff,
             'logo'      => base_url('assets/app-assets/vendors/logo/popjasa.png')
         ];
+//        echo "<pre>";
+//        var_dump($var);
+//        echo "</pre>";
+//        die();
         $this->load->view('report/layout',$var);
     }
 

@@ -10,7 +10,7 @@ ADD COLUMN `Keterangan` text NULL AFTER `Last_Modified`;
 ALTER TABLE `trs_project_terima`
 ADD COLUMN `Keterangan` text NULL AFTER `jml_ktp`;
 
-ALTER TABLE `trs_project_uraian` 
+ALTER TABLE `trs_project_uraian`
 ADD COLUMN `Keterangan` text NULL AFTER `modal_disetor`;
 
 ALTER TABLE `popjasa`.`trs_project_uraian`
@@ -19,5 +19,4 @@ ADD COLUMN `kecamatan` varchar(255) NULL AFTER `Keterangan`;
 insert into log_update(script_name,note) values
 (
 "2020_04_14_1586877753.txt",
-"Alter table trs_projects_ket, Alter table trs_projects_izin, Alter table trs_projects_terima, Alter trs_projects_uraian
-);
+"Alter table trs_projects_ket, Alter table trs_projects_izin, Alter table trs_projects_terima, Alter trs_projects_uraian");

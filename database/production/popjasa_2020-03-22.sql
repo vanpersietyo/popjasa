@@ -108,7 +108,7 @@ CREATE TABLE `log_m_karyawan` (
   `jml_piutang` int(11) DEFAULT 0 COMMENT 'JUMLAH AKUMULASI PIUTANG KARYAWAN',
   `jml_bayar` int(11) DEFAULT 0 COMMENT 'jumlah total bayar',
   `st_data` varchar(1) DEFAULT '0' COMMENT '1=digunakan 0=tidak di gunakan',
-  `tgl_mulai_bekerja` date DEFAULT current_timestamp()
+  `tgl_mulai_bekerja` date 
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -463,7 +463,7 @@ CREATE TABLE `m_karyawan` (
   `jml_piutang` int(11) DEFAULT 0 COMMENT 'JUMLAH AKUMULASI PIUTANG KARYAWAN',
   `jml_bayar` int(11) DEFAULT 0 COMMENT 'jumlah total bayar',
   `st_data` varchar(1) DEFAULT '0' COMMENT '1=digunakan 0=tidak di gunakan',
-  `tgl_mulai_bekerja` date DEFAULT current_timestamp()
+  `tgl_mulai_bekerja` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1089,7 +1089,7 @@ CREATE TABLE `trs_hrd_absensi` (
   `operator` varchar(255) DEFAULT NULL COMMENT 'operator',
   `st_konfirmasi` varchar(255) DEFAULT '0' COMMENT 'status ditutupnya absensi',
   `keterangan` text DEFAULT NULL,
-  `tgl_absen2` date DEFAULT '0000-00-00'
+  `tgl_absen2` date DEFAULT null
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='log absensi karyawan';
 
 -- --------------------------------------------------------
@@ -1119,8 +1119,8 @@ CREATE TABLE `trs_hrd_cuti` (
   `id_cuti` varchar(25) NOT NULL DEFAULT '' COMMENT 'id cuti',
   `id_karyawan` varchar(255) DEFAULT NULL COMMENT 'id karyawan',
   `jns_cuti` varchar(255) DEFAULT NULL COMMENT '1=nikah, 2=tahunan, 3=ijin sakit, 4=hamil',
-  `tgl_cuti` date DEFAULT '0000-00-00' COMMENT 'tgl mulai cuti',
-  `tgl_cuti2` date DEFAULT '0000-00-00' COMMENT 'tgl berakhir cuti',
+  `tgl_cuti` date DEFAULT null COMMENT 'tgl mulai cuti',
+  `tgl_cuti2` date DEFAULT null COMMENT 'tgl berakhir cuti',
   `keterangan` text DEFAULT NULL COMMENT 'keterangan cuti',
   `st_konfirmasi` varchar(255) DEFAULT '0' COMMENT 'status konfirmasi cuti',
   `konfirmasi_by` varchar(255) DEFAULT NULL COMMENT 'konfirmasi by',
