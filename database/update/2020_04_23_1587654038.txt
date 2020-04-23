@@ -1,0 +1,23 @@
+Create table IF NOT EXISTS progres_kepuasan(
+	id integer not null auto_increment,
+    nama_pelanggan varchar(50),
+    nama_perusahaan varchar(50),
+    no_telp varchar(20),
+    info_order smallint default 0,
+    info_order2 varchar(255),
+    info_kepuasan smallint default 0,
+    status_photo smallint default 0,
+    status_photo_tgl date,
+    status_fb varchar(255),
+    status_ig varchar(255),
+    referensi_nama varchar(50),
+    referensi_no_telp varchar(20),
+    primary key (id)
+);
+
+
+insert into log_update(script_name,note) values
+(
+"2020_04_23_1587654038.txt",
+"create view table progres_kepuasan"
+);
