@@ -15,6 +15,7 @@ class M_labarugi extends CI_Model {
 		WHERE kd_cabang='$cabang'
 		and STR_TO_DATE(tgl_input,'%Y-%m-%d') >= DATE('$tgl1')
 		and STR_TO_DATE(tgl_input,'%Y-%m-%d') <= DATE('$tgl2')
+        and nm_rekbiaya not in ('HPP POPJASA','HPP JASAMURA')
 		GROUP BY nm_rekbiaya
 			");
         return $query->result();

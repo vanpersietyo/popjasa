@@ -11,6 +11,7 @@ class M_trs_pengeluaran extends CI_Model
     const inputby = "inputby";
     const total_pengeluaran = "total_pengeluaran";
     const tahun = "tahun";
+    const bulan = "bulan";
     const TABLE = "trs_rekening_biaya";
 
 //for inisialisasi.
@@ -21,6 +22,7 @@ class M_trs_pengeluaran extends CI_Model
     public $tgl_input;
     public $inputby;
     public $tahun;
+    public $bulan;
     public $total_pengeluaran;
 
     var $table = 'trs_rekening_biaya';

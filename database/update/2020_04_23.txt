@@ -1,0 +1,17 @@
+ALTER TABLE `trs_rekening_biaya`
+  ADD COLUMN `bulan` VARCHAR(2) NULL AFTER `tahun`;
+
+CREATE OR REPLACE VIEW v_trs_rekening_biaya AS (
+SELECT a.id_trs_rekbiaya,kd_cabang,keterangan,periode,tgl_input,inputby,COALESCE(b.total_pengeluaran,0) AS total_pengeluaran,tahun,bulan
+FROM trs_rekening_biaya a
+LEFT JOIN
+(SELECT id_trs_rekbiaya,SUM(harga) AS total_pengeluaran
+FROM trs_detail_rekening_biaya
+GROUP BY id_trs_rekbiaya) AS b ON b.id_trs_rekbiaya = a.`id_trs_rekbiaya`
+);
+
+insert into log_update(script_name,note) values
+(
+"2020_04_23.txt",
+"alter trans rekening biaya add kolom bulan"
+);

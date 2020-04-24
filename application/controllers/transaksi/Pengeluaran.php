@@ -48,24 +48,19 @@ class Pengeluaran extends CI_Controller
         echo json_encode($output);
     }
 
-    public function ajax_edit($id)
-    {
-        $data = $this->M_trs_pengeluaran->get_by_id($id);
-        //$data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
-        echo json_encode($data);
-    }
-
     public function ajax_add()
     {
         $this->_validate();
+        $periode = $this->input->post(M_trs_pengeluaran::periode);
         $data = array(
             M_trs_pengeluaran::id_trs_rekbiaya  => $this->M_trs_pengeluaran->get_ID(),
-            M_trs_pengeluaran::periode          => $this->input->post(M_trs_pengeluaran::periode),
+            M_trs_pengeluaran::periode          => $periode,
             M_trs_pengeluaran::keterangan       => $this->input->post(M_trs_pengeluaran::keterangan),
             M_trs_pengeluaran::kd_cabang        => $this->session->userdata('cabang'),
             M_trs_pengeluaran::total_pengeluaran=> 0,
             M_trs_pengeluaran::tgl_input        => date('Y-m-d H:i:s'),
             M_trs_pengeluaran::tahun            => date('Y'),
+            M_trs_pengeluaran::bulan            => Conversion::monthNumber($periode,true) ?: date('m'),
             M_trs_pengeluaran::inputby          => $this->session->userdata('yangLogin'),
         );
         $this->M_trs_pengeluaran->save($data);

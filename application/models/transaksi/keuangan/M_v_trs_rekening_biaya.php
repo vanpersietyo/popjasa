@@ -11,6 +11,7 @@ class M_v_trs_rekening_biaya extends CI_Model
     const inputby = "inputby";
     const total_pengeluaran = "total_pengeluaran";
     const tahun = "tahun";
+    const bulan = "bulan";
     const TABLE = "v_trs_rekening_biaya";
 
 //for inisialisasi.
@@ -22,6 +23,7 @@ class M_v_trs_rekening_biaya extends CI_Model
     public $inputby;
     public $total_pengeluaran;
     public $tahun;
+    public $bulan;
 
     var $table = 'v_trs_rekening_biaya';
     var $primary_key = 'id_trs_rekbiaya';
