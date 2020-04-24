@@ -1,0 +1,8 @@
+Alter table progres_kepuasan
+    add column id_project varchar(255) Default null;
+
+insert into log_update(script_name,note) values
+(
+"2020_04_24_1587681601.txt",
+"alter table progres_kepuasan"
+);

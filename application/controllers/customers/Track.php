@@ -233,4 +233,7 @@ class Track extends CI_Controller
         $this->load->view('customer/show_terima', $data);
     }
 
+    function show_kepuasan($id) {
+
+    }
 }
