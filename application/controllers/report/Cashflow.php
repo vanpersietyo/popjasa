@@ -125,7 +125,6 @@ class Cashflow extends CI_Controller {
         $this->load->model('M_cabang');
         $this->load->model('report/M_v_rekapitulasi_cashflow');
 
-//        $data       = $this->session->userdata('params_report_cashflow');
         $data = [
             'tgl_awal'  => $this->input->post('tgl_awal'),
             'tgl_akhir' => $this->input->post('tgl_akhir'),
@@ -160,6 +159,9 @@ class Cashflow extends CI_Controller {
                     M_v_rekapitulasi_cashflow::TGL." <= " => $tgl_akhir,
                 ];
                 $where_awal	= [M_v_rekapitulasi_cashflow::TGL." < " => $tgl_awal];
+                $whereRingkasanGlobal = [
+                    M_v_rekapitulasi_cashflow::TGL." <= " => $tgl_akhir,
+                ];
             }else{
                 $where		= [
                     M_v_rekapitulasi_cashflow::TGL." >= "   => $tgl_awal,
@@ -169,6 +171,10 @@ class Cashflow extends CI_Controller {
                 $where_awal	= [
                     M_v_rekapitulasi_cashflow::TGL." < " => $tgl_awal,
                     M_v_rekapitulasi_cashflow::KD_CABANG => $cabang
+                ];
+                $whereRingkasanGlobal = [
+                    M_v_rekapitulasi_cashflow::TGL." <= "   => $tgl_akhir,
+                    M_v_rekapitulasi_cashflow::KD_CABANG    => $cabang
                 ];
             }
         }else{
@@ -182,6 +188,10 @@ class Cashflow extends CI_Controller {
                     M_v_rekapitulasi_cashflow::TGL." < " 	=> $tgl_awal,
                     M_v_rekapitulasi_cashflow::KD_BANK 		=> $bayar,
                 ];
+                $whereRingkasanGlobal = [
+                    M_v_rekapitulasi_cashflow::TGL." <= "   => $tgl_akhir,
+                    M_v_rekapitulasi_cashflow::KD_BANK 		=> $bayar
+                ];
             }else{
                 $where		= [
                     M_v_rekapitulasi_cashflow::TGL." >= " 	=> $tgl_awal,
@@ -191,6 +201,12 @@ class Cashflow extends CI_Controller {
                 ];
                 $where_awal	= [
                     M_v_rekapitulasi_cashflow::TGL." < " 	=> $tgl_awal,
+                    M_v_rekapitulasi_cashflow::KD_BANK 		=> $bayar,
+                    M_v_rekapitulasi_cashflow::KD_CABANG    => $cabang
+                ];
+
+                $whereRingkasanGlobal = [
+                    M_v_rekapitulasi_cashflow::TGL." <= "   => $tgl_akhir,
                     M_v_rekapitulasi_cashflow::KD_BANK 		=> $bayar,
                     M_v_rekapitulasi_cashflow::KD_CABANG    => $cabang
                 ];
@@ -204,6 +220,15 @@ class Cashflow extends CI_Controller {
             "where"		=> $where,
             "group"		=> M_v_rekapitulasi_cashflow::KD_BANK,
         ]);
+        $ringkasanGlobal = $this->M_v_rekapitulasi_cashflow->select([
+            "column"	=> "sum(IF(TIPE='DEBET',NOMINAL,0-NOMINAL)) as TOTAL, KD_BANK, NM_BANK",
+            "where"		=> $whereRingkasanGlobal,
+            "group"		=> M_v_rekapitulasi_cashflow::KD_BANK,
+        ]);
+//        echo "<pre>";
+//        var_dump($this->db->last_query());
+//        echo "</pre>";
+//        die();
         $cashflow  	= $this->M_v_rekapitulasi_cashflow->find($where,$order);
         $saldo_awal = $cutoff === 'on' ? 0 : $this->M_v_rekapitulasi_cashflow->sum("IF(TIPE='DEBET',NOMINAL,0-NOMINAL)", $where_awal);
 
@@ -213,20 +238,22 @@ class Cashflow extends CI_Controller {
         $tgl_akhir	= Conversion::convert_date($tgl_akhir,'d-m-Y');
 
         $var = [
-            'page'      => 'report/cashflow/report_cashflow',
-            'bayar'		=> $bayar,
-            'tgl_awal'	=> $tgl_awal,
-            'tgl_akhir'	=> $tgl_akhir,
-            'cashflow'  => $cashflow,
-            'saldo_awal'=> $saldo_awal,
-            'ringkasan'	=> $ringkasan,
-            'title'     => "Laporan Arus Kas",
-            'subtitle'	=> $subtitle,
-            'nm_cabang' => $nm_cabang,
-            'harian'    => $harian,
-            'cutoff'    => $cutoff,
-            'logo'      => base_url('assets/app-assets/vendors/logo/popjasa.png')
+            'page'              => 'report/cashflow/report_cashflow',
+            'bayar'		        => $bayar,
+            'tgl_awal'	        => $tgl_awal,
+            'tgl_akhir'	        => $tgl_akhir,
+            'cashflow'          => $cashflow,
+            'saldo_awal'        => $saldo_awal,
+            'ringkasan'	        => $ringkasan,
+            'ringkasanGLobal'	=> $ringkasanGlobal,
+            'title'             => "Laporan Arus Kas",
+            'subtitle'	        => $subtitle,
+            'nm_cabang'         => $nm_cabang,
+            'harian'            => $harian,
+            'cutoff'            => $cutoff,
+            'logo'              => base_url('assets/app-assets/vendors/logo/popjasa.png')
         ];
+
 //        echo "<pre>";
 //        var_dump($var);
 //        echo "</pre>";

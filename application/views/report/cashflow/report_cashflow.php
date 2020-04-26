@@ -10,6 +10,7 @@
 /** @var bool $harian */
 /** @var bool $cutoff */
 $tgl_saldo_awal =  date('d-m-Y', strtotime(Conversion::convert_date($tgl_awal, "Y-m-d") . ' - 1 days'));
+
 ?>
 <div class="paper landscape">
     <table class="screen">
@@ -125,72 +126,123 @@ $tgl_saldo_awal =  date('d-m-Y', strtotime(Conversion::convert_date($tgl_awal, "
         </tr>
         </tbody>
     </table>
-	<table class="screen" style="width: 100%">
-		<tfoot class="_foot">
-		<tr>
-			<td colspan="5" style="height: 10px"></td>
-		</tr>
-        <?php
-        if($cutoff === 'off'){?>
+
+	<table style="width: 100%">
+		<tfoot>
             <tr>
-                <td colspan="2"></td>
-                <td class="size-header fontBold size-13">SALDO AWAL <?php echo $tgl_saldo_awal;?></td>
-                <td class="size-header fontBold"> : </td>
-                <td class="size-header fontBold fontKanan"><?php echo Conversion::numberFormat($saldo_awal);?></td>
+                <td style="width: 30%">
+                    <table class="screen" style="width: 100%">
+                        <tfoot class="_foot">
+                        <tr>
+                            <td colspan="5" style="height: 10px"></td>
+                        </tr>
+                        <?php
+                        if($cutoff === 'off'){?>
+                            <tr>
+                                <td colspan="3" class="size-header fontBold size-13">SALDO AWAL <?php echo $tgl_saldo_awal;?></td>
+                                <td class="size-header fontBold"> : </td>
+                                <td class="size-header fontBold fontKanan"><?php echo Conversion::numberFormat($saldo_awal);?></td>
+                            </tr>
+                        <?php }else{?>
+                            <tr>
+                                <td colspan="3" class="size-header fontBold size-13">RINCIAN SALDO : </td>
+                                <td colspan="2"></td>
+                            </tr>
+                        <?php } ?>
+
+                        <tr>
+                            <td colspan="5"><hr></td>
+                        </tr>
+                        <?php
+                        /** @var M_v_rekapitulasi_cashflow $rks */
+                        /** @var M_v_rekapitulasi_cashflow $ringkasan*/
+                        $total = $saldo_awal;
+                        foreach ($ringkasan as $rks){?>
+                            <tr>
+                                <td colspan="3" class="size-header fontBold" style="width: 20%; padding-left: 2rem !important;">&nbsp;&nbsp;<?php echo $rks->NM_BANK;?></td>
+                                <td class="size-header fontBold" style="width: 1%"> : </td>
+                                <td class="size-header fontBold fontKanan" style="width: 5%"><?php echo Conversion::numberFormat($rks->TOTAL);?></td>
+                            </tr>
+                            <?php
+                            $total += $rks->TOTAL;
+                        } ?>
+
+                        <tr>
+                            <td colspan="5"><hr></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="3" class="size-header fontBold">SALDO <?php echo $harian === 'true' ? $tgl_awal : $tgl_awal.' s/d '.$tgl_akhir?></td>
+                            <td class="size-header fontBold"> : </td>
+                            <td class="size-header fontBold fontKanan"><?php echo Conversion::numberFormat($total_saldo_debit-$total_saldo_kredit);?></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5"><hr></td>
+                        </tr>
+
+                        <?php
+                        if($cutoff === 'off'){?>
+                            <tr>
+                                <td colspan="3" class="size-14 fontBold">TOTAL </td>
+                                <td class="size-header fontBold"> : </td>
+                                <td class="size-header fontBold fontKanan"><?php echo Conversion::numberFormat($total);?></td>
+                            </tr>
+                        <?php } ?>
+                        </tfoot>
+
+                    </table>
+                </td>
+                <td style="width: 20%"></td>
+                <td style="width: 50%; text-align: left">
+                    <table class="screen" style="width: 100%">
+                        <tfoot class="_foot">
+                        <tr>
+                            <td colspan="5" style="height: 10px"></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2"></td>
+                            <td colspan="2" class="size-header fontBold size-13">RINCIAN SALDO GLOBAL <?php echo ' s/d '.$tgl_akhir?> : </td>
+                            <td ></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2"></td>
+                            <td colspan="3"><hr></td>
+                        </tr>
+                        <?php
+                        /** @var M_v_rekapitulasi_cashflow $rksGlobal */
+                        /** @var M_v_rekapitulasi_cashflow $ringkasanGLobal*/
+                        $totalGlobal = 0;
+                        foreach ($ringkasanGLobal as $rksGlobal){?>
+                            <tr>
+                                <td colspan="2" style="width: 20%"></td>
+                                <td class="size-header fontBold" style="width: 20%; padding-left: 2rem !important;"><?php echo $rksGlobal->NM_BANK;?></td>
+                                <td class="size-header fontBold" style="width: 1%"> : </td>
+                                <td class="size-header fontBold fontKanan" style="width: 5%"><?php echo Conversion::numberFormat($rksGlobal->TOTAL);?></td>
+                            </tr>
+                            <?php
+                            $totalGlobal += $rksGlobal->TOTAL;
+                        } ?>
+
+                        <tr>
+                            <td colspan="2"></td>
+                            <td colspan="3"><hr></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2"></td>
+                            <td class="size-14 fontBold">TOTAL </td>
+                            <td class="size-header fontBold"> : </td>
+                            <td class="size-header fontBold fontKanan"><?php echo Conversion::numberFormat($totalGlobal);?></td>
+                        </tr>
+                        </tfoot>
+
+                    </table>
+                </td>
             </tr>
-        <?php }else{?>
-            <tr>
-                <td colspan="2"></td>
-                <td class="size-header fontBold size-13">RINCIAN SALDO : </td>
-                <td colspan="2"></td>
-            </tr>
-        <?php } ?>
+        </tfoot>
+    </table>
 
-        <tr>
-            <td colspan="2"></td>
-            <td colspan="3"><hr></td>
-        </tr>
-		<?php
-		/** @var M_v_rekapitulasi_cashflow $rks */
-		/** @var M_v_rekapitulasi_cashflow $ringkasan*/
-		$total = $saldo_awal;
-		foreach ($ringkasan as $rks){?>
-			<tr>
-				<td colspan="2" style="width: 70%"></td>
-				<td class="size-header fontBold" style="width: 20%; padding-left: 2rem !important;"><?php echo $rks->NM_BANK;?></td>
-				<td class="size-header fontBold" style="width: 1%"> : </td>
-				<td class="size-header fontBold fontKanan" style="width: 5%"><?php echo Conversion::numberFormat($rks->TOTAL);?></td>
-			</tr>
-			<?php
-			$total += $rks->TOTAL;
-		} ?>
 
-		<tr>
-			<td colspan="2"></td>
-			<td colspan="3"><hr></td>
-		</tr>
-
-		<tr>
-			<td colspan="2"></td>
-			<td class="size-header fontBold">SALDO <?php echo $harian === 'true' ? $tgl_awal : $tgl_awal.' s/d '.$tgl_akhir?></td>
-			<td class="size-header fontBold"> : </td>
-			<td class="size-header fontBold fontKanan"><?php echo Conversion::numberFormat($total_saldo_debit-$total_saldo_kredit);?></td>
-		</tr>
-		<tr>
-			<td colspan="2"></td>
-			<td colspan="3"><hr></td>
-		</tr>
-
-        <?php
-        if($cutoff === 'off'){?>
-		<tr>
-			<td colspan="2"></td>
-			<td class="size-14 fontBold">TOTAL </td>
-			<td class="size-header fontBold"> : </td>
-			<td class="size-header fontBold fontKanan"><?php echo Conversion::numberFormat($total);?></td>
-		</tr>
-        <?php } ?>
-		</tfoot>
-
-	</table>
 </div>

@@ -134,9 +134,9 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <button type="submit"
+                                                <button type="submit" id="btnSubmitBulan"
                                                         class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up">
-                                                    <i class="la la-print"></i> Cetak
+                                                     Cetak
                                                 </button>
                                             </div>
                                         </form>
@@ -207,9 +207,9 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <button type="submit"
+                                                <button type="submit" id="btnSubmitHarian"
                                                         class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up">
-                                                    <i class="la la-print"></i> Cetak
+                                                     Cetak
                                                 </button>
                                             </div>
                                         </form>
@@ -309,6 +309,10 @@
     function cetak_cashflow() {
         clear_all_error();
         var formData = new FormData($('#form_cashflow')[0]);
+        var btn = $('#btnSubmitBulan');
+        btn.text('Loading...');
+        btn.attr('disabled','disabled');
+        btn.removeAttr('type');
         $.ajax({
             url: "<?php echo site_url('report/cashflow/validasi')?>",
             data: formData,
@@ -336,8 +340,16 @@
                         $('[name="' + data.inputerror[0] + '"]').focus();
                     }
                 }
+                setTimeout(function(){
+                    btn.removeAttr('disabled');
+                    btn.attr('type','submit');
+                    btn.text('Cetak');
+                }, 2000);
             },
             error: function (jqXHR, textStatus, errorThrown) {
+                btn.removeAttr('disabled');
+                btn.attr('type','submit');
+                btn.text('Cetak');
                 error_swal();
             }
         });
@@ -346,7 +358,11 @@
     //fungsi cetak cashflow
     function cetak_cashflow_harian() {
         clear_all_error();
+        var btn = $('#btnSubmitHarian');
         var formData = new FormData($('#form_cashflow_harian')[0]);
+        btn.text('Loading...');
+        btn.attr('disabled','disabled');
+        btn.removeAttr('type');
         $.ajax({
             url: "<?php echo site_url('report/cashflow/validasi_harian')?>",
             data: formData,
@@ -374,8 +390,16 @@
                         $('[name="' + data.inputerror[0] + '"]').focus();
                     }
                 }
+                setTimeout(function(){
+                    btn.removeAttr('disabled');
+                    btn.attr('type','submit');
+                    btn.text('Cetak');
+                }, 2000);
             },
             error: function (jqXHR, textStatus, errorThrown) {
+                btn.removeAttr('disabled');
+                btn.attr('type','submit');
+                btn.text('Cetak');
                 error_swal();
             }
         });
