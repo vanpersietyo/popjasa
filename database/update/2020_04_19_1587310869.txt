@@ -1,0 +1,19 @@
+CREATE OR REPLACE view v_top_sales_layanan as
+SELECT
+DISTINCT(v_project.nama_layanan) as nama_layanan,
+v_project.kd_cabang,
+count(v_project.nama_layanan) as qty,
+SUM(ifnull(v_project.harga,0)) as hrg,
+SUM(ifnull(v_project.harga_jual,0)) as hrg_jual,
+SUM(IFNULL(v_project.hpp,0)) as omzet,
+DATE_FORMAT(v_project.tgl_input,'%Y-%m-%d') as tgl_input
+FROM
+v_project
+GROUP BY v_project.kd_cabang,
+v_project.nama_layanan,MOnth(v_project.tgl_input)
+ORDER BY qty desc, MOnth(v_project.tgl_input) desc;
+
+insert into log_update(script_name,note) values
+(
+"2020_04_19_1587310869.txt",
+"v_top_sales_layanan");

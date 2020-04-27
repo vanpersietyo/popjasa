@@ -135,6 +135,7 @@ class Dashboard extends CI_Controller
         $data['omz_penjualan_month']    = implode(",", $omz_penjualan_month);
         $data['piutang_outstanding_doc_not_finish'] = $this->M_dir->outstanding_not_finish_findByMonth($date_month);
         $data['piutang_outstanding_doc_finish'] = $this->M_dir->outstanding_finish_findByMonthFinish($date_month);
+        $data['top_sales_layanan'] = $this->M_dir->top_sales_by_month($date_month);
         $data['pages']                  = 'dashboard/chart';
         $this->load->view('layout', $data);
     }
@@ -214,7 +215,7 @@ class Dashboard extends CI_Controller
         $no = 1;
         foreach ($list as $d) {
             $row    = [];
-            $row    = $no;
+            $row[]  = $no;
             $row[]  = $d->nm_customer;
             $row[]  = $d->nama_layanan;
             $row[]  = number_format($d->qty);
@@ -237,7 +238,7 @@ class Dashboard extends CI_Controller
         $no = 1;
         foreach ($list as $d) {
             $row    = [];
-            $row    = $no;
+            $row[]  = $no;
             $row[]  = $d->nm_customer;
             $row[]  = $d->nama_layanan;
             $row[]  = number_format($d->qty);
@@ -246,6 +247,27 @@ class Dashboard extends CI_Controller
             $row[]  = number_format($d->outstanding);
             $data[] = $row;
             $no = 1 + $no;
+        }
+        $output = [
+            "data" => $data,
+        ];
+        echo json_encode($output);
+    }
+
+    function ajax_top_sales_layanan()
+    {
+        $list = $this->M_dir->top_sales_layanan();
+        $data = [];
+        $no = 1;
+        foreach ($list as $d) {
+            $row    = [];
+            $row[]  = $no;
+            $row[]  = $d->nama_layanan;
+            $row[]  = number_format($d->qty);
+            $row[]  = number_format($d->hrg_jual);
+            $row[]  = number_format($d->omzet);
+            $data[] = $row;
+            $no++;
         }
         $output = [
             "data" => $data,

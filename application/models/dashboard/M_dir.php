@@ -147,7 +147,7 @@ class M_dir extends CI_Model {
     }
 
     function outstanding_finish(){
-        $date=date('Y-m-00');
+        $date=date('Y-m');
         $cabang=$this->session->userdata('cabang');
         $sql ="
         SELECT Periode, nm_customer, nama_layanan, sum(jml_order) as qty, harga_jual, sum(jumlah_pay) as bayar, sum(sisa) as outstanding
@@ -167,6 +167,30 @@ class M_dir extends CI_Model {
         FROM v_outstanding_doc_not_finish
         WHERE DATE_FORMAT(tgl_input,'%Y-%m')='$date' and kd_cabang = '$cabang'
         GROUP BY nm_customer, nama_layanan
+       ";
+        $query=$this->db->query($sql);
+        return $query->result();
+    }
+
+    function top_sales_by_month($month) {
+        $cabang=$this->session->userdata('cabang');
+        $query=$this->db->query("
+        SELECT nama_layanan, kd_cabang, qty, hrg, hrg_jual, omzet
+        FROM v_top_sales_layanan
+        WHERE STR_TO_DATE(tgl_input,'%Y-%m')=DATE('$month')
+        GROUP BY STR_TO_DATE(tgl_input,'%Y-%m')
+      ");
+        return $query->result();
+    }
+
+    function top_sales_layanan(){
+        $date=date('Y-m');
+        $cabang=$this->session->userdata('cabang');
+        $sql ="
+        SELECT nama_layanan, kd_cabang, qty, hrg, hrg_jual, omzet
+        FROM v_top_sales_layanan
+        WHERE DATE_FORMAT(tgl_input,'%Y-%m')='$date' and kd_cabang = '$cabang'
+        GROUP BY STR_TO_DATE(tgl_input,'%Y-%m'), nama_layanan desc
        ";
         $query=$this->db->query($sql);
         return $query->result();
