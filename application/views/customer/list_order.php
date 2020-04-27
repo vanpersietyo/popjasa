@@ -187,54 +187,54 @@ $this->load->view('./template/head');
 
             <div class="content-body">
 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <input type="hidden" id="id_project" name="id_project"
-                                           value="<?php echo $project->id_project; ?>"
-                                    <h5 class="card-title danger">#Document Formulir</h5>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-6">
-                                            <div class="form-group">
-                                                <button type="button" class="btn mb-1 btn-dark btn-block pull-up"
-                                                        onclick="show_keterangan()"><a>&nbsp;Formulir Keterangan </a>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 col-md-6">
-                                            <div class="form-group">
-                                                <button type="button" class="btn mb-1 btn-dark  btn-block pull-up"
-                                                        onclick="show_izin()"><a>&nbsp;Formulir Izin </a></button>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 col-md-6">
-                                            <div class="form-group">
-                                                <button type="button" class="btn mb-1 btn-dark  btn-block pull-up"
-                                                        onclick="show_uraian()"><a>&nbsp;Formulir Uraian </a></button>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 col-md-6">
-                                            <div class="form-group">
-                                                <button type="button" class="btn mb-1 btn-dark  btn-block pull-up"
-                                                        onclick="show_terima()"><a>&nbsp;Formulir Terima </a></button>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 col-md-6">
-                                            <div class="form-group">
-                                                <button type="button" class="btn mb-1 btn-dark  btn-block pull-up"
-                                                        onclick="show_kepuasan()"><a>&nbsp;Formulir Kepuasan Pelanggan </a></button>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!--                <div class="row">-->
+<!--                    <div class="col-12">-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-content">-->
+<!--                                <div class="card-body">-->
+<!--                                    <input type="hidden" id="id_project" name="id_project"-->
+<!--                                           value="--><?php //echo $project->id_project; ?><!--"-->
+<!--                                    <h5 class="card-title danger">#Document Formulir</h5>-->
+<!--                                    <br>-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-lg-12 col-md-6">-->
+<!--                                            <div class="form-group">-->
+<!--                                                <button type="button" class="btn mb-1 btn-dark btn-block pull-up"-->
+<!--                                                        onclick="show_keterangan()"><a>&nbsp;Formulir Keterangan </a>-->
+<!--                                                </button>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-lg-12 col-md-6">-->
+<!--                                            <div class="form-group">-->
+<!--                                                <button type="button" class="btn mb-1 btn-dark  btn-block pull-up"-->
+<!--                                                        onclick="show_izin()"><a>&nbsp;Formulir Izin </a></button>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-lg-12 col-md-6">-->
+<!--                                            <div class="form-group">-->
+<!--                                                <button type="button" class="btn mb-1 btn-dark  btn-block pull-up"-->
+<!--                                                        onclick="show_uraian()"><a>&nbsp;Formulir Uraian </a></button>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-lg-12 col-md-6">-->
+<!--                                            <div class="form-group">-->
+<!--                                                <button type="button" class="btn mb-1 btn-dark  btn-block pull-up"-->
+<!--                                                        onclick="show_terima()"><a>&nbsp;Formulir Terima </a></button>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-lg-12 col-md-6">-->
+<!--                                            <div class="form-group">-->
+<!--                                                <button type="button" class="btn mb-1 btn-dark  btn-block pull-up"-->
+<!--                                                        onclick="show_kepuasan()"><a>&nbsp;Formulir Kepuasan Pelanggan </a></button>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!---->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="row">
                     <div class="col-12">
                             <div class="card">
