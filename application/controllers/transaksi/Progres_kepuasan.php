@@ -102,7 +102,7 @@ class Progres_kepuasan extends CI_Controller
         $this->load->view('/transaksi/progres_kepuasan/progres_kepuasan_form', $data);
     }
 
-    public function create2($id)
+    public function create2($id_project)
     {
         $data = array(
             'button' => 'Create',
@@ -120,16 +120,16 @@ class Progres_kepuasan extends CI_Controller
             'status_ig' => set_value('status_ig'),
             'referensi_nama' => set_value('referensi_nama'),
             'referensi_no_telp' => set_value('referensi_no_telp'),
-            'id_project' => set_value($id),
+            'id_project' => $id_project,
             'pages' =>'/transaksi/progres_kepuasan/progres_kepuasan_form',
         );
-        $this->load->view('layout', $data);
+        $this->load->view('layout_customer', $data);
     }
 
     public function create_action()
     {
-        $this->_rules();
-
+//        $this->_rules();
+        $id_project = $this->input->post('id_project', TRUE);
         if ($this->form_validation->run() == FALSE) {
             $this->create();
         } else {
@@ -146,18 +146,18 @@ class Progres_kepuasan extends CI_Controller
                 'status_ig' => $this->input->post('status_ig', TRUE),
                 'referensi_nama' => $this->input->post('referensi_nama', TRUE),
                 'referensi_no_telp' => $this->input->post('referensi_no_telp', TRUE),
-                'id_project' => $this->input->post('id_project', TRUE),
+                'id_project' => $id_project,
             );
 
             $this->MProgres_kepuasan->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('/transaksi/progres_kepuasan'));
+            redirect(site_url('/customers/track/order2/').$id_project);
         }
     }
 
     public function update($id)
     {
-        $row = $this->MProgres_kepuasan->get_by_id($id);
+        $row = $this->MProgres_kepuasan->find(['id_project',$id]);
 
         if ($row) {
             $data = array(
@@ -176,18 +176,20 @@ class Progres_kepuasan extends CI_Controller
                 'status_ig' => set_value('status_ig', $row->status_ig),
                 'referensi_nama' => set_value('referensi_nama', $row->referensi_nama),
                 'referensi_no_telp' => set_value('referensi_no_telp', $row->referensi_no_telp),
+                'id_project' => set_value('id_project', $row->id_project),
+                'pages' =>'/transaksi/progres_kepuasan/progres_kepuasan_form',
             );
-            $this->load->view('/transaksi/progres_kepuasan/progres_kepuasan_form', $data);
+            $this->load->view('layout_customer', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('/transaksi/progres_kepuasan'));
+            redirect(site_url('/customers/track/order2/').$id);
         }
     }
 
     public function update_action()
     {
-        $this->_rules();
-
+//        $this->_rules();
+        $id_project = $this->input->post('id_project', TRUE);
         if ($this->form_validation->run() == FALSE) {
             $this->update($this->input->post('id', TRUE));
         } else {
@@ -204,11 +206,12 @@ class Progres_kepuasan extends CI_Controller
                 'status_ig' => $this->input->post('status_ig', TRUE),
                 'referensi_nama' => $this->input->post('referensi_nama', TRUE),
                 'referensi_no_telp' => $this->input->post('referensi_no_telp', TRUE),
+                'id_project' => $id_project,
             );
 
             $this->MProgres_kepuasan->update($this->input->post('id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('/transaksi/progres_kepuasan'));
+            redirect(site_url('/customers/track/order2/').$id_project);
         }
     }
 

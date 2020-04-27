@@ -225,12 +225,6 @@
                                                     onclick="show_terima()"><a>&nbsp;Formulir Terima </a></button>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12 col-md-6">
-                                        <div class="form-group">
-                                            <button type="button" class="btn mb-1 btn-dark  btn-block pull-up"
-                                                    onclick="show_kepuasan()"><a>&nbsp;Cetak Kepuasan Pelanggan </a></button>
-                                        </div>
-                                    </div>
 
                                     <div class="col-lg-12 col-md-6">
                                         <div class="form-group">
@@ -238,6 +232,14 @@
                                                     onclick="cetak()"><a>&nbsp;Cetak Dokumen </a></button>
                                         </div>
                                     </div>
+
+                                    <div class="col-lg-12 col-md-6">
+                                        <div class="form-group">
+                                            <button type="button" class="btn mb-1 btn-dark  btn-block pull-up"
+                                                    onclick="cetak_kepuasan()"><a>&nbsp;Cetak Kepuasan Pelanggan </a></button>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -1125,9 +1127,9 @@
         }
     }
 
-    function show_kepuasan() {
+    function cetak_kepuasan() {
         let id = $('[name="id_project"]').val();
-        window.location.href = "<?php echo site_url('/transaksi/progres_kepuasan/cek_projects/'); ?>" + id;
+        window.location.href = "<?php echo site_url('/transaksi/progres_kepuasan/cetak_form/'); ?>" + id;
     }
 </script>
 <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js') ?>"></script>
