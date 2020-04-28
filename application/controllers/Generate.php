@@ -182,7 +182,17 @@ class Generate extends CI_Controller
         $mpdf->Output();
     }
 
-
+    public function cetak_kepuasan_pel($id) {
+        $mpdf = new Mpdf([
+            'mode' => 'utf-8',
+            'format' => 'A4-P',
+            'orientation' => 'P'
+        ]);
+        $data['kepuasan_pel'] = $this->MProgres_kepuasan->get_by_id($id);
+        $html = $this->load->view('report/kepuasan_pel',$data,true);
+        $mpdf->writeHTML($html);
+        $mpdf->Output();
+    }
 }
 
 /* End of file Level.php */

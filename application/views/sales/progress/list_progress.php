@@ -55,6 +55,7 @@ label {
                               <th>Jumlah Penjualan</th>
                           <?php } ?>
                         <th>Status</th>
+                        <th>Perusahaan</th>
                         <th>Tgl</th>
                         <th>Operator</th>
                       </tr>
@@ -109,7 +110,24 @@ $(document).ready(function() {
             "url": "<?php echo site_url('transaksi/progress/ajax_list')?>",
             "type": "POST"
         },
+        "order": [[ 6, "desc" ]],
 
+        dom: 'Bfrtip',
+        buttons: [
+            'excel'
+        ],
+        drawCallback: function (e) {
+            var c = this.api(),
+                r = c.rows({
+                    page: "current"
+                }).nodes(),
+                i = null;
+            c.column(5, {
+                page: "current"
+            }).data().each(function (e, c) {
+                i !== e && ($(r).eq(c).before('<tr class="group"><td colspan="9">' + e + "</td></tr>"), i = e)
+            })
+        }
     });
 
     //datepicker

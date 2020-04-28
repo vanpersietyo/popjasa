@@ -50,6 +50,11 @@ class Progress extends CI_Controller{
             } else {
                 $status = '<h5 class="text-bold-500 text-red">Not Confirmed';
             }
+            if ($d->st_project==1){
+                $project_a='<span class="badge badge-primary badge-md">PopJasa</span>';
+            }else{
+                $project_a='<span class="badge badge-warning badge-md">Jasamura</span>';
+            }
             if ($this->session->userdata('akses_user')=='OPS' | $this->session->userdata('akses_user')=='ops'){
                 $row[] = '<button type="button" class="btn btn-dark dropdown-toggle btn-sm" data-toggle="dropdown"
 														aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
@@ -66,21 +71,17 @@ class Progress extends CI_Controller{
 														</div>';
             }
 
-
-
             $row[] = '<h5 class="text-bold-500">' . $d->id_project;
             $row[] = '<h5 class="text-bold-500">' . $d->nm_customer;
             if ($this->session->userdata('akses_user')=='OPS' | $this->session->userdata('akses_user')=='ops'){
-
             }else{
                 $row[] = '<h5 class="text-bold-500">' . number_format($d->harga_jual);
             }
-
             $date = date("d/m/Y", strtotime($d->tgl_input));
             $row[] = $status;
+            $row[] = $project_a;
             $row[] = '<h5 class="text-bold-500">' . $date;
             $row[] = '<h5 class="text-bold-500">' . $d->input_by;
-
             //add html for action
 
 
@@ -88,11 +89,10 @@ class Progress extends CI_Controller{
         }
 
 		$output = array(
-
-						"recordsTotal" => $this->M_project->count_trs_project_hdr(),
-						"recordsFiltered" => $this->M_project->count_trs_project_hdr(),
-						"data" => $data,
-				);
+            "recordsTotal" => $this->M_project->count_trs_project_hdr(),
+            "recordsFiltered" => $this->M_project->count_trs_project_hdr(),
+            "data" => $data,
+        );
 		//output to json format
 		echo json_encode($output);
 	}
