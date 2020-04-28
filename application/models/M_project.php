@@ -341,7 +341,7 @@ class M_project extends CI_Model {
         $query = $this->db->query("
 				select a.id_project,a.kd_cabang,a.id_customer,b.nm_customer,a.harga_jual,a.keterangan,a.input_by,a.tgl_input,a.st_data,a.st_project
 				from trs_project a
-				JOIN m_customer b ON a.id_customer=b.id_customer and a.st_data=1
+				JOIN m_customer b ON a.id_customer=b.id_customer and a.st_data=1 ORDER BY a.tgl_input desc
 			");
         return $query->result();
     }
