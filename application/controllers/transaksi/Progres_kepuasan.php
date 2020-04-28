@@ -130,9 +130,9 @@ class Progres_kepuasan extends CI_Controller
     {
 //        $this->_rules();
         $id_project = $this->input->post('id_project', TRUE);
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
+//        if ($this->form_validation->run() == FALSE) {
+//            $this->create2();
+//        } else {
             $data = array(
                 'nama_pelanggan' => $this->input->post('nama_pelanggan', TRUE),
                 'nama_perusahaan' => $this->input->post('nama_perusahaan', TRUE),
@@ -152,7 +152,7 @@ class Progres_kepuasan extends CI_Controller
             $this->MProgres_kepuasan->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
             redirect(site_url('/customers/track/order2/').$id_project);
-        }
+//        }
     }
 
     public function update($id)

@@ -189,47 +189,46 @@ $this->load->view('./template/head');
                         </div>
                     </div>
 
-                </section>
 
-                <input type="hidden" id="id_project" name="id_project" value="<?php echo $project->id_project; ?>"
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <h5 class="content-header-title">Log's Project
-                                        List </h5>
-                                    <br>
+                    <input type="hidden" id="id_project" name="id_project" value="<?php echo $project->id_project; ?>"
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <h5 class="content-header-title">Log's Project
+                                            List </h5>
+                                        <br>
 
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped" id="mytable">
-                                            <thead>
-                                            <tr>
-                                                <th width="80px">No</th>
-                                                <th>Status Log</th>
-                                                <th>Tgl Log</th>
-                                                <th>Keterangan</th>
-                                                <th width="200px">Created By</th>
-                                            </tr>
-                                            </thead>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-striped" id="mytable">
+                                                <thead>
+                                                <tr>
+                                                    <th width="80px">No</th>
+                                                    <th>Status Log</th>
+                                                    <th>Tgl Log</th>
+                                                    <th>Keterangan</th>
+                                                    <th width="200px">Created By</th>
+                                                </tr>
+                                                </thead>
 
-                                        </table>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="modal-footer">
-                    <button class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up"
-                            onclick="show_kepuasan()"><i class="fa fa-refresh"></i>Form Kepuasan Pelanggan
-                    </button>
-                    <button class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up" data-dismiss="modal"
-                            aria-label="Close" onclick="cetak()"><i class="fa fa-times"></i> Cetak Dokumen Rincian
-                        Blanko
-                    </button>
-                </div>
+                    <div class="modal-footer">
+                        <button class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up"
+                                onclick="show_kepuasan()"><i class="fa fa-refresh"></i>Form Kepuasan Pelanggan
+                        </button>
+                        <button class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up" onclick="cetak()"><i class="fa fa-times"></i> Cetak Dokumen Rincian
+                            Blanko
+                        </button>
+                    </div>
+                </section>
             </div>
         </div>
     </div>
