@@ -60,15 +60,18 @@ $this->load->view('./template/head');
 
                                                 <div class="col-md-4">
                                                     <label>Nama Customer</label>
-                                                    <input name="nm_customer" value="<?php echo $customer->nm_customer; ?>"
-                                                           placeholder="Nama Customer .." class="form-control" type="text"
+                                                    <input name="nm_customer"
+                                                           value="<?php echo $customer->nm_customer; ?>"
+                                                           placeholder="Nama Customer .." class="form-control"
+                                                           type="text"
                                                            disabled>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label>Telp Customer</label>
                                                     <input name="tlp_customer"
                                                            value="<?php echo $customer->tlp_customer; ?>"
-                                                           placeholder="Telp Customer .." class="form-control" type="number"
+                                                           placeholder="Telp Customer .." class="form-control"
+                                                           type="number"
                                                            disabled>
                                                 </div>
 
@@ -86,7 +89,8 @@ $this->load->view('./template/head');
                                                     <label>Email Customer</label>
                                                     <input name="email_customer"
                                                            value="<?php echo $customer->email_customer; ?>"
-                                                           placeholder="Email Customer .." class="form-control" type="email"
+                                                           placeholder="Email Customer .." class="form-control"
+                                                           type="email"
                                                            disabled>
                                                 </div>
 
@@ -94,12 +98,14 @@ $this->load->view('./template/head');
                                                     <label>Kota Customer</label>
                                                     <input name="kota_customer"
                                                            value="<?php echo $customer->kota_customer; ?>"
-                                                           placeholder="Kota Customer .." class="form-control" type="text"
+                                                           placeholder="Kota Customer .." class="form-control"
+                                                           type="text"
                                                            disabled>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <label>Note Contacted</label>
-                                                    <textarea name="keterangan" value="<?php echo $customer->keterangan; ?>"
+                                                    <textarea name="keterangan"
+                                                              value="<?php echo $customer->keterangan; ?>"
                                                               placeholder="Keterangan .." maxlength="255"
                                                               class="form-control" type="textarea" disabled></textarea>
                                                 </div>
@@ -134,7 +140,7 @@ $this->load->view('./template/head');
                                             <thead>
                                             <tr>
                                                 <th>Nama Jasa</th>
-                                                <th>Harga </th>
+                                                <th>Harga</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -162,7 +168,8 @@ $this->load->view('./template/head');
                                     <h4 class="card-title info">History Pembayaran : </h4>
                                     <!-- Invoices List table -->
                                     <div class="table-responsive">
-                                        <table id="tablePembayaran" class="table table-striped table-bordered sourced-data">
+                                        <table id="tablePembayaran"
+                                               class="table table-striped table-bordered sourced-data">
                                             <thead>
                                             <tr>
                                                 <th>Kode Pembayaran</th>
@@ -182,61 +189,10 @@ $this->load->view('./template/head');
                         </div>
                     </div>
 
-                </section>
-            </div>
 
-            <div class="content-body">
-
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <input type="hidden" id="id_project" name="id_project"
-                                           value="<?php echo $project->id_project; ?>"
-                                    <h5 class="card-title danger">#Document Formulir</h5>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-6">
-                                            <div class="form-group">
-                                                <button type="button" class="btn mb-1 btn-dark btn-block pull-up"
-                                                        onclick="show_keterangan()"><a>&nbsp;Formulir Keterangan </a>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 col-md-6">
-                                            <div class="form-group">
-                                                <button type="button" class="btn mb-1 btn-dark  btn-block pull-up"
-                                                        onclick="show_izin()"><a>&nbsp;Formulir Izin </a></button>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 col-md-6">
-                                            <div class="form-group">
-                                                <button type="button" class="btn mb-1 btn-dark  btn-block pull-up"
-                                                        onclick="show_uraian()"><a>&nbsp;Formulir Uraian </a></button>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 col-md-6">
-                                            <div class="form-group">
-                                                <button type="button" class="btn mb-1 btn-dark  btn-block pull-up"
-                                                        onclick="show_terima()"><a>&nbsp;Formulir Terima </a></button>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 col-md-6">
-                                            <div class="form-group">
-                                                <button type="button" class="btn mb-1 btn-dark  btn-block pull-up"
-                                                        onclick="show_kepuasan()"><a>&nbsp;Formulir Kepuasan Pelanggan </a></button>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
+                    <input type="hidden" id="id_project" name="id_project" value="<?php echo $project->id_project; ?>"
+                    <div class="row">
+                        <div class="col-12">
                             <div class="card">
                                 <div class="card-content">
                                     <div class="card-body">
@@ -262,7 +218,17 @@ $this->load->view('./template/head');
                                 </div>
                             </div>
                         </div>
-                </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up"
+                                onclick="show_kepuasan()"><i class="fa fa-refresh"></i>Form Kepuasan Pelanggan
+                        </button>
+                        <button class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up" onclick="cetak()"><i class="fa fa-times"></i> Cetak Dokumen Rincian
+                            Blanko
+                        </button>
+                    </div>
+                </section>
             </div>
         </div>
     </div>
@@ -283,612 +249,6 @@ $this->load->view('./template/head');
         });
     </script>
 
-    <div class="modal animated pulse text-left" id="modal_form_keterangan" role="dialog" aria-labelledby="myModalLabel17"
-         aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-info">
-                    <h4 class="modal-title text-bold-500 white"><i class="la la-pencil-square"></i></h4>
-                    <button type="button" class="close white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form name="form_project" id="form_project" action="javascript:void(0)" autocomplete="off">
-
-                        <div class="content-body">
-                            <section class="row">
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="tab-content">
-                                            <div class="container tab-pane active" id="keterangan" style="padding-top: 5px">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="varchar">ID Hdr
-                                                                Project <?php echo form_error('ID_Hdr_Project') ?></label>
-                                                            <div class="input-group">
-                                                                <input type="text" class="form-control"
-                                                                       name="id_hdr_Project"
-                                                                       id="id_hdr_Project"
-                                                                       placeholder="ID Hdr Project"
-                                                                       readonly/>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="varchar">ID
-                                                                Project <?php echo form_error('ID_Project') ?></label>
-                                                            <div class="input-group">
-                                                                <input type="text" class="form-control" name="id_p roject"
-                                                                       id="id_project"
-                                                                       placeholder="ID Project" readonly/>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <div class="form-group">
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <label>Email UNTUK NIB</label>
-                                                                        <div class="input-group">
-                                                                            <input type="text" class="form-control"
-                                                                                   name="email"
-                                                                                   id="email"/>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <label>Password</label>
-                                                                        <div class="input-group">
-                                                                            <input type="password" class="form-control"
-                                                                                   name="password"
-                                                                                   id="password"/>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <div class="form-group">
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <label>Email pengurus:</label>
-                                                                        <div class="input-group">
-                                                                            <input type="text" class="form-control"
-                                                                                   name="email_pengurus"
-                                                                                   id="email_pengurus"/>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <label>No. Telp pengurus:</label>
-                                                                        <div class="input-group">
-                                                                            <input type="text" class="form-control"
-                                                                                   name="notelp"
-                                                                                   id="notelp"/>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <div class="form-group">
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <label>LUASAN TEMPAT USAHA:</label>
-                                                                        <div class="input-group">
-                                                                            <input type="number" class="form-control"
-                                                                                   name="luas"
-                                                                                   id="luas"/>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <label>MENGETAHUI POPJASA dari:</label>
-                                                                        <div class="input-group">
-                                                                            <input type="text" class="form-control"
-                                                                                   name="tahu"
-                                                                                   id="tahu"/>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <div class="form-group">
-                                                                <div class="row">
-                                                                    <div class="col-md-12">
-                                                                        <label>BIDANG USAHA:</label>
-                                                                        <div class="input-group">
-                                                                            <input type="text" class="form-control"
-                                                                                   name="bidang_usaha"
-                                                                                   id="bidang_usaha"
-                                                                                   placeholder="Ket Bidang Usaha"/>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <input type="hidden" name="id_project_ket"/>
-                                                    <button type="button"
-                                                            class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up"
-                                                            data-dismiss="modal">
-                                                        Tutup
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal animated pulse text-left" id="modal_form_izin" role="dialog" aria-labelledby="myModalLabel17"
-         aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-info">
-                    <h4 class="modal-title text-bold-500 white"><i class="la la-pencil-square"></i></h4>
-                    <button type="button" class="close white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form name="form_project" id="form_project" action="javascript:void(0)" autocomplete="off">
-
-                        <div class="content-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="tab-content">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="varchar">ID Hdr
-                                                                        Project <?php echo form_error('ID_Hdr_Project') ?></label>
-                                                                    <div class="input-group">
-                                                                        <input type="text" class="form-control"
-                                                                               name="id_hdr_project" id="id_hdr_project"
-                                                                               placeholder="ID Hdr Project" readonly/>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="varchar">ID
-                                                                        Project <?php echo form_error('ID_Project') ?></label>
-                                                                    <div class="input-group">
-                                                                        <input type="text" class="form-control"
-                                                                               name="id_project" id="id_project"
-                                                                               placeholder="ID Project" readonly/>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <label>AKTA NOTARIS</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control"
-                                                                           name="akta_notaris" id="akta_notaris"/>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <label>PENGESAHAN</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control"
-                                                                           name="pengesahan" id="pengesahan"/>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <br/>
-                                                        <div class="row">
-                                                            <div class="col-md-3">
-                                                                <label>NPWP PRIBADI</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control" name="npwp"
-                                                                           id="npwp"/>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <label>NPWP (dikirim) PERUSAHAAN</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control"
-                                                                           name="npwp_perusahaan" id="npwp_perusahaan"/>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <label>SKT NPWP (dikirim)</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control"
-                                                                           name="skt_perusahaan" id="skt_perusahaan"/>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3">&nbsp;
-                                                                <label>SIUP & TDP (NIB)</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control" name="siup_tdp"
-                                                                           id="siup_tdp"/>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-md-3">
-                                                                <label>REGISTRASI</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control"
-                                                                           name="registrasi" id="registrasi"/>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <label>PKP</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control" name="pkp"
-                                                                           id="pkp"/>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <label>S.K. DOMISILI</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control"
-                                                                           name="sk_domisili" id="sk_domisili"/>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-md-6">&nbsp;
-                                                                <label>Lain-lain</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control" name="lain_text"
-                                                                           id="lain_text"/>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <input type="hidden" name="id_project_ket"/>
-                                                    <button type="button"
-                                                            class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up"
-                                                            data-dismiss="modal">
-                                                        Tutup
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal animated pulse text-left" id="modal_form_uraian" role="dialog" aria-labelledby="myModalLabel17"
-         aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-info">
-                    <h4 class="modal-title text-bold-500 white"><i class="la la-pencil-square"></i></h4>
-                    <button type="button" class="close white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form name="form_project" id="form_project" action="javascript:void(0)" autocomplete="off">
-
-                        <div class="content-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="tab-content">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="varchar">ID Hdr
-                                                                        Project <?php echo form_error('ID_Hdr_Project') ?></label>
-                                                                    <div class="input-group">
-                                                                        <input type="text" class="form-control"
-                                                                               name="id_hdr_project" id="id_hdr_project"
-                                                                               placeholder="ID Hdr Project" readonly/>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="varchar">ID
-                                                                        Project <?php echo form_error('ID_Project') ?></label>
-                                                                    <div class="input-group">
-                                                                        <input type="text" class="form-control"
-                                                                               name="id_project" id="id_project"
-                                                                               placeholder="ID Project" readonly/>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <label>NAMA PERUSAHAAN</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control"
-                                                                           name="nm_perusahaan" id="nm_perusahaan"/>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-3">
-                                                                <label>MODAL DASAR : Rp.</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control" name="modal"
-                                                                           id="modal"/>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <label>MODAL DISETOR : Rp.</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control"
-                                                                           name="modal_disetor" id="modal_disetor"/>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <label>PRESENTASE PEMBAGIAN SAHAM :</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control"
-                                                                           name="presentase_shm" id="presentase_shm"/>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <label>HARGA TIAP SAHAM : RP.</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control" name="hrg_saham"
-                                                                           id="hrg_saham"/>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <label>NO TELP :</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control" name="no_telp"
-                                                                           id="no_telp"/>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <label>NO FAX :</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control" name="no_fax"
-                                                                           id="no_fax"/>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <label>KEL :</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control" name="kelurahan"
-                                                                           id="kelurahan"/>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <label>KOTA/KABUPATEN :</label>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control" name="kabupaten"
-                                                                           id="kabupaten"/>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <input type="hidden" name="id_project_ket"/>
-                                                    <button type="button"
-                                                            class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up"
-                                                            data-dismiss="modal">
-                                                        Tutup
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal animated pulse text-left" id="modal_form_terima" role="dialog" aria-labelledby="myModalLabel17"
-         aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-info">
-                    <h4 class="modal-title text-bold-500 white"><i class="la la-pencil-square"></i></h4>
-                    <button type="button" class="close white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form name="form_project" id="form_project" action="javascript:void(0)" autocomplete="off">
-
-                        <div class="content-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="varchar">ID Hdr
-                                                                Project <?php echo form_error('ID_Hdr_Project') ?></label>
-                                                            <div class="input-group">
-                                                                <input type="text" class="form-control"
-                                                                       name="id_hdr_project" id="id_hdr_project"
-                                                                       placeholder="ID Hdr Project" readonly/>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="varchar">ID
-                                                                Project <?php echo form_error('ID_Project') ?></label>
-                                                            <div class="input-group">
-                                                                <input type="text" class="form-control" name="id_project"
-                                                                       id="id_project" placeholder="ID Project" readonly/>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            <label for="bool_ktp" class="col-form-label">KTP :</label>
-                                                            <input type="numeric" class="form-control" name="jml_ktp"
-                                                                   id="jml_ktp" placeholder="Jumlah Orang"/>
-                                                        </div>
-                                                        <div class="col-md-9">
-                                                            <label for="bool_ktp" class="col-form-label">&nbsp;</label>
-                                                            <input type="text" class="form-control" name="ktp" id="ktp"
-                                                                   placeholder="KTP"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="jns_npwp" class="col-form-label">NPWP PRIBADI (SEMU
-                                                                PENGURUS) :</label>
-                                                            <input type="text" class="form-control" name="npwp" id="npwp"
-                                                                   placeholder="NPWP Pribadi"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="jns_sertifikat" class="col-form-label">SERTIFIKAT T.
-                                                                USAHA :</label>
-                                                            <input type="text" class="form-control" name="sertifikat"
-                                                                   id="sertifikat" placeholder="Sertifikat T. USAHA"/>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="jns_imb" class="col-form-label">IMB (IJIN MENDIRIKAN
-                                                                BANGUNAN) :</label>
-                                                            <input type="text" class="form-control" name="imb" id="imb"
-                                                                   placeholder="IJIN Mendirikan Bangunan"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="bool_stempel" class="col-form-label">Stempel
-                                                                :</label>&nbsp;
-                                                            <input type="text" class="form-control" name="stempel"
-                                                                   id="stempel" placeholder="IJIN Mendirikan Bangunan"/>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="materai" class="col-form-label">MATERAI :</label>
-                                                            <input type="number" class="form-control" name="jml_materai"
-                                                                   id="jml_materai" placeholder="Jumlah Materai"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="nofax" class="col-form-label">S.K. DOMISILI
-                                                                :</label>
-                                                            <input type="text" class="form-control" name="domisili"
-                                                                   id="domisili" placeholder="IJIN Mendirikan Bangunan"/>
-                                                        </div>
-
-                                                        <div class="col-md-6">
-                                                            <label for="jns_sewa" class="col-form-label">SURAT SEWA
-                                                                :</label>
-                                                            <input type="text" class="form-control" name="surat_sewa"
-                                                                   id="surat_sewa" placeholder="IJIN Mendirikan Bangunan"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <input type="hidden" name="id_project_terima"/>
-                                                    <button type="button"
-                                                            class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up"
-                                                            data-dismiss="modal">
-                                                        Tutup
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- END PAGE LEVEL JS-->
     <script type="text/javascript">
 
@@ -976,26 +336,28 @@ $this->load->view('./template/head');
 
         function show_kepuasan() {
             let id = $('[name="id_project"]').val();
-            window.location.href = "<?php echo site_url('/transaksi/kepuasan_pelanggan/cek_projects/'); ?>" + id;
+            window.location.href = "<?php echo site_url('/transaksi/progres_kepuasan/cek_projects/'); ?>" + id;
+        }
+
+        function cetak() {
+            let id = $('[name="id_project"]').val();
+            window.location.href = "<?php echo site_url('/generate/dok_progress/'); ?>" + id;
         }
 
         function confirm_project($id) {
-            if(confirm('Are you sure confirm this data?'))
-            {
+            if (confirm('Are you sure confirm this data?')) {
                 // ajax delete data to database
                 $.ajax({
-                    url : "<?php echo site_url('transaksi/project/confirm')?>/"+$id,
+                    url: "<?php echo site_url('transaksi/project/confirm')?>/" + $id,
                     type: "POST",
                     dataType: "JSON",
-                    success: function(data)
-                    {
+                    success: function (data) {
                         //if success reload ajax table
                         // $('#modal_form').modal('hide');
                         reload_table();
                         swal("Good Job !", "Data Berhasil Diupdate !", "success");
                     },
-                    error: function (jqXHR, textStatus, errorThrown)
-                    {
+                    error: function (jqXHR, textStatus, errorThrown) {
                         swal("Upps Sorry !", "Data Gagal Diupdate !", "warning");
                     }
                 });
@@ -1142,22 +504,20 @@ $this->load->view('./template/head');
         var table;
         var base_url = '<?php echo base_url();?>';
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             //datatables
             table = $('#tablePembayaran').DataTable({
                 "ajax": {
-                    "url": "<?php echo site_url('transaksi/pembayaran/ajax_list_pembayaran/'.$id_project)?>",
+                    "url": "<?php echo site_url('transaksi/pembayaran/ajax_list_pembayaran/' . $id_project)?>",
                     "type": "POST"
                 },
 
             });
         });
 
-        function reload_table()
-        {
-            table.ajax.reload(null,false); //reload datatable ajax
+        function reload_table() {
+            table.ajax.reload(null, false); //reload datatable ajax
         }
-
 
 
     </script>

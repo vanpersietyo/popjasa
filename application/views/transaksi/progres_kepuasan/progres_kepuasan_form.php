@@ -1,30 +1,29 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: PC-06
- * Date: 03/12/2019
- * Time: 15:07
- */
-
-/** @var CI_Controller $this */
-$this->load->view('template/head');
+$this->load->view('./template/head');
 ?>
-<div class="content-header row">
-    <div class="content-header-left col-md-6 col-12 mb-2"
-         style="padding-bottom: 0 !important;  margin-bottom: 0 !important;">
-        <h3 class="content-header-title">Form Kepuasan Pelanggan</h3>
-    </div>
-
-    <div class="content-header-right col-md-6 col-12">
-        <div class="float-md-right">
-            <a class="btn btn-danger bg-accent-4 pull-up" type="button"
-               href="<?php echo site_url('transaksi/project/index_adit')?>"><i class="ft-arrow-left white"></i>
-                Kembali</a>
-            <a class="btn btn-success bg-accent-4 pull-up" type="button" href="javascript:void()"
-               onclick="location.reload();"><i class="ft-refresh-cw white"></i> Refresh</a>
+<nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark navbar-brand-center">
+    <div class="navbar-wrapper">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <h5 class="brand-text" style="text-align: center">POPJASA TRACKING ORDER</h5>
+            </a>
+        </div>
+        <div class="navbar-container">
+            <div class="collapse navbar-collapse justify-content-end" id="navbar-mobile">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item"><a class="nav-link mr-2 nav-link-label" href="https://popjasa.id/"><i
+                                    class="ficon ft-arrow-left"></i></a></li>
+                </ul>
+            </div>
         </div>
     </div>
+</nav>
 
+<div class="content-header row">
+    <div class="content-header-left col-md-6 col-12 mb-2"
+         style="padding-top:20px">
+        <h3 class="content-header-title">Form Kepuasan Pelanggan</h3>
+    </div>
 </div>
 <div class="row">
     &nbsp;
@@ -165,10 +164,15 @@ $this->load->view('template/head');
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" nam*e="id" value="<?php echo $id; ?>"/>
-                        <input type="hidden" nam*e="id_project" value="<?php echo $id_project; ?>"/>
-                        <button type="submit" class="btn btn-primary"><?php echo $button ?></button>
-                        <a href="<?php echo site_url('progres_kepuasan') ?>" class="btn btn-default">Cancel</a>
+                        <div class="modal-footer">
+                            <input type="hidden" name="id" value="<?php echo $id; ?>"/>
+                            <input type="hidden" name="id_project" value="<?php echo $id_project; ?>"/>
+                            <button type="submit" class="btn btn-primary"><?php echo $button ?></button>
+                            <a class="btn btn-danger bg-accent-4 pull-up" type="button"
+                               href="<?php echo site_url('customers/track/order2/') . $id_project ?>"><i
+                                        class="ft-arrow-left white"></i>
+                                Kembali</a>
+                        </div>
                     </form>
                 </div>
             </div>
