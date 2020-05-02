@@ -34,6 +34,14 @@ $this->load->view('./template/head');
             <div class="card card-body">
                 <div class="card card-transparent">
                     <form action="<?php echo $action; ?>" method="post">
+                        <div class="row" style="padding-bottom: 20px">
+                            <div class="col-lg-12">
+                                <div class="form-group-lg">
+                                    <label class="label-control" style="font-weight: bold">Terima kasih atas kepercayaan anda menggunakan jasa kami, sudikah kiranya anda mengisi Form Kepuasan Pelanggan ini sebagai bahan masukan bagi kami agar kami bisa menjadi lebih baik lagi. Terima kasih.</label>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
@@ -62,7 +70,7 @@ $this->load->view('./template/head');
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="smallint">Info Order <?php echo form_error('info_order') ?></label>
+                                    <label for="smallint">Anda mengetahui informasi tentang perusahaan kami dari : <?php echo form_error('info_order') ?></label>
                                     <select class="form-control" id="info_order" name="info_order"
                                             value="<?php echo $info_order; ?>">
                                         <option value="">---SILAHKAN PILIH---</option>
@@ -83,38 +91,33 @@ $this->load->view('./template/head');
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="varchar">Info Order2 <?php echo form_error('info_order2') ?></label>
-                                    <input type="text" class="form-control" name="info_order2" id="info_order2" placeholder="Info Order2"
-                                           value="<?php echo $info_order2; ?>"/>
+                                    <label for="smallint">Seberapa Puas Anda dengan layanan kami: <?php echo form_error('info_kepuasan') ?></label>
+                                    <select class="form-control" id="info_kepuasan" name="info_kepuasan"
+                                            value="<?php echo $info_kepuasan; ?>">
+                                        <option value="">---SILAHKAN PILIH---</option>
+                                        <option value="0" <?php if ($info_kepuasan == '0'): ?> selected="selected"<?php endif; ?>>
+                                            Sangat Kurang
+                                        </option>
+                                        <option value="1" <?php if ($info_kepuasan == '1'): ?> selected="selected"<?php endif; ?>>
+                                            Kurang
+                                        </option>
+                                        <option value="2" <?php if ($info_kepuasan == '2'): ?> selected="selected"<?php endif; ?>>
+                                            Cukup
+                                        </option>
+                                        <option value="3" <?php if ($info_kepuasan == '3'): ?> selected="selected"<?php endif; ?>>
+                                            Baik
+                                        </option>
+                                        <option value="4" <?php if ($info_kepuasan == '4'): ?> selected="selected"<?php endif; ?>>
+                                            Sangat Baik
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-lg-6 form-group">
-                                <label for="smallint">Info Kepuasan <?php echo form_error('info_kepuasan') ?></label>
-                                <select class="form-control" id="info_kepuasan" name="info_kepuasan"
-                                        value="<?php echo $info_kepuasan; ?>">
-                                    <option value="">---SILAHKAN PILIH---</option>
-                                    <option value="0" <?php if ($info_kepuasan == '0'): ?> selected="selected"<?php endif; ?>>
-                                        Sangat Kurang
-                                    </option>
-                                    <option value="1" <?php if ($info_kepuasan == '1'): ?> selected="selected"<?php endif; ?>>
-                                        Kurang
-                                    </option>
-                                    <option value="2" <?php if ($info_kepuasan == '2'): ?> selected="selected"<?php endif; ?>>
-                                        Cukup
-                                    </option>
-                                    <option value="3" <?php if ($info_kepuasan == '3'): ?> selected="selected"<?php endif; ?>>
-                                        Baik
-                                    </option>
-                                    <option value="4" <?php if ($info_kepuasan == '4'): ?> selected="selected"<?php endif; ?>>
-                                        Sangat Baik
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="col-lg-6 form-group">
-                                <label for="smallint">Status Photo <?php echo form_error('status_photo') ?></label>
+                                <label for="smallint">Bolehkah Foto anda kami posting di media sosial kami dan menandai (tag) akun anda:  <?php echo form_error('status_photo') ?></label>
                                 <select class="form-control" id="status_photo" name="status_photo"
                                         value="<?php echo $status_photo; ?>">
                                     <option value="">---SILAHKAN PILIH---</option>
@@ -129,30 +132,30 @@ $this->load->view('./template/head');
                         </div>
                         <div class="row">
                             <div class="col-lg-8 form-group">
-                                <label for="date">Status Photo Tgl <?php echo form_error('status_photo_tgl') ?></label>
-                                <input type="text" class="form-control" name="status_photo_tgl" id="status_photo_tgl"
-                                       placeholder="Status Photo Tgl" value="<?php echo $status_photo_tgl; ?>" />
+                                <label for="date">Alamat instagram anda: <?php echo form_error('status_ig') ?></label>
+                                <input type="text" class="form-control" name="status_ig" id="status_ig"
+                                       placeholder="Alamat instagram anda" value="<?php echo $status_ig; ?>" />
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-8 form-group">
-                                <label for="varchar">Status Fb <?php echo form_error('status_fb') ?></label>
+                                <label for="varchar">Alamat Facebook anda: <?php echo form_error('status_fb') ?></label>
                                 <input type="text" class="form-control" name="status_fb" id="status_fb" placeholder="Status Fb"
                                        value="<?php echo $status_fb; ?>" />
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-8 form-group">
-                                <label for="varchar">Status Ig <?php echo form_error('status_ig') ?></label>
-                                <input type="text" class="form-control" name="status_ig" id="status_ig" placeholder="Status Ig"
-                                       value="<?php echo $status_ig; ?>" />
+                                <label for="varchar">Saran yang ingin anda sampaikan untuk kami: (Pelayanan dan fasilitas tambahan yang diinginkan) <?php echo form_error('info_order2') ?></label>
+                                <input type="text" class="form-control" name="info_order2" id="info_order2" placeholder="Saran yang ingin anda sampaikan untuk kami"
+                                       value="<?php echo $info_order2; ?>"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="varchar">Referensi Nama <?php echo form_error('referensi_nama') ?></label>
-                                    <input type="text" class="form-control" name="referensi_nama" id="referensi_nama" placeholder="Referensi Nama"
+                                    <label for="varchar">Referensi teman anda <?php echo form_error('referensi_nama') ?></label>
+                                    <input type="text" class="form-control" name="referensi_nama" id="referensi_nama" placeholder="Referensi teman anda"
                                            value="<?php echo $referensi_nama; ?>"/>
                                 </div>
                             </div>

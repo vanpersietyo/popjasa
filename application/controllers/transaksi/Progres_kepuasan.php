@@ -248,6 +248,9 @@ class Progres_kepuasan extends CI_Controller
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
+    function cetak_form($id) {
+
+    }
 }
 
 /* End of file Progres_kepuasan.php */

@@ -124,6 +124,18 @@ $this->load->view('template/head');
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label>Penerima:</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="penerima" id="penerima" value="<?php echo $penerima; ?>"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-lg-8 col-md-6 col-xg-4">
                                     <div class="form-group">
                                         <label>KETERANGAN:</label>
