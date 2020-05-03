@@ -15,7 +15,21 @@ class M_labarugi extends CI_Model {
 		WHERE kd_cabang='$cabang'
 		and STR_TO_DATE(tgl_input,'%Y-%m-%d') >= DATE('$tgl1')
 		and STR_TO_DATE(tgl_input,'%Y-%m-%d') <= DATE('$tgl2')
-        and nm_rekbiaya not in ('HPP POPJASA','HPP JASAMURA')
+        and id_jns_rekbiaya not in ('HPP01','HPP02','ZIS')
+		GROUP BY nm_rekbiaya
+			");
+        return $query->result();
+    }
+
+    public function zis($tgl1,$tgl2){
+        $cabang=$this->session->userdata('cabang');
+        $query=$this->db->query("
+		SELECT nm_rekbiaya,sum(harga) as pengeluaran,keterangan
+		FROM v_pengeluaran
+		WHERE kd_cabang='$cabang'
+		and STR_TO_DATE(tgl_input,'%Y-%m-%d') >= DATE('$tgl1')
+		and STR_TO_DATE(tgl_input,'%Y-%m-%d') <= DATE('$tgl2')
+        and id_jns_rekbiaya in ('ZIS')
 		GROUP BY nm_rekbiaya
 			");
         return $query->result();

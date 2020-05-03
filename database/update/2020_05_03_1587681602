@@ -1,0 +1,17 @@
+CREATE OR REPLACE VIEW v_pengeluaran AS
+  select `b`.`keterangan` AS `ket_periode`,
+  `b`.`kd_cabang` AS `kd_cabang`,
+  `a`.`id_dtlrekbiaya` AS `id_dtlrekbiaya`,
+  `a`.`id_trs_rekbiaya` AS `id_trs_rekbiaya`,
+  `a`.`id_rekbiaya` AS `id_rekbiaya`,`a`.
+  `harga` AS `harga`,
+  `a`.`qty` AS `qty`,
+  `a`.`tgl_input` AS `tgl_input`,
+  `a`.`inputby` AS `inputby`,
+  `a`.`keterangan` AS `keterangan`,
+  `c`.`nm_rekbiaya` AS `nm_rekbiaya`,
+  `c`.`id_jns_rekbiaya` AS `id_jns_rekbiaya`
+  from ((`trs_detail_rekening_biaya` `a` join `trs_rekening_biaya` `b` on(`a`.`id_trs_rekbiaya` = `b`.`id_trs_rekbiaya`))
+  join `m_rekening_biaya` `c` on(`a`.`id_rekbiaya` = `c`.`id_rekbiaya`))
+
+insert into log_update(script_name,note) values ("2020_05_03_1587681602.txt","update view rekening biaya");
