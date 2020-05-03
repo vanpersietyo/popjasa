@@ -83,7 +83,7 @@ class M_Customer extends CI_Model {
 	public function get_user_contacted(){
 		$query=$this->db->query("
 			select *
-			from m_customer where status in (1,2,3)
+			from m_customer where status =1
 			");
 		return $query->result();
 	}
@@ -91,7 +91,7 @@ class M_Customer extends CI_Model {
 	function count_filtered_contacted(){
 		$query=$this->db->query("
 			select *
-			from m_customer where status in (1,2,3)
+			from m_customer where status = 1
 			");
 		return $query->num_rows();
 	}
@@ -99,7 +99,7 @@ class M_Customer extends CI_Model {
 	public function count_all_contacted(){
 		$query=$this->db->query("
 			select *
-			from m_customer where status in (1,2,3)
+			from m_customer where status = 1
 			");
 		return $query->num_rows();
 	}
