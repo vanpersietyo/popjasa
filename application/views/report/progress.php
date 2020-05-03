@@ -162,6 +162,16 @@
                         <br>NO FAX : <br> <?= $dokumen->No_Fax ?> <br>
                         <br>KEL : <br> <?= $dokumen->kelurahan ?> <br>
                         <br>KOTA/KABUPATEN : <br> <?= "$dokumen->kota / $dokumen->kabupaten" ?> <br>
+                        <br>DENGAN / TANPA PERSETUJUAN KOMANDITER <br>
+                        <br>DIKUASAKAN / TIDAK DIKUASAKAN <br>
+                        <br>AMBIL SURAT KUASA TGL : <br>
+                        <br>TTD MINUTA TGL : <br>
+                        <br>TANDA TANGAN <br>
+                        <br><br>
+                        <br><br>
+                        <br><br>
+                        <br>(                    )<br>
+                        <br>PENERIMA : <?= $dokumen->penerima ?><br>
                     </td>
 
                     <!--DITERIMA -->

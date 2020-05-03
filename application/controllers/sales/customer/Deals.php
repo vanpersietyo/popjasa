@@ -35,6 +35,7 @@ class Deals extends CI_Controller{
 														// <a class="dropdown-item" href="javascript:void(0)" onclick="delete_person('."'".$d->id_customer."'".')"><i class="ft-trash"></i> Delete</a>
 			$row[] = $d->id_customer;
 			$row[] = $d->nm_customer;
+            $row[] = $d->nm_perusahaan;
 			$row[] = $d->tlp_customer;
 			$row[] = $d->telp2_customer;
 			$row[] = $d->email_customer;

@@ -52,6 +52,7 @@
                         <th></th>
                         <th>ID Customer</th>
                         <th>Nama Customer</th>
+                        <th>Nama Perusahaan</th>
                         <th>Telp</th>
                         <th>Mobile</th>
                         <th>Email</th>

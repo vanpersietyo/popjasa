@@ -52,6 +52,7 @@
                         <th></th>
                         <th>ID Customer</th>
                         <th>Nama Customer</th>
+                        <th>Nama Perusahaan</th>
                         <th>Telp</th>
                         <th>Mobile</th>
                         <th>Email</th>
@@ -152,6 +153,7 @@ function view(id){
             $('[name="id"]').val(data.id_customer);
             $('[name="id_customer"]').val(data.id_customer);
             $('[name="nm_customer"]').val(data.nm_customer);
+            $('[name="nm_perusahaan"]').val(data.nm_perusahaan);
             $('[name="tlp_customer"]').val(data.tlp_customer);
             $('[name="telp2_customer"]').val(data.telp2_customer);
             $('[name="email_customer"]').val(data.email_customer);
@@ -301,10 +303,17 @@ function project(ID){
 
                          <div class="form-group">
                             <div class="row">
-                             <label class="control-label col-md-3">Nama Customer</label>
-                             <div class="col-md-12">
-                                 <input name="nm_customer" placeholder="Nama Customer .." class="form-control" type="text" disabled>
-                                 <div class="NOTIF_ERROR_nm_customer"></div>
+                             <div class="col-lg-6">
+                                 <label>Nama Customer</label>
+                                     <input name="nm_customer" placeholder="Nama Customer .." class="form-control" type="text" disabled>
+                                     <div class="NOTIF_ERROR_nm_customer"></div>
+                             </div>
+                             <div class="col-lg-6">
+                                <label>Nama Perusahaan</label>
+
+                                    <input name="nm_customer" placeholder="Nama Customer .." class="form-control" type="text" disabled>
+                                    <div class="NOTIF_ERROR_nm_customer"></div>
+
                              </div>
                             </div>
 

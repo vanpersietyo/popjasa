@@ -47,6 +47,7 @@ class Contacted extends CI_Controller{
 			                      </div>';
 			$row[] = $d->id_customer;
 			$row[] = $d->nm_customer;
+			$row[] = $d->nm_perusahaan;
 			$row[] = $d->tlp_customer;
 			$row[] = $d->telp2_customer;
 			$row[] = $d->email_customer;

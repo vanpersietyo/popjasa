@@ -65,6 +65,7 @@
                         <th></th>
                         <th>ID Customer</th>
                         <th>Nama Customer</th>
+                        <th>Nama Perusahaan</th>
                         <th>Telp</th>
                         <th>Mobile</th>
                         <th>Email</th>
@@ -174,6 +175,7 @@ function deals(id){
             $('[name="id"]').val(data.id_customer);
             $('[name="id_customer"]').val(data.id_customer);
             $('[name="nm_customer"]').val(data.nm_customer);
+            $('[name="nm_perusahaan"]').val(data.nm_perusahaan);
             $('[name="alamat"]').val(data.alamat);
             $('[name="nm_perusahaan"]').val(data.nm_perusahaan);
             $('[name="alamat_perusahaan"]').val(data.alamat_perusahaan);
