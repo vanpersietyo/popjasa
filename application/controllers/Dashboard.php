@@ -133,8 +133,8 @@ class Dashboard extends CI_Controller
         $data['tgl_penjualan']          = $a;
         $data['jml_penjualan']          = $b;
         $data['omz_penjualan_month']    = implode(",", $omz_penjualan_month);
-        $data['piutang_outstanding_doc_not_finish'] = $this->M_dir->outstanding_not_finish_findByMonth($date_month);
-        $data['piutang_outstanding_doc_finish'] = $this->M_dir->outstanding_finish_findByMonthFinish($date_month);
+        $data['piutang_outstanding_doc_not_finish'] = $this->M_dir->outstanding_not_finish_findByMonth();
+        $data['piutang_outstanding_doc_finish'] = $this->M_dir->outstanding_finish_findByMonthFinish();
         $data['top_sales_layanan'] = $this->M_dir->top_sales_by_month($date_month);
         $data['pages']                  = 'dashboard/chart';
         $this->load->view('layout', $data);

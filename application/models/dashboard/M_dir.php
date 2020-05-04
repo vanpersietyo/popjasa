@@ -124,23 +124,21 @@ class M_dir extends CI_Model {
       return $query->result();
     }
 
-    function outstanding_not_finish_findByMonth($month){
+    function outstanding_not_finish_findByMonth(){
         $cabang=$this->session->userdata('cabang');
         $query=$this->db->query("
         SELECT Periode, nm_customer, nama_layanan, jml_order, harga_jual, jumlah_pay, sisa
         FROM v_outstanding_doc_not_finish
-        WHERE STR_TO_DATE(tgl_input,'%Y-%m')=DATE('$month')
         GROUP BY STR_TO_DATE(tgl_input,'%Y-%m')
       ");
         return $query->result();
     }
 
-    function outstanding_finish_findByMonthFinish($month){
+    function outstanding_finish_findByMonthFinish(){
         $cabang=$this->session->userdata('cabang');
         $query=$this->db->query("
         SELECT Periode, nm_customer, nama_layanan, jml_order, harga_jual, jumlah_pay, sisa
         FROM v_outstanding_doc_finish
-        WHERE STR_TO_DATE(tgl_input,'%Y-%m')=DATE('$month')
         GROUP BY STR_TO_DATE(tgl_input,'%Y-%m')
       ");
         return $query->result();
@@ -152,7 +150,7 @@ class M_dir extends CI_Model {
         $sql ="
         SELECT Periode, nm_customer, nama_layanan, sum(jml_order) as qty, harga_jual, sum(jumlah_pay) as bayar, sum(sisa) as outstanding
         FROM v_outstanding_doc_not_finish
-        WHERE DATE_FORMAT(tgl_input,'%Y-%m')='$date' and kd_cabang = '$cabang'
+        WHERE kd_cabang = '$cabang'
         GROUP BY nm_customer, nama_layanan
        ";
         $query=$this->db->query($sql);
@@ -165,7 +163,7 @@ class M_dir extends CI_Model {
         $sql ="
         SELECT Periode, nm_customer, nama_layanan, sum(jml_order) as qty, harga_jual, sum(jumlah_pay) as bayar, sum(sisa) as outstanding
         FROM v_outstanding_doc_not_finish
-        WHERE DATE_FORMAT(tgl_input,'%Y-%m')='$date' and kd_cabang = '$cabang'
+        WHERE kd_cabang = '$cabang'
         GROUP BY nm_customer, nama_layanan
        ";
         $query=$this->db->query($sql);
