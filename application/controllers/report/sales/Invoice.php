@@ -133,7 +133,7 @@ class Invoice extends CI_Controller {
 										if($hdr->st_project==1){
                                             $pdf->Cell(0,5,"POPJASA SURABAYA",0,2,'C');
                                         }else{
-                                            $pdf->Cell(0,5,"JASAMURAH SURABAYA",0,2,'C');
+                                            $pdf->Cell(0,5,"JASAMURA SURABAYA",0,2,'C');
                                         }
 
 											$pdf->SetFont('Arial','B',7);
