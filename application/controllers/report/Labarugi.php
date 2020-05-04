@@ -44,6 +44,8 @@ class Labarugi extends CI_Controller
         $pdf = new FPDF('l', 'mm', 'A4');
         // membuat halaman baru
         $pdf->AddPage('P');
+        $pdf->Image(base_url() . 'assets/app-assets/vendors/logo/jasamurah.png', 160, 10, 0, 20);
+        $pdf->Image(base_url() . 'assets/app-assets/vendors/logo/popjasa.png', 10, 10, 0, 20);
         $pdf->SetFont('Times', 'B', 16);
         // mencetak string
         $sysdate = date('d/m/Y H:i');
@@ -160,10 +162,18 @@ class Labarugi extends CI_Controller
                 M_v_trs_detail_rekening_biaya::id_jns_rekbiaya =>  'HPP02',
             ]);
 
+        $zis    = $this->M_v_trs_detail_rekening_biaya->sum(
+            M_v_trs_detail_rekening_biaya::harga,[
+            M_v_trs_detail_rekening_biaya::tgl_input.' >=' => $TGL01,
+            M_v_trs_detail_rekening_biaya::tgl_input.' <=' => $TGL02,
+            M_v_trs_detail_rekening_biaya::id_jns_rekbiaya =>  'ZIS',
+        ]);
+
         $hji    = array_sum($SUM_GAJI);
         $pgl    = array_sum($SUMPENGELUARAN);
         $hhppji = $hppPopJasa;
         $phppgl = $hppJasaMura;
+        $sumzis = $zis;
         $totalkeluar = (array_sum($SUM_JUM_BIAYA) + array_sum($SUM_JUM_jasmurah));
 
         $pdf->Cell(10, 5, '', 0, 1);
@@ -236,9 +246,31 @@ class Labarugi extends CI_Controller
         $pdf->Cell(128, 5, ': Rp. ', 0, 0, 'R');
         $pdf->Cell(20, 5, number_format(array_sum($jum_keluar)), 0, 1, 'L');
 
+        $pdf->Cell(10, 5, '', 0, 1);
+        $pdf->Cell(10, 5, '', 0, 1);
+        $pdf->SetTextColor(255,255,255);
+        $pdf->Cell(87, 5, 'BIAYA ZIS(ZAKAT / INFAQ / SODAQOH)', 1, 0, 'L',true);
+        $prosentase_5 = $total_omz2 ? $sumzis / $total_omz2 * 100 : 0;
+        $echo_p5 = number_format($prosentase_5);
+        $pdf->Cell(30, 5, "$echo_p5 %", 1, 1, 'R',true);
+        $zakatinfqsdkh = $this->M_labarugi->zis($TGL01, $TGL02);
+        $pdf->SetTextColor(0,0,0);
+        $jum_zis = [];
+        foreach ($zakatinfqsdkh as $resltzis) {
+            $pdf->Cell(95, 5, "- $resltzis->nm_rekbiaya", 0, 0, 'L');
+            $pdf->Cell(1, 5, ": Rp.  ", 0, 0, 'R');
+            $uang_zis = number_format($resltzis->pengeluaran, 0, ",", ".");
+            $jum_zis[] = $resltzis->pengeluaran;
+            $pdf->Cell(20, 5, "$uang_zis", 0, 1, 'R');
+        }
+        $pdf->Cell(80, 5, '___________________________________________________________________________ +', 0, 1, 'L');
+        $pdf->Cell(128, 5, ': Rp. ', 0, 0, 'R');
+        $pdf->Cell(20, 5, number_format(array_sum($jum_zis)), 0, 1, 'L');
+
+
         $pdf->Cell(80, 5, '___________________________________________________________________________________________________ +', 0, 1, 'L');
         $pdf->Cell(160, 5, 'TOTAL PENGELUARAN  :', 0, 0, 'R');
-        $tot_pengeluaran = $hhppji + $pgl + $pgl + $phppgl;
+        $tot_pengeluaran = $hhppji + $phppgl+array_sum($SUM_thp)+array_sum($jum_keluar)+array_sum($jum_zis);
         $t_out = number_format($tot_pengeluaran);
         $pdf->Cell(20, 5, "Rp.  $t_out", 0, 1, 'L');
 
