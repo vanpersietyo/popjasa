@@ -12,6 +12,6 @@ CREATE OR REPLACE VIEW v_pengeluaran AS
   `c`.`nm_rekbiaya` AS `nm_rekbiaya`,
   `c`.`id_jns_rekbiaya` AS `id_jns_rekbiaya`
   from ((`trs_detail_rekening_biaya` `a` join `trs_rekening_biaya` `b` on(`a`.`id_trs_rekbiaya` = `b`.`id_trs_rekbiaya`))
-  join `m_rekening_biaya` `c` on(`a`.`id_rekbiaya` = `c`.`id_rekbiaya`))
+  join `m_rekening_biaya` `c` on(`a`.`id_rekbiaya` = `c`.`id_rekbiaya`));
 
 insert into log_update(script_name,note) values ("2020_05_03_1587681602.txt","update view rekening biaya");
