@@ -5,9 +5,9 @@ $query_builder = TRUE;
 
 $db['default']  = array(
     'hostname'  => getenv('DB_HOST') ?: 'localhost',
-    'username'  => getenv('DB_USER') ?: 'root',
-    'password'  => getenv('DB_PASS') ?: '',
-    'database'  => getenv('DB_NAME') ?: 'popjasa    ',
+    'username'  => getenv('DB_USER') ?: 'fokt6383_nuhapos',
+    'password'  => getenv('DB_PASS') ?: 'bismillah123',
+    'database'  => getenv('DB_NAME') ?: 'fokt6383_nuhapos',
     'port'      => getenv('DB_PORT') ?: '3306',
     'dbdriver'  => getenv('DB_DRIVER') ?: 'mysqli',
     'dbprefix'  => '',
