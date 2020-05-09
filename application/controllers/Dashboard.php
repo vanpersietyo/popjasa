@@ -110,18 +110,6 @@ class Dashboard extends CI_Controller
         $pengeluaran= $gaji + $pgl + $hppPopjasa + $hppJasamura + $zis;
         $labaBersih = $pemasukan - $pengeluaran;
 
-//        var_dump($omzPopjasa);
-//        var_dump($omzJasamura);
-//        var_dump($gaji);
-//        var_dump($pgl);
-//        var_dump($hppPopjasa);
-//        var_dump($hppJasamura);
-//        var_dump($zis);
-//        var_dump($pemasukan);
-//        var_dump($pengeluaran);
-//        var_dump($labaBersih);
-//        die();
-
         $penjualan_days         = $this->M_dir->omzet_group_day();
         $x = 1;
         $jml_penjualan  = [];
@@ -166,6 +154,22 @@ class Dashboard extends CI_Controller
         $data['piutang_outstanding_doc_finish']     = $this->M_dir->outstanding_finish_findByMonthFinish();
         $data['top_sales_layanan']      = $this->M_dir->top_sales_by_month($date_month);
         $data['pages']                  = 'dashboard/chart';
+
+        $kategori 		= [];
+        $kategori_omzet = [];
+        $kategori_warna = [];
+
+        $list = $this->M_dir->top_sales_layanan();
+        foreach ($list as $d) {
+            $kategori[]  = $d->nama_layanan;
+            $kategori_omzet[] 	= $d->hrg_jual;
+            $kategori_warna[] 	= $this->random_color();
+        }
+
+        $data['grafik_omzet_group_ktg_kategori']= json_encode($kategori);
+        $data['grafik_omzet_group_ktg_omzet'] 	= json_encode($kategori_omzet);
+        $data['grafik_omzet_group_ktg_warna'] 	= json_encode($kategori_warna);
+
         $this->load->view('layout', $data);
     }
 
@@ -294,7 +298,6 @@ class Dashboard extends CI_Controller
             $row[]  = $d->nama_layanan;
             $row[]  = number_format($d->qty);
             $row[]  = number_format($d->hrg_jual);
-            $row[]  = number_format($d->omzet);
             $data[] = $row;
             $no++;
         }
@@ -302,5 +305,15 @@ class Dashboard extends CI_Controller
             "data" => $data,
         ];
         echo json_encode($output);
+    }
+
+    function random_color()
+    {
+        $chars = 'ABCDEF0123456789';
+        $color = '#';
+        for ($i = 0; $i < 6; $i++) {
+            $color .= $chars[mt_rand(0, strlen($chars) - 1)];
+        }
+        return $color;
     }
 }

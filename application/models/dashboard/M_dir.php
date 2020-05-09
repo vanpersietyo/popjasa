@@ -189,6 +189,7 @@ class M_dir extends CI_Model {
         FROM v_top_sales_layanan
         WHERE DATE_FORMAT(tgl_input,'%Y-%m')='$date' and kd_cabang = '$cabang'
         GROUP BY STR_TO_DATE(tgl_input,'%Y-%m'), nama_layanan desc
+        ORDER BY hrg_jual,qty desc
        ";
         $query=$this->db->query($sql);
         return $query->result();

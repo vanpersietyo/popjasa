@@ -10,8 +10,28 @@
   <script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/core/app.js')?>"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/scripts/customizer.js')?>"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/scripts/ui/breadcrumbs-with-stats.js')?>"></script>
-
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/charts/chart.min.js')?>"></script>
   <script>
+      $(window).on("load", (function() {
+          var a = $("#simple-pie-chart");
+          new Chart(a, {
+              type: "pie",
+              options: {
+                  responsive: !0,
+                  maintainAspectRatio: !1,
+                  responsiveAnimationDuration: 500
+              },
+              data: {
+                  labels:<?php echo $grafik_omzet_group_ktg_kategori?>,
+                  datasets: [{
+                      label: "My First dataset",
+                      data: <?php echo $grafik_omzet_group_ktg_omzet?>,
+                      backgroundColor: <?php echo $grafik_omzet_group_ktg_warna?>
+                  }]
+              }
+          })
+      }));
+
 $(window).on("load", function(){
     $('#recent-buyers, #new-orders').perfectScrollbar({
         wheelPropagation: true

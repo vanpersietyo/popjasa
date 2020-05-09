@@ -367,52 +367,66 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-12">
+            <div class="row match-height">
+                <div class="col-xl-6 col-lg-12">
                     <div class="card">
-                        <div class="card card-body">
-                            <div class="col-lg-6 col-xl-6 col6">
-                                <!-- Table product top ten sales -->
-                                <div class="card-header" style="padding-bottom: 0">
-
-                                    <div class="row">
-                                        <div class="col-lg-8">
-                                            <button class="btn btn-md btn-danger box-shadow-2 round">TOP 10 TOTAL PENJUALAN
-                                            </button>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <input id="search_top_sales_layanan" type="text" class="search form-control"
-                                                   data-toggle="tooltip" data-original-title="Cari TOP 10"
-                                                   placeholder="TOP 10 TOTAL PENJUALAN">
-                                        </div>
-                                    </div>
+                        <div class="card-header" style="padding-bottom: 0">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <button class="btn btn-md btn-danger box-shadow-2 round">TOP 10 PENJUALAN
+                                    </button>
                                 </div>
-                                <div class="card-content">
-                                    <div class="table-responsive">
-                                        <table id="top_sales_layanan" class="table table-hover table-xl mb-0"
-                                               style="width: 100%;" align="center">
-                                            <thead>
-                                            <tr>
-                                                <th class="border-top-0">NO</th>
-                                                <th class="border-top-0">PRODUK</th>
-                                                <th class="border-top-0">QTY</th>
-                                                <th class="border-top-0">TOTAL</th>
-                                                <th class="border-top-0">PROFIT</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                <div class="col-lg-4">
+                                    <input id="search_top_sales_layanan" type="text" class="search form-control"
+                                           data-toggle="tooltip" data-original-title="Cari TOP 10"
+                                           placeholder="TOP 10 PENJUALAN">
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-xl-6 col6">
-                                <!-- Table grafik penjualan -->
+                        </div>
+                        <hr>
+                        <div class="card-content">
+                            <div class="media-list position-relative">
+                                <div class="table-responsive">
+                                    <table id="top_sales_layanan" class="table table-hover table-xl mb-0"
+                                           style="width: 100%;" align="center">
+                                        <thead>
+                                        <tr>
+                                            <th class="border-top-0">NO</th>
+                                            <th class="border-top-0">PRODUK</th>
+                                            <th class="border-top-0">QTY</th>
+                                            <th class="border-top-0">OMZET</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-12">
+                    <div class="card">
+                        <div class="card-header" style="padding-bottom: 0">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <button class="btn btn-md btn-danger box-shadow-2 round">GRAFIK TOP 10 PENJUALAN
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <hr style="margin-bottom: 0">
+                        <div class="card-content">
+                            <div class="card-body"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                <canvas id="simple-pie-chart" height="400" width="304" class="chartjs-render-monitor" style="display: block; width: 304px; height: 400px;"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <!--/Penjualan Per Kategori -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
