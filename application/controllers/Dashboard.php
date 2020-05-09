@@ -20,24 +20,25 @@ class Dashboard extends CI_Controller
             $this->hrd();
             exit();
         }
+        $this->load->model('transaksi/keuangan/M_v_trs_detail_rekening_biaya');
         //omzet
         $param  = date('01-m-Y');
         $param2 = date('31-m-Y');
         $TGL01  = date("Y-m-d", strtotime($param));
         $TGL02  = date("Y-m-d", strtotime($param2));
 
-        $pj         = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '1');
-        $SUMPOPJASA = [];
+        $pj         = $this->M_labarugi->pemasukanProject($TGL01, $TGL02, '1');
+        $SUMPOPJASA = 0;
         foreach ($pj as $pj) {
-            $SUMPOPJASA[] = $pj->profit;
+            $SUMPOPJASA += $pj->profit;
         }
 
-        $jm             = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '2');
-        $SUMJASAMURAH   = [];
+        $jm     = $this->M_labarugi->pemasukanProject($TGL01, $TGL02, '2');
+        $SUMJASAMURAH   = 0;
         foreach ($jm as $jm) {
-            $SUMJASAMURAH[] = $jm->profit;
+            $SUMJASAMURAH += $jm->profit;
         }
-//        $gj = $this->M_labarugi->select_karyawan($TGL01, $TGL02, '1');
+
         $gj         = $this->M_labarugi->select_karyawan();
         $SUM_GAJI   = [];
         foreach ($gj as $gj) {
@@ -45,7 +46,7 @@ class Dashboard extends CI_Controller
             $tunjangan  = $this->M_labarugi->select_tunjangan($gj->id_karyawan);
             $bonus      = $this->M_labarugi->select_bonus($gj->id_karyawan);
             $gaji       = $gj->jml_gaji;
-            $thp        = (($gaji + $bonus->bonus + $tunjangan->tunjangan) - $potongan->potongan);
+            $thp        = $gaji ? (($gaji + $bonus->bonus + $tunjangan->tunjangan) - $potongan->potongan) : 0;
             $SUM_GAJI[] = $thp;
         }
 
@@ -55,22 +56,9 @@ class Dashboard extends CI_Controller
             $SUMPENGELUARAN[] = $uk->pengeluaran;
         }
 
-        $hpppj          = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '1');
-        $SUMHPPPOPJASA  = [];
-        foreach ($hpppj as $hpppj) {
-            $SUMHPPPOPJASA[] = $hpppj->hpp;
-        }
-
-        $hppjm              = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '2');
-        $SUMHHPPJASAMURAH   = [];
-        foreach ($hppjm as $hppjm) {
-            $SUMHHPPJASAMURAH[] = $hppjm->hpp;
-        }
-
         $keluar     = $this->M_labarugi->uang_keluar($TGL01, $TGL02);
         $jum_keluar = [];
         foreach ($keluar as $keluar) {
-            $uang_keluar = number_format($keluar->pengeluaran, 0, ",", ".");
             $jum_keluar[] = $keluar->pengeluaran;
         }
 
@@ -85,13 +73,54 @@ class Dashboard extends CI_Controller
             $SUM_thp[]  = $thp;
         }
 
-        $hji    = array_sum($SUM_GAJI);
-        $pgl    = array_sum($SUMPENGELUARAN);
-        $hhppji = array_sum($SUMHPPPOPJASA);
-        $phppgl = array_sum($SUMHHPPJASAMURAH);
-        $a      = (array_sum($SUMPOPJASA) + array_sum($SUMJASAMURAH));
+        $a      = $SUMPOPJASA + $SUMJASAMURAH;
         $b      = (array_sum($jum_keluar) + array_sum($SUM_thp));
         $laba   = $a - $b;
+
+        $hppPopJasa     = $this->M_v_trs_detail_rekening_biaya->sum(
+            M_v_trs_detail_rekening_biaya::harga,[
+            M_v_trs_detail_rekening_biaya::tgl_input.' >=' => $TGL01,
+            M_v_trs_detail_rekening_biaya::tgl_input.' <=' => $TGL02,
+            M_v_trs_detail_rekening_biaya::id_jns_rekbiaya =>  'HPP01',
+        ]);
+
+        $hppJasaMura     = $this->M_v_trs_detail_rekening_biaya->sum(
+            M_v_trs_detail_rekening_biaya::harga,[
+            M_v_trs_detail_rekening_biaya::tgl_input.' >=' => $TGL01,
+            M_v_trs_detail_rekening_biaya::tgl_input.' <=' => $TGL02,
+            M_v_trs_detail_rekening_biaya::id_jns_rekbiaya =>  'HPP02',
+        ]);
+
+        $zis    = $this->M_v_trs_detail_rekening_biaya->sum(
+            M_v_trs_detail_rekening_biaya::harga,[
+            M_v_trs_detail_rekening_biaya::tgl_input.' >=' => $TGL01,
+            M_v_trs_detail_rekening_biaya::tgl_input.' <=' => $TGL02,
+            M_v_trs_detail_rekening_biaya::id_jns_rekbiaya =>  'ZIS',
+        ]);
+
+        $omzPopjasa = $SUMPOPJASA               ?: 0;
+        $omzJasamura= $SUMJASAMURAH             ?: 0;
+        $gaji       = array_sum($SUM_GAJI)      ?: 0 ;
+        $pgl        = array_sum($SUMPENGELUARAN)?: 0;
+        $hppPopjasa = $hppPopJasa               ?: 0;
+        $hppJasamura= $hppJasaMura              ?: 0;
+        $zis        = $zis                      ?: 0;
+
+        $pemasukan  = $omzPopjasa + $omzJasamura;
+        $pengeluaran= $gaji + $pgl + $hppPopjasa + $hppJasamura + $zis;
+        $labaBersih = $pemasukan - $pengeluaran;
+
+//        var_dump($omzPopjasa);
+//        var_dump($omzJasamura);
+//        var_dump($gaji);
+//        var_dump($pgl);
+//        var_dump($hppPopjasa);
+//        var_dump($hppJasamura);
+//        var_dump($zis);
+//        var_dump($pemasukan);
+//        var_dump($pengeluaran);
+//        var_dump($labaBersih);
+//        die();
 
         $penjualan_days         = $this->M_dir->omzet_group_day();
         $x = 1;
@@ -127,15 +156,15 @@ class Dashboard extends CI_Controller
         $data['cust_lost']              = $this->M_dir->cust_lost();
         $data['target']                 = $this->M_login->target_today();
         $data['laba']                   = $laba;
-        $data['omz_popjasa']            = array_sum($SUMPOPJASA);
-        $data['omz_jasamurah']          = array_sum($SUMJASAMURAH);
-        $data['omzet']                  = array_sum($SUMJASAMURAH) + array_sum($SUMPOPJASA);
+        $data['omz_popjasa']            = $SUMPOPJASA;
+        $data['omz_jasamurah']          = $SUMJASAMURAH;
+        $data['omzet']                  = $SUMJASAMURAH + $SUMPOPJASA;
         $data['tgl_penjualan']          = $a;
         $data['jml_penjualan']          = $b;
         $data['omz_penjualan_month']    = implode(",", $omz_penjualan_month);
         $data['piutang_outstanding_doc_not_finish'] = $this->M_dir->outstanding_not_finish_findByMonth();
-        $data['piutang_outstanding_doc_finish'] = $this->M_dir->outstanding_finish_findByMonthFinish();
-        $data['top_sales_layanan'] = $this->M_dir->top_sales_by_month($date_month);
+        $data['piutang_outstanding_doc_finish']     = $this->M_dir->outstanding_finish_findByMonthFinish();
+        $data['top_sales_layanan']      = $this->M_dir->top_sales_by_month($date_month);
         $data['pages']                  = 'dashboard/chart';
         $this->load->view('layout', $data);
     }

@@ -60,19 +60,19 @@ class Labarugi extends CI_Controller
         $pdf->Cell(280, 5, "Periode     : $periode", 0, 2, 'L');
         $pdf->Cell(280, 5, "Tgl Cetak : $sysdate", 0, 2, 'L');
         $pdf->Cell(280, 5, "Filter        : ($TGL1) - ($TGL2)", 0, 2, 'L');
-        $pdf->Cell(10, 5, '', 0, 1);
+        $pdf->Cell(10, 2, '', 0, 1);
         $pdf->SetFont('Arial', 'B', 12);
         // Memberikan space kebawah agar tidak terlalu rapat
         //header
-        $pdf->Cell(10, 5, '', 0, 1);
+        $pdf->Cell(10, 2, '', 0, 1);
         $pdf->SetFont('Arial', 'B', 8);
 
-        $pj = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '1');
+        $pj = $this->M_labarugi->pemasukanProject($TGL01, $TGL02, '1');
         $SUMPOPJASA = [];
         foreach ($pj as $pj) {
             $SUMPOPJASA[] = $pj->profit;
         }
-        $jm = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '2');
+        $jm = $this->M_labarugi->pemasukanProject($TGL01, $TGL02, '2');
         $SUMJASAMURAH = [];
         foreach ($jm as $jm) {
             $SUMJASAMURAH[] = $jm->profit;
@@ -91,7 +91,9 @@ class Labarugi extends CI_Controller
         $echo_p1 = number_format($prosentase_1);
         $pdf->Cell(30, 5, "$echo_p1 %", 1, 1, 'R',true);
         $pdf->SetTextColor(0,0,0);
-        $popjasa = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '1');
+
+//        $popjasa = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '1');
+        $popjasa = $this->M_labarugi->pemasukanProject($TGL01, $TGL02, '1');
         $SUM_JUM_BIAYA = [];
         foreach ($popjasa as $popjasa) {
             $pdf->Cell(95, 5, "- $popjasa->nm_customer", 0, 0, 'L');
@@ -103,7 +105,7 @@ class Labarugi extends CI_Controller
         $pdf->Cell(80, 5, '___________________________________________________________________________ +', 0, 1, 'L');
         $pdf->Cell(128, 5, ': Rp. ', 0, 0, 'R');
         $pdf->Cell(20, 5, number_format(array_sum($SUM_JUM_BIAYA)), 0, 1, 'L');
-        $pdf->Cell(10, 10, '', 0, 1);
+        $pdf->Cell(10, 5, '', 0, 1);
         $pdf->SetTextColor(255,255,255);
         $pdf->Cell(87, 5, 'OMZET JASAMURA', 1, 0, 'L',true);
 
@@ -112,7 +114,7 @@ class Labarugi extends CI_Controller
         $echo_p2 = number_format($prosentase_2);
         $pdf->Cell(30, 5, "$echo_p2 %", 1, 1, 'R',true);
         $pdf->SetTextColor(0,0,0);
-        $jasmurah = $this->M_labarugi->uang_masuk($TGL01, $TGL02, '2');
+        $jasmurah = $this->M_labarugi->pemasukanProject($TGL01, $TGL02, '2');
         $SUM_JUM_jasmurah = [];
         foreach ($jasmurah as $jasmurah) {
             $pdf->Cell(95, 5, "- $jasmurah->nm_customer", 0, 0, 'L');
@@ -131,14 +133,14 @@ class Labarugi extends CI_Controller
 
         $total_omz2 = (array_sum($SUM_JUM_BIAYA) + array_sum($SUM_JUM_jasmurah));
 
-        $gj = $this->M_labarugi->select_karyawan($TGL01, $TGL02, '1');
+        $gj = $this->M_labarugi->select_karyawan();
         $SUM_GAJI = [];
         foreach ($gj as $gj) {
+            $gaji       = $this->M_labarugi->selectGaji($gj->id_karyawan);
             $potongan   = $this->M_labarugi->select_potongan($gj->id_karyawan);
             $tunjangan  = $this->M_labarugi->select_tunjangan($gj->id_karyawan);
             $bonus      = $this->M_labarugi->select_bonus($gj->id_karyawan);
-            $gaji       = $gj->jml_gaji;
-            $thp        = (($gaji + $bonus->bonus + $tunjangan->tunjangan) - $potongan->potongan);
+            $thp        = $gaji ? (($gaji + $bonus->bonus + $tunjangan->tunjangan) - $potongan->potongan) : 0;
             $SUM_GAJI[] = $thp;
         }
 
@@ -177,7 +179,6 @@ class Labarugi extends CI_Controller
         $totalkeluar = (array_sum($SUM_JUM_BIAYA) + array_sum($SUM_JUM_jasmurah));
 
         $pdf->Cell(10, 5, '', 0, 1);
-        $pdf->Cell(10, 5, '', 0, 1);
         $pdf->Cell(40, 5, 'RINCIAN PENGELUARAN :', 0, 1, 'L');
         $pdf->Cell(10, 5, '', 0, 1);
         $pdf->SetTextColor(255,255,255);
@@ -206,18 +207,21 @@ class Labarugi extends CI_Controller
         $echo_p3 = number_format($prosentase_3);
         $pdf->Cell(30, 5, "$echo_p3 %", 1, 1, 'R',true);
         $pdf->SetTextColor(0,0,0);
+
         $karyawan = $this->M_labarugi->select_karyawan();
         $SUM_thp = [];
         foreach ($karyawan as $karyawan) {
-            $pdf->Cell(95, 5, "- $karyawan->nama_karyawan", 0, 0, 'L');
-            $potongan = $this->M_labarugi->select_potongan($karyawan->id_karyawan);
-            $tunjangan = $this->M_labarugi->select_tunjangan($karyawan->id_karyawan);
-            $bonus = $this->M_labarugi->select_bonus($karyawan->id_karyawan);
-            $gaji = $karyawan->jml_gaji;
-            $thp = (($gaji + $bonus->bonus + $tunjangan->tunjangan) - $potongan->potongan);
-            $SUM_thp[] = $thp;
-            $pdf->Cell(1, 5, ": Rp.  ", 0, 0, 'R');
-            $pdf->Cell(20, 5, number_format($thp), 0, 1, 'R');
+            $gaji       = $this->M_labarugi->selectGaji($karyawan->id_karyawan);
+            if($gaji){
+                $pdf->Cell(95, 5, "- $karyawan->nama_karyawan", 0, 0, 'L');
+                $potongan   = $this->M_labarugi->select_potongan($karyawan->id_karyawan);
+                $tunjangan  = $this->M_labarugi->select_tunjangan($karyawan->id_karyawan);
+                $bonus      = $this->M_labarugi->select_bonus($karyawan->id_karyawan);
+                $thp        = (($gaji + $bonus->bonus + $tunjangan->tunjangan) - $potongan->potongan);
+                $SUM_thp[]  = $thp;
+                $pdf->Cell(1, 5, ": Rp.  ", 0, 0, 'R');
+                $pdf->Cell(20, 5, number_format($thp), 0, 1, 'R');
+            }
         }
         $pdf->Cell(80, 5, '___________________________________________________________________________ +', 0, 1, 'L');
         $pdf->Cell(128, 5, ': Rp. ', 0, 0, 'R');

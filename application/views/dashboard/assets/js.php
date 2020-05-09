@@ -408,7 +408,7 @@ $(document).ready(function() {
         "processing"    : true, //Feature control the processing indicator.
         "paging"        : false,
     });
-    $('#top_sales_layanan_finish_filter').html('');
+    $('#top_sales_layanan_filter').html('');
     $('#search_top_sales_layanan').on('keyup',function(){
         top_sales_layanan.search($(this).val()).draw() ;
     });

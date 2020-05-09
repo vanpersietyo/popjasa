@@ -382,8 +382,8 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <input id="search_top_sales_layanan" type="text" class="search form-control"
-                                                   data-toggle="tooltip" data-original-title="Cari TOP 10 TOTAL PENJUALAN"
-                                                   placeholder="Cari TOP 10 TOTAL PENJUALAN">
+                                                   data-toggle="tooltip" data-original-title="Cari TOP 10"
+                                                   placeholder="TOP 10 TOTAL PENJUALAN">
                                         </div>
                                     </div>
                                 </div>

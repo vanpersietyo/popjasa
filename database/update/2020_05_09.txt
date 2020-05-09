@@ -1,0 +1,4 @@
+INSERT INTO m_jenis_rekening_biaya
+VALUES('ZIS','BIAYA ZIS (ZAKAT/INFAQ/SODAQOH)','',NOW(),NOW(),'SURABAYA');
+
+insert into log_update(script_name,note) values ("2020_05_09.txt","insert zis");
