@@ -49,7 +49,8 @@ class M_labarugi extends CI_Model {
     }
 
     public function pemasukanProject($tgl1,$tgl2,$param){
-        return $this->db->query('
+
+        $query = $this->db->query('
             SELECT
               `a`.`id_project`    AS `id_project`,
               `a`.`st_project`    AS `st_project`,
@@ -78,7 +79,8 @@ class M_labarugi extends CI_Model {
                  ON (`c`.`id_customer` = `a`.`id_customer`))
                  WHERE DATE(a.`tgl_input`) >= ? AND DATE(a.`tgl_input`) <= ? and `a`.`st_project` = ?
             GROUP BY `a`.`id_customer`
-        ',[$tgl1,$tgl2,$param])->result();
+        ',[$tgl1,$tgl2,$param]);
+        return $query ? $query->result() : [];
     }
 
     function select_karyawan(){
