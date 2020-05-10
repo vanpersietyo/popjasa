@@ -474,6 +474,7 @@
                                                 <th class="border-top-0">JUMLAH DEAL</th>
                                                 <th class="border-top-0">JUMLAH BAYAR</th>
                                                 <th class="border-top-0">SISA BAYAR</th>
+                                                <th class="border-top-0"></th>
                                             </tr>
                                             </thead>
                                         </table>
@@ -510,6 +511,7 @@
                                                 <th class="border-top-0">JUMLAH DEAL</th>
                                                 <th class="border-top-0">JUMLAH BAYAR</th>
                                                 <th class="border-top-0">SISA BAYAR</th>
+                                                <th class="border-top-0"></th>
                                             </tr>
                                             </thead>
                                             <tbody>

@@ -55,7 +55,7 @@ label {
                        <?php echo form_open_multipart('transaksi/pembayaran/simpan')?>
                         <div class="form-body">
                           <!-- <h4 class="form-section"><i class="ft-clipboard"></i> Data Expenses</h4> -->
-                             <input type="hidden" value="<?php echo $id_sppd?>" name="id_sppd"/>
+                             <input type="hidden" value="<?php echo $id_project;?>" name="id_project"/>
                                <div class="form-body">
                                  <div class="form-body">
                                        <div class="row">

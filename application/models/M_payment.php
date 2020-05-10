@@ -57,7 +57,7 @@ class M_payment extends CI_Model {
 
 	public function get_totalbayar($id){
 		$query=$this->db->query("
-      select sum(jumlah_pay) as total_bayar from trs_pembayaran where id_project='$id'
+      select ifnull(sum(jumlah_pay),0) as total_bayar from trs_pembayaran where id_project='$id'
 			");
 		return $query->row();
 	}
