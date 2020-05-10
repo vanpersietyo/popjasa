@@ -253,7 +253,7 @@ class Labarugi extends CI_Controller
         $pdf->Cell(10, 5, '', 0, 1);
         $pdf->Cell(10, 5, '', 0, 1);
         $pdf->SetTextColor(255,255,255);
-        $pdf->Cell(87, 5, 'BIAYA ZIS(ZAKAT / INFAQ / SODAQOH)', 1, 0, 'L',true);
+        $pdf->Cell(87, 5, 'BIAYA ZIS (ZAKAT / INFAQ / SODAQOH)', 1, 0, 'L',true);
         $prosentase_5 = $total_omz2 ? $sumzis / $total_omz2 * 100 : 0;
         $echo_p5 = number_format($prosentase_5);
         $pdf->Cell(30, 5, "$echo_p5 %", 1, 1, 'R',true);
