@@ -20,7 +20,7 @@ v_project.id_layanan,
 v_project.nama_layanan,
 count(v_project.id_project) AS `jml_order`,
 v_project.harga_jual,
-b.jumlah_byr,
+b.jumlah_byr as jumlah_pay,
 (v_project.harga_jual - b.jumlah_byr) AS sisa,
 v_project.kd_cabang,v_project.id_project
 FROM
@@ -53,7 +53,7 @@ v_project.id_layanan,
 v_project.nama_layanan,
 count(v_project.id_project) AS `jml_order`,
 v_project.harga_jual,
-b.jumlah_byr,
+b.jumlah_byr as jumlah_pay,
 (v_project.harga_jual - b.jumlah_byr) AS sisa,
 v_project.kd_cabang,v_project.id_project
 FROM
