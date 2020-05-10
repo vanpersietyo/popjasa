@@ -78,6 +78,15 @@
         .size-18 {
             font-size: 18px !important;
         }
+
+        .tg  {border-collapse:collapse;border-spacing:0;width: 100%}
+        .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+            overflow:hidden;padding:10px 5px;word-break:normal;}
+        .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+            font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+        .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:center;}
+        .tg .tg-dvpl{border-color:inherit;text-align:right;vertical-align:top;}
+
     </style>
 </head>
 <body>
@@ -88,23 +97,23 @@
                 <thead style="font-weight: bold">
                 <tr>
                     <?php if ($dokumen->st_project == 1) { ?>
-                        <th class="fontRight" style="width: 10%">
-                            <img width="75px" height="75px"
+                        <th style="width: 10%">
+                            <img width="100px" height="100px"
                                  src="<?php echo base_url('assets/app-assets/vendors/logo/popjasa.png'); ?>" alt="logo">
                         </th>
                         <th class="fontCenter" style="width: 90%">
-                            <h2 align="center">BLANKO PERSYARATAN PERIJINAN USAHA <?= $dokumen->kota_customer ?></h2>
-                            <h3 align="center"><?= $dokumen->nm_customer ?></h3>
+                            <h2 align="center">BLANKO PERSYARATAN PERIJINAN USAHA</h2>
+                            <h3 align="center"><?= $dokumen->nm_customer ?> &nbsp; <?= $dokumen->kota_customer ?></h3>
                         </th>
                     <?php } else { ?>
-                        <th class="fontLeft" style="width: 25%">
-                            <img width="20%"
+                        <th style="width: 10%">
+                            <img width="15%"
                                  src="<?php echo base_url('assets/app-assets/vendors/logo/jasamurah.png'); ?>"
                                  alt="logo">
                         </th>
-                        <th class="fontCenter" style="width: 85%">
-                            <h2 align="center">BLANKO PERSYARATAN PERIJINAN USAHA <?= $dokumen->kota_customer ?></h2>
-                            <h3 align="center"><?= $dokumen->nm_customer ?></h3>
+                        <th style="width: 90% ">
+                            <h2 align="center">BLANKO PERSYARATAN PERIJINAN USAHA</h2>
+                            <h3 align="center"><?= $dokumen->nm_customer ?> &nbsp; <?= $dokumen->kota_customer ?></h3>
                         </th>
                     <?php } ?>
                 </tr>
@@ -112,85 +121,188 @@
             </table>
             <br>
             <!--PENDAPATAN-->
-            <table width="100%" border="1" class="strong">
-                <thead style="font-weight: bold">
+            <table class="tg">
+                <thead>
                 <tr>
-                    <th class="" style="width: 30%">KETERANGAN</th>
-                    <th class="" style="width: 20%">JENIS IJIN</th>
-                    <th class="" style="width: 30%">URAIAN</th>
-                    <th class="" style="width: 30%">TELAH DITERIMA</th>
+                    <th class="tg-0pky" style="text-align: center;font-weight: bold">KETERANGAN</th>
+                    <th class="tg-0pky" style="text-align: center;font-weight: bold">JENIS IJIN</th>
+                    <th class="tg-0pky" style="text-align: center;font-weight: bold">URAIAN</th>
+                    <th class="tg-0pky" style="text-align: center;font-weight: bold">TELAH DITERIMA</th>
                 </tr>
                 </thead>
-                <tbody>
                 <tr>
-                    <!--keterangan-->
-                    <td>
-                        <br>EMAIL USAHA : <br> <?= $dokumen->Ket_Email ?> <br>
-                        <br>PASSWORD : <br> <?= $dokumen->Pass_Email ?><br>
-                        <br>EMAIL DAN NO TELP MASING MASING PENGURUS:
-                        <br> <?= "$dokumen->Email_Pengurus / $dokumen->No_Telp" ?><br>
-                        <br>LUASAN TEMPAT USAHA : <br> <?= $dokumen->Ket_Luas ?><br>
-                        <br>BIDANG USAHA : <br> <?= $dokumen->Ket_Bidang_Usaha ?><br>
-                        <br>BIDANG USAHA UTAMA : <br> <?= $dokumen->Ket_Bidang_Usaha_Utama ?><br>
-                        <?php if ($dokumen->st_project == 1) { ?>
-                            <br> MENGETAHUI <B>POPJASA</B> DARI : <br> <?= $dokumen->Ket_Informasi ?><br>
-                        <?php } else { ?>
-                            <br> MENGETAHUI <B>JASAMURA</B> DARI : <br> <?= $dokumen->Ket_Informasi ?><br>
-                        <?php } ?>
+                    <td class="tg-0pky" style="vertical-align: top">
+                        <table border=0 width="100%">
+                            <tr>
+                                <td style="border: none">EMAIL USAHA : &nbsp; <?= $dokumen->Ket_Email ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">PASSWORD : &nbsp; <?= $dokumen->Pass_Email ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">EMAIL DAN NO TELP MASING MASING PENGURUS : &nbsp;  <?= "$dokumen->Email_Pengurus / $dokumen->No_Telp" ?> </td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">LUASAN TEMPAT USAHA : &nbsp; <?= $dokumen->Ket_Luas ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">BIDANG USAHA : &nbsp; <?= $dokumen->Ket_Bidang_Usaha ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">BIDANG USAHA UTAMA : &nbsp; <?= $dokumen->Ket_Bidang_Usaha ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">
+                                    <?php if ($dokumen->st_project == 1) { ?>
+                                        MENGETAHUI <B>POPJASA</B> DARI : &nbsp;<?= $dokumen->Ket_Informasi ?>
+                                    <?php } else { ?>
+                                        MENGETAHUI <B>JASAMURA</B> DARI : &nbsp;<?= $dokumen->Ket_Informasi ?>
+                                    <?php } ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">&nbsp;</td>
+                            </tr>
+                            <tr><td  style="border: none">KETERANGAN :</td></tr>
+                        </table>
                     </td>
-                    <!--izin-->
-                    <td>
-                        <br>AKTA NOTARIS : <br> <?= $dokumen->Izin_Akta_Notaris ?> <br>
-                        <br>PENGESAHAN : <br> <?= $dokumen->Bool_Izin_Pengesahan ?> <br>
-                        <br>NPWP PRIBADI : <br> <?= $dokumen->Bool_NPWP ?> <br>
-                        <br>NPWP (dikirim) PERUSAHAAN : <br> <?= $dokumen->Bool_NPWP_Perusahaan ?> <br>
-                        <br>SKT NPWP (dikirim) : <br> <?= $dokumen->Bool_SKT_Perusahaan ?> <br>
-                        <br>SIUP & TDP (NIB) : <br> <?= $dokumen->Bool_SIUP_TDP ?> <br>
-                        <br>REGISTRASI : <br> <?= $dokumen->Bool_Registrasi ?> <br>
-                        <br>PKP : <br> <?= $dokumen->Bool_PKP ?> <br>
-                        <br>S.K. DOMISILI : <br> <?= $dokumen->Bool_SK_Domisili ?> <br>
-                        <br>Lain-lain : <br> <?= $dokumen->Izin_Lain ?> <br>
+                    <td class="tg-0pky" style="vertical-align: top">
+                        <table border=0 width="100%">
+                            <tr>
+                                <td style="border: none">AKTA NOTARIS : &nbsp; <?= $dokumen->Izin_Akta_Notaris ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">PENGESAHAN : &nbsp; <?= $dokumen->Bool_Izin_Pengesahan ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">NPWP PRIBADI : &nbsp; <?= $dokumen->Bool_NPWP ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">NPWP (dikirim) PERUSAHAAN : &nbsp; <?= $dokumen->Bool_NPWP_Perusahaan ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">SKT NPWP (dikirim) : &nbsp; <?= $dokumen->Bool_SKT_Perusahaan ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">SIUP &amp; TDP (NIB) : &nbsp; <?= $dokumen->Bool_SIUP_TDP ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">REGISTRASI : &nbsp; <?= $dokumen->Bool_Registrasi ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">PKP : &nbsp; <?= $dokumen->Bool_PKP ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">S.K. DOMISILI : &nbsp; <?= $dokumen->Bool_SK_Domisili ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">LAIN LAIN : <?= $dokumen->Izin_Lain ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">KETERANGAN :</td>
+                            </tr>
+                        </table>
                     </td>
-                    <!--URAIAN -->
-                    <td>
-                        <br>NAMA PERUSAHAAN : <br> <?= $dokumen->nm_perusahaan ?> <br>
-                        <br>MODAL DASAR : <br> Rp. <?= number_format($dokumen->modal) ?> <br>
-                        <br>MODAL DISETOR : <br> Rp. <?= number_format($dokumen->modal_disetor) ?> <br>
-                        <br>PRESENTASE PEMBAGIAN SAHAM : <br> <?= $dokumen->presentase_shm ?> <br>
-                        <br>HARGA TIAP SAHAM : <br> <?= $dokumen->hrg_saham ?> <br>
-                        <br>NO TELP: <br> <?= $dokumen->No_Telp ?> <br>
-                        <br>NO FAX : <br> <?= $dokumen->No_Fax ?> <br>
-                        <br>KEL : <br> <?= $dokumen->kelurahan ?> <br>
-                        <br>KOTA/KABUPATEN : <br> <?= "$dokumen->kota / $dokumen->kabupaten" ?> <br>
-                        <br>DENGAN / TANPA PERSETUJUAN KOMANDITER <br>
-                        <br>DIKUASAKAN / TIDAK DIKUASAKAN <br>
-                        <br>AMBIL SURAT KUASA TGL : <br>
-                        <br>TTD MINUTA TGL : <br>
-                        <br>TANDA TANGAN <br>
-                        <br><br>
-                        <br><br>
-                        <br><br>
-                        <br>(                    )<br>
-                        <br>PENERIMA : <?= $dokumen->penerima ?><br>
+                    <td class="tg-0pky" style="vertical-align: top">
+                        <table border=0 width="100%">
+                            <tr>
+                                <td style="border: none">NAMA PERUSAHAAN : &nbsp; <?= $dokumen->nm_perusahaan ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">MODAL DASAR : &nbsp; Rp. <?= number_format($dokumen->modal) ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">MODAL DISETOR : &nbsp; Rp. <?= number_format($dokumen->modal_disetor) ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">PRESENTASE PEMBAGIAN SAHAM : &nbsp; <?= $dokumen->presentase_shm ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">HARGA TIAP SAHAM : &nbsp; <?= $dokumen->hrg_saham ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">NO TELP : &nbsp; <?= $dokumen->No_Telp ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">NO FAX : &nbsp; <?= $dokumen->No_Fax ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">KEL : &nbsp; <?= $dokumen->kelurahan ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">KOTA / KABUPATEN : &nbsp; <?= "$dokumen->kota / $dokumen->kabupaten" ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">DENGAN / TANPA PERSETUJUAN KOMANDITER</td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">DIKUASAKAN / TIDAK DIKUASAKAN</td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">AMBIL SURAT KUASA TGL :</td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">TTD MINUTA TGL :</td>
+                            </tr>
+                            <tr>
+                                <td style="border: none; text-align: right">TANDA TANGAN</td>
+                            </tr>
+                            <tr>
+                                <td style="border: none"></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none"></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none"></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none; text-align: right">(<?= $dokumen->penerima ?>)</td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">KETERANGAN :</td>
+                            </tr>
+                        </table>
                     </td>
-
-                    <!--DITERIMA -->
-                    <td>
-                        <br>NO KTP : <br> <?= $dokumen->bool_ktp ?> <br>
-                        <br>NAMA KTP : <br> <?= $dokumen->Ket_Email ?> <br>
-                        <br>NPWP PRIBADI (SEMUA PENGURUS) : <br> <?= $dokumen->bool_npwp ?> <br>
-                        <br>SERTIFIKAT T. USAHA : <br> <?= $dokumen->Ket_Email ?> <br>
-                        <br>IMB (IJIN MENDIRIKAN BANGUNAN) : <br> <?= $dokumen->bool_imb ?> <br>
-                        <br>STEMPEL: <br> <?= $dokumen->bool_stempel ?> <br>
-                        <br>MATERAI : <br> <?= $dokumen->jml_materai ?> <br>
-                        <br>S.K. DOMISILI : <br> <?= $dokumen->bool_sk_domisili ?> <br>
-                        <br>SURAT SEWA : <br> <?= $dokumen->bool_surat_sewa ?> <br>
+                    <td class="tg-0pky" style="vertical-align: top">
+                        <table border="0" width="100%">
+                            <tr>
+                                <td style="border: none">NO KTP : &nbsp; <?= $dokumen->bool_ktp ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">NAMA KTP : &nbsp; <?= $dokumen->Ket_Email ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">NPWP PRIBADI (SEMUA PENGURUS) : &nbsp; <?= $dokumen->bool_npwp ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">SERTIFIKAT T. USAHA : &nbsp; <?= $dokumen->Ket_Email ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">IMB (IJIN MENDIRIKAN BANGUNAN) : &nbsp; <?= $dokumen->bool_imb ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">STEMPEL : &nbsp; <?= $dokumen->bool_stempel ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">MATERAI : &nbsp; <?= $dokumen->jml_materai ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">S.K. DOMISILI : &nbsp; <?= $dokumen->bool_sk_domisili ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">SURAT SEWA : &nbsp;<?= $dokumen->bool_surat_sewa ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">KETERANGAN :</td>
+                            </tr>
+                        </table>
                     </td>
-
                 </tr>
-                </tbody>
             </table>
-
         </td>
     </tr>
     <tr>
@@ -210,26 +322,14 @@
         <td style="border: none">
             <table width="100%">
                 <tr>
-                    <td style="border: none; text-align: center"><h5>Ruko Mezzanine, Blok A No.20, Nginden Jangkungan,
-                            Kec Sukolilo, Kota Surabaya, Jawa Timur 60118</h5>
-                </tr>
-                <tr>
-                    <td style="border: none; text-align: center"><h5>Phone : (031) 59173597</h5></td>
-                </tr>
-                <tr>
-                    <td style="border: none; text-align: center"><h5>Handphone : 0812 3344 2301</h5></td>
-                </tr>
-                <tr>
-                    <td style="border: none; text-align: center"><h5>Whatsapp : 0812 3344 2301</h5></td>
-                </tr>
-                <tr>
-                    <td style="border: none; text-align: center"><h5>Facebook : POP JASA</h5></td>
-                </tr>
-                <tr>
-                    <td style="border: none; text-align: center"><h5>Instagram : @POPJASA</h5></td>
-                </tr>
-                <tr>
-                    <td style="border: none; text-align: center"><h5>Email : popjasa@gmail.com</h5></td>
+                    <td style="border: none; text-align: center">
+                        <h5>Ruko Mezzanine, Blok A No.20, Nginden Jangkungan, Kec Sukolilo, Kota Surabaya, Jawa Timur 60118</h5><br>
+                        <h5>Phone : (031) 59173597</h5><br>
+                        <h5>Handphone : 0812 3344 2301</h5><br>
+                        <h5>Whatsapp : 0812 3344 2301</h5><br>
+                        <h5>Facebook : POP JASA</h5><br>
+                        <h5>Instagram : @POPJASA</h5><br>
+                        <h5>Email : popjasa@gmail.com</h5>
                 </tr>
             </table>
         </td>
