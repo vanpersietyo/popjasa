@@ -73,14 +73,15 @@ class M_dir extends CI_Model {
     }
 
     function omzet_group_day(){
-      $cabang=$this->session->userdata('cabang');
-      $query=$this->db->query("
+      $cabang   = $this->session->userdata('cabang');
+      $date     = date('Y-m').'-00';
+      $query    = $this->db->query("
         SELECT SUM(profit) AS OMZET,STR_TO_DATE(tgl_input,'%Y-%m-%d') AS PERIODE
         FROM v_paybyproject
-        WHERE STR_TO_DATE(tgl_input,'%Y-%m')=DATE('2020-03-00')
+        WHERE STR_TO_DATE(tgl_input,'%Y-%m')=DATE('$date')
         GROUP BY STR_TO_DATE(tgl_input,'%Y-%m-%d')
       ");
-      return $query->result();
+      return $query ? $query->result() : [];
     }
 
     function omzet_group_month($month){
