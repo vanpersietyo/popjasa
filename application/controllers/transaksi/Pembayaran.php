@@ -166,10 +166,10 @@ class Pembayaran extends CI_Controller{
 		$data['project']=$this->M_project->get_projectid($id);
 		$data['tot_bayar']=$this->M_payment->get_totalbayar($id);
 		$data['jml_project']=$this->M_payment->get_harga($id);
-		$jml_project=$this->M_payment->get_harga($id);
-		$tot_bayar=$this->M_payment->get_totalbayar($id);
-		$kurang_bayar=($jml_project-$tot_bayar);
-		$data['kurang_bayar']=$kurang_bayar;
+		//$jml_project=$this->M_payment->get_harga($id);
+		//$tot_bayar=$this->M_payment->get_totalbayar($id);
+		//$kurang_bayar=$jml_project-$tot_bayar;
+		//$data['kurang_bayar']=$kurang_bayar;
 		$data['pages']='transaksi/pembayaran/bayar';
 		$this->load->view('layout',$data);
 	}

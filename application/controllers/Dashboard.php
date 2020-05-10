@@ -255,7 +255,8 @@ class Dashboard extends CI_Controller
             $row[]  = number_format($d->harga_jual);
             $row[]  = number_format($d->bayar);
             $row[]  = number_format($d->outstanding);
-            $data[] = $row;
+            $row[] = '<button type="button" class="btn btn-info btn-sm" onclick="bayar(' . "'" . $d->id_project . "'" . ')">Bayar</button>';
+			$data[] = $row;
             $no = 1 + $no;
         }
         $output = [
@@ -278,6 +279,7 @@ class Dashboard extends CI_Controller
             $row[]  = number_format($d->harga_jual);
             $row[]  = number_format($d->bayar);
             $row[]  = number_format($d->outstanding);
+            $row[] = '<button type="button" class="btn btn-info btn-sm" onclick="bayar(' . "'" . $d->id_project . "'" . ')">Bayar</button>';
             $data[] = $row;
             $no = 1 + $no;
         }

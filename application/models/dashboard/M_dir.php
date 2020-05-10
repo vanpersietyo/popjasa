@@ -149,10 +149,10 @@ class M_dir extends CI_Model {
         $date=date('Y-m');
         $cabang=$this->session->userdata('cabang');
         $sql ="
-        SELECT Periode, nm_customer, nama_layanan, sum(jml_order) as qty, harga_jual, sum(jumlah_pay) as bayar, sum(sisa) as outstanding
-        FROM v_outstanding_doc_not_finish
+        SELECT id_project, Periode, nm_customer, nama_layanan, sum(jml_order) as qty, harga_jual, sum(jumlah_pay) as bayar, sum(sisa) as outstanding
+        FROM v_outstanding_doc_finish
         WHERE kd_cabang = '$cabang'
-        GROUP BY nm_customer, nama_layanan
+        GROUP BY nm_customer, nama_layanan,id_project
        ";
         $query=$this->db->query($sql);
         return $query->result();
@@ -162,10 +162,10 @@ class M_dir extends CI_Model {
         $date=date('Y-m');
         $cabang=$this->session->userdata('cabang');
         $sql ="
-        SELECT Periode, nm_customer, nama_layanan, sum(jml_order) as qty, harga_jual, sum(jumlah_pay) as bayar, sum(sisa) as outstanding
+        SELECT id_project, Periode, nm_customer, nama_layanan, sum(jml_order) as qty, harga_jual, sum(jumlah_pay) as bayar, sum(sisa) as outstanding
         FROM v_outstanding_doc_not_finish
         WHERE kd_cabang = '$cabang'
-        GROUP BY nm_customer, nama_layanan
+        GROUP BY nm_customer, nama_layanan, id_project
        ";
         $query=$this->db->query($sql);
         return $query->result();

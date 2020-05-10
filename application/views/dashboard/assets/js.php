@@ -465,4 +465,8 @@
 
       });
 
+      function bayar(ID) {
+          location.replace("<?php echo base_url('transaksi/pembayaran/bayar/')?>"+ID);
+      }
+
   </script>
