@@ -36,7 +36,7 @@ class Invoice extends CI_Controller {
         if($hdr->st_project==1){
             $pdf->Image(base_url().'assets/app-assets/vendors/logo/popjasa.png',180,12,0,20);
         }else{
-            $pdf->Image(base_url().'assets/app-assets/vendors/logo/jasamurah.png',115,12,0,20);
+            $pdf->Image(base_url().'assets/app-assets/vendors/logo/jasamurah.jpg',115,12,0,20);
         }
 
             $pdf->SetFont('Arial','B',10);

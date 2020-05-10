@@ -108,7 +108,7 @@
                     <?php } else { ?>
                         <th style="width: 10%">
                             <img width="15%"
-                                 src="<?php echo base_url('assets/app-assets/vendors/logo/jasamurah.png'); ?>"
+                                 src="<?php echo base_url('assets/app-assets/vendors/logo/jasamurah.jpg'); ?>"
                                  alt="logo">
                         </th>
                         <th style="width: 90% ">

@@ -44,7 +44,7 @@ class Labarugi extends CI_Controller
         $pdf = new FPDF('l', 'mm', 'A4');
         // membuat halaman baru
         $pdf->AddPage('P');
-        $pdf->Image(base_url() . 'assets/app-assets/vendors/logo/jasamurah.png', 160, 10, 0, 20);
+        $pdf->Image(base_url() . 'assets/app-assets/vendors/logo/jasamurah.jpg', 160, 10, 0, 20);
         $pdf->Image(base_url() . 'assets/app-assets/vendors/logo/popjasa.png', 10, 10, 0, 20);
         $pdf->SetFont('Times', 'B', 16);
         // mencetak string
