@@ -177,9 +177,9 @@ class Generate extends CI_Controller
         ]);
         $data['dokumen'] = $this->M_project->get_dokumen($id);
         //$this->load->view('report/progress', $data);
-        $html = $this->load->view('report/progress',$data,true);
-        $mpdf->WriteHTML($html);
-        $mpdf->Output();
+       $html = $this->load->view('report/progress',$data,true);
+       $mpdf->WriteHTML($html);
+       $mpdf->Output();
     }
 
 }
