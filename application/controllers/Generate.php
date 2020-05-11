@@ -172,11 +172,12 @@ class Generate extends CI_Controller
     public function dok_progress($id){
         $mpdf = new Mpdf([
             'mode' => 'utf-8',
-            'format' => 'A4-L',
+            'format' => [255  , 250],
             'orientation' => 'L'
         ]);
         $data['dokumen'] = $this->M_project->get_dokumen($id);
         //$this->load->view('report/progress', $data);
+//       $this->load->view('report/progress',$data);
        $html = $this->load->view('report/progress',$data,true);
        $mpdf->WriteHTML($html);
        $mpdf->Output();

@@ -90,9 +90,9 @@
     </style>
 </head>
 <body>
-<table style="width: 100%;border: 1px solid">
+<table style="width: 100%" border="0">
     <tr>
-        <td style="border: 1px solid;">
+        <td style="border: 0">
             <table width="100%">
                 <thead style="font-weight: bold">
                 <tr>
@@ -323,13 +323,15 @@
             <table width="100%">
                 <tr>
                     <td style="border: none; text-align: center">
-                        <h5>Ruko Mezzanine, Blok A No.20, Nginden Jangkungan, Kec Sukolilo, Kota Surabaya, Jawa Timur 60118</h5><br>
-                        <h5>Phone : (031) 59173597</h5><br>
-                        <h5>Handphone : 0812 3344 2301</h5><br>
-                        <h5>Whatsapp : 0812 3344 2301</h5><br>
-                        <h5>Facebook : POP JASA</h5><br>
-                        <h5>Instagram : @POPJASA</h5><br>
-                        <h5>Email : popjasa@gmail.com</h5>
+                        <br>
+                        <br>
+                        <h5 style="margin:0">Ruko Mezzanine, Blok A No.20, Nginden Jangkungan, Kec Sukolilo, Kota Surabaya, Jawa Timur 60118</h5><br>
+                        <h5 style="margin:0">Phone : (031) 59173597</h5><br>
+                        <h5 style="margin:0">Handphone : 0812 3344 2301</h5><br>
+                        <h5 style="margin:0">Whatsapp : 0812 3344 2301</h5><br>
+                        <h5 style="margin:0">Facebook : POP JASA</h5><br>
+                        <h5 style="margin:0">Instagram : @POPJASA</h5><br>
+                        <h5 style="margin:0">Email : popjasa@gmail.com</h5>
                 </tr>
             </table>
         </td>
