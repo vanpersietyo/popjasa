@@ -127,6 +127,48 @@ $this->load->view('template/head');
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <div class="form-group">
+                                            <label>DENGAN / TANPA PERSETUJUAN KOMANDITER:</label>
+                                            <div class="input-group">
+                                                <select class="form-control" id="izin_persetujuan"
+                                                        name="izin_persetujuan">
+                                                    <option value="">---SILAHKAN PILIH---</option>
+                                                    <option value="Yes" <?php if ($izin_persetujuan == 'Yes'): ?> selected="selected"<?php endif; ?>>
+                                                        Dengan persetujuan
+                                                    </option>
+                                                    <option value="No" <?php if ($izin_persetujuan == 'No'): ?> selected="selected"<?php endif; ?>>
+                                                        Tidak dengan persetujuan
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label>DIKUASAKAN / TIDAK DIKUASAKAN:</label>
+                                            <div class="input-group">
+                                                <select class="form-control" id="signature_commander"
+                                                        name="signature_commander">
+                                                    <option value="">---SILAHKAN PILIH---</option>
+                                                    <option value="Yes" <?php if ($signature_commander == 'Yes'): ?> selected="selected"<?php endif; ?>>
+                                                        Dikuasakan
+                                                    </option>
+                                                    <option value="No" <?php if ($signature_commander == 'No'): ?> selected="selected"<?php endif; ?>>
+                                                        Tidak Dikuasakan
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="form-group">
                                             <label>Penerima:</label>
                                             <div class="input-group">
                                                 <input type="text" class="form-control" name="penerima" id="penerima" value="<?php echo $penerima; ?>"/>

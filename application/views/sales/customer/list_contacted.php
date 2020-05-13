@@ -981,7 +981,7 @@ function delete_person(id)
                                 <input name="nm_perusahaan" placeholder="Nama Perusahaan .." class="form-control" type="text" disabled>
                             </div>
                             <div class="col-md-6">
-                               <label>Alamat Customer</label>
+                               <label>Alamatperbarui Customer</label>
                              <textarea name="alamat" placeholder="Alamat Customer .." maxlength="255" rows="2" class="form-control" type="textarea" disabled></textarea>
                             </div>
                             <div class="col-md-6">

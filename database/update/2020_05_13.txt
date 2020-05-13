@@ -1,0 +1,123 @@
+CREATE OR REPLACE VIEW v_outstanding_doc_finish AS SELECT
+v_project.tgl_input,
+	concat(Case
+	when month(v_project.tgl_input) = 1 then 'JANUARI'
+	when month(v_project.tgl_input) = 2 then 'FEBUARI'
+	when month(v_project.tgl_input) = 3 then 'MARET'
+	when month(v_project.tgl_input) = 4 then 'APRIL'
+	when month(v_project.tgl_input) = 5 then 'MEI'
+	when month(v_project.tgl_input) = 6 then 'JUNI'
+	when month(v_project.tgl_input) = 7 then 'JULI'
+	when month(v_project.tgl_input) = 8 then 'AGUSTUS'
+	when month(v_project.tgl_input) = 9 then 'SEPTEMBER'
+	when month(v_project.tgl_input) = 10 then 'OKTOBER'
+	when month(v_project.tgl_input) = 11 then 'NOVEMBER'
+	when month(v_project.tgl_input) = 12 then 'DESEMBER'
+	end,' ', Year(v_project.tgl_input)) as Periode,
+v_project.id_customer,
+v_project.nm_customer,
+v_project.id_layanan,
+v_project.nama_layanan,
+count(v_project.id_project) AS `jml_order`,
+v_project.harga_jual,
+b.jumlah_byr as jumlah_pay,
+(v_project.harga_jual - b.jumlah_byr) AS sisa,
+v_project.kd_cabang,v_project.id_project
+FROM
+v_project
+INNER JOIN v_paybyproject as b ON v_project.id_project = b.id_project
+WHERE
+Exists(Select 1 from trs_project_logs as log where Status_log = 2 and log.Project_id = v_project.id_project)
+and (v_project.harga_jual - b.jumlah_byr) > 0
+GROUP BY v_project.tgl_input, periode, v_project.id_project;
+
+CREATE OR REPLACE VIEW v_cetak_blanko_project AS SELECT
+cs.nm_customer,
+cs.kota_customer,
+kt.Ket_Email,
+kt.Email_Pengurus,
+kt.No_Telp AS kt_notelp,
+kt.Ket_Luas,
+kt.Ket_Bidang_Usaha,
+kt.Ket_Bidang_Usaha_Utama,
+kt.Ket_Informasi,
+kt.ID_Project_Ket,
+kt.Pass_Email,
+kt.Info_Asset,
+kt.Info_Tanah,
+kt.Info_Usaha_Utama,
+kt.Keterangan AS kt_keterangan,
+iz.Bool_Izin_Akta_Notaris,
+iz.Izin_Akta_Notaris,
+iz.Bool_Izin_Pengesahan,
+iz.Izin_Pengesahan,
+iz.Bool_NPWP AS iz_npwp,
+iz.Bool_NPWP_Perusahaan,
+iz.Bool_SKT_Perusahaan,
+iz.Bool_SIUP_TDP,
+iz.Bool_Registrasi,
+iz.Bool_PKP,
+iz.Bool_SK_Domisili AS iz_sk_domisili,
+iz.Izin_Lain,
+iz.ID_Project_JNS,
+iz.Keterangan AS iz_keterangan,
+ur.nm_perusahaan,
+ur.modal,
+ur.presentase_shm,
+ur.hrg_saham,
+ur.No_Telp AS ur_notelp,
+ur.No_Fax,
+ur.alamat,
+ur.kota,
+ur.kelurahan,
+ur.kabupaten,
+ur.izin_persetujuan,
+ur.signature_commander,
+ur.penerima,
+ur.ID_Project_Uraian,
+ur.modal_disetor,
+ur.Keterangan AS ur_keterangan,
+ur.kecamatan,
+trm.bool_ktp,
+trm.bool_npwp AS trm_npwp,
+trm.bool_sertifikat,
+trm.bool_imb,
+trm.bool_stempel,
+trm.jml_materai,
+trm.bool_sk_domisili AS trm_sk_domisili,
+trm.bool_surat_sewa,
+trm.ID_Project_terima,
+trm.jml_ktp,
+trm.Keterangan AS trm_keterangan,
+tp.id_project,
+tp.id_hdr_project,
+tp.kd_cabang,
+tp.id_customer,
+tp.id_layanan,
+tp.harga_jual,
+tp.keterangan AS tp_keterangan,
+tp.input_by,
+tp.tgl_input,
+tp.st_project,
+tp.st_data,
+tp.nm_project,
+tp.st_minuta,
+tp.st_akte,
+tp.st_domisili,
+tp.st_npwp,
+tp.st_pn,
+tp.st_siup,
+tp.st_pkp
+FROM
+trs_project AS tp
+LEFT JOIN trs_project_terima AS trm ON (trm.ID_Project = tp.id_project)
+LEFT JOIN trs_project_uraian AS ur ON (ur.ID_Project = tp.id_project)
+LEFT JOIN trs_projects_izin AS iz ON (iz.ID_Project = tp.id_project)
+LEFT JOIN trs_projects_ket AS kt ON (kt.ID_Project = tp.id_project)
+LEFT JOIN m_customer AS cs ON (tp.id_customer = cs.id_customer) ;
+
+insert into log_update(script_name,note) values
+(
+"2020_05_13.txt",
+"create view v_outstanding_doc_finish"
+);
