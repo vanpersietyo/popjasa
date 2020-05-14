@@ -140,16 +140,22 @@
                                 <td style="border: none">PASSWORD : &nbsp; <?= $dokumen->Pass_Email ?></td>
                             </tr>
                             <tr>
-                                <td style="border: none">EMAIL DAN NO TELP MASING MASING PENGURUS : &nbsp;  <?= "$dokumen->Email_Pengurus / $dokumen->No_Telp" ?> </td>
+                                <td style="border: none">EMAIL DAN NO TELP MASING MASING PENGURUS : &nbsp;  <?= "$dokumen->Email_Pengurus / $dokumen->kt_notelp" ?> </td>
                             </tr>
                             <tr>
                                 <td style="border: none">LUASAN TEMPAT USAHA : &nbsp; <?= $dokumen->Ket_Luas ?></td>
                             </tr>
                             <tr>
+                                <td style="border: none">ASSET : &nbsp; <?= $dokumen->Info_Asset ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none">KEPEMILIKAN TANAH : &nbsp; <?= $dokumen->Info_Tanah ?></td>
+                            </tr>
+                            <tr>
                                 <td style="border: none">BIDANG USAHA : &nbsp; <?= $dokumen->Ket_Bidang_Usaha ?></td>
                             </tr>
                             <tr>
-                                <td style="border: none">BIDANG USAHA UTAMA : &nbsp; <?= $dokumen->Ket_Bidang_Usaha ?></td>
+                                <td style="border: none">BIDANG USAHA UTAMA : &nbsp; <?= $dokumen->Info_Usaha_Utama ?></td>
                             </tr>
                             <tr>
                                 <td style="border: none">
@@ -166,7 +172,7 @@
                             <tr>
                                 <td style="border: none">&nbsp;</td>
                             </tr>
-                            <tr><td  style="border: none">KETERANGAN :</td></tr>
+                            <tr><td  style="border: none">KETERANGAN : <?= $dokumen->kt_keterangan ?></td></tr>
                         </table>
                     </td>
                     <td class="tg-0pky" style="vertical-align: top">
@@ -178,7 +184,7 @@
                                 <td style="border: none">PENGESAHAN : &nbsp; <?= $dokumen->Bool_Izin_Pengesahan ?></td>
                             </tr>
                             <tr>
-                                <td style="border: none">NPWP PRIBADI : &nbsp; <?= $dokumen->Bool_NPWP ?></td>
+                                <td style="border: none">NPWP PRIBADI : &nbsp; <?= $dokumen->iz_npwp ?></td>
                             </tr>
                             <tr>
                                 <td style="border: none">NPWP (dikirim) PERUSAHAAN : &nbsp; <?= $dokumen->Bool_NPWP_Perusahaan ?></td>
@@ -196,13 +202,13 @@
                                 <td style="border: none">PKP : &nbsp; <?= $dokumen->Bool_PKP ?></td>
                             </tr>
                             <tr>
-                                <td style="border: none">S.K. DOMISILI : &nbsp; <?= $dokumen->Bool_SK_Domisili ?></td>
+                                <td style="border: none">S.K. DOMISILI : &nbsp; <?= $dokumen->iz_sk_domisili ?></td>
                             </tr>
                             <tr>
                                 <td style="border: none">LAIN LAIN : <?= $dokumen->Izin_Lain ?></td>
                             </tr>
                             <tr>
-                                <td style="border: none">KETERANGAN :</td>
+                                <td style="border: none">KETERANGAN : <?= $dokumen->iz_keterangan ?></td>
                             </tr>
                         </table>
                     </td>
@@ -224,7 +230,7 @@
                                 <td style="border: none">HARGA TIAP SAHAM : &nbsp; <?= $dokumen->hrg_saham ?></td>
                             </tr>
                             <tr>
-                                <td style="border: none">NO TELP : &nbsp; <?= $dokumen->No_Telp ?></td>
+                                <td style="border: none">NO TELP : &nbsp; <?= $dokumen->ur_notelp ?></td>
                             </tr>
                             <tr>
                                 <td style="border: none">NO FAX : &nbsp; <?= $dokumen->No_Fax ?></td>
@@ -236,19 +242,19 @@
                                 <td style="border: none">KOTA / KABUPATEN : &nbsp; <?= "$dokumen->kota / $dokumen->kabupaten" ?></td>
                             </tr>
                             <tr>
-                                <td style="border: none">DENGAN / TANPA PERSETUJUAN KOMANDITER</td>
+                                <td style="border: none">DENGAN / TANPA PERSETUJUAN KOMANDITER : <?= "$dokumen->izin_persetujuan" ?></td>
                             </tr>
                             <tr>
-                                <td style="border: none">DIKUASAKAN / TIDAK DIKUASAKAN</td>
+                                <td style="border: none">DIKUASAKAN / TIDAK DIKUASAKAN : <?= "$dokumen->signature_commander" ?></td>
                             </tr>
                             <tr>
                                 <td style="border: none">AMBIL SURAT KUASA TGL :</td>
                             </tr>
                             <tr>
-                                <td style="border: none">TTD MINUTA TGL :</td>
+                                <td style="border: none">TTD MINUTA TGL : <?= date("d/m/Y", strtotime($dokumen->tgl_input));  ?></td>
                             </tr>
                             <tr>
-                                <td style="border: none; text-align: right">TANDA TANGAN</td>
+                                <td style="border: none; text-align: right">TANDA TANGAN, <?= date("d/m/Y", strtotime($dokumen->tgl_input));  ?></td>
                             </tr>
                             <tr>
                                 <td style="border: none"></td>
@@ -263,7 +269,7 @@
                                 <td style="border: none; text-align: right">(<?= $dokumen->penerima ?>)</td>
                             </tr>
                             <tr>
-                                <td style="border: none">KETERANGAN :</td>
+                                <td style="border: none">KETERANGAN : <?= "$dokumen->ur_keterangan" ?></td>
                             </tr>
                         </table>
                     </td>
@@ -276,10 +282,10 @@
                                 <td style="border: none">NAMA KTP : &nbsp; <?= $dokumen->Ket_Email ?></td>
                             </tr>
                             <tr>
-                                <td style="border: none">NPWP PRIBADI (SEMUA PENGURUS) : &nbsp; <?= $dokumen->bool_npwp ?></td>
+                                <td style="border: none">NPWP PRIBADI (SEMUA PENGURUS) : &nbsp; <?= $dokumen->trm_npwp ?></td>
                             </tr>
                             <tr>
-                                <td style="border: none">SERTIFIKAT T. USAHA : &nbsp; <?= $dokumen->Ket_Email ?></td>
+                                <td style="border: none">SERTIFIKAT T. USAHA : &nbsp; <?= $dokumen->bool_sertifikat ?></td>
                             </tr>
                             <tr>
                                 <td style="border: none">IMB (IJIN MENDIRIKAN BANGUNAN) : &nbsp; <?= $dokumen->bool_imb ?></td>
@@ -291,13 +297,13 @@
                                 <td style="border: none">MATERAI : &nbsp; <?= $dokumen->jml_materai ?></td>
                             </tr>
                             <tr>
-                                <td style="border: none">S.K. DOMISILI : &nbsp; <?= $dokumen->bool_sk_domisili ?></td>
+                                <td style="border: none">S.K. DOMISILI : &nbsp; <?= $dokumen->trm_sk_domisili ?></td>
                             </tr>
                             <tr>
                                 <td style="border: none">SURAT SEWA : &nbsp;<?= $dokumen->bool_surat_sewa ?></td>
                             </tr>
                             <tr>
-                                <td style="border: none">KETERANGAN :</td>
+                                <td style="border: none">KETERANGAN : <?= "$dokumen->trm_keterangan" ?></td>
                             </tr>
                         </table>
                     </td>

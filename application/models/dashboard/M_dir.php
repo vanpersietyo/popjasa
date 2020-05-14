@@ -21,11 +21,9 @@ class M_dir extends CI_Model {
     function tot_onprogress(){
         $cabang=$this->session->userdata('cabang');
         $query=$this->db->query("
-		    SELECT count(b.Project_id) as on_progress
-                FROM `v_project_logs` b
-                JOIN trs_project a ON a.id_project=b.Project_id
-                WHERE b.Status_log!='finish' and a.kd_cabang='$cabang'
-                GROUP BY b.Project_id
+		    SELECT count(1) as on_progress
+                FROM `v_outstanding_doc_not_finish` b
+                WHERE b.kd_cabang='$cabang'
 			");
         return $query->row();
     }
@@ -33,11 +31,9 @@ class M_dir extends CI_Model {
     function tot_finish(){
         $cabang=$this->session->userdata('cabang');
         $query=$this->db->query("
-		    SELECT count(b.Project_id) as finish
-                FROM `v_project_logs` b
-                JOIN trs_project a ON a.id_project=b.Project_id
-                WHERE b.Status_log='finish' and a.kd_cabang='$cabang'
-                GROUP BY b.Project_id
+		    SELECT count(1) as finish
+                FROM v_outstanding_doc_finish b
+                WHERE b.kd_cabang='$cabang'
 			");
         return $query->row();
     }

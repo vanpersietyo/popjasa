@@ -361,14 +361,19 @@ class M_project extends CI_Model {
 
     function get_dokumen($id){
         $query = $this->db->query("
-               SELECT cs.`nm_customer`,cs.`kota_customer`,kt.*, iz.*,ur.*,trm.*,tp.*
-                FROM trs_project tp 
-                LEFT JOIN trs_project_terima  AS trm ON (trm.ID_Project = tp.id_project )
-                LEFT JOIN trs_project_uraian AS ur ON (ur.ID_Project = tp.id_project )
-                LEFT JOIN trs_projects_izin AS iz ON (iz.ID_Project = tp.id_project )
-                LEFT JOIN trs_projects_Ket  AS kt ON (kt.ID_Project  = tp.id_project )
-                LEFT JOIN m_customer  AS cs ON (tp.id_customer  = cs.id_customer )
-                WHERE tp.`id_project`='$id'
+               SELECT nm_customer, kota_customer, Ket_Email, Email_Pengurus, kt_notelp, Ket_Luas, Ket_Bidang_Usaha,
+                      Ket_Bidang_Usaha_Utama, Ket_Informasi, ID_Project_Ket, Pass_Email, Info_Asset, Info_Tanah, Info_Usaha_Utama,
+                      kt_keterangan, Bool_Izin_Akta_Notaris, Izin_Akta_Notaris, Bool_Izin_Pengesahan, Izin_Pengesahan,
+                      iz_npwp, Bool_NPWP_Perusahaan, Bool_SKT_Perusahaan, Bool_SIUP_TDP, Bool_Registrasi, Bool_PKP,
+                      iz_sk_domisili, Izin_Lain, ID_Project_JNS, iz_keterangan, nm_perusahaan, modal, presentase_shm, hrg_saham,
+                      ur_notelp, No_Fax, alamat, kota, kelurahan, kabupaten, izin_persetujuan, signature_commander, penerima,
+                      ID_Project_Uraian, modal_disetor, ur_keterangan, kecamatan, bool_ktp, trm_npwp, bool_sertifikat, bool_imb,
+                      bool_stempel, jml_materai,trm_sk_domisili, bool_surat_sewa, ID_Project_terima, jml_ktp, trm_keterangan,
+                      id_project, id_hdr_project, kd_cabang, id_customer, id_layanan, harga_jual, tp_keterangan, input_by,
+                      tgl_input, st_project, st_data, nm_project, st_minuta, st_akte, st_domisili, st_npwp, st_pn, st_siup,
+                      st_pkp
+                FROM v_cetak_blanko_project blk 
+                WHERE blk.`id_project`='$id'
 			");
         return $query->row();
 

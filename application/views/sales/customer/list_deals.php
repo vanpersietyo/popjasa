@@ -135,6 +135,45 @@ function clear_all_error()
     $('[class="NOTIF_ERROR_president"]').html('');
 }
 
+function perbarui(id){
+    save_method = 'perbarui';
+    $('#form')[0].reset(); // reset form on modals
+    $('.form-group').removeClass('has-error'); // clear error class
+    $('.help-block').empty(); // clear error string
+
+
+    //Ajax Load data from ajax
+    $.ajax({
+        url : "<?php echo site_url('master/customer/ajax_edit')?>/" + id,
+        type: "GET",
+        dataType: "JSON",
+        success: function(data)
+        {
+            $('[name="id"]').val(data.id_customer);
+            $('[name="id_customer"]').val(data.id_customer);
+            $('[name="nm_customer"]').val(data.nm_customer);
+            $('[name="alamat"]').val(data.alamat);
+            $('[name="nm_perusahaan"]').val(data.nm_perusahaan);
+            $('[name="alamat_perusahaan"]').val(data.alamat_perusahaan);
+            $('[name="jns_usaha"]').val(data.jns_usaha);
+            $('[name="bidang_usaha"]').val(data.bidang_usaha);
+            $('[name="Agen"]').val(data.Agen);
+            $('[name="tlp_customer"]').val(data.tlp_customer);
+            $('[name="telp2_customer"]').val(data.telp2_customer);
+            $('[name="email_customer"]').val(data.email_customer);
+            $('[name="kota_customer"]').val(data.kota_customer);
+            $('[name="keterangan"]').val(data.keterangan);
+            $('[name="keterangan_deals"]').val(data.keterangan_deals);
+
+            $('#modal_update').modal('show'); // show bootstrap modal when complete loaded
+            $('.modal-title').text('Perbarui Data'); // Set title to Bootstrap modal title
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+            alert('Error get data from ajax');
+        }
+    });
+}
 
 function view(id){
     save_method = 'update';
@@ -189,12 +228,16 @@ function save()
         url = "<?php echo site_url('sales/customer/contacted/ajax_deals')?>";
     }else if(save_method == 'lost') {
         url = "<?php echo site_url('sales/customer/contacted/ajax_lost')?>";
+    } else if(save_method === 'perbarui') {
+        url = "<?php echo site_url('sales/customer/deals/ajax_perbarui')?>";
+        formData = new FormData($('#form_perbarui')[0]);
     } else {
         url = "<?php echo site_url('master/customer/ajax_update')?>";
     }
-
-    // ajax adding data to database
-    var formData = new FormData($('#form')[0]);
+    if (save_method !== 'perbarui') {
+        // ajax adding data to database
+        var formData = new FormData($('#form')[0]);
+    }
     $.ajax({
         url : url,
         type: "POST",
@@ -216,8 +259,11 @@ function save()
               }else if(save_method == 'lost') {
                 $('#modal_lost').modal('hide');
                 reload_table();
+              }else if(save_method == 'perbarui') {
+                  $('#modal_update').modal('hide');
+                  reload_table();
               }
-                 swal("Kerja Bagus !", "Data Berhasil Disimpan !", "success");
+                  swal("Kerja Bagus !", "Data Berhasil Disimpan !", "success");
 
 
             }
@@ -377,6 +423,125 @@ function project(ID){
 
       </div>
     </div>
+
+<div class="modal animated pulse text-left" id="modal_update" role="dialog" aria-labelledby="myModalLabel17"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h4 class="modal-title text-bold-500 white"><i class="la la-pencil-square"></i> Tambah User Baru</h4>
+                <button type="button" class="close white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#" id="form_perbarui" class="form-horizontal">
+                    <input type="hidden" value="" name="id_karyawan"/>
+                    <div class="form-body">
+                        <input type="hidden" name="id"/>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Nama Customer</label>
+                                    <input name="nm_customer" placeholder="Nama Customer .." class="form-control" type="text" >
+                                    <div class="NOTIF_ERROR_nm_customer"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Nama Perusahaan</label>
+                                    <input name="nm_perusahaan" placeholder="Nama Perusahaan .." class="form-control" type="text" >
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Alamat Customer</label>
+                                    <textarea name="alamat" placeholder="Alamat Customer .." maxlength="255" rows="2" class="form-control" type="textarea" ></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Alamat Perusahaan</label>
+                                    <textarea name="alamat_perusahaan" placeholder="Alamat Perusahaan .." maxlength="255" rows="2" class="form-control" type="textarea" ></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Jenis Usaha</label>
+                                    <input name="jns_usaha" placeholder="Jenis Usaha .." class="form-control" type="text" >
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Bidang Usaha</label>
+                                    <input name="bidang_usaha" placeholder="Bidang Usaha .." class="form-control" type="text" >
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label for="projectinput2">Agen</label>
+                                    <select class="select form-control block"  name="Agen" style="width: 100%">
+                                        <option value="" class="disabled">Pilih Agen</option>
+                                        <?php foreach ($agen_update as $agen_update) { ?>
+                                            <option value="<?= $agen_update->id_agen ?>" ><?= $agen_update->nm_agen ?></option>
+                                        <?php }?>
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="projectinput2">Tertarik Dengan Produk ?</label>
+                                    <select class="select form-control block"  name="id_layanan" style="width: 100%">
+                                        <option value="" class="disabled">Pilih Produk</option>
+                                        <?php foreach ($layanan_update as $layanan_update) { ?>
+                                            <option value="<?php echo $layanan_update->id_layanan?>" ><?php echo $layanan_update->nama_layanan?></option>
+                                        <?php }?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Telp Customer</label>
+                                    <input name="tlp_customer" placeholder="Telp Customer .." class="form-control" type="number" >
+                                    <span class="help-block"></span>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Hp Customer</label>
+                                    <input name="telp2_customer" placeholder="No Hp Customer .." class="form-control" type="number" >
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Email Customer</label>
+                                    <input name="email_customer" placeholder="Email Customer .." class="form-control" type="email" >
+                                    <span class="help-block"></span>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Kota Customer</label>
+                                    <input name="kota_customer" placeholder="Kota Customer .." class="form-control" type="text" >
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <button type="button" id="btnSave" onclick="save()" class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up"> Simpan</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <!-- Block level buttons with icon -->
+                        <div class="form-group">
+                            <button type="button" class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up" data-dismiss="modal">
+                                Tutup
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
   </div>
     </div>
 <script src="<?php echo base_url('assets/app-assets/vendors/js/forms/select/select2.full.min.js') ?>" type="text/javascript"></script>
