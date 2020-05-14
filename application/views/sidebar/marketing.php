@@ -10,6 +10,11 @@ role="navigation" data-menu="menu-wrapper">
 
       <li class="dropdown nav-item pull-up" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="la la-users"></i><span>Customer Management</span></a>
        <ul class="dropdown-menu">
+
+           <li data-menu="">
+               <a class="dropdown-item" href="<?php echo site_url('sales/customer/all') ?>"
+                  data-toggle="dropdown"><i class="icon-users"></i>List All Customer</a>
+           </li>
            <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('sales/customer/contacted')?>"
              data-toggle="dropdown"><i class="icon-speech"></i>Customer Contacted</a>
            </li>

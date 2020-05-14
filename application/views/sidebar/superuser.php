@@ -14,6 +14,10 @@
                             class="la la-users"></i><span>Customer Management</span></a>
                 <ul class="dropdown-menu">
                     <li data-menu="">
+                        <a class="dropdown-item" href="<?php echo site_url('sales/customer/all') ?>"
+                           data-toggle="dropdown"><i class="icon-users"></i>List All Customer</a>
+                    </li>
+                    <li data-menu="">
                         <a class="dropdown-item" href="<?php echo site_url('sales/customer/contacted') ?>"
                            data-toggle="dropdown"><i class="icon-speech"></i>Customer Contacted</a>
                     </li>

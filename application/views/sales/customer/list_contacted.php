@@ -90,24 +90,645 @@
   </div>
 </div>
 
+<div class="modal animated pulse text-left" id="modal_form" role="dialog" aria-labelledby="myModalLabel17"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h4 class="modal-title text-bold-500 white"><i class="la la-pencil-square"></i> Tambah User Baru</h4>
+                <button type="button" class="close white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#" id="form" class="form-horizontal">
+                    <input type="hidden" value="" name="id_karyawan"/>
+                    <div class="form-body">
+                        <input type="hidden" name="id"/>
 
-<!-- BEGIN VENDOR JS-->
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Nama Customer</label>
+                                    <input name="nm_customer" placeholder="Nama Customer .." class="form-control" type="text">
+                                    <div class="NOTIF_ERROR_nm_customer"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Nama Perusahaan</label>
+                                    <input name="nm_perusahaan" placeholder="Nama Perusahaan .." class="form-control" type="text">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Alamat Customer</label>
+                                    <textarea name="alamat" placeholder="Alamat Customer .." maxlength="255" rows="2" class="form-control" type="textarea"></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Alamat Perusahaan</label>
+                                    <textarea name="alamat_perusahaan" placeholder="Alamat PErusahaan .." maxlength="255" rows="2" class="form-control" type="textarea"></textarea>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="projectinput2">Agen</label>
+                                    <select class="select2 form-control block"  name="agen" style="width: 100%">
+                                        <option value="" class="disabled">Pilih Agen</option>
+                                        <?php foreach ($agen as $agen) { ?>
+                                            <option value="<?php echo $agen->id_agen?>" ><?php echo $agen->nm_agen?></option>
+                                        <?php }?>
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="projectinput2">Tertarik Dengan Produk ?</label>
+                                    <select class="select2 form-control block"  name="id_layanan" style="width: 100%">
+                                        <option value="" class="disabled">Pilih Produk</option>
+                                        <?php foreach ($layanan as $layanan) { ?>
+                                            <option value="<?php echo $layanan->id_layanan?>" ><?php echo $layanan->nama_layanan?></option>
+                                        <?php }?>
+                                    </select>
+                                </div>
+                                <!-- <div class="col-md-6">
+                                   <label>Jenis Usaha</label>
+                                  <input name="jns_usaha" placeholder="Jenis Usaha .." class="form-control" type="text">
+                                </div>
+                                <div class="col-md-6">
+                                   <label>Bidang Usaha</label>
+                                  <input name="bidang_usaha" placeholder="Bidang Usaha .." class="form-control" type="text">
+                                </div> -->
+
+                                <!-- <div class="col-md-12">
+                                   <label>Agen</label>
+                                <input name="Agen" placeholder="Agen .." class="form-control" type="text">
+                                </div> -->
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Telp Customer</label>
+                                    <input name="tlp_customer" placeholder="Telp Customer .." class="form-control" type="number">
+                                    <span class="help-block"></span>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Hp Customer</label>
+                                    <input name="telp2_customer" placeholder="No Hp Customer .." class="form-control" type="number">
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Email Customer</label>
+                                    <input name="email_customer" placeholder="Email Customer .." class="form-control" type="email">
+                                    <span class="help-block"></span>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Pilih Area Kota Customer</label>
+                                    <select class="form-control" name="kota_customer"  width="100%" required>
+                                        <option value=""> --- </option>
+                                        <?php foreach ($area as $area) { ?>
+                                            <option value="<?php echo $area->nama_kota ?>"> <?php echo "$area->nama_kota" ?> </option>
+                                        <?php }?>
+                                    </select>
+                                    <div class="NOTIF_ERROR_kota_customer"></div>
+                                </div>
+
+
+                                <div class="col-md-12">
+                                    <label class="control-label col-md-3">Keterangan</label>
+                                    <textarea name="keterangan" placeholder="Keterangan .." maxlength="255" class="form-control" type="textarea"></textarea>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <button type="button" id="btnSave" onclick="save()" class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up"> Simpan</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <!-- Block level buttons with icon -->
+                        <div class="form-group">
+                            <button type="button" class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up" data-dismiss="modal">
+                                Tutup
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal animated pulse text-left" id="modal_deals" role="dialog" aria-labelledby="myModalLabel17"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h4 class="modal-title text-bold-500 white"><i class="la la-pencil-square"></i> Tambah User Baru</h4>
+                <button type="button" class="close white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#" id="form_deal" class="form-horizontal">
+                    <input type="hidden" value="" name="id_karyawan"/>
+                    <div class="form-body">
+                        <input type="hidden" name="id"/>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Nama Customer</label>
+                                    <input name="nm_customer" placeholder="Nama Customer .." class="form-control" type="text" disabled>
+                                    <div class="NOTIF_ERROR_nm_customer"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Nama Perusahaan</label>
+                                    <input name="nm_perusahaan" placeholder="Nama Perusahaan .." class="form-control" type="text" disabled>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Alamat Customer</label>
+                                    <textarea name="alamat" placeholder="Alamat Customer .." maxlength="255" rows="2" class="form-control" type="textarea" disabled></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Alamat Perusahaan</label>
+                                    <textarea name="alamat_perusahaan" placeholder="Alamat Perusahaan .." maxlength="255" rows="2" class="form-control" type="textarea" disabled></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Jenis Usaha</label>
+                                    <input name="jns_usaha" placeholder="Jenis Usaha .." class="form-control" type="text" disabled>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Bidang Usaha</label>
+                                    <input name="bidang_usaha" placeholder="Bidang Usaha .." class="form-control" type="text" disabled>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label>Agen</label>
+                                    <input name="Agen" placeholder="Agen .." class="form-control" type="text" disabled>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Telp Customer</label>
+                                    <input name="tlp_customer" placeholder="Telp Customer .." class="form-control" type="number" disabled>
+                                    <span class="help-block"></span>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Hp Customer</label>
+                                    <input name="telp2_customer" placeholder="No Hp Customer .." class="form-control" type="number" disabled>
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Email Customer</label>
+                                    <input name="email_customer" placeholder="Email Customer .." class="form-control" type="email" disabled>
+                                    <span class="help-block"></span>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Kota Customer</label>
+                                    <input name="kota_customer" placeholder="Kota Customer .." class="form-control" type="text" disabled>
+                                    <span class="help-block"></span>
+                                </div>
+
+
+                                <div class="col-md-12">
+                                    <label class="control-label col-md-3">Keterangan Deal</label>
+                                    <select class="form-control" name="keterangan_deals"  width="100%" required>
+                                        <option value=""> --- </option>
+                                        <?php foreach ($reason_deal as $reason_deal) { ?>
+                                            <option value="<?php echo $reason_deal->keterangan ?>"> <?php echo "$reason_deal->keterangan" ?> </option>
+                                        <?php }?>
+                                    </select>
+                                    <!-- <textarea name="keterangan_deal" placeholder="Keterangan .." maxlength="255" class="form-control" type="textarea"></textarea> -->
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <button type="button" id="btnSave" onclick="save()" class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up"> Simpan</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <!-- Block level buttons with icon -->
+                        <div class="form-group">
+                            <button type="button" class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up" data-dismiss="modal">
+                                Tutup
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal animated pulse text-left" id="modal_update" role="dialog" aria-labelledby="myModalLabel17"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h4 class="modal-title text-bold-500 white"><i class="la la-pencil-square"></i> Tambah User Baru</h4>
+                <button type="button" class="close white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#" id="form_perbarui" class="form-horizontal">
+                    <input type="hidden" value="" name="id_karyawan"/>
+                    <div class="form-body">
+                        <input type="hidden" name="id"/>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Nama Customer</label>
+                                    <input name="nm_customer" placeholder="Nama Customer .." class="form-control" type="text" >
+                                    <div class="NOTIF_ERROR_nm_customer"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Nama Perusahaan</label>
+                                    <input name="nm_perusahaan" placeholder="Nama Perusahaan .." class="form-control" type="text" >
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Alamat Customer</label>
+                                    <textarea name="alamat" placeholder="Alamat Customer .." maxlength="255" rows="2" class="form-control" type="textarea" ></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Alamat Perusahaan</label>
+                                    <textarea name="alamat_perusahaan" placeholder="Alamat Perusahaan .." maxlength="255" rows="2" class="form-control" type="textarea" ></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Jenis Usaha</label>
+                                    <input name="jns_usaha" placeholder="Jenis Usaha .." class="form-control" type="text" >
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Bidang Usaha</label>
+                                    <input name="bidang_usaha" placeholder="Bidang Usaha .." class="form-control" type="text" >
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label for="projectinput2">Agen</label>
+                                    <select class="select form-control block"  name="Agen" style="width: 100%">
+                                        <option value="" class="disabled">Pilih Agen</option>
+                                        <?php foreach ($agen_update as $agen_update) { ?>
+                                            <option value="<?= $agen_update->id_agen ?>" ><?= $agen_update->nm_agen ?></option>
+                                        <?php }?>
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="projectinput2">Tertarik Dengan Produk ?</label>
+                                    <select class="select form-control block"  name="id_layanan" style="width: 100%">
+                                        <option value="" class="disabled">Pilih Produk</option>
+                                        <?php foreach ($layanan_update as $layanan_update) { ?>
+                                            <option value="<?php echo $layanan_update->id_layanan?>" ><?php echo $layanan_update->nama_layanan?></option>
+                                        <?php }?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Telp Customer</label>
+                                    <input name="tlp_customer" placeholder="Telp Customer .." class="form-control" type="number" >
+                                    <span class="help-block"></span>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Hp Customer</label>
+                                    <input name="telp2_customer" placeholder="No Hp Customer .." class="form-control" type="number" >
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Email Customer</label>
+                                    <input name="email_customer" placeholder="Email Customer .." class="form-control" type="email" >
+                                    <span class="help-block"></span>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Kota Customer</label>
+                                    <input name="kota_customer" placeholder="Kota Customer .." class="form-control" type="text" >
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <button type="button" id="btnSave" onclick="save()" class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up"> Simpan</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <!-- Block level buttons with icon -->
+                        <div class="form-group">
+                            <button type="button" class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up" data-dismiss="modal">
+                                Tutup
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal animated pulse text-left" id="modal_lost" role="dialog" aria-labelledby="myModalLabel17"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-danger">
+                <h4 class="modal-title text-bold-500 white"><i class="la la-pencil-square"></i> Tambah User Baru</h4>
+                <button type="button" class="close white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#" id="form_lost" class="form-horizontal">
+                    <input type="hidden" value="" name="id_karyawan"/>
+                    <div class="form-body">
+                        <input type="hidden" name="id"/>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Nama Customer</label>
+                                    <input name="nm_customer" placeholder="Nama Customer .." class="form-control" type="text" disabled>
+                                    <div class="NOTIF_ERROR_nm_customer"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Nama Perusahaan</label>
+                                    <input name="nm_perusahaan" placeholder="Nama Perusahaan .." class="form-control" type="text" disabled>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Alamat Customer</label>
+                                    <textarea name="alamat" placeholder="Alamat Customer .." maxlength="255" rows="2" class="form-control" type="textarea" disabled></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Alamat Perusahaan</label>
+                                    <textarea name="alamat_perusahaan" placeholder="Alamat Perusahaan .." maxlength="255" rows="2" class="form-control" type="textarea" disabled></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Jenis Usaha</label>
+                                    <input name="jns_usaha" placeholder="Jenis Usaha .." class="form-control" type="text" disabled>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Bidang Usaha</label>
+                                    <input name="bidang_usaha" placeholder="Bidang Usaha .." class="form-control" type="text" disabled>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label>Agen</label>
+                                    <input name="Agen" placeholder="Agen .." class="form-control" type="text" disabled>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Telp Customer</label>
+                                    <input name="tlp_customer" placeholder="Telp Customer .." class="form-control" type="number" disabled>
+                                    <span class="help-block"></span>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Hp Customer</label>
+                                    <input name="telp2_customer" placeholder="No Hp Customer .." class="form-control" type="number" disabled>
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Telp Customer</label>
+                                    <input name="tlp_customer" placeholder="Telp Customer .." class="form-control" type="number" disabled>
+                                    <span class="help-block"></span>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Hp Customer</label>
+                                    <input name="telp2_customer" placeholder="No Hp Customer .." class="form-control" type="number" disabled>
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Email Customer</label>
+                                    <input name="email_customer" placeholder="Email Customer .." class="form-control" type="email" disabled>
+                                    <span class="help-block"></span>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Kota Customer</label>
+                                    <input name="kota_customer" placeholder="Kota Customer .." class="form-control" type="text" disabled>
+                                    <span class="help-block"></span>
+                                </div>
+
+                                <label class="control-label col-md-3">Keterangan Contacted</label>
+                                <div class="col-md-12">
+                                    <textarea name="keterangan" placeholder="Keterangan .." maxlength="255" class="form-control" type="textarea" disabled></textarea>
+                                </div>
+
+                                <label class="control-label col-md-3">Keterangan Lost</label>
+                                <div class="col-md-12">
+                                    <!-- <textarea name="keterangan_deals" placeholder="Keterangan .." maxlength="255" class="form-control" type="textarea"></textarea> -->
+                                    <select class="form-control" name="keterangan_lost"  width="100%" required>
+                                        <option value=""> --- </option>
+                                        <?php foreach ($reason_lost as $reason_lost) { ?>
+                                            <option value="<?php echo $reason_lost->keterangan ?>"> <?php echo "$reason_lost->keterangan" ?> </option>
+                                        <?php }?>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <button type="button" id="btnSave" onclick="save()" class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up"> Simpan</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <!-- Block level buttons with icon -->
+                        <div class="form-group">
+                            <button type="button" class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up" data-dismiss="modal">
+                                Tutup
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal animated pulse text-left" id="modal_view" role="dialog" aria-labelledby="myModalLabel17"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h4 class="modal-title text-bold-500 white"><i class="la la-pencil-square"></i> Tambah User Baru</h4>
+                <button type="button" class="close white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#" id="form" class="form-horizontal">
+                    <input type="hidden" value="" name="id_karyawan"/>
+                    <div class="form-body">
+                        <input type="hidden" name="id"/>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Nama Customer</label>
+                                    <input name="nm_customer" placeholder="Nama Customer .." class="form-control" type="text" disabled>
+                                    <div class="NOTIF_ERROR_nm_customer"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Nama Perusahaan</label>
+                                    <input name="nm_perusahaan" placeholder="Nama Perusahaan .." class="form-control" type="text" disabled>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Alamat Customer</label>
+                                    <textarea name="alamat" placeholder="Alamat Customer .." maxlength="255" rows="2" class="form-control" type="textarea" disabled></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Alamat Perusahaan</label>
+                                    <textarea name="alamat_perusahaan" placeholder="Alamat Perusahaan .." maxlength="255" rows="2" class="form-control" type="textarea" disabled></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Jenis Usaha</label>
+                                    <input name="jns_usaha" placeholder="Jenis Usaha .." class="form-control" type="text" disabled>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Bidang Usaha</label>
+                                    <input name="bidang_usaha" placeholder="Bidang Usaha .." class="form-control" type="text" disabled>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label>Agen</label>
+                                    <input name="Agen" placeholder="Agen .." class="form-control" type="text" disabled>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Telp Customer</label>
+                                    <input name="tlp_customer" placeholder="Telp Customer .." class="form-control" type="number" disabled>
+                                    <span class="help-block"></span>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Hp Customer</label>
+                                    <input name="telp2_customer" placeholder="No Hp Customer .." class="form-control" type="number" disabled>
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Telp Customer</label>
+                                    <input name="tlp_customer" placeholder="Telp Customer .." class="form-control" type="number" disabled>
+                                    <span class="help-block"></span>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Hp Customer</label>
+                                    <input name="telp2_customer" placeholder="No Hp Customer .." class="form-control" type="number" disabled>
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Email Customer</label>
+                                    <input name="email_customer" placeholder="Email Customer .." class="form-control" type="email" disabled>
+                                    <span class="help-block"></span>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Kota Customer</label>
+                                    <input name="kota_customer" placeholder="Kota Customer .." class="form-control" type="text" disabled>
+                                    <span class="help-block"></span>
+                                </div>
+
+                                <label class="control-label col-md-3">Keterangan Contacted</label>
+                                <div class="col-md-12">
+                                    <textarea name="keterangan" placeholder="Keterangan .." maxlength="255" class="form-control" type="textarea" disabled></textarea>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <!-- Block level buttons with icon -->
+                        <div class="form-group">
+                            <button type="button" class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up" data-dismiss="modal">
+                                Tutup
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
 <script src="<?php echo base_url('assets/app-assets/vendors/js/vendors.min.js') ?>" type="text/javascript"></script>
-<!-- BEGIN VENDOR JS-->
-<!-- BEGIN PAGE VENDOR JS-->
-<script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/ui/jquery.sticky.js') ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/charts/jquery.sparkline.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/app-assets/vendors/js/ui/jquery.sticky.js') ?>" type="text/javascript" ></script>
+<script src="<?php echo base_url('assets/app-assets/vendors/js/charts/jquery.sparkline.min.js') ?>" type="text/javascript" ></script>
 <script src="<?php echo base_url('assets/app-assets/vendors/js/tables/datatable/datatables.min.js') ?>" type="text/javascript"></script>
-<!-- END PAGE VENDOR JS-->
-<!-- BEGIN MODERN JS-->
 <script src="<?php echo base_url('assets/app-assets/js/core/app-menu.js') ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('assets/app-assets/js/core/app.js') ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('assets/app-assets/js/scripts/customizer.js') ?>" type="text/javascript"></script>
-<!-- END MODERN JS-->
-<!-- BEGIN PAGE LEVEL JS-->
-<script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/scripts/ui/breadcrumbs-with-stats.js') ?>"></script>
-  <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
-<!-- END PAGE LEVEL JS-->
+<script src="<?php echo base_url('assets/app-assets/js/scripts/ui/breadcrumbs-with-stats.js') ?>" type="text/javascript" ></script>
+<script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
+<script src="<?php echo base_url('assets/app-assets/vendors/js/forms/select/select2.full.min.js') ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/app-assets/js/scripts/forms/select/form-select2.js') ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/app-assets/vendors/js/extensions/sweetalert.min.js') ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/app-assets/js/scripts/extensions/sweet-alerts.js') ?>" type="text/javascript"></script>
+
 <script type="text/javascript">
 
 var save_method; //for save method string
@@ -427,656 +1048,7 @@ function delete_person(id)
     }
 }
 
-
 </script>
-<script src="<?php echo base_url('assets/app-assets/vendors/js/extensions/sweetalert.min.js') ?>" type="text/javascript"></script>
-<script src="<?php echo base_url('assets/app-assets/js/scripts/extensions/sweet-alerts.js') ?>" type="text/javascript"></script>
-
-
-<!-- Bootstrap modal insert-->
-<div class="modal animated pulse text-left" id="modal_form" role="dialog" aria-labelledby="myModalLabel17"
-  aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header bg-info">
-          <h4 class="modal-title text-bold-500 white"><i class="la la-pencil-square"></i> Tambah User Baru</h4>
-          <button type="button" class="close white" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="#" id="form" class="form-horizontal">
-                      <input type="hidden" value="" name="id_karyawan"/>
-                     <div class="form-body">
-                       <input type="hidden" name="id"/>
-
-                         <div class="form-group">
-                            <div class="row">
-                             <div class="col-md-6">
-                               <label>Nama Customer</label>
-                                 <input name="nm_customer" placeholder="Nama Customer .." class="form-control" type="text">
-                                 <div class="NOTIF_ERROR_nm_customer"></div>
-                             </div>
-                             <div class="col-md-6">
-                               <label>Nama Perusahaan</label>
-                                 <input name="nm_perusahaan" placeholder="Nama Perusahaan .." class="form-control" type="text">
-                             </div>
-                             <div class="col-md-6">
-                                <label>Alamat Customer</label>
-                              <textarea name="alamat" placeholder="Alamat Customer .." maxlength="255" rows="2" class="form-control" type="textarea"></textarea>
-                             </div>
-                             <div class="col-md-6">
-                                <label>Alamat Perusahaan</label>
-                              <textarea name="alamat_perusahaan" placeholder="Alamat PErusahaan .." maxlength="255" rows="2" class="form-control" type="textarea"></textarea>
-                             </div>
-                             <div class="col-md-12">
-                                 <label for="projectinput2">Agen</label>
-                                 <select class="select2 form-control block"  name="agen" style="width: 100%">
-                                     <option value="" class="disabled">Pilih Agen</option>
-                                     <?php foreach ($agen as $agen) { ?>
-                                        <option value="<?php echo $agen->id_agen?>" ><?php echo $agen->nm_agen?></option>
-                                     <?php }?>
-                                 </select>
-                             </div>
-                            <div class="col-md-12">
-                                <label for="projectinput2">Tertarik Dengan Produk ?</label>
-                                <select class="select2 form-control block"  name="id_layanan" style="width: 100%">
-                                    <option value="" class="disabled">Pilih Produk</option>
-                                    <?php foreach ($layanan as $layanan) { ?>
-                                        <option value="<?php echo $layanan->id_layanan?>" ><?php echo $layanan->nama_layanan?></option>
-                                    <?php }?>
-                                </select>
-                            </div>
-                             <!-- <div class="col-md-6">
-                                <label>Jenis Usaha</label>
-                               <input name="jns_usaha" placeholder="Jenis Usaha .." class="form-control" type="text">
-                             </div>
-                             <div class="col-md-6">
-                                <label>Bidang Usaha</label>
-                               <input name="bidang_usaha" placeholder="Bidang Usaha .." class="form-control" type="text">
-                             </div> -->
-
-                             <!-- <div class="col-md-12">
-                                <label>Agen</label>
-                             <input name="Agen" placeholder="Agen .." class="form-control" type="text">
-                             </div> -->
-                            </div>
-
-                             <div class="row">
-                               <div class="col-md-6">
-                                <label>Telp Customer</label>
-                                   <input name="tlp_customer" placeholder="Telp Customer .." class="form-control" type="number">
-                                   <span class="help-block"></span>
-                               </div>
-
-                               <div class="col-md-6">
-                                <label>Hp Customer</label>
-                                   <input name="telp2_customer" placeholder="No Hp Customer .." class="form-control" type="number">
-                                   <span class="help-block"></span>
-                               </div>
-                             </div>
-
-                             <div class="row">
-                               <div class="col-md-6">
-                                <label>Email Customer</label>
-                                   <input name="email_customer" placeholder="Email Customer .." class="form-control" type="email">
-                                   <span class="help-block"></span>
-                               </div>
-
-                               <div class="col-md-6">
-                                <label>Pilih Area Kota Customer</label>
-                                <select class="form-control" name="kota_customer"  width="100%" required>
-                                   <option value=""> --- </option>
-                                   <?php foreach ($area as $area) { ?>
-                                     <option value="<?php echo $area->nama_kota ?>"> <?php echo "$area->nama_kota" ?> </option>
-                                   <?php }?>
-                                 </select>
-                                 <div class="NOTIF_ERROR_kota_customer"></div>
-                                 </div>
-
-
-                                 <div class="col-md-12">
-                                    <label class="control-label col-md-3">Keterangan</label>
-                                  <textarea name="keterangan" placeholder="Keterangan .." maxlength="255" class="form-control" type="textarea"></textarea>
-                                 </div>
-                             </div>
-
-
-                         </div>
-                     </div>
-                 </form>
-
-                 <div class="row">
-                   <div class="col-md-6">
-                     <div class="form-group">
-                       <button type="button" id="btnSave" onclick="save()" class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up"> Simpan</button>
-                     </div>
-                   </div>
-                   <div class="col-md-6">
-                     <!-- Block level buttons with icon -->
-                     <div class="form-group">
-                       <button type="button" class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up" data-dismiss="modal">
-                         Tutup
-                       </button>
-                     </div>
-                   </div>
-                 </div>
-                </div>
-
-        </div>
-
-      </div>
-    </div>
-  </div>
-    </div>
-
-
-
-<div class="modal animated pulse text-left" id="modal_deals" role="dialog" aria-labelledby="myModalLabel17"
-     aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-success">
-                <h4 class="modal-title text-bold-500 white"><i class="la la-pencil-square"></i> Tambah User Baru</h4>
-                <button type="button" class="close white" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="#" id="form_deal" class="form-horizontal">
-                    <input type="hidden" value="" name="id_karyawan"/>
-                    <div class="form-body">
-                        <input type="hidden" name="id"/>
-
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Nama Customer</label>
-                                    <input name="nm_customer" placeholder="Nama Customer .." class="form-control" type="text" disabled>
-                                    <div class="NOTIF_ERROR_nm_customer"></div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Nama Perusahaan</label>
-                                    <input name="nm_perusahaan" placeholder="Nama Perusahaan .." class="form-control" type="text" disabled>
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Alamat Customer</label>
-                                    <textarea name="alamat" placeholder="Alamat Customer .." maxlength="255" rows="2" class="form-control" type="textarea" disabled></textarea>
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Alamat Perusahaan</label>
-                                    <textarea name="alamat_perusahaan" placeholder="Alamat Perusahaan .." maxlength="255" rows="2" class="form-control" type="textarea" disabled></textarea>
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Jenis Usaha</label>
-                                    <input name="jns_usaha" placeholder="Jenis Usaha .." class="form-control" type="text" disabled>
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Bidang Usaha</label>
-                                    <input name="bidang_usaha" placeholder="Bidang Usaha .." class="form-control" type="text" disabled>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <label>Agen</label>
-                                    <input name="Agen" placeholder="Agen .." class="form-control" type="text" disabled>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Telp Customer</label>
-                                    <input name="tlp_customer" placeholder="Telp Customer .." class="form-control" type="number" disabled>
-                                    <span class="help-block"></span>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label>Hp Customer</label>
-                                    <input name="telp2_customer" placeholder="No Hp Customer .." class="form-control" type="number" disabled>
-                                    <span class="help-block"></span>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Email Customer</label>
-                                    <input name="email_customer" placeholder="Email Customer .." class="form-control" type="email" disabled>
-                                    <span class="help-block"></span>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label>Kota Customer</label>
-                                    <input name="kota_customer" placeholder="Kota Customer .." class="form-control" type="text" disabled>
-                                    <span class="help-block"></span>
-                                </div>
-
-
-                                <div class="col-md-12">
-                                    <label class="control-label col-md-3">Keterangan Deal</label>
-                                    <select class="form-control" name="keterangan_deals"  width="100%" required>
-                                        <option value=""> --- </option>
-                                        <?php foreach ($reason_deal as $reason_deal) { ?>
-                                            <option value="<?php echo $reason_deal->keterangan ?>"> <?php echo "$reason_deal->keterangan" ?> </option>
-                                        <?php }?>
-                                    </select>
-                                    <!-- <textarea name="keterangan_deal" placeholder="Keterangan .." maxlength="255" class="form-control" type="textarea"></textarea> -->
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </form>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <button type="button" id="btnSave" onclick="save()" class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up"> Simpan</button>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <!-- Block level buttons with icon -->
-                        <div class="form-group">
-                            <button type="button" class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up" data-dismiss="modal">
-                                Tutup
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-</div>
-</div>
-</div>
-
-
-<div class="modal animated pulse text-left" id="modal_update" role="dialog" aria-labelledby="myModalLabel17"
-     aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-dark">
-                <h4 class="modal-title text-bold-500 white"><i class="la la-pencil-square"></i> Tambah User Baru</h4>
-                <button type="button" class="close white" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="#" id="form_perbarui" class="form-horizontal">
-                    <input type="hidden" value="" name="id_karyawan"/>
-                    <div class="form-body">
-                        <input type="hidden" name="id"/>
-
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Nama Customer</label>
-                                    <input name="nm_customer" placeholder="Nama Customer .." class="form-control" type="text" >
-                                    <div class="NOTIF_ERROR_nm_customer"></div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Nama Perusahaan</label>
-                                    <input name="nm_perusahaan" placeholder="Nama Perusahaan .." class="form-control" type="text" >
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Alamat Customer</label>
-                                    <textarea name="alamat" placeholder="Alamat Customer .." maxlength="255" rows="2" class="form-control" type="textarea" ></textarea>
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Alamat Perusahaan</label>
-                                    <textarea name="alamat_perusahaan" placeholder="Alamat Perusahaan .." maxlength="255" rows="2" class="form-control" type="textarea" ></textarea>
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Jenis Usaha</label>
-                                    <input name="jns_usaha" placeholder="Jenis Usaha .." class="form-control" type="text" >
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Bidang Usaha</label>
-                                    <input name="bidang_usaha" placeholder="Bidang Usaha .." class="form-control" type="text" >
-                                </div>
-
-                                <div class="col-md-12">
-                                    <label for="projectinput2">Agen</label>
-                                    <select class="select form-control block"  name="Agen" style="width: 100%">
-                                        <option value="" class="disabled">Pilih Agen</option>
-                                        <?php foreach ($agen_update as $agen_update) { ?>
-                                            <option value="<?= $agen_update->id_agen ?>" ><?= $agen_update->nm_agen ?></option>
-                                        <?php }?>
-                                    </select>
-                                </div>
-                                <div class="col-md-12">
-                                    <label for="projectinput2">Tertarik Dengan Produk ?</label>
-                                    <select class="select form-control block"  name="id_layanan" style="width: 100%">
-                                        <option value="" class="disabled">Pilih Produk</option>
-                                        <?php foreach ($layanan_update as $layanan_update) { ?>
-                                            <option value="<?php echo $layanan_update->id_layanan?>" ><?php echo $layanan_update->nama_layanan?></option>
-                                        <?php }?>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Telp Customer</label>
-                                    <input name="tlp_customer" placeholder="Telp Customer .." class="form-control" type="number" >
-                                    <span class="help-block"></span>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label>Hp Customer</label>
-                                    <input name="telp2_customer" placeholder="No Hp Customer .." class="form-control" type="number" >
-                                    <span class="help-block"></span>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Email Customer</label>
-                                    <input name="email_customer" placeholder="Email Customer .." class="form-control" type="email" >
-                                    <span class="help-block"></span>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label>Kota Customer</label>
-                                    <input name="kota_customer" placeholder="Kota Customer .." class="form-control" type="text" >
-                                    <span class="help-block"></span>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </form>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <button type="button" id="btnSave" onclick="save()" class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up"> Simpan</button>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <!-- Block level buttons with icon -->
-                        <div class="form-group">
-                            <button type="button" class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up" data-dismiss="modal">
-                                Tutup
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-</div>
-</div>
-</div>
-
-
-<script src="<?php echo base_url('assets/app-assets/vendors/js/forms/select/select2.full.min.js') ?>" type="text/javascript"></script>
-<div class="modal animated pulse text-left" id="modal_lost" role="dialog" aria-labelledby="myModalLabel17"
-  aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header bg-danger">
-          <h4 class="modal-title text-bold-500 white"><i class="la la-pencil-square"></i> Tambah User Baru</h4>
-          <button type="button" class="close white" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="#" id="form_lost" class="form-horizontal">
-                      <input type="hidden" value="" name="id_karyawan"/>
-                     <div class="form-body">
-                       <input type="hidden" name="id"/>
-
-                         <div class="form-group">
-                           <div class="row">
-                            <div class="col-md-6">
-                              <label>Nama Customer</label>
-                                <input name="nm_customer" placeholder="Nama Customer .." class="form-control" type="text" disabled>
-                                <div class="NOTIF_ERROR_nm_customer"></div>
-                            </div>
-                            <div class="col-md-6">
-                              <label>Nama Perusahaan</label>
-                                <input name="nm_perusahaan" placeholder="Nama Perusahaan .." class="form-control" type="text" disabled>
-                            </div>
-                            <div class="col-md-6">
-                               <label>Alamat Customer</label>
-                             <textarea name="alamat" placeholder="Alamat Customer .." maxlength="255" rows="2" class="form-control" type="textarea" disabled></textarea>
-                            </div>
-                            <div class="col-md-6">
-                               <label>Alamat Perusahaan</label>
-                             <textarea name="alamat_perusahaan" placeholder="Alamat Perusahaan .." maxlength="255" rows="2" class="form-control" type="textarea" disabled></textarea>
-                            </div>
-                            <div class="col-md-6">
-                               <label>Jenis Usaha</label>
-                              <input name="jns_usaha" placeholder="Jenis Usaha .." class="form-control" type="text" disabled>
-                            </div>
-                            <div class="col-md-6">
-                               <label>Bidang Usaha</label>
-                              <input name="bidang_usaha" placeholder="Bidang Usaha .." class="form-control" type="text" disabled>
-                            </div>
-
-                            <div class="col-md-12">
-                               <label>Agen</label>
-                            <input name="Agen" placeholder="Agen .." class="form-control" type="text" disabled>
-                            </div>
-                           </div>
-
-                            <div class="row">
-                              <div class="col-md-6">
-                               <label>Telp Customer</label>
-                                  <input name="tlp_customer" placeholder="Telp Customer .." class="form-control" type="number" disabled>
-                                  <span class="help-block"></span>
-                              </div>
-
-                              <div class="col-md-6">
-                               <label>Hp Customer</label>
-                                  <input name="telp2_customer" placeholder="No Hp Customer .." class="form-control" type="number" disabled>
-                                  <span class="help-block"></span>
-                              </div>
-                            </div>
-
-                             <div class="row">
-                               <div class="col-md-6">
-                                <label>Telp Customer</label>
-                                   <input name="tlp_customer" placeholder="Telp Customer .." class="form-control" type="number" disabled>
-                                   <span class="help-block"></span>
-                               </div>
-
-                               <div class="col-md-6">
-                                <label>Hp Customer</label>
-                                   <input name="telp2_customer" placeholder="No Hp Customer .." class="form-control" type="number" disabled>
-                                   <span class="help-block"></span>
-                               </div>
-                             </div>
-
-                             <div class="row">
-                               <div class="col-md-6">
-                                <label>Email Customer</label>
-                                   <input name="email_customer" placeholder="Email Customer .." class="form-control" type="email" disabled>
-                                   <span class="help-block"></span>
-                               </div>
-
-                               <div class="col-md-6">
-                                <label>Kota Customer</label>
-                                   <input name="kota_customer" placeholder="Kota Customer .." class="form-control" type="text" disabled>
-                                   <span class="help-block"></span>
-                               </div>
-
-                               <label class="control-label col-md-3">Keterangan Contacted</label>
-                                 <div class="col-md-12">
-                                  <textarea name="keterangan" placeholder="Keterangan .." maxlength="255" class="form-control" type="textarea" disabled></textarea>
-                                 </div>
-
-                                 <label class="control-label col-md-3">Keterangan Lost</label>
-                                   <div class="col-md-12">
-                                    <!-- <textarea name="keterangan_deals" placeholder="Keterangan .." maxlength="255" class="form-control" type="textarea"></textarea> -->
-                                    <select class="form-control" name="keterangan_lost"  width="100%" required>
-                                       <option value=""> --- </option>
-                                       <?php foreach ($reason_lost as $reason_lost) { ?>
-                                         <option value="<?php echo $reason_lost->keterangan ?>"> <?php echo "$reason_lost->keterangan" ?> </option>
-                                       <?php }?>
-                                     </select>
-                                   </div>
-                             </div>
-
-
-                         </div>
-                     </div>
-                 </form>
-
-                 <div class="row">
-                   <div class="col-md-6">
-                     <div class="form-group">
-                       <button type="button" id="btnSave" onclick="save()" class="btn mb-1 btn-info box-shadow-2 btn-lg btn-block pull-up"> Simpan</button>
-                     </div>
-                   </div>
-                   <div class="col-md-6">
-                     <!-- Block level buttons with icon -->
-                     <div class="form-group">
-                       <button type="button" class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up" data-dismiss="modal">
-                         Tutup
-                       </button>
-                     </div>
-                   </div>
-                 </div>
-                </div>
-
-        </div>
-
-      </div>
-    </div>
-  </div>
-    </div>
-
-<script src="<?php echo base_url('assets/app-assets/vendors/js/forms/select/select2.full.min.js') ?>" type="text/javascript"></script>
-<div class="modal animated pulse text-left" id="modal_view" role="dialog" aria-labelledby="myModalLabel17"
-  aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header bg-info">
-          <h4 class="modal-title text-bold-500 white"><i class="la la-pencil-square"></i> Tambah User Baru</h4>
-          <button type="button" class="close white" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="#" id="form" class="form-horizontal">
-                      <input type="hidden" value="" name="id_karyawan"/>
-                     <div class="form-body">
-                       <input type="hidden" name="id"/>
-
-                         <div class="form-group">
-                           <div class="row">
-                            <div class="col-md-6">
-                              <label>Nama Customer</label>
-                                <input name="nm_customer" placeholder="Nama Customer .." class="form-control" type="text" disabled>
-                                <div class="NOTIF_ERROR_nm_customer"></div>
-                            </div>
-                            <div class="col-md-6">
-                              <label>Nama Perusahaan</label>
-                                <input name="nm_perusahaan" placeholder="Nama Perusahaan .." class="form-control" type="text" disabled>
-                            </div>
-                            <div class="col-md-6">
-                               <label>Alamat Customer</label>
-                             <textarea name="alamat" placeholder="Alamat Customer .." maxlength="255" rows="2" class="form-control" type="textarea" disabled></textarea>
-                            </div>
-                            <div class="col-md-6">
-                               <label>Alamat Perusahaan</label>
-                             <textarea name="alamat_perusahaan" placeholder="Alamat Perusahaan .." maxlength="255" rows="2" class="form-control" type="textarea" disabled></textarea>
-                            </div>
-                            <div class="col-md-6">
-                               <label>Jenis Usaha</label>
-                              <input name="jns_usaha" placeholder="Jenis Usaha .." class="form-control" type="text" disabled>
-                            </div>
-                            <div class="col-md-6">
-                               <label>Bidang Usaha</label>
-                              <input name="bidang_usaha" placeholder="Bidang Usaha .." class="form-control" type="text" disabled>
-                            </div>
-
-                            <div class="col-md-12">
-                               <label>Agen</label>
-                            <input name="Agen" placeholder="Agen .." class="form-control" type="text" disabled>
-                            </div>
-                           </div>
-
-                            <div class="row">
-                              <div class="col-md-6">
-                               <label>Telp Customer</label>
-                                  <input name="tlp_customer" placeholder="Telp Customer .." class="form-control" type="number" disabled>
-                                  <span class="help-block"></span>
-                              </div>
-
-                              <div class="col-md-6">
-                               <label>Hp Customer</label>
-                                  <input name="telp2_customer" placeholder="No Hp Customer .." class="form-control" type="number" disabled>
-                                  <span class="help-block"></span>
-                              </div>
-                            </div>
-
-                             <div class="row">
-                               <div class="col-md-6">
-                                <label>Telp Customer</label>
-                                   <input name="tlp_customer" placeholder="Telp Customer .." class="form-control" type="number" disabled>
-                                   <span class="help-block"></span>
-                               </div>
-
-                               <div class="col-md-6">
-                                <label>Hp Customer</label>
-                                   <input name="telp2_customer" placeholder="No Hp Customer .." class="form-control" type="number" disabled>
-                                   <span class="help-block"></span>
-                               </div>
-                             </div>
-
-                             <div class="row">
-                               <div class="col-md-6">
-                                <label>Email Customer</label>
-                                   <input name="email_customer" placeholder="Email Customer .." class="form-control" type="email" disabled>
-                                   <span class="help-block"></span>
-                               </div>
-
-                               <div class="col-md-6">
-                                <label>Kota Customer</label>
-                                   <input name="kota_customer" placeholder="Kota Customer .." class="form-control" type="text" disabled>
-                                   <span class="help-block"></span>
-                               </div>
-
-                               <label class="control-label col-md-3">Keterangan Contacted</label>
-                                 <div class="col-md-12">
-                                  <textarea name="keterangan" placeholder="Keterangan .." maxlength="255" class="form-control" type="textarea" disabled></textarea>
-                                 </div>
-                             </div>
-
-
-                         </div>
-                     </div>
-                 </form>
-
-                 <div class="row">
-
-                   <div class="col-md-12">
-                     <!-- Block level buttons with icon -->
-                     <div class="form-group">
-                       <button type="button" class="btn mb-1 btn-danger box-shadow-2 btn-lg btn-block pull-up" data-dismiss="modal">
-                         Tutup
-                       </button>
-                     </div>
-                   </div>
-                 </div>
-                </div>
-
-        </div>
-
-      </div>
-    </div>
-  </div>
-    </div>
-
-<script src="<?php echo base_url('assets/app-assets/vendors/js/forms/select/select2.full.min.js') ?>" type="text/javascript"></script>
-<script src="<?php echo base_url('assets/app-assets/js/scripts/forms/select/form-select2.js') ?>" type="text/javascript"></script>
 
 <!-- End Bootstrap modal -->
 </body>

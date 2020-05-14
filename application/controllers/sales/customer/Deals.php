@@ -30,6 +30,7 @@ class Deals extends CI_Controller{
 			                      aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
 			                      <div class="dropdown-menu">
 															<a class="dropdown-item" href="javascript:void(0)" onclick="project('."'".$d->id_customer."'".')"><i class="ft-save"></i> Generate To Project</a>
+                                                            <a class="dropdown-item" href="javascript:void(0)" onclick="perbarui('."'".$d->id_customer."'".')"><i class="ft-edit"></i> Update</a>
 															<a class="dropdown-item" href="javascript:void(0)" onclick="view('."'".$d->id_customer."'".')"><i class="ft-file"></i> View Detail</a>
 			                      </div>';
 														// <a class="dropdown-item" href="javascript:void(0)" onclick="delete_person('."'".$d->id_customer."'".')"><i class="ft-trash"></i> Delete</a>

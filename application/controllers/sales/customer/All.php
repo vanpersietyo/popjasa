@@ -35,6 +35,7 @@ class All extends CI_Controller{
                               <div class="dropdown-menu">
                                 <a class="dropdown-item"  href="javascript:void(0)" onclick="deals('."'".$d->id_customer."'".')"><i class="ft-thumbs-up"></i> Generate To Deals</a>
                                 <a class="dropdown-item" href="javascript:void(0)" onclick="lost('."'".$d->id_customer."'".')"><i class="ft-thumbs-down"></i> Generat To Lost</a>
+                                <a class="dropdown-item" href="javascript:void(0)" onclick="perbarui('."'".$d->id_customer."'".')"><i class="ft-edit"></i> Update</a>
                                 <a class="dropdown-item" href="javascript:void(0)" onclick="delete_person('."'".$d->id_customer."'".')"><i class="ft-trash"></i> Delete</a>
                                 <a class="dropdown-item" href="javascript:void(0)" onclick="view('."'".$d->id_customer."'".')"><i class="ft-file"></i> View Detail</a>
                               </div>';
@@ -44,6 +45,7 @@ class All extends CI_Controller{
                               aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
                               <div class="dropdown-menu">
                                 <a class="dropdown-item" href="javascript:void(0)" onclick="project('."'".$d->id_customer."'".')"><i class="ft-save"></i> Generate To Project</a>
+                                <a class="dropdown-item" href="javascript:void(0)" onclick="perbarui('."'".$d->id_customer."'".')"><i class="ft-edit"></i> Update</a>
                                 <a class="dropdown-item" href="javascript:void(0)" onclick="view('."'".$d->id_customer."'".')"><i class="ft-file"></i> View Detail</a>
                               </div>';
       }elseif ($d->status==3) {
@@ -51,7 +53,7 @@ class All extends CI_Controller{
         $row[] = '<button type="button" class="btn btn-dark dropdown-toggle btn-sm" data-toggle="dropdown"
                               aria-haspopup="true" aria-expanded="false"><i class="ft-menu"></i></button>
                               <div class="dropdown-menu">
-
+                                <a class="dropdown-item" href="javascript:void(0)" onclick="perbarui('."'".$d->id_customer."'".')"><i class="ft-edit"></i> Update</a>
                                 <a class="dropdown-item" href="javascript:void(0)" onclick="view('."'".$d->id_customer."'".')"><i class="ft-file"></i> View Detail</a>
                               </div>';
       }
