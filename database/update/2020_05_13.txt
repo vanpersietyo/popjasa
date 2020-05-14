@@ -116,8 +116,41 @@ LEFT JOIN trs_projects_izin AS iz ON (iz.ID_Project = tp.id_project)
 LEFT JOIN trs_projects_ket AS kt ON (kt.ID_Project = tp.id_project)
 LEFT JOIN m_customer AS cs ON (tp.id_customer = cs.id_customer) ;
 
+CREATE OR REPLACE VIEW v_outstanding_doc_not_finish AS SELECT
+v_project.tgl_input,
+	concat(Case
+	when month(v_project.tgl_input) = 1 then 'JANUARI'
+	when month(v_project.tgl_input) = 2 then 'FEBUARI'
+	when month(v_project.tgl_input) = 3 then 'MARET'
+	when month(v_project.tgl_input) = 4 then 'APRIL'
+	when month(v_project.tgl_input) = 5 then 'MEI'
+	when month(v_project.tgl_input) = 6 then 'JUNI'
+	when month(v_project.tgl_input) = 7 then 'JULI'
+	when month(v_project.tgl_input) = 8 then 'AGUSTUS'
+	when month(v_project.tgl_input) = 9 then 'SEPTEMBER'
+	when month(v_project.tgl_input) = 10 then 'OKTOBER'
+	when month(v_project.tgl_input) = 11 then 'NOVEMBER'
+	when month(v_project.tgl_input) = 12 then 'DESEMBER'
+	end,' ', Year(v_project.tgl_input)) as Periode,
+v_project.id_customer,
+v_project.nm_customer,
+v_project.id_layanan,
+v_project.nama_layanan,
+count(v_project.id_project) AS `jml_order`,
+v_project.harga_jual,
+b.jumlah_byr as jumlah_pay,
+(v_project.harga_jual - b.jumlah_byr) AS sisa,
+v_project.kd_cabang,v_project.id_project
+FROM
+v_project
+INNER JOIN v_paybyproject as b ON v_project.id_project = b.id_project
+WHERE
+Not Exists(Select 1 from trs_project_logs as log where Status_log = 2 and log.Project_id = v_project.id_project)
+and (v_project.harga_jual - b.jumlah_byr) > 0
+GROUP BY v_project.tgl_input, periode,v_project.id_project;
+
 insert into log_update(script_name,note) values
 (
 "2020_05_13.txt",
-"create view v_outstanding_doc_finish"
+"create view v_outstanding_doc_finish, v_outstanding_doc_not_finish, v_cetak_blanko_project"
 );
