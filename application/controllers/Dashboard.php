@@ -318,4 +318,80 @@ class Dashboard extends CI_Controller
         }
         return $color;
     }
+
+    public function ajaxCashflowList($params = 'all'){
+        $this->load->model('report/M_v_rekapitulasi_cashflow_per_day');
+
+        //Cari Saldo Awal
+        $awalBulan      = date('Y-m').'-01';
+        $tglSaldoAwal   = Conversion::dateMinusDays($awalBulan,1);
+        $whereSaldoAwal = [
+            M_v_rekapitulasi_cashflow_per_day::TGL.' <= '   => $awalBulan,
+            M_v_rekapitulasi_cashflow_per_day::TGL.' != '   => NULL
+        ];
+        if($params !== 'all'){
+            $whereSaldoAwal[M_v_rekapitulasi_cashflow_per_day::KD_CABANG] = $params;
+        }
+        $saldoAwal      = $this->M_v_rekapitulasi_cashflow_per_day->select_first([
+            'column'    => '"'.$tglSaldoAwal.'"  as TGL,SUM(BCA) as BCA,SUM(CASH) as CASH,SUM(MANDIRI) as MANDIRI,SUM(BRI) as BRI, 
+                            SUM(BCA+MANDIRI+CASH+BRI) as TOTAL',
+            'where'     => $whereSaldoAwal,
+        ]);
+
+        //Cari Cashflow Bulan ini
+        $periode        = date('Ym');
+        $whereBulanIni = [
+            'EXTRACT(YEAR_MONTH FROM TGL) = '           => $periode,
+        ];
+        if($params !== 'all'){
+            $whereBulanIni[M_v_rekapitulasi_cashflow_per_day::KD_CABANG] = $params;
+        }
+        $cashflow       = $this->M_v_rekapitulasi_cashflow_per_day->select([
+            'column'    => 'TGL,SUM(BCA) as BCA,SUM(CASH) as CASH,SUM(MANDIRI) as MANDIRI,SUM(BRI) as BRI, 
+                            SUM(BCA+MANDIRI+CASH+BRI) as TOTAL',
+            'where'     => $whereBulanIni,
+            'group'     => ['TGL'],
+            'order'     => ['TGL' => 'ASC']
+        ]);
+
+//        echo "<pre>";
+//        var_dump($whereSaldoAwal);
+//        var_dump($saldoAwal);
+//        echo 'batas<br>';
+//        var_dump($whereBulanIni);
+//        var_dump($cashflow);
+//        echo "</pre>";
+
+        $data   = [];
+        if($saldoAwal){
+            $row    = [];
+            $row[]  = Conversion::convert_date($saldoAwal->TGL,'d-m-Y').' (SALDO BULAN LALU)';
+            $row[]  = $saldoAwal->CASH      ?: 0;
+            $row[]  = $saldoAwal->BCA       ?: 0;
+            $row[]  = $saldoAwal->MANDIRI   ?: 0;
+            $row[]  = $saldoAwal->BRI       ?: 0;
+            $row[]  = $saldoAwal->TOTAL     ?: 0;
+            $data[] = $row;
+        }
+
+        /** @var M_v_rekapitulasi_cashflow_per_day[] $cashflow */
+        if($cashflow){
+            foreach ($cashflow as $cash) {
+                $row    = [];
+                $row[]  = Conversion::convert_date($cash->TGL,'d-m-Y');
+                $row[]  = $cash->CASH;
+                $row[]  = $cash->BCA;
+                $row[]  = $cash->MANDIRI;
+                $row[]  = $cash->BRI;
+                $row[]  = $cash->TOTAL;
+                $data[] = $row;
+            }
+        }
+
+        $output = [
+            "data" => $data,
+        ];
+
+        echo json_encode($output);
+    }
 }

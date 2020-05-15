@@ -449,14 +449,80 @@
           });
 
           cashflow = $('#cashflow').DataTable({
+              "ajax": {
+                  "url": "<?php echo base_url('dashboard/ajaxCashflowList')?>",
+              },
               "info": false,
               "scrollY": "250px",
               "scrollCollapse": true,
-              "ordering": true,
+              "ordering": false,
               "searching": true,
               "bLengthChange": false,
               "processing": true, //Feature control the processing indicator.
               "paging": false,
+              "columns": [
+                  {mData: '0'},
+                  {mData: '1', render: $.fn.dataTable.render.number(',', '.', 0, ''),class : 'text-right'},
+                  {mData: '2', render: $.fn.dataTable.render.number(',', '.', 0, ''),class : 'text-right'},
+                  {mData: '3', render: $.fn.dataTable.render.number(',', '.', 0, ''),class : 'text-right'},
+                  {mData: '4', render: $.fn.dataTable.render.number(',', '.', 0, ''),class : 'text-right'},
+                  {mData: '5', render: $.fn.dataTable.render.number(',', '.', 0, ''),class : 'text-right'},
+              ],
+              "footerCallback": function ( row, data, start, end, display ) {
+                  var api = this.api(), data;
+                  var intVal = function ( i ) {
+                      return typeof i === 'string' ?
+                          i.replace(/[\$,]/g, '')*1 :
+                          typeof i === 'number' ?
+                              i : 0;
+                  };
+                  totalTunai = api
+                      .column( 1 )
+                      .data()
+                      .reduce( function (a, b) {
+                          return intVal(a) + intVal(b);
+                      }, 0 );
+                  totalBca = api
+                      .column( 2 )
+                      .data()
+                      .reduce( function (a, b) {
+                          return intVal(a) + intVal(b);
+                      }, 0 );
+                  totalMandiri = api
+                      .column( 3 )
+                      .data()
+                      .reduce( function (a, b) {
+                          return intVal(a) + intVal(b);
+                      }, 0 );
+                  totalBri = api
+                      .column(4)
+                      .data()
+                      .reduce( function (a, b) {
+                          return intVal(a) + intVal(b);
+                      }, 0 );
+                  total = api
+                      .column(5)
+                      .data()
+                      .reduce( function (a, b) {
+                          return intVal(a) + intVal(b);
+                      }, 0 );
+                  var numFormat = $.fn.dataTable.render.number( '\,', '.', 0, '' ).display;
+                  $( api.column(1).footer() ).html(
+                      '<b class="danger">'+ numFormat(totalTunai)
+                  );
+                  $( api.column(2).footer() ).html(
+                      '<b class="danger">'+ numFormat(totalBca)
+                  );
+                  $( api.column(3).footer() ).html(
+                      '<b class="danger">'+ numFormat(totalMandiri)
+                  );
+                  $( api.column(4).footer() ).html(
+                      '<b class="danger">'+ numFormat(totalBri)
+                  );
+                  $( api.column(5).footer() ).html(
+                      '<b class="danger">'+ numFormat(total)
+                  );
+              }
           });
           $('#cashflow_filter').remove();
           $('#search_cashflow').on('keyup', function () {
@@ -470,3 +536,7 @@
       }
 
   </script>
+
+  <!-- END PAGE LEVEL JS-->
+  </body>
+</html>
