@@ -31,9 +31,9 @@ class   Auth extends CI_Controller
         if ($hasil == true) {
             $this->session->set_userdata('isLogin', true);
             $this->session->set_userdata('yangLogin', strtoupper($this->input->post('user_id')));
-            $cabang = $this->M_login->get_cabang(strtoupper($this->input->post('user_id')));
-            $akses = $this->M_login->get_akses(strtoupper($this->input->post('user_id')));
-            $nm_cabang = $this->M_login->get_nmcabang($cabang->kd_cabang);
+            $cabang     = $this->M_login->get_cabang(strtoupper($this->input->post('user_id')));
+            $akses      = $this->M_login->get_akses(strtoupper($this->input->post('user_id')));
+            $nm_cabang  = $this->M_login->get_nmcabang($cabang->kd_cabang);
             $this->session->set_userdata('akses_user', strtoupper($akses->akses));
             $this->session->set_userdata('cabang', strtoupper($cabang->kd_cabang));
             $this->session->set_userdata('nm_cabang', strtoupper($nm_cabang->nm_cabang));

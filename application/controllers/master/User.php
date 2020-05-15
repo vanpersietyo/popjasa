@@ -124,7 +124,82 @@ class User extends CI_Controller{
 		}
 	}
 
+    public function change_password(){
+        $pwd_baru 	= $this->input->post('password_baru');
+        $id_user	= $this->conversion->get_user_login();
 
+        $this->_validate_change_password();
 
+        $this->db->trans_begin();
+        $this->M_user->update([M_user::id_user => $id_user],[M_user::password => $pwd_baru]);
+        if ($this->db->trans_status() === FALSE)
+        {
+            $this->db->trans_rollback();
+            $status    = false;
+            $message   = 'Proses Gagal. Silahkan Ulangi.';
+            $sw_alert  = true;
+        }
+        else
+        {
+            $this->db->trans_commit();
+            $status    = true;
+            $message   = 'Password Anda Berhasil Diubah';
+        }
 
+        $data = [
+            'status' 	=> $status,
+            'message' 	=> $message,
+            'sw_alert'	=> isset($sw_alert) ? $sw_alert : FALSE
+        ];
+        echo json_encode($data);
+    }
+
+    private function _validate_change_password()
+    {
+        $this->conversion->translate_error_form_validation();
+        //inisialisasi
+        $data = $data['inputerror'] = $data['notiferror'] = $data['notiferror'] = [];
+        $data['status']		= TRUE; // TRUE = validation lolos | FALSE = validation gagal
+        $data['sw_alert']   = FALSE; // TRUE = kirim error swal dari controller | FALSE : tidak kirim error swal
+
+        //FORM VALIDATION CODEIGNITER
+        $this->form_validation->set_rules('password_lama', 'Password Lama', 'required|trim');
+        $this->form_validation->set_rules('password_baru', 'Password Baru', 'required|trim|min_length[5]|alpha_numeric|max_length[20]');
+        $this->form_validation->set_rules('konfirm_password_baru', 'Konfirm Password', 'required|trim|matches[password_baru]|min_length[5]|alpha_numeric|max_length[20]');
+
+        //CATCH VALIDATION CODEIGNITER
+        if ($this->form_validation->run() == FALSE){
+            $data['status'] = FALSE;
+            foreach ($this->form_validation->error_array() as $dtl => $value) {
+                $data['inputerror'][]   = $dtl;
+                $data['notiferror'][]   = Conversion::template_error($value);
+            }
+        }
+
+        // Custom validation
+        $pwd_lama	= $this->input->post('password_lama');
+        $pwd_baru	= $this->input->post('password_baru');
+        $id_user	= $this->conversion->get_user_login();
+        if($user = $this->M_user->get_by_id($id_user)){
+            if($pwd_lama != $user->password){
+                $data['inputerror'][]   = 'password_lama';
+                $data['notiferror'][]   = Conversion::template_error('Password Lama Salah');
+                $data['status']         = FALSE;
+            }elseif($pwd_baru == $pwd_lama){
+                $data['inputerror'][]   = 'password_baru';
+                $data['notiferror'][]   = Conversion::template_error('Password Baru Tidak Boleh Sama Dengan Password Lama');
+                $data['status']         = FALSE;
+            }
+        }else{
+            $data['message']        = 'Data User Tidak Ditemukan';
+            $data['sw_alert']       = TRUE;
+            $data['status']         = FALSE;
+        }
+
+        if(!$data['status'])
+        {
+            echo json_encode($data);
+            exit();
+        }
+    }
 }

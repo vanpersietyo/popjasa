@@ -20,7 +20,6 @@
   <script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/scripts/tables/datatables/datatable-basic.js')?>"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/extensions/sweetalert.min.js')?>"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/scripts/extensions/sweet-alerts.js')?>"></script>
-  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/scripts/forms/select/form-select2.js')?>"></script>
 
   <script>
 
@@ -89,7 +88,7 @@
                   });
 
                   scoreChart.on('created', function (data) {
-                      var defs = data.svg.querySelector('defs') || data.svg.elem('defs');
+                      var defs = data.svg.elem('defs');
                       var width = data.svg.width();
                       var height = data.svg.height();
 

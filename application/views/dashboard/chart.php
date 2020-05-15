@@ -5,7 +5,6 @@
 
 $this->load->view('dashboard/assets/head');
 ?>
-
 <div class="app-content content">
     <div class="content-wrapper">
 
@@ -330,8 +329,7 @@ $this->load->view('dashboard/assets/head');
                         <div class="card-content">
                             <div class="media-list position-relative">
                                 <div class="table-responsive">
-                                    <table id="top_sales_layanan" class="table table-striped table-bordered"
-                                           style="width: 100%;" align="center">
+                                    <table id="top_sales_layanan" class="table table-striped table-bordered" style="width: 100%;">
                                         <thead>
                                         <tr>
                                             <th class="border-top-0">NO</th>
@@ -340,8 +338,6 @@ $this->load->view('dashboard/assets/head');
                                             <th class="border-top-0">OMZET</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
-                                        </tbody>
                                     </table>
                                 </div>
                             </div>

@@ -1,0 +1,11 @@
+CREATE TABLE `m_user_cabang`(  
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `id_user` VARCHAR(20) NOT NULL,
+  `kd_cabang` VARCHAR(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `FK_M_USER_USER` FOREIGN KEY (`id_user`) REFERENCES `m_user`(`id_user`),
+  CONSTRAINT `FK_M_USER_CABANG` FOREIGN KEY (`kd_cabang`) REFERENCES `m_cabang`(`kd_cabang`)
+);
+
+insert into log_update(script_name,note) values
+("2020_05_16.txt","user cabang");
