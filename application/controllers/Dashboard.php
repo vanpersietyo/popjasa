@@ -16,6 +16,7 @@ class Dashboard extends CI_Controller
 
     public function index()
     {
+        $this->load->model('M_cabang');
         if ($this->session->userdata('akses_user') === 'hrd') {
             $this->hrd();
             exit();
@@ -153,6 +154,7 @@ class Dashboard extends CI_Controller
         $data['piutang_outstanding_doc_not_finish'] = $this->M_dir->outstanding_not_finish_findByMonth();
         $data['piutang_outstanding_doc_finish']     = $this->M_dir->outstanding_finish_findByMonthFinish();
         $data['top_sales_layanan']      = $this->M_dir->top_sales_by_month($date_month);
+        $data['cabang']                 = $this->M_cabang->find();
         $data['pages']                  = 'dashboard/chart';
 
         $kategori 		= [];
@@ -377,8 +379,9 @@ class Dashboard extends CI_Controller
         /** @var M_v_rekapitulasi_cashflow_per_day[] $cashflow */
         if($cashflow){
             foreach ($cashflow as $cash) {
+                $url    = site_url("report/cashflow/cetak_cashflow?tgl_awal=".$cash->TGL."&tgl_akhir=".$cash->TGL."&harian=true");
                 $row    = [];
-                $row[]  = Conversion::convert_date($cash->TGL,'d-m-Y');
+                $row[]  = "<a href='".$url."' target='_blank'>".Conversion::convert_date($cash->TGL,'d-m-Y')."</a>";
                 $row[]  = $cash->CASH;
                 $row[]  = $cash->BCA;
                 $row[]  = $cash->MANDIRI;

@@ -8,8 +8,6 @@ role="navigation" data-menu="menu-wrapper">
        </a>
       </li>
 
-
-
      <li class="dropdown nav-item pull-up" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="la la-sitemap"></i><span>HRD</span></a>
       <ul class="dropdown-menu">
         <li data-menu=""><a class="dropdown-item" href="<?php echo site_url('master/hrd/absensi_karyawan')?>"
@@ -90,11 +88,27 @@ role="navigation" data-menu="menu-wrapper">
 
 
 
-      <li class=" nav-item pull-up" data-menu="">
-       <a class="nav-link" href="<?php echo site_url('auth/logout')?>"><i class="ft-power"></i>
-         <span>Logout</span>
-       </a>
-      </li>
+
+        <li class="dropdown nav-item pull-up" data-menu="dropdown">
+            <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="ft-settings"></i><span>Setting</span> </a>
+
+            <ul class="dropdown-menu">
+                <!--                    <li data-menu="">-->
+                <!--                        <a class="dropdown-item" href="--><?php //echo site_url('account.php') ?><!--">-->
+                <!--                            <i class="icon-user"></i> Account</a>-->
+                <!--                    </li>-->
+                <li data-menu="">
+                    <a class="dropdown-item" href="javascript:void(0)" onclick="show_modal_change_password()">
+                        <i class="icon-key"></i> <span>Change Password</span></a>
+                </li>
+
+                <li data-menu="">
+                    <a class="dropdown-item" href="<?php echo site_url('auth/logout') ?>"><i class="ft-power"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
 
 
     </ul>

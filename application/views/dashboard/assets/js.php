@@ -20,6 +20,8 @@
   <script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/scripts/tables/datatables/datatable-basic.js')?>"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/extensions/sweetalert.min.js')?>"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/scripts/extensions/sweet-alerts.js')?>"></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/vendors/js/forms/select/select2.full.min.js')?>"></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/app-assets/js/scripts/forms/select/form-select2.js')?>"></script>
 
   <script>
 
@@ -528,7 +530,16 @@
               cashflow.search($(this).val()).draw();
           });
 
+          var cabang_cashflow = $('#cabang_cashflow');
+          cabang_cashflow.select2().on('select2:select', function (evt) {
+              cashflow.ajax.url( "<?php echo site_url('dashboard/ajaxCashflowList/') ?>"+cabang_cashflow.val()).load();
+          });
+
       });
+
+      function cetak_cashflow_bulan(){
+          window.open("<?php echo site_url('report/cashflow/cetak_cashflow')?>", "_blank");
+      }
 
       function bayar(ID) {
           location.replace("<?php echo base_url('transaksi/pembayaran/bayar/')?>"+ID);

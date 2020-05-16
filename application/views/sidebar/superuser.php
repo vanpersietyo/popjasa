@@ -375,13 +375,13 @@
                 <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="ft-settings"></i><span>Setting</span> </a>
 
                 <ul class="dropdown-menu">
-                    <li data-menu="">
-                        <a class="dropdown-item" href="<?php echo site_url('account.php') ?>">
-                            <i class="icon-user"></i> Account</a>
-                    </li>
+<!--                    <li data-menu="">-->
+<!--                        <a class="dropdown-item" href="--><?php //echo site_url('account.php') ?><!--">-->
+<!--                            <i class="icon-user"></i> Account</a>-->
+<!--                    </li>-->
                     <li data-menu="">
                         <a class="dropdown-item" href="javascript:void(0)" onclick="show_modal_change_password()">
-                            <i class="icon-key"></i> Change Password</a>
+                            <i class="icon-key"></i> <span>Change Password</span></a>
                     </li>
 
                     <li data-menu="">

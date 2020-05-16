@@ -126,30 +126,21 @@ class Cashflow extends CI_Controller {
         $this->load->model('report/M_v_rekapitulasi_cashflow');
 
         $data = [
-            'tgl_awal'  => $this->input->post('tgl_awal'),
-            'tgl_akhir' => $this->input->post('tgl_akhir'),
-            'bayar'     => $this->input->post('bayar'),
-            'cabang'    => $this->input->post('cabang'),
-            'harian'    => $this->input->post('harian'),
-            'cutoff'    => $this->input->post('cutoff')
+            'tgl_awal'  => $this->input->get_post('tgl_awal')  ?: date("Y-m")."-01",
+            'tgl_akhir' => $this->input->get_post('tgl_akhir') ?: date("Y-m-t"),
+            'bayar'     => $this->input->get_post('bayar') ?: "all",
+            'cabang'    => $this->input->get_post('cabang') ?: "all",
+            'harian'    => $this->input->get_post('harian') ?: false,
+            'cutoff'    => $this->input->get_post('cutoff') ?: 'off'
         ];
 
         $subtitle   = "";
-        if(!empty($data)){
-            $tgl_awal 	= Conversion::convert_date($data['tgl_awal'],'Y-m-d');
-            $tgl_akhir 	= Conversion::convert_date($data['tgl_akhir'],'Y-m-d');
-            $bayar 		= $data['bayar'] ?: "all";
-            $cabang     = isset($data['cabang']) ? $data['cabang'] : "all";
-            $harian     = $data['harian'];
-            $cutoff     = $data['cutoff'];
-        }else{
-            $tgl_awal 	= date("Y-m-d");
-            $tgl_akhir 	= date("Y-m-d");
-            $bayar 		= "all";
-            $cabang 	= "all";
-            $harian     = false;
-            $cutoff     = 'off';
-        }
+        $tgl_awal 	= Conversion::convert_date($data['tgl_awal'],'Y-m-d') ;
+        $tgl_akhir 	= Conversion::convert_date($data['tgl_akhir'],'Y-m-d');
+        $bayar 		= $data['bayar'];
+        $cabang     = $data['cabang'];
+        $harian     = $data['harian'];
+        $cutoff     = $data['cutoff'];
 
         if($bayar === "all"){
             $subtitle   = "SEMUA PEMBAYARAN";
@@ -225,10 +216,6 @@ class Cashflow extends CI_Controller {
             "where"		=> $whereRingkasanGlobal,
             "group"		=> M_v_rekapitulasi_cashflow::KD_BANK,
         ]);
-//        echo "<pre>";
-//        var_dump($this->db->last_query());
-//        echo "</pre>";
-//        die();
         $cashflow  	= $this->M_v_rekapitulasi_cashflow->find($where,$order);
         $saldo_awal = $cutoff === 'on' ? 0 : $this->M_v_rekapitulasi_cashflow->sum("IF(TIPE='DEBET',NOMINAL,0-NOMINAL)", $where_awal);
 
@@ -254,10 +241,6 @@ class Cashflow extends CI_Controller {
             'logo'              => base_url('assets/app-assets/vendors/logo/popjasa.png')
         ];
 
-//        echo "<pre>";
-//        var_dump($var);
-//        echo "</pre>";
-//        die();
         $this->load->view('report/layout',$var);
     }
 

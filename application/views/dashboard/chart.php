@@ -469,16 +469,36 @@ $this->load->view('dashboard/assets/head');
                 <div class="card">
                     <div class="card-header" style="padding-bottom: 0">
                         <div class="row">
-                            <div class="col-lg-8">
+                            <div class="col-lg-7">
                                 <h4>
-                                    <button class="btn btn-md btn-danger box-shadow-2 round">LAPORAN ARUS KAS / CASHFLOW
+                                    <button onclick="cetak_cashflow_bulan()" class="btn btn-md btn-danger box-shadow-2 round"
+                                        <?php echo Conversion::tooltip('Cetak Laporan Cashflow')?>>
+                                        LAPORAN ARUS KAS / CASHFLOW <i class="ft-printer"></i>
                                     </button>
                                 </h4>
                             </div>
-                            <div class="col-lg-4">
-                                <input id="search_cashflow" type="text" class="search form-control"
-                                       data-toggle="tooltip" data-original-title="ARUS KAS"
-                                       placeholder="Cari ARUS KAS / CASH FLOW">
+                            <div class="col-lg-5">
+                                <div class="row">
+
+                                    <div class="col-lg-4">
+                                        <select class="select2 form-control" name="cabang" id="cabang_cashflow" style="width: 100%" title="Pilih Cabang">
+                                            <option value="all"> Semua Cabang</option>
+                                            <?php
+                                                /** @var M_cabang $cabang */
+                                                /** @var M_cabang $cbg */
+                                                foreach ($cabang as $cbg) {?>
+                                                    <option value="<?=$cbg->kd_cabang?>"><?=$cbg->nm_cabang?></option>
+                                                <?php }
+                                            ?>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-8">
+                                        <input id="search_cashflow" type="text" class="search form-control"
+                                               data-toggle="tooltip" data-original-title="ARUS KAS"
+                                               placeholder="Cari ARUS KAS / CASH FLOW">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
