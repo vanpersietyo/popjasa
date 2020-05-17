@@ -1,0 +1,24 @@
+CREATE OR REPLACE VIEW `v_kepuasan_pelanggan` AS SELECT
+ k.id,
+ k.nama_pelanggan,
+ k.nama_perusahaan,
+ k.no_telp,
+ k.info_order,
+ k.info_order2,
+ k.info_kepuasan,
+ k.status_photo,
+ k.status_photo_tgl,
+ k.status_fb,
+ k.status_ig,
+ k.referensi_nama,
+ k.referensi_no_telp,
+ p.id_project,
+ p.st_project,
+ '' as keterangan
+ FROM
+ v_project  AS p
+ LEFT JOIN progres_kepuasan AS k ON k.id_project = p.id_project  ;
+
+
+insert into log_update(script_name,note) values
+("2020_05_17.txt","v_kepuasan_pelanggan");

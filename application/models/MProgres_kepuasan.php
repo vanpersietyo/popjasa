@@ -141,6 +141,12 @@ class MProgres_kepuasan extends CI_Model
         return $data->num_rows();
     }
 
+    // get data by id
+    function get_kepuasan_pelanggan($id)
+    {
+        $this->db->where('id_project', $id);
+        return $this->db->get('v_kepuasan_pelanggan')->row();
+    }
 }
 
 /* End of file MProgres_kepuasan.php */

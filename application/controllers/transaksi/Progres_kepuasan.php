@@ -1,4 +1,6 @@
 <?php
+use Mpdf\Mpdf;
+use Mpdf\MpdfException;
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
@@ -254,7 +256,8 @@ class Progres_kepuasan extends CI_Controller
             'format' => 'A4-P',
             'orientation' => 'P'
         ]);
-        $data['kepuasan_pel'] = $this->MProgres_kepuasan->get_by_id($id);
+        $data['dokumen'] = $this->MProgres_kepuasan->get_kepuasan_pelanggan($id);
+//        $this->load->view('report/kepuasan_pel',$data);
         $html = $this->load->view('report/kepuasan_pel',$data,true);
         $mpdf->writeHTML($html);
         $mpdf->Output();
