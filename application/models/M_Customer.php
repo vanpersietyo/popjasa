@@ -83,7 +83,7 @@ class M_Customer extends CI_Model {
 	public function get_user_contacted(){
 		$query=$this->db->query("
 			select *
-			from m_customer where status =1
+			from m_customer where status =1 order by tgl_input desc
 			");
 		return $query->result();
 	}

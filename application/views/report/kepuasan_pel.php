@@ -201,19 +201,15 @@
                 <tr>
                     <td>
                         <input type="checkbox" name="teman" id="teman"
-                               value="yes" <?php echo($dokumen->info_order == 0 ? 'checked' : ''); ?>><label>Teman</label>
+                               value="yes" checked=<?php echo($dokumen->info_order == '0' ? 'checked' : ''); ?>><label>Teman</label>
                     </td>
                     <td>
                         <input type="checkbox" name="facebook" id="facebook"
-                               value="yes" <?php echo($dokumen->info_order == 1 ? 'checked' : ''); ?>><label>Facebook</label>
+                               value="yes" checked=<?php echo($dokumen->info_order == '1' ? 'checked' : ''); ?>><label>Facebook</label>
                     </td>
-                    <td>
+                    <td colspan="3">
                         <input type="checkbox" name="website" id="website"
-                               value="yes" <?php echo($dokumen->info_order == 2 ? 'checked' : ''); ?>><label>Website</label>
-                    </td>
-                    <td colspan="2">
-                        <input type="checkbox" name="other" id="other"
-                               value="yes" <?php echo($dokumen->info_order == 3 ? 'checked' : ''); ?>><label><?= $dokumen->info_order2 ?></label>
+                               value="yes" checked=<?php echo($dokumen->info_order == '2' ? 'checked' : ''); ?>><label>Website</label>
                     </td>
                 </tr>
             </table>
@@ -231,24 +227,24 @@
                 <tr>
                     <td>
                         <input type="checkbox" name="sangat_kurang" id="sangat_kurang"
-                               value="yes" <?php echo($dokumen->info_kepuasan == 0 ? 'checked' : ''); ?>><label>Sangat
+                               value="yes" checked=<?php echo($dokumen->info_kepuasan == '0' ? 'checked' : ''); ?>><label>Sangat
                             Kurang</label>
                     </td>
                     <td>
                         <input type="checkbox" name="kurang" id="kurang"
-                               value="yes" <?php echo($dokumen->info_kepuasan == 1 ? 'checked' : ''); ?>><label>Kurang</label>
+                               value="yes" checked=<?php echo($dokumen->info_kepuasan == '1' ? 'checked' : ''); ?>><label>Kurang</label>
                     </td>
                     <td>
                         <input type="checkbox" name="cukup" id="cukup"
-                               value="yes" <?php echo($dokumen->info_kepuasan == 2 ? 'checked' : ''); ?>><label>Cukup</label>
+                               value="yes" checked=<?php echo($dokumen->info_kepuasan == '2' ? 'checked' : ''); ?>><label>Cukup</label>
                     </td>
                     <td>
                         <input type="checkbox" name="baik" id="baik"
-                               value="yes" <?php echo($dokumen->info_kepuasan == 3 ? 'checked' : ''); ?>><label>Baik</label>
+                               value="yes" checked=<?php echo($dokumen->info_kepuasan == '3' ? 'checked' : ''); ?>><label>Baik</label>
                     </td>
                     <td>
                         <input type="checkbox" name="baik_sekali" id="baik_sekali"
-                               value="yes" <?php echo($dokumen->info_kepuasan == 4 ? 'checked' : ''); ?>><label>Baik
+                               value="yes" checked=<?php echo($dokumen->info_kepuasan == '4' ? 'checked' : ''); ?>><label>Baik
                             Sekali</label>
                     </td>
                 </tr>
@@ -264,28 +260,28 @@
             <table width="100%">
                 <tr>
                     <td style="width: 70%"><input type="checkbox" name="boleh" id="boleh"
-                                                  value="yes" <?php echo($dokumen->status_photo == 0 ? 'checked' : ''); ?>>Boleh
+                                                  value="yes" checked=<?php echo($dokumen->status_photo == '0' ? 'checked' : ''); ?>>Boleh
                         <table width="100%">
                             <tr>
-                                <td>Tgl <?= $dokumen->status_photo_tgl; ?></td>
+                                <td>Tgl : <?= $dokumen->status_photo_tgl; ?></td>
                             </tr>
                             <tr>
-                                <td>Ttd</td>
+                                <td>Ttd : <?= $dokumen->nama_pelanggan; ?></td>
                             </tr>
                             <tr>
-                                <td>Nama <?= $dokumen->nama_pelanggan; ?></td>
+                                <td>Nama : <?= $dokumen->nama_pelanggan; ?></td>
                             </tr>
                             <tr>
-                                <td>Facebook <?= $dokumen->status_fb; ?></td>
+                                <td>Facebook : <?= $dokumen->status_fb; ?></td>
                             </tr>
                             <tr>
-                                <td>Instagram <?= $dokumen->status_ig; ?></td>
+                                <td>Instagram : <?= $dokumen->status_ig; ?></td>
                             </tr>
                         </table>
                     </td>
                     <td style="vertical-align: top">
                         <input type="checkbox" name="boleh" id="boleh"
-                               value="yes" <?php echo($dokumen->$status_photo == 1 ? 'checked' : ''); ?>><label>Tidak</label>
+                               value="yes" checked=<?php echo($dokumen->$status_photo == '1' ? 'checked' : ''); ?>><label>Tidak</label>
                     </td>
                 </tr>
             </table>
@@ -293,14 +289,15 @@
     </tr>
     <br/>
     <tr>
-        <td colspan="5">Saran yang anda inginkan untuk kami :</td>
+        <td colspan="5">Saran yang anda inginkan untuk kami</td>
     </tr>
     <tr>
         <td colspan="5">(Pelayanan dan fasilitas tambahan yang diinginkan)</td>
     </tr>
+    <tr><td colspan="5"><?= $dokumen->info_order2 ?></td></tr>
     <br><br><br><br><br><br><br><br>
     <tr>
-        <td colspan="5"><label>Referensi :</label></td>
+        <td colspan="5"><label>Referensi</label></td>
     </tr>
     <tr>
         <td colspan="5">(Teman/Kerabat/Rekan, bisa lebih dari satu orang)</td>

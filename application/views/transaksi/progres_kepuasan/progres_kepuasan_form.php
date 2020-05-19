@@ -166,6 +166,13 @@ $this->load->view('./template/head');
                                            placeholder="Referensi No Telp" value="<?php echo $referensi_no_telp; ?>"/>
                                 </div>
                             </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="varchar">Keterangan <?php echo form_error('keterangan') ?></label>
+                                    <input type="text" class="form-control" name="keterangan" id="keterangan"
+                                           placeholder="Keterangan" value="<?php echo $keterangan; ?>"/>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <input type="hidden" name="id" value="<?php echo $id; ?>"/>

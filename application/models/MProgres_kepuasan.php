@@ -8,6 +8,7 @@ class MProgres_kepuasan extends CI_Model
 
     public $table = 'progres_kepuasan';
     public $id = 'id';
+    public $id_project = 'id_project';
     public $order = 'DESC';
 
     function __construct()
@@ -28,7 +29,13 @@ class MProgres_kepuasan extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
-    
+
+    function get_by_project($id)
+    {
+        $this->db->where($this->id_project, $id);
+        return $this->db->get($this->table)->row();
+    }
+
     // get total rows
     function total_rows($q = NULL) {
         $this->db->like('id', $q);

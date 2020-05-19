@@ -1,0 +1,6 @@
+ALTER TABLE `popjasa`.`progres_kepuasan`
+ADD COLUMN `saran` varchar(255) NULL DEFAULT '' AFTER `id_project`,
+ADD COLUMN `keterangan` varchar(255) NULL DEFAULT '' AFTER `saran`;
+
+insert into log_update(script_name,note) values
+("2020_05_19.txt","Alter Progress_Kepuasan");

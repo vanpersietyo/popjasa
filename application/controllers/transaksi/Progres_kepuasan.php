@@ -48,7 +48,8 @@ class Progres_kepuasan extends CI_Controller
 
     public function cek_projects($id)
     {
-        $row = $this->MProgres_kepuasan->find(['id_project', $id]);
+        $row = $this->MProgres_kepuasan->get_by_project($id);
+
         if ($row) {
             $this->update($row->id);
         } else {
@@ -122,6 +123,7 @@ class Progres_kepuasan extends CI_Controller
             'status_ig' => set_value('status_ig'),
             'referensi_nama' => set_value('referensi_nama'),
             'referensi_no_telp' => set_value('referensi_no_telp'),
+            'keterangan' => set_value('keterangan'),
             'id_project' => $id_project,
             'pages' =>'/transaksi/progres_kepuasan/progres_kepuasan_form',
         );
@@ -148,6 +150,7 @@ class Progres_kepuasan extends CI_Controller
                 'status_ig' => $this->input->post('status_ig', TRUE),
                 'referensi_nama' => $this->input->post('referensi_nama', TRUE),
                 'referensi_no_telp' => $this->input->post('referensi_no_telp', TRUE),
+                'keterangan'=> $this->input->post('keterangan',TRUE),
                 'id_project' => $id_project,
             );
 
@@ -159,7 +162,7 @@ class Progres_kepuasan extends CI_Controller
 
     public function update($id)
     {
-        $row = $this->MProgres_kepuasan->find(['id_project',$id]);
+        $row = $this->MProgres_kepuasan->get_by_id($id);
 
         if ($row) {
             $data = array(
@@ -178,6 +181,7 @@ class Progres_kepuasan extends CI_Controller
                 'status_ig' => set_value('status_ig', $row->status_ig),
                 'referensi_nama' => set_value('referensi_nama', $row->referensi_nama),
                 'referensi_no_telp' => set_value('referensi_no_telp', $row->referensi_no_telp),
+                'keterangan' => set_value('keterangan', $row->keterangan),
                 'id_project' => set_value('id_project', $row->id_project),
                 'pages' =>'/transaksi/progres_kepuasan/progres_kepuasan_form',
             );
@@ -208,6 +212,7 @@ class Progres_kepuasan extends CI_Controller
                 'status_ig' => $this->input->post('status_ig', TRUE),
                 'referensi_nama' => $this->input->post('referensi_nama', TRUE),
                 'referensi_no_telp' => $this->input->post('referensi_no_telp', TRUE),
+                'keterangan'=> $this->input->post('keterangan',TRUE),
                 'id_project' => $id_project,
             );
 
@@ -257,7 +262,8 @@ class Progres_kepuasan extends CI_Controller
             'orientation' => 'P'
         ]);
         $data['dokumen'] = $this->MProgres_kepuasan->get_kepuasan_pelanggan($id);
-//        $this->load->view('report/kepuasan_pel',$data);
+        //echo var_dump($data['dokumen']);
+        //$this->load->view('report/kepuasan_pel',$data);
         $html = $this->load->view('report/kepuasan_pel',$data,true);
         $mpdf->writeHTML($html);
         $mpdf->Output();
